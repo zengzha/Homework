@@ -1,6 +1,6 @@
 \documentclass[a4paper, 12pt]{article}
 
-\usepackage{/Users/zhengz/Desktop/Math/Homework/math/homework}
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -33,7 +33,12 @@ Let \(\mathbb{K}/\Bbbk\) be a Galois extension, and \(\mathbb{L}\), \(\mathbb{M}
 \end{problem}
 \begin{solution}
 \begin{enumerate}[(a)]
-\item We know that \(L\cap M\subseteq L\), by the Galois correspondence, we have \(L^*\subseteq (L\cap M)^*\). Similarly, we can see that \(M^*\subseteq (L\cap M)^*\). Note that \(\)
+\item We know that \(L\cap M\subseteq L\), by the Galois correspondence, we have \(L^*\subseteq (L\cap M)^*\). Similarly, we can see that \(M^*\subseteq (L\cap M)^*\). Note that \(\la L^*, M^*\ra\) is the smallest subgroup containing \(L^*\) and \(M^*\). This implies 
+\((L\cap M)^*\) contains \(\la L^*,M^*\ra\). On the other hand, suppose \(a\in \mathbb{K}\) is fixed by every element in the group \(\la L^*,M^*\ra\), so \(a\) is invariant under every element in \(L^*\) and \(M^*\). This is the same as \(a\in L\) and \(a\in M\), so \(a\in L\cap M\). This proves 
+\(\la L^*,M^*\ra^*\subseteq L\cap M\), by Galois correspondence, we have \((L\cap M)^*\subseteq \la L^*,M^*\ra\). Thus, we can conclude that \((L\cap M)^*=\la L^*,M^*\ra\). 
+\item By definition, we know that \(L\vee M\supseteq L\) and \(L\vee M\supseteq M\), by Galois correspondence, we have \((L\vee M)^*\subseteq L^*\) and \((L\vee M)^*\subseteq M^*\), so \((L\vee M)^*\subseteq L^*\cap M^*\). On the other hand, \(L^*\cap M^*\subseteq L^*\) and \(L^*\cap M^*\subseteq M^*\), by Galois correspondence, we have 
+\((L^*\cap M^*)^*\supseteq L\) and \((L^*\cap M^*)^*\supseteq M\). Note that \(L\vee M\) is the smallest subfield containing \(L\) and \(M\), so \((L^*\cap M^*)^*\supseteq L\vee M\), by Galois correspondence, we have \(L^*\cap M^*\subseteq (L\vee M)^*\). Thus, we can conclude that \((L\vee M)^*=L^*\cap M^*\). 
+\item Consider the field extension 
 \end{enumerate}
 \end{solution}
 

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  20 APR 2025 12:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  20 APR 2025 11:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/zhengz/Desktop/Math/Workspace/Homework1/Algebra/Spring 2025/Week 3"
-(/Users/zhengz/Desktop/Math/Workspace/Homework1/Algebra/Spring 2025/Week 3.tex
+**"/Users/zhengz/Desktop/Math/Workspace/Homework1/Topology/Spring 2025/HW#2"
+(/Users/zhengz/Desktop/Math/Workspace/Homework1/Topology/Spring 2025/HW#2.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -768,27 +768,27 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip132
-)) (./Week 3.aux)
-\openout1 = `"Week 3.aux"'.
+)) (./HW#2.aux)
+\openout1 = `HW#2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -847,99 +847,161 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 6.
- (./Week 3.out) (./Week 3.out)
+Package hyperref Info: Link coloring OFF on input line 5.
+ (./HW#2.out) (./HW#2.out)
 \@outlinefile=\write5
-\openout5 = `"Week 3.out"'.
+\openout5 = `HW#2.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 8--19
+Underfull \hbox (badness 10000) in paragraph at lines 7--15
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 25.
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--49
-
- []
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 49.
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--65
-
- []
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 65.
-Package mdframed Info: Not enough space on this page on input line 72.
+(mdframed)              on input line 19.
+<Pictures/HW2-1-1.jpg, id=7, 3009.2425pt x 2008.50375pt>
+File: Pictures/HW2-1-1.jpg Graphic file (type jpg)
+<use Pictures/HW2-1-1.jpg>
+Package pdftex.def Info: Pictures/HW2-1-1.jpg  used on input line 24.
+(pdftex.def)             Requested size: 300.94188pt x 200.86214pt.
+<Pictures/HW2-1-2.jpg, id=8, 2224.31pt x 2011.515pt>
+File: Pictures/HW2-1-2.jpg Graphic file (type jpg)
+<use Pictures/HW2-1-2.jpg>
+Package pdftex.def Info: Pictures/HW2-1-2.jpg  used on input line 52.
+(pdftex.def)             Requested size: 222.44403pt x 201.16328pt.
 
 
 [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package mdframed Info: Not enough space on this page on input line 72.
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--81
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Pictures/HW2-1-1.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 88--92
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 81.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 96.
+(mdframed)              on input line 92.
+Package mdframed Info: Not enough space on this page on input line 105.
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--109
 
- []
+[2 <./Pictures/HW2-1-2.jpg>]
+Package mdframed Info: Not enough space on this page on input line 105.
 
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 109.
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--120
+Underfull \hbox (badness 10000) in paragraph at lines 115--119
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 120.
+(mdframed)              on input line 119.
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+
+ []
+
+<Pictures/HW2-3-1.png, id=28, 287.92368pt x 276.36047pt>
+File: Pictures/HW2-3-1.png Graphic file (type png)
+<use Pictures/HW2-3-1.png>
+Package pdftex.def Info: Pictures/HW2-3-1.png  used on input line 134.
+(pdftex.def)             Requested size: 115.16742pt x 110.54222pt.
 
 
-[2] (./Week 3.aux)
+[3]
+
+[4 <./Pictures/HW2-3-1.png>]
+<Pictures/HW2-3-2.png, id=46, 265.37544pt x 263.64096pt>
+File: Pictures/HW2-3-2.png Graphic file (type png)
+<use Pictures/HW2-3-2.png>
+Package pdftex.def Info: Pictures/HW2-3-2.png  used on input line 166.
+(pdftex.def)             Requested size: 106.14828pt x 105.4545pt.
+
+
+[5 <./Pictures/HW2-3-2.png>]
+File: Pictures/HW2-3-2.png Graphic file (type png)
+<use Pictures/HW2-3-2.png>
+Package pdftex.def Info: Pictures/HW2-3-2.png  used on input line 213.
+(pdftex.def)             Requested size: 106.14828pt x 105.4545pt.
+
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 242--246
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 246.
+
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 307--311
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 311.
+
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 331--335
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 335.
+<Pictures/HW2-6-1.png, id=71, 271.7352pt x 259.59384pt>
+File: Pictures/HW2-6-1.png Graphic file (type png)
+<use Pictures/HW2-6-1.png>
+Package pdftex.def Info: Pictures/HW2-6-1.png  used on input line 337.
+(pdftex.def)             Requested size: 135.86725pt x 129.7966pt.
+<Pictures/HW2-6-2.png, id=72, 261.90648pt x 241.09271pt>
+File: Pictures/HW2-6-2.png Graphic file (type png)
+<use Pictures/HW2-6-2.png>
+Package pdftex.def Info: Pictures/HW2-6-2.png  used on input line 349.
+(pdftex.def)             Requested size: 130.95291pt x 120.54605pt.
+
+
+[9 <./Pictures/HW2-6-1.png>]
+<Pictures/HW2-6-3.png, id=82, 395.46144pt x 361.35pt>
+File: Pictures/HW2-6-3.png Graphic file (type png)
+<use Pictures/HW2-6-3.png>
+Package pdftex.def Info: Pictures/HW2-6-3.png  used on input line 368.
+(pdftex.def)             Requested size: 158.18176pt x 144.53743pt.
+
+
+[10 <./Pictures/HW2-6-2.png> <./Pictures/HW2-6-3.png>]
+
+[11] (./HW#2.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-Package rerunfilecheck Info: File `"Week 3".out' has not changed.
+Package rerunfilecheck Info: File `HW#2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 26803 strings out of 473190
- 525150 string characters out of 5715801
- 1005139 words of memory out of 5000000
- 49570 multiletter control sequences out of 15000+600000
+ 27621 strings out of 473190
+ 545454 string characters out of 5715801
+ 1008133 words of memory out of 5000000
+ 50377 multiletter control sequences out of 15000+600000
  564741 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,125p,608b,572s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Week 3.pdf" (2 pages, 101483 bytes).
+ 99i,16n,125p,778b,1170s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on HW#2.pdf (11 pages, 887511 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 168 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
