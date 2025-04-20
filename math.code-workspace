@@ -4,10 +4,6 @@
 			"path": ".."
 		},
 		{
-			"name": "Teaching-1",
-			"path": "../../../Teaching/Teaching-1"
-		},
-		{
 			"name": "Teaching",
 			"path": "../../../Teaching/Teaching"
 		}
