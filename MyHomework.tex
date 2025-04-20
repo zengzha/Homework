@@ -1,0 +1,186 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\iif}{\ \ \text{if}\ \ }
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\coind}{\text{coind}}
+\newcommand{\res}{\text{res}}
+\newcommand{\li}{\leftindex}
+\newcommand{\GCD}{\text{GCD}}
+\newcommand{\irr}{\text{irr}}
+\newcommand{\Nm}{\text{Nm}}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\Vect}{\text{Vect}}
+\newcommand{\cRe}{\text{Re}}
+\newcommand{\cIm}{\text{Im}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 3}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 649 - Abstract Algebra  \hfill Term: Spring 2025\\
+Instructor: Professor Sasha Polishchuk \hfill Due Date: $23^{th}$ April, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.4.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.5.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.5.5}
+Let \(\mathbb{K}/\Bbbk\) be a Galois extension, and \(\mathbb{L}\), \(\mathbb{M}\) be intermediate fields. Denote by \(\mathbb{L}\vee \mathbb{M}\) the minimal subfield of \(\mathbb{K}\) containing 
+\(\mathbb{L}\) and \(\mathbb{M}\). 
+\begin{enumerate}[(a)]
+\item \((\mathbb{L}\cap \mathbb{M})^*=\la \mathbb{L}^*,\mathbb{M}^*\ra\).
+\item \((\mathbb{L}\vee \mathbb{M})^*=\mathbb{L}^*\cap \mathbb{M}^*\).
+\item Assume that \(\mathbb{L}/\Bbbk\) is normal. Then \(\Gal(\mathbb{L}\vee \mathbb{M}/\mathbb{M})\cong \Gal(\mathbb{L}/(\mathbb{L}\cap \mathbb{M}))\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item We know that \(L\cap M\subseteq L\), by the Galois correspondence, we have \(L^*\subseteq (L\cap M)^*\). Similarly, we can see that \(M^*\subseteq (L\cap M)^*\). Note that \(\)
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.5.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.5.6}
+Let \(\mathbb{K}/\Bbbk\) be a finite Galois extension and \(p\) be a prime number. 
+\begin{enumerate}[(a)]
+\item \(\mathbb{K}\) has an intermediate subfield \(\mathbb{L}\) such that \([\mathbb{K}:\mathbb{L}]\) is a prime power. 
+\item If \(\mathbb{L}_1\) and \(\mathbb{L_2}\) are intermediate subfields with \([\mathbb{K}:\mathbb{L}_1]\), \([\mathbb{K}:\mathbb{L}_2]\) both 
+\(p\)-powers, and \([\mathbb{L}_1:\Bbbk]\), \([\mathbb{L}_2:\Bbbk]\) both prime to \(p\), then \(\mathbb{L}_1\) is \(\mathbb{L}_1\) is \(\Bbbk\)-isomorphic to \(\mathbb{L}_2\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.5.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.5.7}
+Let \(f\in \Bbbk[x]\), \(\mathbb{K}/\Bbbk\) be a splitting field for \(f\) over \(\Bbbk\), and \(G:=\Gal(\mathbb{K}/\Bbbk)\).
+\begin{enumerate}
+\item \(G\) acts on the set of the roots of \(f\).
+\item \(G\) acts transitively if \(f\) is irreducible. 
+\item If \(f\) has no multiple roots and \(G\) acts transitively then \(f\) is irreducible.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.6.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.6.2}
+Let \(\Bbbk\) be a field, \(p(x)\) be an irreducible polynomial in \(\Bbbk[x]\) of degree \(n\), and let \(\mathbb{K}\) be a Galois extension of \(\Bbbk\) containing a root \(\alpha\) of \(p(x)\). Let \(G=\Gal(\mathbb{K}/\Bbbk)\), 
+and \(G_\alpha\) be the set of all \(\sigma\in G\) with \(\sigma(\alpha)=\alpha\). Then: 
+\begin{enumerate}[(a)]
+\item \([G:G_\alpha]=n\);
+\item \(G_\alpha^*=\Bbbk(\alpha)\);
+\item If \(G_\alpha\) is normal in \(G\) then \(p(x)\) splits in the fixed field of \(G_\alpha\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.6.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.6.3}
+Let \(\Bbbk(\alpha)/\Bbbk\) be a field extension obtained by adjoining a root \(\alpha\) of an irreducible separable polynomial \(f\in \Bbbk[x]\). 
+Then there exists an intermediate field \(\Bbbk\subseteq \mathbb{F}\subseteq \Bbbk(\alpha)\) if and only if \(\Gal(f;\Bbbk)\) is imprimitive (as a permutation group on the roots), in which case \(\mathbb{F}\) can be chosen so that 
+\([\mathbb{F}:\Bbbk]\) is equal to the number of imprimitive blocks.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.6.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.6.6}
+Find all subfields of the splitting field of \(x^3-7\) over \(\mathbb{Q}\). Which of the subfields are normal over \(\mathbb{Q}\)?
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.6.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.6.7}
+Let \(\mathbb{K}\) be a splitting field for \(x^4+6x^2+5\) over \(\mathbb{Q}\). Find subfields of \(\mathbb{K}\).
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\end{document}
