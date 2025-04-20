@@ -79,7 +79,14 @@ Let \(\mathbb{K}/\Bbbk\) be a finite Galois extension and \(p\) be a prime numbe
 \end{enumerate}
 \end{problem}
 \begin{solution}
-    
+\begin{enumerate}[(a)]
+\item Suppose \([\mathbb{K}:\Bbbk]=n\) is finite. We know \(n\) can be written as product of prime powers and suppose \(n=p^km\) for some prime number \(p\) and \((p,m)=1\). The Galois group \(G=\Gal(\mathbb{K}/\Bbbk)\) has order \(n\) and by Sylow's theorem, the 
+Sylow \(p\)-subgroup of \(G\) exists and has order \(p^k\). By Galois correspondence, there exists a subfield \(\mathbb{K}/\mathbb{L}/\Bbbk\) such that \([\mathbb{K}:\mathbb{L}]=p^k\). 
+\item Under the same assumption of (a), suppose \([\mathbb{K}:\mathbb{L}_1]=[\mathbb{K}:\mathbb{L}_2]=p^k\) and since \([\mathbb{L}_1:\Bbbk]\), \([\mathbb{L}_2]:\Bbbk\) are prime to \(p\), the Galois group \(\Gal(\mathbb{K}/\mathbb{L}_1)\) and \(\Gal(\mathbb{K}/\mathbb{L}_2)\) are Sylow \(p\)-subgroups 
+in \(G\), and by Sylow theory, they are conjugate. There exists \(g\in G\) such that \(g \mathbb{L}_1^*g^{-1}=\mathbb{L}_2^*\). By Galois correspondence and the proof of Theorem 11.5.4 (iv), we know that 
+\[g \mathbb{L}_1^*g^{-1}=g(\mathbb{L}_1)^*=\mathbb{L}_2^*.\]
+So \(g:\mathbb{K}\rightarrow \mathbb{K}\) restricting to \(\mathbb{L}_1\) defines an isomorphism \(\mathbb{L}_1\rightarrow \mathbb{L}_2\) fixing the base field \(\Bbbk\).
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -95,7 +102,13 @@ Let \(f\in \Bbbk[x]\), \(\mathbb{K}/\Bbbk\) be a splitting field for \(f\) over 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-    
+\begin{enumerate}[(a)]
+\item We need to show that for any \(g\in G\) and any \(\alpha\in \mathbb{K}\) is a root of \(f\), \(g(\alpha)\) is also a root of \(f\). Indeed, we know that \(g(\alpha)\) is a root of \(g(f)\) and since 
+\(f\in \Bbbk[x]\) and \(g\) fixes every element in \(\Bbbk\), \(g\) fixes the polynomial \(f\), so \(g(f)=f\). Thus, we can conclude that \(G\) acts on the set of roots of \(f\). 
+\item By Theorem 11.3.3, \(\mathbb{K}/\Bbbk\) is a normal extension and by Proposition 11.3.9, \(G\) acts transitively if \(f\) is irreducible. 
+\item The condition is equivalent to \(\mathbb{K}/\Bbbk\) is a finite Galois extension. Assume \(f\) is not irreducible over \(\Bbbk\) and \(h|f\) for some irreducible polynomial \(h\in \Bbbk[x]\). Suppose \(\alpha_1,\ldots,\alpha_n\in \mathbb{K}\) are roots of \(f\) and \(\alpha_1,\ldots,\alpha_k\) are roots 
+of \(h\) for \(1\leq k<n\). Note that for any \(g\in G\), \(g\) fixes \(h\in \Bbbk[x]\) so \(g\) must send a root of \(h\) to another root of \(h\). This means there does not exists \(g\in G\) such that \(g(\alpha_1)=\alpha_n\). This contradicts the assumption that \(G\) acts transitively, so \(f\) is irreducible. 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -112,18 +125,39 @@ and \(G_\alpha\) be the set of all \(\sigma\in G\) with \(\sigma(\alpha)=\alpha\
 \end{enumerate}
 \end{problem}
 \begin{solution}
-    
+\begin{enumerate}[(a)]
+\item Suppose \(\alpha=\alpha_1,\alpha_2,\ldots,\alpha_n\in \mathbb{K}\) are roots of \(p(x)\). For all \(1\leq i\leq n\), choose \(\sigma_i\in G\) satisfying \(\sigma_i(\alpha_1)=\alpha_i\). 
+\begin{claim}
+\(G=\sigma_1G_\alpha\sqcup \cdots\sqcup \sigma_nG_\alpha\) is a coset decomposition of \(G\) with respect to the subgroup \(G_\alpha\).
+\end{claim} 
+\begin{claimproof}
+We first prove the cosets are disjoint. Suppose there exists \(g\in\sigma_iG_\alpha\cap \sigma_jG_\alpha\) for some \(1\leq i,j\leq n\), then \(g=\sigma_ig_1=\sigma_jg_2\) for some \(g_1,g_2\in G_\alpha\). Then 
+\[\alpha_i=\sigma_ig_1(\alpha_1)=\sigma_jg_2(\alpha_1)=\alpha_j.\]
+This implies \(i=j\). Next, we are going to show that for every \(g\in G\), \(g\) must be in one of the coset. Suppose \(g(\alpha_1)=\alpha_k\) for some \(1\leq k\leq n\). Note that \(\sigma_k^{-1}g(\alpha_1)=\alpha_1\), so \(\sigma_k^{-1}g\in G_\alpha\). There exists \(g' \in G_\alpha\) such that 
+\(\sigma_k^{-1}g=g'\), namely \(g=\sigma_kg'\), so \(g\in \sigma_kG_\alpha\).
+\end{claimproof}
+
+From the claim, we know that \(G_\alpha\) has \(n\) cosets in \(G\), so by definition \([G:G_\alpha]=n\). 
+\item By definition, \(G_\alpha\) fixes every element in \(\Bbbk(\alpha)\), so \(G_\alpha\subseteq \Gal(\Bbbk(\alpha)/\Bbbk)\). By Galois correspondence, this means \(G_\alpha^*\supseteq \Bbbk(\alpha)\). Moreover, by Galois correspondence and (a), we have 
+\[[\Bbbk(\alpha):\Bbbk]=|\Gal(\Bbbk(\alpha)/\Bbbk)|=n=[G:G_\alpha]=[G_\alpha^*:\Bbbk].\]
+This tells us that \(G_\alpha^*=\Bbbk(\alpha)\).
+\item If \(G_\alpha\) is normal in \(G\), by Galois correspondence, \(G_\alpha^*/\Bbbk\) is a normal extension. We know the polynomial \(p(x)\) already has one root \(\alpha\) in \(G_\alpha^*=\Bbbk(\alpha)\), by definition of normal extension, \(p(x)\) splits in \(G_\alpha^*\).
+\end{enumerate}
 \end{solution}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 11.6.3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{11.6.3}
 Let \(\Bbbk(\alpha)/\Bbbk\) be a field extension obtained by adjoining a root \(\alpha\) of an irreducible separable polynomial \(f\in \Bbbk[x]\). 
-Then there exists an intermediate field \(\Bbbk\subseteq \mathbb{F}\subseteq \Bbbk(\alpha)\) if and only if \(\Gal(f;\Bbbk)\) is imprimitive (as a permutation group on the roots), in which case \(\mathbb{F}\) can be chosen so that 
+Then there exists an intermediate field \(\Bbbk\subsetneq \mathbb{F}\subsetneq \Bbbk(\alpha)\) if and only if \(\Gal(f;\Bbbk)\) is imprimitive (as a permutation group on the roots), in which case \(\mathbb{F}\) can be chosen so that 
 \([\mathbb{F}:\Bbbk]\) is equal to the number of imprimitive blocks.
 \end{problem}
 \begin{solution}
-
+By Theorem 7.1.11 (Primitivity Criterion), \(G=\Gal(f;\Bbbk)\) is primitive if and only if the stabilizer \(G_\beta\) is a maximal subgroup for any root \(\beta\) of the polynomial \(f\). Write \(\mathbb{N}\) as the splitting field of \(f\). Suppose there exists an intermediate field \(\Bbbk\subsetneq \mathbb{F}\subsetneq \Bbbk(\alpha)\), by Galois correspondence, there exists a proper subgroup 
+\(\mathbb{F}^*\subsetneq G\) containing the stabilizer \(\Bbbk(\alpha)^*=G_\alpha\). This implies \(G\) is not primitive. Conversely, suppose \(G\) is not primitive. Then there exists a proper subgroup \(H\) satisfying \(G_\alpha\subsetneq H\subsetneq G\). By Galois correspondence, the fixed field \(H^*\) is an intermediate field and \([H^*:\Bbbk]=[G:H]=n\). Write 
+\[G=g_1H\sqcup \cdots \sqcup g_nH\]
+and define \(X_i:=\left\{ g_ih\cdot \alpha\mid h\in H \right\}\) for \(1\leq i\leq n\). We have proved in the proof of Theorem 7.1.11, \(X_1,\ldots,X_n\) are imprimitivity blocks, so this implies that \(\mathbb{F}=H^*\) can be chosen so that 
+\([\mathbb{F}:\Bbbk]\) is equal to the number of imprimitive blocks.
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -134,7 +168,13 @@ Then there exists an intermediate field \(\Bbbk\subseteq \mathbb{F}\subseteq \Bb
 Find all subfields of the splitting field of \(x^3-7\) over \(\mathbb{Q}\). Which of the subfields are normal over \(\mathbb{Q}\)?
 \end{problem}
 \begin{solution}
-    
+Write 
+\[x^3-7=(x-\sqrt[3]{7})(x-\sqrt[3]{7}\omega)(x-\sqrt[3]{7}\omega^2)\]
+where \(\omega\) is the 3rd primitive root of unit satisfying \(\omega^2+\omega+1=0\). The splitting field of \(x^3-7\) is \(\mathbb{K}=\mathbb{Q}(\sqrt[3]{7},\omega)\). We know that 
+\[[\mathbb{K}:\mathbb{Q}]=[\mathbb{K}:\mathbb{Q}(\sqrt[3]{7})][\mathbb{Q}(\sqrt[3]{7}):\mathbb{Q}]=2\cdot 3=6.\]
+So the Galois group \(G=\Gal(\mathbb{K}/\mathbb{Q})\) is a group of order 6. Consider the following two field automorphisms \(\sigma,\tau:\mathbb{K}\rightarrow \mathbb{K}\) where \(\sigma\) fixes \(\sqrt[3]{7}\) and permutes \(\omega\) and \(\omega^2\) in \(\mathbb{K}\), \(\tau\) sends \(\sqrt[3]{7}\) to \(\sqrt[3]{7}\omega\), \(\sqrt[3]{7}\omega\) to \(\sqrt[3]{7}\omega^2\) and \(\sqrt[3]{7}\omega^2\) to \(\sqrt[3]{7}\). \(\sigma\in G\) is an element of order \(2\) and \(\tau\in G\) is an element of order \(3\). Note that 
+\[\sigma\tau(\sqrt[3]{7})=\sigma(\sqrt[3]{7}\omega)=\sqrt[3]{7}\omega^2\neq \sqrt[3]{7}\omega=\tau\sigma(\sqrt[3]{7}).\]
+So \(G\) is not commutative and has to be \(S_3\). The subgroup generated by \(\sigma\) is a subgroup of index \(2\) in \(G\), thus it is the normal subgroup \(\la (123)\ra\), corresponding to the normal extension \(\mathbb{Q}(\omega)/\mathbb{Q}\). The subgroups \(\la(12)\ra\), \(\la(23)\ra\) and \(\la(13)\ra\) are conjugate Sylow \(2\)-group in \(G\) of index \(3\), corresponding to the degree \(3\) subextension \(\mathbb{Q}(\sqrt[3]{7})\), \(\mathbb{Q}(\sqrt[3]{7}\omega)\) and \(\mathbb{Q}(\sqrt[3]{7}\omega^2)\). None of them are normal. These are all the subfields of \(\mathbb{K}\).
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -145,7 +185,11 @@ Find all subfields of the splitting field of \(x^3-7\) over \(\mathbb{Q}\). Whic
 Let \(\mathbb{K}\) be a splitting field for \(x^4+6x^2+5\) over \(\mathbb{Q}\). Find subfields of \(\mathbb{K}\).
 \end{problem}
 \begin{solution}
-    
+Write 
+\[x^4+6x^2+5=(x+i)(x-i)(x+\sqrt{5}i)(x-\sqrt{5}i).\]
+We know that 
+\[[\mathbb{K}:\mathbb{Q}]=[\mathbb{Q}:\mathbb{Q}(i)][\mathbb{Q}(i):\mathbb{Q}]=2\cdot 2=4.\]
+So the Galois group \(G=\Gal(\mathbb{K}/\mathbb{Q})\) is either the cyclic group \(C_4\) or the direct sum of two cyclic groups \(C_2\oplus C_2\). Note that \(\mathbb{Q}(i)\) and \(\mathbb{Q}(\sqrt{5})\) are two different subfields of \(\mathbb{K}\), but \(C_4\) only has one nontrivial proper subgroup, so \(G=C_2\oplus C_2\). \(G\) has three subgroups of index \(2\), corresponding to the subfields \(\mathbb{Q}(i)\), \(\mathbb{Q}(\sqrt{5})\) and \(\mathbb{Q}(\sqrt{5}i)\). All of them are normal because \(G\) is an abelian group. 
 \end{solution}
 
 \end{document}
