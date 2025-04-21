@@ -33,23 +33,91 @@ Compute both \(\Tor_i(A,B)\) and \(\Ext^i(A,B)\) for all \(i\) in the following 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{1}
-Let \(A\) be an abelian group and 
+\begin{problem}{2}
+Let \(A\) be an abelian group and let \(G_*\rightarrow A\rightarrow 0\) be a free resolution. Let \(B\) be another abelian group and let \(J_*\rightarrow B\rightarrow 0\) be a free resolution. 
+\begin{enumerate}[(a)]
+\item Given a map \(f:A\rightarrow B\), prove that there are maps \(F_i:G_i\rightarrow J_i\) making all squares commute, we call this chain map \(\left\{ F:G_*\rightarrow J_* \right\}\) a lifting of the map \(f\). 
+\item Prove that if \(\left\{ F':G_*\rightarrow J_* \right\}\) is another lifting of \(f\) then the chain map \(F\) and \(F'\) are chain homotopic. 
+\item If \(C\) is another abelian group one gets an induced map \(F\otimes id:G_*\otimes C\rightarrow J_*\otimes C\) and therefore an induced map on homology groups \(f_*:\Tor_i(A,C)\rightarrow \Tor_i(B,C)\). Since 
+any two choices of \(F\) are homotopic, this \(f_*\) is well-defined.\\ 
+Use the above procedure to calculate the maps 
+\begin{align*}
+    j_*:&\Tor_1(\mathbb{Z}/2,\mathbb{Z}/2)\rightarrow \Tor_1(\mathbb{Z}/4,\mathbb{Z}/2),\\ 
+    k_*:&\Tor_1(\mathbb{Z}/4,\mathbb{Z}/2)\rightarrow \Tor_1(\mathbb{Z}/2,\mathbb{Z}/2).
+\end{align*}
+induced by the map \(j:\mathbb{Z}/2\hookrightarrow \mathbb{Z}/4\) (sending 1 to 2) and \(k:\mathbb{Z}/4\rightarrow \mathbb{Z}/2\) (sending 1 to 1).
+\end{enumerate}
 \end{problem}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Probelm 3 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{solution}
+    
+\end{solution}
 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 3.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7}
+If \(F\) is a finitely-generated free abelian group then there is a canonical isomorphism 
+\[\hom(\hom(F,\mathbb{Z}),\mathbb{Z})\cong F.\]
+So if \(C\) is a chain complex consisting of finitely generated, free abelian groups, one gets an induced isomorphism 
+\[\hom(\hom(C,\mathbb{Z}),\mathbb{Z})\cong C.\]
+Using this, derive a universal coefficient theorem which lets you predict \(H_*(C)\) if you know \(H^*(\hom(C,\mathbb{X}))\).
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 3.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.8}
+In this problem we'll use the abbreviations \(H^i(\hom(C,\mathcal{A}))=H^i(C;\mathcal{A})\) and \(H^i(C)=H^i(C;\mathbb{Z})\). 
+\par 
+If \(F\) is a finitely -generated free abelian group then there is a canonical isomorphism 
+\[\hom(F,\mathcal{A})\cong \hom(F,\mathbb{Z})\otimes \mathbb{Z}.\]
+So if \(C\) is a chain complex consistin of finitely generated free abelian groups, we have an isomorphism 
+\[\hom(C,\mathcal{A})\cong \hom(C,\mathbb{Z})\otimes \mathcal{A}.\]
+Using this, derive a universal coefficient theorem which lets you predict \(H^*(C;\mathcal{A})\) if you know \(H^*(C)\). The formula should look like 
+\[H^i(C;\mathcal{A})\cong [H^?(C)\otimes \mathcal{A}]\oplus [\Tor_1(H^?(C),\mathcal{A})]\]
+where you determine the indices marked "?".
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+
+\noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Suppose \(X\) is a finite CW complex for which 
+\[H_0(X;\mathbb{Z}/2)=\mathbb{Z}/2, H_1(X;\mathbb{Z}/2)=(\mathbb{Z}/2)^3, H_2(X;\mathbb{Z}/2)=0, H_3(X;\mathbb{Z}/2)=H_4(X;\mathbb{Z}/2)=\mathbb{Z}/2\] 
+and \(H_i(X;\mathbb{Z}/2)=0\) for all \(i\geq 5\).
+\begin{enumerate}[(a)]
+\item Determine as much as you can about \(H_*(X;\mathbb{Z})\).
+\item Suppose you are also told that \(H_2(X;\mathbb{Z}/3)=\mathbb{Z}/3\) and \(H_3(X;\mathbb{Z}/3)=0\). What else can you say about \(H_*(X;\mathbb{Z})\) now? 
+\item Suppose \(Y\) is a space with finitely-generated homology groups and you are told \(H_i(Y;\mathbb{Z}/p)=0\) for a specific prime \(p\). What can you deduce about \(H_i(Y)\) and \(H_{i-1}(Y)\)? 
+\end{enumerate}
+\end{problem}
+\begin{solution}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{problem}{5}
+\begin{enumerate}[(a)]
+\item 
+\end{enumerate}
+\end{problem}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 6
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \end{document}
