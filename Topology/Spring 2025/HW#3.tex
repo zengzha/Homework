@@ -304,7 +304,59 @@ for all \(x\in G_n\) by exactness of the bottom row. Then this map must factor t
 \(G_n\) being projective implies there exists a map \(H_n:G_n\rightarrow J_{n+1}\) such that 
 \[f_n-f'_n=H_{n-1}g_n+j_{n+1}H_n.\]
 Repeat this step inductively and we have constructed a chain homotopy between \(F\) and \(F'\).
-\item 
+\item Consider the following commutative diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG1hdGhiYntafSJdLFswLDEsIlxcbWF0aGJie1p9Il0sWzAsMiwiXFxtYXRoYmJ7Wn0vMiJdLFsxLDAsIlxcbWF0aGJie1p9Il0sWzEsMSwiXFxtYXRoYmJ7Wn0iXSxbMSwyLCJcXG1hdGhiYntafS80Il0sWzAsMSwiMiIsMl0sWzEsMiwiMSIsMl0sWzMsNCwiNCJdLFs0LDUsIjEiXSxbMiw1LCIyIiwyXSxbMSw0LCIyIl0sWzAsMywiMSJdXQ==
+\[\begin{tikzcd}
+	{\mathbb{Z}} & {\mathbb{Z}} \\
+	{\mathbb{Z}} & {\mathbb{Z}} \\
+	{\mathbb{Z}/2} & {\mathbb{Z}/4}
+	\arrow["1", from=1-1, to=1-2]
+	\arrow["2"', from=1-1, to=2-1]
+	\arrow["4", from=1-2, to=2-2]
+	\arrow["2", from=2-1, to=2-2]
+	\arrow["1"', from=2-1, to=3-1]
+	\arrow["1", from=2-2, to=3-2]
+	\arrow["2"', from=3-1, to=3-2]
+\end{tikzcd}\]
+The left and right vertical columns are free resolutions of \(\mathbb{Z}/2\) and \(\mathbb{Z}/4\). Apply \(-\otimes \mathbb{Z}/2\) to the resolutions and we get a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhiYntafS8yIl0sWzAsMSwiXFxtYXRoYmJ7Wn0vMiJdLFsxLDAsIlxcbWF0aGJie1p9LzIiXSxbMSwxLCJcXG1hdGhiYntafS8yIl0sWzAsMSwiMiIsMl0sWzIsMywiNCJdLFsxLDMsIjIiXSxbMCwyLCIxIl1d
+\[\begin{tikzcd}
+	{\mathbb{Z}/2} & {\mathbb{Z}/2} \\
+	{\mathbb{Z}/2} & {\mathbb{Z}/2}
+	\arrow["1", from=1-1, to=1-2]
+	\arrow["2"', from=1-1, to=2-1]
+	\arrow["4", from=1-2, to=2-2]
+	\arrow["2", from=2-1, to=2-2]
+\end{tikzcd}\]
+The map sending 1 to 1 in homology is the identity map, so 
+\[j_*:\Tor_1(\mathbb{Z}/2,\mathbb{Z}/2)\rightarrow \Tor_1(\mathbb{Z}/4,\mathbb{Z}/2)\]
+is the identity map of \(\mathbb{Z}/2\). Similarly, consider the free resolutions of \(\mathbb{Z}/4\) and \(\mathbb{Z}/4\).
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG1hdGhiYntafSJdLFswLDEsIlxcbWF0aGJie1p9Il0sWzAsMiwiXFxtYXRoYmJ7Wn0vNCJdLFsxLDAsIlxcbWF0aGJie1p9Il0sWzEsMSwiXFxtYXRoYmJ7Wn0iXSxbMSwyLCJcXG1hdGhiYntafS8yIl0sWzAsMSwiNCIsMl0sWzEsMiwiMSIsMl0sWzMsNCwiMiJdLFs0LDUsIjEiXSxbMiw1LCIxIiwyXSxbMSw0LCIxIl0sWzAsMywiMiJdXQ==
+\[\begin{tikzcd}
+	{\mathbb{Z}} & {\mathbb{Z}} \\
+	{\mathbb{Z}} & {\mathbb{Z}} \\
+	{\mathbb{Z}/4} & {\mathbb{Z}/2}
+	\arrow["2", from=1-1, to=1-2]
+	\arrow["4"', from=1-1, to=2-1]
+	\arrow["2", from=1-2, to=2-2]
+	\arrow["1", from=2-1, to=2-2]
+	\arrow["1"', from=2-1, to=3-1]
+	\arrow["1", from=2-2, to=3-2]
+	\arrow["1"', from=3-1, to=3-2]
+\end{tikzcd}\]
+Apply \(-\otimes \mathbb{Z}/2\) and we obtain a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhiYntafS8yIl0sWzAsMSwiXFxtYXRoYmJ7Wn0vMiJdLFsxLDAsIlxcbWF0aGJie1p9LzIiXSxbMSwxLCJcXG1hdGhiYntafS8yIl0sWzAsMSwiNCIsMl0sWzIsMywiMiJdLFsxLDMsIjEiXSxbMCwyLCIyIl1d
+\[\begin{tikzcd}
+	{\mathbb{Z}/2} & {\mathbb{Z}/2} \\
+	{\mathbb{Z}/2} & {\mathbb{Z}/2}
+	\arrow["2", from=1-1, to=1-2]
+	\arrow["4"', from=1-1, to=2-1]
+	\arrow["2", from=1-2, to=2-2]
+	\arrow["1", from=2-1, to=2-2]
+\end{tikzcd}\]
+The map sends 1 to 2 is the zero map for \(\mathbb{Z}/2\), so 
+\[k_*:\Tor_1(\mathbb{Z}/4,\mathbb{Z}/2)\rightarrow \Tor_1(\mathbb{Z}/2,\mathbb{Z}/2)\]
+is the zero map of \(\mathbb{Z}/2\).
 \end{enumerate}
 \end{solution}
 
@@ -317,10 +369,15 @@ If \(F\) is a finitely-generated free abelian group then there is a canonical is
 \[\hom(\hom(F,\mathbb{Z}),\mathbb{Z})\cong F.\]
 So if \(C\) is a chain complex consisting of finitely generated, free abelian groups, one gets an induced isomorphism 
 \[\hom(\hom(C,\mathbb{Z}),\mathbb{Z})\cong C.\]
-Using this, derive a universal coefficient theorem which lets you predict \(H_*(C)\) if you know \(H^*(\hom(C,\mathbb{X}))\).
+Using this, derive a universal coefficient theorem which lets you predict \(H_*(C)\) if you know \(H^*(\hom(C,\mathbb{Z}))\).
 \end{problem}
 \begin{solution}
-    
+For all \(i\), we have 
+\begin{align*}
+    H_i(C)&\cong H_i(\hom(\hom(C,\mathbb{Z})),\mathbb{Z})\\
+          &\cong \hom(H^i(\hom(C,\mathbb{Z})),\mathbb{Z})\oplus \Ext^1(H^{i-1}(\hom(C,\mathbb{Z})),\mathbb{Z}).     
+\end{align*}
+
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -339,11 +396,17 @@ Using this, derive a universal coefficient theorem which lets you predict \(H^*(
 where you determine the indices marked "?".
 \end{problem}
 \begin{solution}
-    
+For all \(i\), we have 
+\begin{align*}
+   H^i(C;\mathcal{A})&\cong [H^i(C)\otimes \mathcal{A}]\oplus [\Tor_1(H^{i-1}(C),\mathcal{A})]
+\end{align*}
 \end{solution}
 
 
 \noindent\rule{7in}{2.8pt}
+
+\newpage 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -459,11 +522,32 @@ where \((H_{n-i-1}(M))_t\) means the torsion part of the abelian group \(H_{n-i-
   H_4(M)&=(H_4(M))_f\oplus (H_4(M))_t=(H_1(M))_f\oplus (H_0(N))_t=\mathbb{Z}^2,\\ 
   H_5(M)&=(H_5(M))_f\oplus (H_5(M))_t=(H_0(M))_f=\mathbb{Z}.
 \end{align*}
-
+Next, we use UCT for homology to determine \(H_*(M;\mathbb{Z}/2)\).
+\begin{align*}
+   H_0(M;\mathbb{Z}/2)&=H_0(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_{-1}(M),\mathbb{Z}/2)=\mathbb{Z}/2.\\
+   H_1(M;\mathbb{Z}/2)&=H_1(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_0(M),\mathbb{Z}/2)=(\mathbb{Z}/2)^3.\\
+   H_2(M;\mathbb{Z}/2)&=H_2(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_1(M),\mathbb{Z}/2)=(\mathbb{Z}/2)^2.\\ 
+   H_3(M;\mathbb{Z}/2)&=H_3(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_2(M),\mathbb{Z}/2)=(\mathbb{Z}/2)^2.\\
+   H_4(M;\mathbb{Z}/2)&=H_4(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_3(M),\mathbb{Z}/2)=(\mathbb{Z}/2)^3.\\
+   H_5(M;\mathbb{Z}/2)&=H_5(M)\otimes \mathbb{Z}/2\oplus \Tor_1(H_4(M),\mathbb{Z}/2)=\mathbb{Z}/2.\\
+   H_6(M;\mathbb{Z}/2)&=\Tor_1(H_5(M),\mathbb{Z}/2)=0.
+\end{align*}
+\begin{align*}
+    H_0(M;\mathbb{Z}/3)&=H_0(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_{-1}(M),\mathbb{Z}/3)=\mathbb{Z}/3.\\
+    H_1(M;\mathbb{Z}/3)&=H_1(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_0(M),\mathbb{Z}/3)=(\mathbb{Z}/3)^2.\\
+    H_2(M;\mathbb{Z}/3)&=H_2(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_1(M),\mathbb{Z}/3)=\mathbb{Z}/3.\\ 
+    H_3(M;\mathbb{Z}/3)&=H_3(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_2(M),\mathbb{Z}/3)=\mathbb{Z}/3.\\
+    H_4(M;\mathbb{Z}/3)&=H_4(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_3(M),\mathbb{Z}/3)=(\mathbb{Z}/3)^2.\\
+    H_5(M;\mathbb{Z}/3)&=H_5(M)\otimes \mathbb{Z}/3\oplus \Tor_1(H_4(M),\mathbb{Z}/3)=\mathbb{Z}/3.\\
+    H_6(M;\mathbb{Z}/3)&=\Tor_1(H_5(M),\mathbb{Z}/3)=0.
+\end{align*}
 \end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+
+\newpage 
+
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 6
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
