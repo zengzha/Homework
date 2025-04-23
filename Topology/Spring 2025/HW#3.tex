@@ -14,6 +14,45 @@ Instructor: Dr.Daniel Dugger \hfill Due Date: $^{24th}$ April, 2025 \\
 \noindent\rule{7in}{2.8pt}
 \setstretch{1.1}
 
+
+We do some calculation about Tor and Ext, which will be used in this homework.
+\begin{enumerate}[(1)]
+\item For any abelian group \(A\), \(\Tor_1(A, \mathbb{Z})=\Tor_1(\mathbb{Z},A)=\Ext^1(\mathbb{Z},A)=0\). \\ 
+Note that the free resolution of \(\mathbb{Z}\) is given by 
+\[0\rightarrow \mathbb{Z}\xrightarrow{\sim}\mathbb{Z}\rightarrow 0.\] 
+The degree \(1\) part is already \(0\), so we have 
+\[\Tor_1(\mathbb{Z},A)=\Ext^1(\mathbb{Z},A)=0.\]
+Suppose 
+\[0\rightarrow J_1\rightarrow J_0\rightarrow A\rightarrow 0\]
+is a free resolution of \(A\) and note that for any abelian group \(B\), we have \(B\otimes \mathbb{Z}=B\). After tensoring with \(\mathbb{Z}\), we have the following chain complex 
+\[0\rightarrow J_1\rightarrow J_0\rightarrow 0.\]
+This implies \(\Tor_1(A,\mathbb{Z})=0\).
+\item Let \(A\) be an abelian group and \(A_t\) denote the torsion part of \(A\). Then \(\Ext^1(A,\mathbb{Z})=A_t\).\\ 
+The functor \(\Ext^1\) is additive and we have prove that \(\Ext^1(\mathbb{Z},\mathbb{Z})=0\). We only need to show that \(\Ext^1(\mathbb{Z}/n,\mathbb{Z})=\mathbb{Z}/n\) for any \(n\geq 2\). Consider the free resolution 
+\[0\rightarrow \mathbb{Z}\xrightarrow{n}\mathbb{Z}\rightarrow \mathbb{Z}/n\rightarrow 0.\]
+Apply \(\hom(-,\mathbb{Z})\) and we obtain a cochain complex 
+\[0\leftarrow \mathbb{Z}\xleftarrow{n}\mathbb{Z}\leftarrow 0. \]
+This implies \(\Ext^1(\mathbb{Z}/n,\mathbb{Z})=\mathbb{Z}/n\).
+\item For any abelian group \(A,B\), we know that 
+\begin{align*}
+    \Tor_0(A,B)&=A\otimes B,\\ 
+    \Ext^0(A,B)&=\hom(A,B).
+\end{align*}
+We have seen the proof in class. 
+\item For any integers \(m,n\geq 2\), we have 
+\[\Tor_1(\mathbb{Z}/m,\mathbb{Z}/n)=\Ext^1(\mathbb{Z}/m,\mathbb{Z}/n)=\mathbb{Z}/d\]
+where \(d\) is the greatest common divisor of \(m\) and \(n\) (If \(d=1\), then \(\mathbb{Z}/d=0\)).\\ 
+Consider the following free resolution of \(\mathbb{Z}/m\) 
+\[0\rightarrow \mathbb{Z}\xrightarrow{m}\mathbb{Z}\rightarrow \mathbb{Z}/n\rightarrow 0.\]
+Apply \(-\otimes \mathbb{Z}/n\) and \(\hom(-,\mathbb{Z}/n)\), we obtain a chain complex and cochain complex as follows 
+\begin{align*}
+    0\rightarrow \mathbb{Z}/n\xrightarrow{m}\mathbb{Z}/n\rightarrow 0,\\ 
+    0\leftarrow \mathbb{Z}/n\xleftarrow{m}\mathbb{Z}/n\leftarrow 0.
+\end{align*}
+By calculation, 
+\[\Tor_1(\mathbb{Z}/m,\mathbb{Z}/n)=\Ext^1(\mathbb{Z}/m,\mathbb{Z}/n)=\mathbb{Z}/d.\]
+\end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 1 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,7 +65,69 @@ Compute both \(\Tor_i(A,B)\) and \(\Ext^i(A,B)\) for all \(i\) in the following 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\begin{comment}
+\item The following is a free resolution of \(A=\mathbb{Z}/9\):
+\[0\rightarrow \mathbb{Z}\xrightarrow{9} \mathbb{Z}\rightarrow \mathbb{Z}/9\rightarrow 0.\]
+Apply \(-\otimes \mathbb{Z}/6\) to the free part and we obtain a chain complex 
+\[0\rightarrow \mathbb{Z}/6\xrightarrow{9}\mathbb{Z}/6\rightarrow 0.\]
+Then Tor can be calculated from the homology as 
+\[\Tor_i(\mathbb{Z}/9,\mathbb{Z}/6)\cong \begin{cases}
+    \mathbb{Z}/3,&\iif i=0,1;\\
+    0,&\otherwise. 
+\end{cases}\]
+Apply \(\hom(-,\mathbb{Z}/6)\) to the free part and we obtain another chain complex 
+\[0\leftarrow \mathbb{Z}/6\xleftarrow{9}\mathbb{Z}/6\leftarrow 0.\]
+Then Ext can be computed from the homology as 
+\[\Ext_i(\mathbb{Z}/9,\mathbb{Z}/6)=\begin{cases}
+    \mathbb{Z}/3,&\iif i=0,1;\\ 
+    0,&\otherwise.
+\end{cases}\]
+\end{comment}
+\item From the discussion at the beginning, we know that 
+\begin{align*}
+     \Tor_0(\mathbb{Z}/9,\mathbb{Z}/6)&=\mathbb{Z}/9\otimes \mathbb{Z}/6=\mathbb{Z}/3,\\ 
+     \Tor_1(\mathbb{Z}/9,\mathbb{Z}/6)&=\mathbb{Z}/3,\\ 
+     \Ext^0(\mathbb{Z}/9,\mathbb{Z}/6)&=\hom(\mathbb{Z}/9,\mathbb{Z}/6)=\mathbb{Z}/3,\\ 
+     \Ext^1(\mathbb{Z}/9,\mathbb{Z}/6)&=\mathbb{Z}/3.
+\end{align*}
+All other Tor and Ext are 0.
+\item From the discussion at the beginning, we know that 
+\begin{align*}
+    \Tor_0(\mathbb{Z}/9,\mathbb{Z})&=\mathbb{Z}/9\otimes \mathbb{Z}=\mathbb{Z}/9,\\ 
+    \Tor_1(\mathbb{Z}/9,\mathbb{Z})&=0,\\ 
+    \Ext^0(\mathbb{Z}/9,\mathbb{Z})&=\hom(\mathbb{Z}/9,\mathbb{Z})=0,\\ 
+    \Ext^1(\mathbb{Z}/9,\mathbb{Z})&=\mathbb{Z}/9.
+\end{align*}
+All other Tor and Ext are 0.
+\item Tor and Ext are additive functors, so we can calculte using the results from the discussion. Let 
+\begin{align*}
+   A&=\mathbb{Z}^2\oplus \mathbb{Z}/4 \oplus \mathbb{Z}/5 \oplus \mathbb{Z}/10,\\ 
+   B&=\mathbb{Z}\oplus \mathbb{Z}/3\oplus \mathbb{Z}/4\oplus \mathbb{Z}/6.
+\end{align*}
+Use the discussion at the beginning and the fact that Tor and Ext are additive. 
+\begin{align*}
+    \Tor_0(A,B)&=A\otimes B\\ 
+               &=B\oplus B\oplus ((\mathbb{Z}/4)^2\oplus \mathbb{Z}/2)\oplus \mathbb{Z}/5 \oplus (\mathbb{Z}/10\oplus (\mathbb{Z}/2)^2)\\ 
+               &=\mathbb{Z}^2\oplus (\mathbb{Z}/2)^3\oplus (\mathbb{Z}^3)^2\oplus (\mathbb{Z}/4)^4\oplus \mathbb{Z}/5\oplus (\mathbb{Z}/6)^2\oplus \mathbb{Z}/10.
+\end{align*}
+\begin{align*}
+    \Tor_1(A,B)&=\Tor_1(\mathbb{Z}/4\oplus \mathbb{Z}/5 \oplus \mathbb{Z}/10,\mathbb{Z}/3\oplus \mathbb{Z}/4\oplus \mathbb{Z}/6)\\ 
+               &=\mathbb{Z}/4\oplus (\mathbb{Z}/2)^3.
+\end{align*}
+\begin{align*}
+    \Ext^0(A,B)&=\hom(A,B)\\ 
+               &=B^2\oplus \hom(\mathbb{Z}/4\oplus \mathbb{Z}/5 \oplus \mathbb{Z}/10,\mathbb{Z}/3\oplus \mathbb{Z}/4\oplus \mathbb{Z}/6)\\ 
+               &=B^2\oplus \mathbb{Z}/4\oplus (\mathbb{Z}/2)^3\\ 
+               &=\mathbb{Z}^2\oplus (\mathbb{Z}/2)^3\oplus (\mathbb{Z}/3)^2\oplus (\mathbb{Z}/4)^3\oplus (\mathbb{Z}/6)^2. 
+\end{align*}
+\begin{align*}
+    \Ext^1(A,B)&=\Ext^1(\mathbb{Z}/4\oplus \mathbb{Z}/5 \oplus \mathbb{Z}/10,B)\\ 
+               &=\mathbb{Z}/4\oplus \mathbb{Z}/5\oplus \mathbb{Z}/10\oplus \mathbb{Z}/4\oplus (\mathbb{Z}/2)^3\\ 
+               &=(\mathbb{Z}/2)^3\oplus (\mathbb{Z}/4)^2\oplus \mathbb{Z}/5\oplus \mathbb{Z}/10.
+\end{align*}
+All other Ext and Tor are zero.
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -49,7 +150,162 @@ induced by the map \(j:\mathbb{Z}/2\hookrightarrow \mathbb{Z}/4\) (sending 1 to 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-    
+\begin{enumerate}[(a)]
+\item We have a diagram with long exact sequences as follows 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkdfMSJdLFsyLDAsIkdfMCJdLFszLDAsIkEiXSxbNCwwLCIwIl0sWzAsMSwiXFxjZG90cyJdLFsxLDEsIkpfMSJdLFsyLDEsIkpfMCJdLFszLDEsIkIiXSxbNCwxLCIwIl0sWzAsMSwiZ18yIl0sWzEsMiwiZ18xIl0sWzIsMywiZ18wIl0sWzMsNF0sWzUsNiwial8yIl0sWzYsNywial8xIl0sWzcsOCwial8wIl0sWzgsOV0sWzMsOCwiZiJdLFs0LDksIjAiXV0=
+\[\begin{tikzcd}
+	\cdots & {G_1} & {G_0} & A & 0 \\
+	\cdots & {J_1} & {J_0} & B & 0
+	\arrow["{g_2}", from=1-1, to=1-2]
+	\arrow["{g_1}", from=1-2, to=1-3]
+	\arrow["{g_0}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow["f", from=1-4, to=2-4]
+	\arrow["0", from=1-5, to=2-5]
+	\arrow["{j_2}", from=2-1, to=2-2]
+	\arrow["{j_1}", from=2-2, to=2-3]
+	\arrow["{j_0}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+we need to construct \(f_i:G_i\rightarrow J_i\) from \(i=0\) inductively. Consider the following diagram with solid arrows 
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJHXzAiXSxbMSwxLCJCIl0sWzAsMSwiSl8wIl0sWzIsMSwiMCJdLFsxLDNdLFsyLDEsImpfMCIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDEsImZnXzAiXSxbMCwyLCJmXzEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	& {G_0} \\
+	{J_0} & B & 0
+	\arrow["{f_0}"', dashed, from=1-2, to=2-1]
+	\arrow["{fg_0}", from=1-2, to=2-2]
+	\arrow["{j_0}"', two heads, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+\(j_0:J_0\rightarrow B\) is surjective by exactness and \(G_0\) is projective because it is free, there exists a map \(f_0:G_0\rightarrow J_0\) such that \(j_0f_0=fg_0\). We have constructed the first step with a diagram as follows: 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkdfMSJdLFsyLDAsIkdfMCJdLFszLDAsIkEiXSxbNCwwLCIwIl0sWzAsMSwiXFxjZG90cyJdLFsxLDEsIkpfMSJdLFsyLDEsIkpfMCJdLFszLDEsIkIiXSxbNCwxLCIwIl0sWzAsMSwiZ18yIl0sWzEsMiwiZ18xIl0sWzIsMywiZ18wIl0sWzMsNF0sWzUsNiwial8yIl0sWzYsNywial8xIl0sWzcsOCwial8wIl0sWzgsOV0sWzMsOCwiZiJdLFs0LDksIjAiXSxbMiw3LCJmXzAiXV0=
+\[\begin{tikzcd}
+	\cdots & {G_1} & {G_0} & A & 0 \\
+	\cdots & {J_1} & {J_0} & B & 0
+	\arrow["{g_2}", from=1-1, to=1-2]
+	\arrow["{g_1}", from=1-2, to=1-3]
+	\arrow["{g_0}", from=1-3, to=1-4]
+	\arrow["{f_0}", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["f", from=1-4, to=2-4]
+	\arrow["0", from=1-5, to=2-5]
+	\arrow["{j_2}", from=2-1, to=2-2]
+	\arrow["{j_1}", from=2-2, to=2-3]
+	\arrow["{j_0}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+Next, consider the composition \(f_0g_1:G_1\rightarrow J_0\), for any \(x\in G_1\), by commutativity of the diagram, we have 
+\[j_0f_0g_1(x)=fg_0g_1(x)=0\]
+because of the exactness of top row. By the exactness of the bottom row, we have 
+\[f_0g_1(x)\in \ker j_0=\im j_1.\]
+This means the map \(f_0g_1\) must factor through \(\im j_1\) and we have the following solid arrow diagram 
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJHXzEiXSxbMSwxLCJcXHRleHR7aW19XFwgal8xIl0sWzAsMSwiSl8xIl0sWzIsMSwiMCJdLFsxLDNdLFsyLDEsImpfMSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDEsImZfMGdfMSJdLFswLDIsImZfMiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	& {G_1} \\
+	{J_1} & {\text{im}\ j_1} & 0
+	\arrow["{f_1}"', dashed, from=1-2, to=2-1]
+	\arrow["{f_0g_1}", from=1-2, to=2-2]
+	\arrow["{j_1}"', two heads, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+\(G_1\) is projective so there exists a map \(f_1:G_1\rightarrow J_1\) such that \(j_1f_1=f_0g_1\). This means we have obtained the next map we need in the following diagram 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkdfMSJdLFsyLDAsIkdfMCJdLFszLDAsIkEiXSxbNCwwLCIwIl0sWzAsMSwiXFxjZG90cyJdLFsxLDEsIkpfMSJdLFsyLDEsIkpfMCJdLFszLDEsIkIiXSxbNCwxLCIwIl0sWzAsMSwiZ18yIl0sWzEsMiwiZ18xIl0sWzIsMywiZ18wIl0sWzMsNF0sWzUsNiwial8yIl0sWzYsNywial8xIl0sWzcsOCwial8wIl0sWzgsOV0sWzMsOCwiZiJdLFs0LDksIjAiXSxbMiw3LCJmXzAiXSxbMSw2LCJmXzEiXV0=
+\[\begin{tikzcd}
+	\cdots & {G_1} & {G_0} & A & 0 \\
+	\cdots & {J_1} & {J_0} & B & 0
+	\arrow["{g_2}", from=1-1, to=1-2]
+	\arrow["{g_1}", from=1-2, to=1-3]
+	\arrow["{f_1}", from=1-2, to=2-2]
+	\arrow["{g_0}", from=1-3, to=1-4]
+	\arrow["{f_0}", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["f", from=1-4, to=2-4]
+	\arrow["0", from=1-5, to=2-5]
+	\arrow["{j_2}", from=2-1, to=2-2]
+	\arrow["{j_1}", from=2-2, to=2-3]
+	\arrow["{j_0}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+Repeat the steps inductively and we obtain a chain map \(F:G_*\rightarrow J_*\) where in each degree is given by \(f_i:G_i\rightarrow J_i\) for \(i\geq 0\). 
+\item Suppose we have two chain maps 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkdfMSJdLFsyLDAsIkdfMCJdLFszLDAsIkEiXSxbNCwwLCIwIl0sWzAsMSwiXFxjZG90cyJdLFsxLDEsIkpfMSJdLFsyLDEsIkpfMCJdLFszLDEsIkIiXSxbNCwxLCIwIl0sWzAsMSwiZ18yIl0sWzEsMiwiZ18xIl0sWzIsMywiZ18wIl0sWzMsNF0sWzUsNiwial8yIl0sWzYsNywial8xIl0sWzcsOCwial8wIl0sWzgsOV0sWzMsOCwiZiJdLFs0LDksIjAiXSxbMiw3LCJmXzAiLDAseyJvZmZzZXQiOi0xfV0sWzEsNiwiZl8xIiwwLHsib2Zmc2V0IjotMX1dLFsxLDYsImZfMSciLDIseyJvZmZzZXQiOjF9XSxbMiw3LCJmXzAnICIsMix7Im9mZnNldCI6MX1dLFszLDcsIjAiLDFdLFs0LDgsIjAiLDFdXQ==
+\[\begin{tikzcd}
+	\cdots & {G_1} & {G_0} & A & 0 \\
+	\cdots & {J_1} & {J_0} & B & 0
+	\arrow["{g_2}", from=1-1, to=1-2]
+	\arrow["{g_1}", from=1-2, to=1-3]
+	\arrow["{f_1}", shift left, from=1-2, to=2-2]
+	\arrow["{f_1'}"', shift right, from=1-2, to=2-2]
+	\arrow["{g_0}", from=1-3, to=1-4]
+	\arrow["{f_0}", shift left, from=1-3, to=2-3]
+	\arrow["{f_0' }"', shift right, from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["0"{description}, from=1-4, to=2-3]
+	\arrow["f", from=1-4, to=2-4]
+	\arrow["0"{description}, from=1-5, to=2-4]
+	\arrow["0", from=1-5, to=2-5]
+	\arrow["{j_2}", from=2-1, to=2-2]
+	\arrow["{j_1}", from=2-2, to=2-3]
+	\arrow["{j_0}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+we already have two zero maps \(0:0\rightarrow B\) and \(0:A\rightarrow j_0\) satisfying 
+\[0+j_0\circ 0=f-f\]
+We can take \(H_{-1}=H_0=0\) as the chain homotopy map. For \(n\geq 1\), suppose we have already constructed \(H_{n-1}:G_{n-1}\rightarrow J_n\) and \(H_{n-2}:G_{n-2}\rightarrow J_{n-1}\) satisfying 
+\[f_{n-1}-f'_{n-1}=H_{n-2}g_{n-1}+j_nH_{n-1}.\]
+We want to construct the map \(H_n:G_n\rightarrow J_{n+1}\).
+% https://q.uiver.app/#q=WzAsMTIsWzMsMCwiR19uIl0sWzUsMCwiR197bi0xfSJdLFs3LDAsIkdfe24tMn0iXSxbMywxLCJKX24iXSxbNSwxLCJKX3tuLTF9Il0sWzcsMSwiSl97bi0yfSJdLFsxLDAsIkdfe24rMX0iXSxbMSwxLCJKX3tuKzF9Il0sWzAsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbOCwwLCJcXGNkb3RzIl0sWzgsMSwiXFxjZG90cyJdLFsxLDMsIkhfe24tMX0iLDIseyJsYWJlbF9wb3NpdGlvbiI6NjB9XSxbMSw0LCJmX3tuLTF9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDQsImYnX3tuLTF9IiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiZ197bi0xfSJdLFs0LDUsImpfe24tMX0iLDJdLFswLDEsImdfbiJdLFszLDQsImpfbiIsMl0sWzYsMCwiZ197bisxfSJdLFsyLDQsIkhfe24tMn0iLDJdLFsyLDUsImZfe24tMn0iLDAseyJvZmZzZXQiOi0xfV0sWzIsNSwiZidfe24tMn0iLDIseyJvZmZzZXQiOjF9XSxbMiwxMF0sWzUsMTFdLFs3LDMsImpfe24rMX0iLDJdLFs2LDcsIiIsMix7Im9mZnNldCI6LTF9XSxbNiw3LCIiLDEseyJvZmZzZXQiOjF9XSxbOCw2XSxbOSw3XSxbMCwzLCJmX24iLDAseyJvZmZzZXQiOi0xfV0sWzAsMywiZidfbiIsMix7Im9mZnNldCI6MX1dLFswLDcsIkhfbiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	\cdots & {G_{n+1}} && {G_n} && {G_{n-1}} && {G_{n-2}} & \cdots \\
+	\cdots & {J_{n+1}} && {J_n} && {J_{n-1}} && {J_{n-2}} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{g_{n+1}}", from=1-2, to=1-4]
+	\arrow[shift left, from=1-2, to=2-2]
+	\arrow[shift right, from=1-2, to=2-2]
+	\arrow["{g_n}", from=1-4, to=1-6]
+	\arrow["{H_n}"', dashed, from=1-4, to=2-2]
+	\arrow["{f_n}", shift left, from=1-4, to=2-4]
+	\arrow["{f'_n}"', shift right, from=1-4, to=2-4]
+	\arrow["{g_{n-1}}", from=1-6, to=1-8]
+	\arrow["{H_{n-1}}"'{pos=0.6}, from=1-6, to=2-4]
+	\arrow["{f_{n-1}}", shift left, from=1-6, to=2-6]
+	\arrow["{f'_{n-1}}"', shift right, from=1-6, to=2-6]
+	\arrow[from=1-8, to=1-9]
+	\arrow["{H_{n-2}}"', from=1-8, to=2-6]
+	\arrow["{f_{n-2}}", shift left, from=1-8, to=2-8]
+	\arrow["{f'_{n-2}}"', shift right, from=1-8, to=2-8]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{j_{n+1}}"', from=2-2, to=2-4]
+	\arrow["{j_n}"', from=2-4, to=2-6]
+	\arrow["{j_{n-1}}"', from=2-6, to=2-8]
+	\arrow[from=2-8, to=2-9]
+\end{tikzcd}\]
+Consider the following map 
+\[f_n-f'_n-H_{n-1}g_n:G_n\rightarrow J_n.\]
+For any \(x\in G_n\), use the commutativity of the diagram and the property of \(H_{n-1}\) and \(H_{n-2}\), we have 
+\begin{align*}
+    (j_nf_n-j_nf'_n-j_nH_{n-1}g_n)(x)&=(j_nf_n)(x)-(j_nf'_n)(x)-(j_nH_{n-1}g_n)(x)\\ 
+                                     &=(f_{n-1}g_n)(x)-(f'_{n-1}g_n)(x)-[(f_{n-1}-f'_{n-1}-H_{n-2}g_{n-1})g_n](x)\\ 
+                                     &=[(f_{n-1}-f'_{n-1})g_n](x)-[(f_{n-1}-f'_{n-1})g_n](x)\\ 
+                                     &=0.
+\end{align*}
+This implies that 
+\[(f_n-f'_n-H_{n-1}g_n)(x)\in \ker j_n=\im j_{n+1}\]
+for all \(x\in G_n\) by exactness of the bottom row. Then this map must factor though \(\im j_{n+1}\) and we have a solid arrow diagram 
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJHX24iXSxbMSwxLCJcXHRleHR7aW19XFwgal97bisxfSJdLFsyLDEsIjAiXSxbMCwxLCJKX3tuKzF9Il0sWzEsMl0sWzMsMSwial97bisxfSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDEsImZfbi1mJ19uLUhfe24tMX1nX24iXSxbMCwzLCJIX24iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	& {G_n} \\
+	{J_{n+1}} & {\text{im}\ j_{n+1}} & 0
+	\arrow["{H_n}"', dashed, from=1-2, to=2-1]
+	\arrow["{f_n-f'_n-H_{n-1}g_n}", from=1-2, to=2-2]
+	\arrow["{j_{n+1}}"', two heads, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+\(G_n\) being projective implies there exists a map \(H_n:G_n\rightarrow J_{n+1}\) such that 
+\[f_n-f'_n=H_{n-1}g_n+j_{n+1}H_n.\]
+Repeat this step inductively and we have constructed a chain homotopy between \(F\) and \(F'\).
+\item 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -102,7 +358,69 @@ and \(H_i(X;\mathbb{Z}/2)=0\) for all \(i\geq 5\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+\item Use the universal coefficient theorem (UCT) for homology. For \(i=0\), note that \(H_{-1}(X)=0\), we have 
+\[\mathbb{Z}/2=H_0(X;\mathbb{Z}/2)\cong H_0(X)\otimes \mathbb{Z}/2.\]
+Note that \(H_0(X)\) is always free, so \(H_0(X)\cong \mathbb{Z}\). For \(i=1\), by UCT, we have 
+\[(\mathbb{Z}/2)^3=H_1(X;\mathbb{Z}/2)\cong H_1(X)\otimes \mathbb{Z}/2\oplus \Tor_1(H_0(X),\mathbb{Z}/2).\]
+We know that \(H_0(X)=\mathbb{Z}\) and \(\Tor_1(\mathbb{Z},\mathbb{Z}/2)=0\). So \(H_1(X)\) has three generators, each of them is either free or is of even order, plus any generator with finite odd order. 
+Moreover, by UCT in \(i=1\), we have 
+\[0=H_2(X;\mathbb{Z}/2)=H_2(X)\otimes \mathbb{Z}/2\oplus \Tor_1(H_1(X),\mathbb{Z}/2).\]
+This implies \(\Tor_1(H_1(X),\mathbb{Z}/2)=0\). If any generator of \(H_1(X)\) has finite even order, then \(\Tor_1(H_1(X),\mathbb{Z}/2)\) must contain \(\mathbb{Z}/2\). So \(H_1(X)\) has three free generators and 
+\[H_1(X)=\mathbb{Z}^3\oplus \oplus_{k\in I_1}\mathbb{Z}/n_{1,k}.\] 
+From \(H_2(X)\otimes \mathbb{Z}/2=0\), we know that 
+\(H_2(X)=0\) or \(H_2(X)=\oplus_{k\in I_2}\mathbb{Z}/n_{2,k}\) for each \(n_{2,k}\geq 3\) odd. For \(i=3\), by UCT, we have 
+\[\mathbb{Z}/2=H_3(X;\mathbb{Z}/2)=H_3(X)\otimes \mathbb{Z}/2\oplus \Tor_1(H_2(X), \mathbb{Z}/2).\]
+Note that \(H_2(X)\) only consists of \(\mathbb{Z}/n_k\) for some odd \(n_k\), so \(\Tor_1(H_2(X),\mathbb{Z}/2)=0\). This implies \(H_3(X)\otimes \mathbb{Z}/2=\mathbb{Z}/2\). So either \(H_3(X)=\mathbb{Z}\) or 
+\(H_3(X)=\mathbb{Z}/m\) for some even number \(m\geq 2\), plus some non contributing generators with finite odd order. This will split into two different cases. 
 
+\textbf{Case 1:} Assume \(H_3(X)=\mathbb{Z}/m\) for some even number \(m\geq 2\), plus some odd order generators. For \(i=4\), by UCT, we have 
+\[\mathbb{Z}/2=H_4(X;\mathbb{Z}/2)=H_4(X)\otimes \mathbb{Z}/2\oplus \Tor_1(H_3(X),\mathbb{Z}/2).\]
+Note that for any even number \(m\geq 2\), we have 
+\[\Tor_1(H_3(X),\mathbb{Z}/2)=\Tor_1(\mathbb{Z}/m,\mathbb{Z}/2)=\mathbb{Z}/2.\]
+This implies that \(H_4(X)\otimes \mathbb{Z}/2=0\). So \(H_4(X)=0\) or \(H_4(X)=\oplus_{k\in I_4}\mathbb{Z}/n_{4,k}\) for some odd numbers \(n_{4,k}\). Doing this inductively and we can see that for any \(i\geq 5\), we know that 
+\[H_i(X)=\oplus_{k\in I_k}\mathbb{Z}/n_{i,k}\]
+where all \(n_{i,k}\) are odd numbers. We summarize as follows 
+\[H_i(X)=\begin{cases}
+    \mathbb{Z},&\iif i=0;\\ 
+    \mathbb{Z}^3\oplus \oplus_{k\in I_1}\mathbb{Z}/n_{1,k},&\iif i=1;\\ 
+    0\ \ \text{or}\ \ \oplus_{k\in I_2}\mathbb{Z}/n_{2,k},&\iif i=2;\\ 
+    \mathbb{Z}/m\oplus \oplus_{k\in I_3}\mathbb{Z}/n_{3,k},&\iif i=3;\\
+    0\ \ \text{or}\ \ \oplus_{k\in I_i}\mathbb{Z}/n_{i,k},&\iif i\geq 4.
+\end{cases}\]
+where \(m\geq 2\) is an even number and all \(n_{i,k}\) are odd numbers.
+
+\textbf{Case 2:} Assume \(H_3(X)=\mathbb{Z}\), plus some odd order generators. Note that in this case \(\Tor_1(H_3(X),\mathbb{Z}/2)=0\). So we have 
+\[\mathbb{Z}/2=H_4(X;\mathbb{Z}/2)=H_4(X)\otimes \mathbb{Z}/2.\]
+Combine with the fact that 
+\[0=H_5(X;\mathbb{Z}/2)=H_5(X)\otimes \mathbb{Z}/2\oplus \Tor_1(H_4(X),\mathbb{Z}/2).\]
+The free part of \(H_4(X)\) can only be \(\mathbb{Z}\) otherwise the torsion will not vanish. Starting from \(H_5(X)\), it follows the same pattern as case 1. We summarize as follows 
+\[H_i(X)=\begin{cases}
+    \mathbb{Z},&\iif i=0;\\ 
+    \mathbb{Z}^3\oplus \oplus_{k\in I_1}\mathbb{Z}/n_{1,k},&\iif i=1;\\ 
+    0\ \ \text{or}\ \ \oplus_{k\in I_2}\mathbb{Z}/n_{2,k},&\iif i=2;\\ 
+    \mathbb{Z}\oplus \oplus_{k\in I_3}\mathbb{Z}/n_{3,k},&\iif i=3;\\
+    \mathbb{Z}\oplus \oplus_{k\in I_4}\mathbb{Z}/n_{4,k},&\iif i=4;\\
+    0\ \ \text{or}\ \ \oplus_{k\in I_i}\mathbb{Z}/n_{i,k},&\iif i\geq 5.
+\end{cases}\]
+where all \(n_{i,k}\) are odd numbers.
+\item First note that because \(0=H_3(X;\mathbb{Z}/3)\), by UCT, we have 
+\[0=H_3(X)\otimes \mathbb{Z}/3\oplus \Tor_1(H_2(X),\mathbb{Z}/3).\]
+So \(H_3(X)\) cannot contain \(\mathbb{Z}\), we will only have case 1. \(H_2(X)\) does not contain any free part, so 
+\[\Tor_1(H_2(X),\mathbb{Z}/3)=H_2(X)\otimes \mathbb{Z}/3=0\]
+By UCT, we have 
+\[\mathbb{Z}/3=H_2(X;\mathbb{Z}/3)=\Tor_1(H_1(X),\mathbb{Z}/3).\]
+We summarize the additional information as below.
+\begin{align*}
+  \Tor_1(H_1(X),\mathbb{Z}/3)&=\mathbb{Z}/3,\\ 
+  H_2(X)\otimes \mathbb{Z}/3&=0,\\ 
+  H_3(X)\otimes \mathbb{Z}/3&=0.
+\end{align*}
+So \(H_1(X)\) contains and only contains one copy of \(\mathbb{Z}/3k\) for some \(k\geq 1\). \(H_2(X)\) and \(H_3(X)\) does not contain any copies of \(\mathbb{Z}/3k\) for any \(k\geq 1\).
+\item By UCT, we have 
+\[0=H_i(Y;\mathbb{Z}/p)=H_i(Y)\otimes \mathbb{Z}/p\oplus \Tor_1(H_{i-1}(Y),\mathbb{Z}/p).\]
+So \(H_i(Y)=\oplus_{i\in I}\mathbb{Z}/n_i\) for some \(n_i\geq 1\) where each \(n_i\) is coprime with \(p\). And \(H_{i-1}(Y)\) does not contain any \(\mathbb{Z}/kp\) for any \(k\geq 1\).  
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -111,13 +429,56 @@ and \(H_i(X;\mathbb{Z}/2)=0\) for all \(i\geq 5\).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{5}
 \begin{enumerate}[(a)]
-\item 
+\item For a certain class of \(n\)-manifold \(M\), one always has Poincaré Duality: 
+\[H_i(M;\mathbb{Z})\cong H^{n-i}(M;\mathbb{Z}).\]
+Assuming this, as well as the fact that all the homology groups of \(M\) are finitely generated, explain why the Universal Coefficient Theorems then imply that 
+\begin{enumerate}[(1)]
+\item the rank of \(H_i(M;\mathbb{Z})\) is the same as the rank of \(H_{n-i}(M;\mathbb{Z})\), for all \(i\). 
+\item the torsion part of \(H_i(M;\mathbb{Z})\) is the same as the torsion part of \(H_{n-i-1}(M;\mathbb{Z})\), for all i.
+\end{enumerate}
+\item Suppose \(M\) is a \(5\)-manifold for which Poincaré Duality holds. Given that \(H_0(M)=\mathbb{Z}\), \(H_1(M)=\mathbb{Z}^2\oplus \mathbb{Z}/4\), and \(H_2(M)=\mathbb{Z}\oplus \mathbb{Z}/5\), compute \(H_i(M)\), \(H_i(M;\mathbb{Z}/2)\) and \(H_i(M;\mathbb{Z}/5)\) for all \(i\).
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item First we obeserve that for \(i\geq n\), by Poincaré Duality we have 
+\[H_i(M)=H^{n-i}(M)=0\]
+since \(n-i<0\). For \(0\leq i\leq n\), we have 
+\[H_i(M)\cong H^{n-i}(M)\cong \hom(H_{n-i}(M),\mathbb{Z})\oplus \Ext^1(H_{n-i-1}(M),\mathbb{Z}).\]
+\begin{enumerate}[(1)]
+\item We have proved at the beginning that \(\Ext^1(H_{n-i-1}(M),\mathbb{Z})\) is either 0 or equal to the direct sum of some finite groups. So the free part can only be detected at \(\hom(H_{n-i}(M),\mathbb{Z})\) and note that 
+\[\rank\hom(H_{n-i}(M),\mathbb{Z})=\rank H_{n-i}(M).\]
+So we know that \(H_i(M)\) and \(H_{n-i}(M)\) have the same rank.
+\item Note that \(\hom(\mathbb{Z}/n,\mathbb{Z})=0\) for any \(n\geq 2\). So \(\hom(H_{n-i}(M),\mathbb{Z})\) cannnot detect any torsion part, and we have proved at the beginning that 
+\[\Ext^1(H_{n-i-1}(M),\mathbb{Z})=(H_{n-i-1}(M))_t\]
+where \((H_{n-i-1}(M))_t\) means the torsion part of the abelian group \(H_{n-i-1}(M)\).
+\end{enumerate}
+\item For an abelian group \(A\), we write \(A=A_f\oplus A_t\) where \(A_f\) is the free part of \(A\) and \(A_t\) is the torsion part of \(A\). Therefore, we can calculate 
+\begin{align*}
+  H_3(M)&=(H_3(M))_f\oplus (H_3(M))_t=(H_2(M))_f\oplus (H_1(M))_t=\mathbb{Z}\oplus \mathbb{Z}/4,\\ 
+  H_4(M)&=(H_4(M))_f\oplus (H_4(M))_t=(H_1(M))_f\oplus (H_0(N))_t=\mathbb{Z}^2,\\ 
+  H_5(M)&=(H_5(M))_f\oplus (H_5(M))_t=(H_0(M))_f=\mathbb{Z}.
+\end{align*}
+
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Probelm 6
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{problem}{6}
+Consider \(R=\mathbb{Z}/p^2\) and let \(M=\mathbb{Z}/p\). Construct a free resolution of \(M\) (in the category of \(R\)-modules) and use this resolution to compute \(\Tor^R_i(M,M)\) for all \(i\).
+\end{problem}
+\begin{solution}
+Observe that we have the following exact sequence of \(R\)-modules 
+\[\cdots\xrightarrow{p}\mathbb{Z}/p^2\xrightarrow{p}\mathbb{Z}/p^2\xrightarrow{1}\mathbb{Z}/p\rightarrow 0. \]
+We check exactness at each spot. The map \(\mathbb{Z}/p^2\xrightarrow{1}\mathbb{Z}/p\) is surjective and the kernel is 
+\[K=\left\{ 0,p,2p,\ldots,(p-1)p \right\}\subseteq \mathbb{Z}/p^2.\]
+The image of the map \(\mathbb{Z}/p^2\xrightarrow{p} \mathbb{Z}/p^2\) is exactly \(K\) in \(\mathbb{Z}/p^2\) and the kernel is also the same thing. So we have a \(\mathbb{Z}/p^2\)-free resolution of \(\mathbb{Z}/p\). Tensoring with \(\mathbb{Z}/p\) and we obtain a chain complex 
+\[\cdots\xrightarrow{0}\mathbb{Z}/p\xrightarrow{0}\mathbb{Z}/p\rightarrow 0.\]
+So \(\Tor^{\mathbb{Z}/p^2}_1(\mathbb{Z}/p,\mathbb{Z}/p)=\mathbb{Z}/p\) for all \(i\geq 0\). 
+\end{solution}
 
 
 \end{document}
