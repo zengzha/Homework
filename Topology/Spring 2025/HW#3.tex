@@ -375,7 +375,7 @@ Using this, derive a universal coefficient theorem which lets you predict \(H_*(
 For all \(i\), we have 
 \begin{align*}
     H_i(C)&\cong H_i(\hom(\hom(C,\mathbb{Z})),\mathbb{Z})\\
-          &\cong \hom(H^i(\hom(C,\mathbb{Z})),\mathbb{Z})\oplus \Ext^1(H^{i-1}(\hom(C,\mathbb{Z})),\mathbb{Z}).     
+          &\cong \hom(H^i(\hom(C,\mathbb{Z})),\mathbb{Z})\oplus \Ext^1(H^{i+1}(\hom(C,\mathbb{Z})),\mathbb{Z}).     
 \end{align*}
 
 \end{solution}
@@ -451,7 +451,7 @@ where all \(n_{i,k}\) are odd numbers. We summarize as follows
     \mathbb{Z}/m\oplus \oplus_{k\in I_3}\mathbb{Z}/n_{3,k},&\iif i=3;\\
     0\ \ \text{or}\ \ \oplus_{k\in I_i}\mathbb{Z}/n_{i,k},&\iif i\geq 4.
 \end{cases}\]
-where \(m\geq 2\) is an even number and all \(n_{i,k}\) are odd numbers.
+where \(m\geq 2\) is an even number, and for all \(i\), \(I_i\) is a finite set and all \(n_{i,k}\) are odd numbers since \(X\) is a finite CW complex.
 
 \textbf{Case 2:} Assume \(H_3(X)=\mathbb{Z}\), plus some odd order generators. Note that in this case \(\Tor_1(H_3(X),\mathbb{Z}/2)=0\). So we have 
 \[\mathbb{Z}/2=H_4(X;\mathbb{Z}/2)=H_4(X)\otimes \mathbb{Z}/2.\]
@@ -466,7 +466,7 @@ The free part of \(H_4(X)\) can only be \(\mathbb{Z}\) otherwise the torsion wil
     \mathbb{Z}\oplus \oplus_{k\in I_4}\mathbb{Z}/n_{4,k},&\iif i=4;\\
     0\ \ \text{or}\ \ \oplus_{k\in I_i}\mathbb{Z}/n_{i,k},&\iif i\geq 5.
 \end{cases}\]
-where all \(n_{i,k}\) are odd numbers.
+where for all \(i\), \(I_i\) is a finite set and \(n_{i,k}\) are odd numbers since \(X\) is a finite CW complex.
 \item First note that because \(0=H_3(X;\mathbb{Z}/3)\), by UCT, we have 
 \[0=H_3(X)\otimes \mathbb{Z}/3\oplus \Tor_1(H_2(X),\mathbb{Z}/3).\]
 So \(H_3(X)\) cannot contain \(\mathbb{Z}\), we will only have case 1. \(H_2(X)\) does not contain any free part, so 
