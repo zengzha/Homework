@@ -1,0 +1,152 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 4}
+Email: zhengz@uoregon.edu \hfill ID: 952091294
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025
+Instructor: Dr.Daniel Dugger \hfill Due Date: $02^{nd}$ May, 2025 
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Compute all of the homology groups for the spaces in parts (a) and (b) below, and use your calculations to show that 
+\begin{enumerate}[(a)]
+\item \(\mathbb{R}P^2\times S^3\) and \(\mathbb{R}P^3\times S^2\) have isomorphic homotopy groups (in all dimensions), but non-isomorphic homology groups. 
+\item \(S^4\times S^2\) and \(\mathbb{C}P^3\) have isomorphic homology groups but non-isomorphic homotopy groups. 
+\end{enumerate}
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+Let \(I_*\) be the chain complex concentrated in degree \(0\) and \(1\) with \(I_1=\mathbb{Z}\la e\ra\), \(I_0=\mathbb{Z}\la a,b\ra\), and \(d(e)=b-a\). Note that this is the 
+simplicial chain complex for \(\Delta_1\). Let \(C_*\) and \(D_*\) be chain complexes. 
+\begin{enumerate}[(a)]
+\item Describe the chain complex \(I_*\otimes C_*\) by giving the groups in each degree as well as the boundary maps.
+\item Let \(F:I_*\otimes C_*\rightarrow D_*\) be a chain map. Define \(f,g:C_*\rightarrow D_*\) by \(f(x)=F(a\otimes x)\) and \(g(x)=F(b\otimes x)\). Likewise, define \(s_n:C_n\rightarrow D_{n+1}\) by \(s_n:C_n\rightarrow D_{n+1}\) by \(s_n(x)=F(e\otimes x)\). Prove 
+that \(f\) and \(g\) are chain maps and the collection \(\left\{ s_n \right\}\) is a chain homotopy between \(f\) and \(g\). 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Let \(Y\) be the space obtained by starting with \(S^3\) and attaching a \(4\)-cell via a map of degree \(5:Y=S^3\cup_f e^4\) where \(f:\partial (e^4)\rightarrow S^3\) has degree \(5\). 
+Write down the cellular chain complex for \(\mathbb{R}p^3\otimes Y\); in particular, specify the rank of each chain group and identify the boundary maps. Compute the homotopy groups of specify the rank of each chain group and 
+identify the boundary maps. Compute the homology groups of \(\mathbb{R}P^3\otimes Y\).
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Compute both the homology and cohomology groups of the following spaces, both with integral and \(\mathbb{Z}/2\) coefficients. Heck, do it with \(\mathbb{Z}/3\) coefficients as well. 
+\begin{enumerate}[(a)]
+\item \(K\times K\), where \(K\) is the Klein bottle. 
+\item \(K\times T^g\), where \(T^g\) is the genus \(g\) torus and \(K\) is the Klein bottle. 
+\item \(K\times \mathbb{R}P^n\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+Let \(f:A_*\rightarrow B_*\) be a map of chain complexes. We can regard this as forming a double complex 
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXHZkb3RzIl0sWzEsMCwiXFx2ZG90cyJdLFswLDEsIkFfMiJdLFsxLDEsIkJfMiJdLFswLDIsIkFfMSJdLFsxLDIsIkJfMSJdLFswLDMsIkFfMCJdLFsxLDMsIkJfMCJdLFswLDJdLFsxLDNdLFsyLDNdLFsyLDRdLFszLDVdLFs0LDZdLFs2LDddLFs1LDddLFs0LDVdXQ==
+\[\begin{tikzcd}
+	\vdots & \vdots \\
+	{A_2} & {B_2} \\
+	{A_1} & {B_1} \\
+	{A_0} & {B_0}
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-1, to=4-1]
+	\arrow[from=3-2, to=4-2]
+	\arrow[from=4-1, to=4-2]
+\end{tikzcd}\]
+by putting zeros in all the "empty" spots. The total complex of this double complex is called the \textbf{algebraic mapping cone} of \(f\), denoted \(Cf\). Specifically, we set \((Cf)_n=A_{n-1}\oplus B_n\) and define \(d:(Cf)_n\rightarrow (Cf)_{n-1}\) by 
+\[d(a,b)=(d_A(a), (-1)^{n-1}f(a)+d_B(b))\]
+\begin{enumerate}[(a)]
+\item Explain why there is a short exact sequence of chain complexes 
+\[0\rightarrow B_*\hookrightarrow C(f)\rightarrow \Sigma A_*\rightarrow 0,\]
+where \(\Sigma A_*\) is the evident chain complex having \((\Sigma A)_n=A_{n-1}\). 
+\item The short exact sequence from (a) gives rise to a long exact sequence in homology groups. This has the form 
+\[\cdots \rightarrow H_i(B)\rightarrow H_i(Cf)\rightarrow H_i(\Sigma A)\xrightarrow{\partial}H_{i-1}(B)\rightarrow \cdots\]
+Verify that the connecting homomorphism is really just the map \(f_*:H_{i-1}(A)\rightarrow H_{i-1}(B)\), possibly up to a sign. 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Let \(k\) be a field, and let \(\mathcal{V}\) denote the category of vector spaces over \(k\). Let \(I\) be any (small) category, and let \(\mathcal{V}^I\) be the category whose objects are functors \(I\rightarrow \mathcal{V}\) and whose morphisms are 
+natural transformations. We call \(\mathcal{V}^I\) the category of "\(I\)-shaped diagram in \(\mathcal{V}\)". \\ 
+In this problem we will focus on the case where \(I\) is the pushout category 
+\[1\leftarrow 0\rightarrow 2\]
+with three objects and two non-identity maps (as shown above). An object of \(\mathcal{V}^I\) is then just a diagram of vector spaces \(V_1\leftarrow V_0\rightarrow V_2\). A map from \([V_1\leftarrow V_0\rightarrow V_2]\) to \([W_1\leftarrow W_0\rightarrow W_2]\) 
+is a commutative diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJWXzEiXSxbMSwwLCJWXzAiXSxbMiwwLCJWXzIiXSxbMCwxLCJXXzEiXSxbMSwxLCJXXzAiXSxbMiwxLCJXXzIiXSxbMCwzXSxbMSw0XSxbMiw1XSxbMSwwXSxbMSwyXSxbNCw1XSxbNCwzXV0=
+\[\begin{tikzcd}
+	{V_1} & {V_0} & {V_2} \\
+	{W_1} & {W_0} & {W_2}
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-2, to=2-1]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+Let \(P:\mathcal{V}^I\rightarrow \mathcal{V}\) be the pushout functor. \(P\) assigns each diagram its pushout.
+\begin{enumerate}[(a)]
+\item Let \(F_1\), \(F_0\) and \(F_2\) be the three diagrams 
+\[F_1:[k\leftarrow 0\rightarrow 0]\ \ \ F_0=[k\leftarrow k\rightarrow k]\ \ \ F_2=[0\leftarrow 0\rightarrow 0]\]
+where in \(F_0\) the maps are the identities. These diagrams are "free" in a certain sense: namely, if \(D\) is an object of \(\mathcal{V}^I\) then morphisms \(F_i\rightarrow D\) are in bijective correspondence with elements of \(D_i\). 
+Convince yourself that this is true. 
+\item Let \(D=[0\leftarrow k\rightarrow 0]\) and \(E=[0\leftarrow k\rightarrow k]\), where in \(E\) the nontrivial map is the identity. Determine free resolutions for \(D\) and \(E\). 
+\item Apply the functor \(P\) to your resolution, to produce a chain complex of vector spaces. Compute the homology groups, which are the groups \((L_iP)(D)\) and \((L_iP)(E)\). These are the derived functor of the psuhout functor \(P\). Confirm in your example that \(L_0P=P\). 
+\item Now let \(I\) be the category with one object \(0\) and one non-identity map \(t:0\rightarrow 0\) such that \(t^2=id\). Objects of \(\mathcal{V}^I\) are then pairs \((W,t)\) consisting of a vector space \(W\) and an endomorphism \(t:W\rightarrow W\) such that \(t^2=id\). 
+In \(\mathcal{V}^I\) the basic "free" object is \((k^2,\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix})\); this can also be thought of as the vector space \(k\la g,tg\ra\) where \(t(tg)=g\). Let \(P:\mathcal{V}^I\rightarrow \mathcal{V}\) be the colimit functor, sending an object \((W,t)\) to \(W/\left\{ x-tx\mid x\in W \right\}\). 
+Find the free resolution of the object \((k,id)\) and compute \((L_iP)(k,id)\) for all \(i\geq 0\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+
+\end{document}
