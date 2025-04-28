@@ -5,10 +5,10 @@
 \begin{document}
 \noindent
 
-\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 4}
-Email: zhengz@uoregon.edu \hfill ID: 952091294
-\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025
-Instructor: Dr.Daniel Dugger \hfill Due Date: $02^{nd}$ May, 2025 
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 4} \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $02^{nd}$ May, 2025 \\ 
 \noindent\rule{7in}{2.8pt}
 \setstretch{1.1}
 
@@ -22,7 +22,24 @@ Compute all of the homology groups for the spaces in parts (a) and (b) below, an
 \item \(S^4\times S^2\) and \(\mathbb{C}P^3\) have isomorphic homology groups but non-isomorphic homotopy groups. 
 \end{enumerate}
 \end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item Let \(X=\mathbb{R}P^2\times S^3\) and \(Y=\mathbb{R}P^3\times S^2\). It is easy to see that both \(X\) and \(Y\) are path-connected, so \(\pi_0(X)=\pi_0(Y)=*\). By direct calcualtion, we have 
+\begin{align*}
+	\pi_1(X)&=\pi_1(\mathbb{R}P^2)\times \pi_1(S^3)=\mathbb{Z}/2\oplus \mathbb{Z},\\ 
+	\pi_1(Y)&=\pi_1(\mathbb{R}P^3)\times \pi_1(S^2)=\mathbb{Z}/2\oplus \mathbb{Z}.
+\end{align*}
+This implies \(\pi_1(X)\cong \pi_1(Y)\). Recall that for all \(n\geq 2\), the universal covering space of \(\mathbb{R}P^n\) is \(S^n\). So the universal covering space of \(X\) and \(Y\) are both isomorphic to 
+\(S^2\times S^3\cong S^3\times S^2\). The long exact sequence in homotopy groups tells us that 
+\[\pi_n(X)\cong \pi_n(Y)\cong \pi_n(S^3\times S^2)\]
+for all \(n\geq 2\). Thus, we can conclude that \(X\) and \(Y\) have the same homotopy groups. 
 
+For the homology groups, note that the homology groups of \(S^3\) and \(S^2\) are all free. By Künneth theorem, we have 
+\(H_n(X)=\)
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +53,9 @@ that \(f\) and \(g\) are chain maps and the collection \(\left\{ s_n \right\}\) 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
