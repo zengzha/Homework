@@ -26,8 +26,8 @@ Compute all of the homology groups for the spaces in parts (a) and (b) below, an
 \begin{enumerate}[(a)]
 \item Let \(X=\mathbb{R}P^2\times S^3\) and \(Y=\mathbb{R}P^3\times S^2\). It is easy to see that both \(X\) and \(Y\) are path-connected, so \(\pi_0(X)=\pi_0(Y)=*\). By direct calcualtion, we have 
 \begin{align*}
-	\pi_1(X)&=\pi_1(\mathbb{R}P^2)\times \pi_1(S^3)=\mathbb{Z}/2\oplus \mathbb{Z},\\ 
-	\pi_1(Y)&=\pi_1(\mathbb{R}P^3)\times \pi_1(S^2)=\mathbb{Z}/2\oplus \mathbb{Z}.
+	\pi_1(X)&=\pi_1(\mathbb{R}P^2)\times \pi_1(S^3)=0,\\ 
+	\pi_1(Y)&=\pi_1(\mathbb{R}P^3)\times \pi_1(S^2)=0.
 \end{align*}
 This implies \(\pi_1(X)\cong \pi_1(Y)\). Recall that for all \(n\geq 2\), the universal covering space of \(\mathbb{R}P^n\) is \(S^n\). So the universal covering space of \(X\) and \(Y\) are both isomorphic to 
 \(S^2\times S^3\cong S^3\times S^2\). The long exact sequence in homotopy groups tells us that 
@@ -55,6 +55,30 @@ The homology groups of each space is listed below:
 	\end{array}\)%
 	}
 	\end{table}
+We can obtain the of \(X\) and \(Y\) by tensoring at each degree, this gives us 
+\begin{multicols}{2}
+\noindent
+\[H_i(X)=\begin{cases}
+	\mathbb{Z},&\iif i=0,3;\\ 
+	\mathbb{Z}/2,&\iif i=1,4;\\
+	0,&\otherwise.
+\end{cases}\]
+\noindent
+\[H_i(Y)=\begin{cases}
+	\mathbb{Z},&\iif i=0,2,5;\\
+    \mathbb{Z}/2,&\iif i=1;\\ 
+	\mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=3;\\ 
+	0,&\otherwise.
+\end{cases}\]
+\end{multicols}
+From this we can see that \(X\) and \(Y\) have non-isomorphic homology groups.
+\item We know that \(\mathbb{C}P^3\) has a cellular structure with one \(0\)-cell, one \(2\)-cell, one \(4\)-cell, and one \(6\)-cell. The boundary maps in the cellular chain complex are all zero, so \(H_i(\mathbb{C}P^3)=\mathbb{Z}\) for \(i=0,2,4,6\) and \(0\) otherwise. For the space \(S^4\times S^2\), use Künneth theorem and note that \(S^2\) does not have torsion in homology, so \(H_i(S^4\times S^2)=\mathbb{Z}\) for \(i=0,2,4,6\) and \(0\) otherwise. This shows that \(S^4\times S^2\) and \(\mathbb{C}P^3\) have isomorphic homology groups. 
+
+Recall that we have a fibration \(S^1\rightarrow S^7\rightarrow \mathbb{C}P^3\). This induces a long exact sequence in homotopy groups
+\[\cdots\rightarrow \pi_2(S^7)\rightarrow \pi_2(\mathbb{C}P^3)\rightarrow \pi_1(S^1)\rightarrow \pi_1(S^7)\rightarrow \cdots\]
+Note that \(\pi_2(S^7)=\pi_1(S^7)=0\) and \(\pi_1(S^1)=\mathbb{Z}\). This implies that \(\pi_2(\mathbb{C}P^3)=\mathbb{Z}\). On the other hand, we know that 
+\[\pi_2(S^4\times S^2)\cong \pi_2(S^4)\times \pi_2(S^2)=0.\]
+This implies that \(S^4\times S^2\) and \(\mathbb{C}P^3\) have non-isomorphic homotopy groups.
 \end{enumerate}
 \end{solution}
 
@@ -73,7 +97,7 @@ that \(f\) and \(g\) are chain maps and the collection \(\left\{ s_n \right\}\) 
 \end{problem}
 \begin{solution}
 \begin{enumerate}[(a)]
-\item We denote bothe the boundary map in \(C_*\) and \(I_*\) by \(d\). Consider the double complex \(I_*\otimes C_*\) first.
+\item We denote bothe the boundary map in \(C_*\) by \(d_C\). Consider the double complex \(I_*\otimes C_*\) first.
 % https://q.uiver.app/#q=WzAsMTIsWzAsMywiSV8wXFxvdGltZXMgQ18wIl0sWzAsMiwiSV8wXFxvdGltZXMgQ18xIl0sWzAsMSwiSV8wXFxvdGltZXMgQ18yIl0sWzEsMywiSV8xXFxvdGltZXMgQ18wIl0sWzEsMiwiSV8xXFxvdGltZXMgQ18xIl0sWzEsMSwiSV8xXFxvdGltZXMgQ18yIl0sWzAsMCwiXFx2ZG90cyJdLFsxLDAsIlxcdmRvdHMiXSxbMiwzLCIwIl0sWzIsMiwiMCJdLFsyLDEsIjAiXSxbMiwwLCJcXHZkb3RzIl0sWzYsMl0sWzIsMV0sWzEsMF0sWzUsMl0sWzQsMV0sWzMsMF0sWzcsNV0sWzEwLDVdLFs5LDRdLFs1LDRdLFs0LDNdLFs4LDNdLFsxMCw5XSxbOSw4XSxbMTEsMTBdXQ==
 \[\begin{tikzcd}
 	\vdots & \vdots & \vdots \\
@@ -96,10 +120,74 @@ that \(f\) and \(g\) are chain maps and the collection \(\left\{ s_n \right\}\) 
 	\arrow[from=4-2, to=4-1]
 	\arrow[from=4-3, to=4-2]
 \end{tikzcd}\]
-The vertical boundary map \(d_v\) is \(id\otimes d\) and the horizontal boundary map \(d_h\) is \(d\otimes id\). Let \(T_*\) be the total complex of this double complex, then in each degree we have 
+The vertical boundary map \(d_v\) is \(id\otimes d_C\) and the horizontal boundary map \(d_h\) is \(d\otimes id\). Let \(T_*\) be the total complex of this double complex, then in each degree we have 
 \[T_n=I_0\otimes C_n\oplus I_1\otimes C_{n-1}.\]
+We know that \(I_0=\mathbb{Z}\la a,b\ra\), so \(I_0\times C_n\) is isomorphic to \((C_n)^2\) where the isomorphism is given by sending \(a\otimes x\) to \(x\) and \(b\otimes y\) to \(y\) for all \(x,y\in C_n\). Similarly, \(I_1=\mathbb{Z}\la e\ra\), so \(I_1\otimes C_{n-1}\) is isomorphic to \(C_{n-1}\) where the isomorphism is given by sending \(e\otimes z\) to \(z\) for all \(z\in C_{n-1}\). The boundary map in the total complex is given by \(d_t(x)=d_h(x)+(-1)^p d_v(x)\) for \(x\in I_p\otimes C_q\). For \(a\otimes x\), \(b\otimes y\) in \(I_0\otimes C_n\) and \(e\otimes z\in I_1\otimes C_{n-1}\), we have 
+\begin{align*}
+	d_t(a\otimes x)&=d_C(x),\\ 
+	d_t(b\otimes y)&=d_C(y),\\
+	d_t(e\otimes z)&=(b-a)\otimes x-e\otimes d_C(z).
+\end{align*}
+\item Write the boundary maps in \(C_*\) as \(d_C\) and boundary maps in \(D_*\) as \(d_D\). For any \(n\in \mathbb{Z}\), we know \(F\) is a chain map, so we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJJXzBcXG90aW1lcyBDX24iXSxbMSwwLCJJXzBcXG90aW1lcyBDX3tuLTF9Il0sWzAsMSwiRF9uIl0sWzEsMSwiRF97bi0xfSJdLFswLDEsImlkXFxvdGltZXMgZF9DIl0sWzAsMiwiRiIsMl0sWzIsMywiZF9EIiwyXSxbMSwzLCJGIl1d
+\[\begin{tikzcd}
+	{I_0\otimes C_n} & {I_0\otimes C_{n-1}} \\
+	{D_n} & {D_{n-1}}
+	\arrow["{id\otimes d_C}", from=1-1, to=1-2]
+	\arrow["F"', from=1-1, to=2-1]
+	\arrow["F", from=1-2, to=2-2]
+	\arrow["{d_D}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+For any \(x\in C_n\), we have  
+\[(d_D\circ F)(a\otimes x)=[F\circ (id\otimes d_C)(a\otimes x)]=F(a\otimes d_C(x)).\]
+By definition this is equivalent to 
+\[(d_D\circ f)(x)=(f\circ d_C)(x).\]
+Namely, we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJDX24iXSxbMSwwLCJDX3tuLTF9Il0sWzAsMSwiRF9uIl0sWzEsMSwiRF97bi0xfSJdLFswLDEsImRfQyJdLFsyLDMsImRfRCIsMl0sWzAsMiwiZiIsMl0sWzEsMywiZiJdXQ==
+\[\begin{tikzcd}
+	{C_n} & {C_{n-1}} \\
+	{D_n} & {D_{n-1}}
+	\arrow["{d_C}", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["{d_D}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+This proves \(f\) is a chain map. By a similar argument, \(g\) is also a chain map. 
 
-
+Next, to show that \(s_n\) defines a chain homotopy between \(f\) and \(g\), we need to show for any \(n\), there exists a commutative diagram 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkNfe24rMX0iXSxbMywwLCJDX24iXSxbNSwwLCJDX3tuLTF9Il0sWzYsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbMSwxLCJEX3tuKzF9Il0sWzMsMSwiRF9uIl0sWzUsMSwiRF97bi0xfSJdLFs2LDEsIlxcY2RvdHMiXSxbMCwxXSxbMSwyLCJkX0MiXSxbMiwzLCJkX0MiXSxbMyw0XSxbNSw2XSxbNiw3LCJkX0QiLDJdLFs3LDgsImRfRCIsMl0sWzgsOV0sWzEsNiwiZiIsMix7Im9mZnNldCI6MX1dLFsxLDYsImciLDAseyJvZmZzZXQiOi0xfV0sWzIsNywiZiIsMix7Im9mZnNldCI6MX1dLFsyLDcsImciLDAseyJvZmZzZXQiOi0xfV0sWzMsOCwiZiIsMix7Im9mZnNldCI6MX1dLFszLDgsImciLDAseyJvZmZzZXQiOi0xfV0sWzIsNiwic19uIiwxLHsibGFiZWxfcG9zaXRpb24iOjQwfV0sWzMsNywic197bi0xfSIsMV1d
+\[\begin{tikzcd}
+	\cdots & {C_{n+1}} && {C_n} && {C_{n-1}} & \cdots \\
+	\cdots & {D_{n+1}} && {D_n} && {D_{n-1}} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{d_C}", from=1-2, to=1-4]
+	\arrow["f"', shift right, from=1-2, to=2-2]
+	\arrow["g", shift left, from=1-2, to=2-2]
+	\arrow["{d_C}", from=1-4, to=1-6]
+	\arrow["{s_n}"{description, pos=0.4}, from=1-4, to=2-2]
+	\arrow["f"', shift right, from=1-4, to=2-4]
+	\arrow["g", shift left, from=1-4, to=2-4]
+	\arrow[from=1-6, to=1-7]
+	\arrow["{s_{n-1}}"{description}, from=1-6, to=2-4]
+	\arrow["f"', shift right, from=1-6, to=2-6]
+	\arrow["g", shift left, from=1-6, to=2-6]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{d_D}"', from=2-2, to=2-4]
+	\arrow["{d_D}"', from=2-4, to=2-6]
+	\arrow[from=2-6, to=2-7]
+\end{tikzcd}\]
+For any \(x\in C_n\), we have 
+\[g(x)-f(x)=F(b\otimes x)-F(a\otimes x)=F((b-a)\otimes x).\]
+On the other hand, use the fact that \(F\) is a chain map, we have 
+\begin{align*}
+	(d_D\circ s_n)(x)+(s_{n-1}\circ d_C)(x)&=(d_D\circ F)(e\otimes x)+F(e\otimes d_C(x))\\ 
+	                                       &=(F\circ d_C)(e\otimes x)+F(e\otimes d_C(x))\\ 
+										   &=F((b-a)\otimes x)-F(e\otimes d_C(x))+F(e\otimes d_C(x))\\
+										   &=F((b-a)\otimes x).
+\end{align*}
+This proves that 
+\[g-f=d_D\circ s_n+s_{n-1}\circ d_C.\]
+The collection of \(s_n\) is a chain homotopy between \(f\) and \(g\).
 \end{enumerate}
 \end{solution}
 
@@ -113,6 +201,123 @@ Write down the cellular chain complex for \(\mathbb{R}p^3\otimes Y\); in particu
 identify the boundary maps. Compute the homology groups of \(\mathbb{R}P^3\otimes Y\).
 \end{problem}
 \begin{solution}
+The space \(Y\) has a cellular chain complex 
+\[0\rightarrow \mathbb{Z}\la e^4\ra\xrightarrow{5}\mathbb{Z}\la e^3\ra\rightarrow 0\rightarrow 0\rightarrow \mathbb{Z}\la e^0\ra\rightarrow 0.\]
+where \(e^i\) are cells in \(Y\) for \(i=0,3,4\). The real projective space \(\mathbb{R}P^3\) has the following cellular chain complex 
+\[0\rightarrow \mathbb{Z}\la f^3\ra\xrightarrow{0}\mathbb{Z}\la f^2\ra\xrightarrow{2}\mathbb{Z}\la f^1\ra\xrightarrow{0}\mathbb{Z}\la f^0\ra\rightarrow 0.\]
+The tensor product of these two chain complex is the double complex 
+% https://q.uiver.app/#q=WzAsMjAsWzAsNCwiXFxtYXRoYmJ7Wn1cXGxhIGZeMFxcb3RpbWVzIGVeMFxccmEiXSxbMCwzLCIwIl0sWzEsNCwiXFxtYXRoYmJ7Wn1cXGxhIGZeMVxcb3RpbWVzIGVeMFxccmEiXSxbMiw0LCJcXG1hdGhiYntafVxcbGEgZl4yXFxvdGltZXMgZV4wXFxyYSAiXSxbMyw0LCJcXG1hdGhiYntafVxcbGEgZl4zXFxvdGltZXMgZV4wXFxyYSJdLFswLDIsIjAiXSxbMSwzLCIwIl0sWzEsMiwiMCJdLFsyLDMsIjAiXSxbMiwyLCIwIl0sWzMsMywiMCJdLFszLDIsIjAiXSxbMCwxLCJcXG1hdGhiYntafVxcbGEgZl4wXFxvdGltZXMgZV4zXFxyYSJdLFsxLDEsIlxcbWF0aGJie1p9XFxsYSBmXjFcXG90aW1lcyBlXjNcXHJhIl0sWzIsMSwiXFxtYXRoYmJ7Wn1cXGxhIGZeMlxcb3RpbWVzIGVeM1xccmEiXSxbMywxLCJcXG1hdGhiYntafVxcbGEgZl4zXFxvdGltZXMgZV4zXFxyYSJdLFswLDAsIlxcbWF0aGJie1p9XFxsYSBmXjBcXG90aW1lcyBlXjRcXHJhIl0sWzEsMCwiXFxtYXRoYmJ7Wn1cXGxhIGZeMVxcb3RpbWVzIGVeNFxccmEiXSxbMiwwLCJcXG1hdGhiYntafVxcbGEgZl4yXFxvdGltZXMgZV40XFxyYSJdLFszLDAsIlxcbWF0aGJie1p9XFxsYSBmXjNcXG90aW1lcyBlXjRcXHJhIl0sWzIsMCwiMCIsMl0sWzMsMiwiMlxcb3RpbWVzIGlkIiwyXSxbNCwzLCIwIiwyXSxbMTMsMTIsIjAiLDJdLFsxNCwxMywiMlxcb3RpbWVzIGlkIiwyXSxbMTUsMTQsIjAiLDJdLFsxNywxNiwiMCIsMl0sWzE4LDE3LCIyXFxvdGltZXMgaWQiLDJdLFsxOSwxOCwiMCIsMl0sWzEsMF0sWzUsMV0sWzEyLDVdLFsxNiwxMiwiaWRcXG90aW1lcyA1IiwyXSxbMTcsMTMsImlkXFxvdGltZXMgNSIsMl0sWzE4LDE0LCJpZFxcb3RpbWVzIDUiLDJdLFsxOSwxNSwiaWRcXG90aW1lcyA1IiwyXSxbMTMsN10sWzcsNl0sWzYsMl0sWzE0LDldLFs5LDhdLFs4LDNdLFsxNSwxMV0sWzExLDEwXSxbMTAsNF0sWzExLDldLFs5LDddLFs3LDVdLFs2LDFdLFs4LDZdLFsxMCw4XV0=
+\[\begin{tikzcd}
+	{\mathbb{Z}\la f^0\otimes e^4\ra} & {\mathbb{Z}\la f^1\otimes e^4\ra} & {\mathbb{Z}\la f^2\otimes e^4\ra} & {\mathbb{Z}\la f^3\otimes e^4\ra} \\
+	{\mathbb{Z}\la f^0\otimes e^3\ra} & {\mathbb{Z}\la f^1\otimes e^3\ra} & {\mathbb{Z}\la f^2\otimes e^3\ra} & {\mathbb{Z}\la f^3\otimes e^3\ra} \\
+	0 & 0 & 0 & 0 \\
+	0 & 0 & 0 & 0 \\
+	{\mathbb{Z}\la f^0\otimes e^0\ra} & {\mathbb{Z}\la f^1\otimes e^0\ra} & {\mathbb{Z}\la f^2\otimes e^0\ra } & {\mathbb{Z}\la f^3\otimes e^0\ra}
+	\arrow["{id\otimes 5}"', from=1-1, to=2-1]
+	\arrow["0"', from=1-2, to=1-1]
+	\arrow["{id\otimes 5}"', from=1-2, to=2-2]
+	\arrow["{2\otimes id}"', from=1-3, to=1-2]
+	\arrow["{id\otimes 5}"', from=1-3, to=2-3]
+	\arrow["0"', from=1-4, to=1-3]
+	\arrow["{id\otimes 5}"', from=1-4, to=2-4]
+	\arrow[from=2-1, to=3-1]
+	\arrow["0"', from=2-2, to=2-1]
+	\arrow[from=2-2, to=3-2]
+	\arrow["{2\otimes id}"', from=2-3, to=2-2]
+	\arrow[from=2-3, to=3-3]
+	\arrow["0"', from=2-4, to=2-3]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-1, to=4-1]
+	\arrow[from=3-2, to=3-1]
+	\arrow[from=3-2, to=4-2]
+	\arrow[from=3-3, to=3-2]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=3-4, to=3-3]
+	\arrow[from=3-4, to=4-4]
+	\arrow[from=4-1, to=5-1]
+	\arrow[from=4-2, to=4-1]
+	\arrow[from=4-2, to=5-2]
+	\arrow[from=4-3, to=4-2]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=4-4, to=4-3]
+	\arrow[from=4-4, to=5-4]
+	\arrow["0"', from=5-2, to=5-1]
+	\arrow["{2\otimes id}"', from=5-3, to=5-2]
+	\arrow["0"', from=5-4, to=5-3]
+\end{tikzcd}\]
+Denote the total chain complex by \((T_n,d_n)\). we have 
+\[T_n=\begin{cases}
+	\mathbb{Z}\la f^0\otimes e^0\ra\cong \mathbb{Z},&\iif n=0;\\ 
+	\mathbb{Z}\la f^1\otimes e^0\ra\cong \mathbb{Z},&\iif n=1;\\
+	\mathbb{Z}\la f^2\otimes e^0\ra\cong \mathbb{Z},&\iif n=2;\\ 
+	\mathbb{Z}\la f^0\otimes e^3, f^3\otimes e^0\ra\cong \mathbb{Z}^2,&\iif n=3;\\ 
+	\mathbb{Z}\la f^0\otimes e^4,f^1\otimes e^3\ra\cong \mathbb{Z}^2,&\iif n=4;\\
+	\mathbb{Z}\la f^1\otimes e^4,f^2\otimes e^3\ra\cong \mathbb{Z}^2,&\iif n=5;\\ 
+	\mathbb{Z}\la f^2\otimes e^4,f^3\otimes e^3\ra\cong \mathbb{Z}^2,&\iif n=6;\\ 
+	\mathbb{Z}\la f^3\otimes e^4\ra\cong \mathbb{Z},&\iif n=7. 
+\end{cases}\]
+For \(1\leq n\leq 7\), the boundary map \(d_n\) is given by the formula 
+\[d_n(f^i\otimes e^j)=d(f^i)\otimes e^j+(-1)^i f^i\otimes d(e^j).\]
+The boundary map \(d_n\) is given by the following table:
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.15\columnwidth}{!}{%
+	\(\begin{array}{|c|c|}
+	\hline
+	i & d_i                                                                                          \\[5pt] \hline
+	1 & 0                                                                                            \\[5pt]  \hline
+	2 & 2                                                                                            \\ [5pt] \hline
+	3 & \begin{pmatrix}     
+		0&0
+	    \end{pmatrix}        \\[5pt]  \hline
+	4 & \begin{pmatrix}    
+		5&0\\    
+		0&0 
+	    \end{pmatrix}         \\[5pt]  \hline
+	5 & \begin{pmatrix}
+		    0&2\\    
+			-5&0
+		 \end{pmatrix}         \\[5pt]  \hline
+	6 &  \begin{pmatrix}
+		    2&0\\    
+			5&0 
+		\end{pmatrix}           \\[5pt]  \hline
+	7 & \begin{pmatrix}
+		 0\\ 
+		 -5
+		 \end{pmatrix}           \\[5pt]  \hline
+	\end{array}\)%
+	}
+	\end{table}
+To calculate the homology groups of \(\mathbb{R}P^3\times Y\), we first write down the homology groups of \(\mathbb{R}P^3\) and \(Y\). 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.3\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|ll}
+	\cline{1-3}
+	  & H_*(\mathbb{R}P^3) & H_*(Y)       &  &  \\ \cline{1-3}
+	0 & \mathbb{Z}         & \mathbb{Z}   &  &  \\ \cline{1-3}
+	1 & \mathbb{Z}/2       & 0            &  &  \\ \cline{1-3}
+	2 & 0                  & 0            &  &  \\ \cline{1-3}
+	3 & \mathbb{Z}         & \mathbb{Z}/5 &  &  \\ \cline{1-3}
+	4 & 0                  & 0            &  &  \\ \cline{1-3}
+	\end{array}\)%
+	}
+	\end{table}
+
+We calculate their tensor products and \(\Tor_1\) respectively. Note that \(\Tor_1(\mathbb{Z}/5,\mathbb{Z}/2)=0\), so we do not have any terms coming from \(\Tor_1\). The homology groups of \(\mathbb{R}P^3\times Y\) can be summarized as follows 
+\[H_i(\mathbb{R}P^3\times Y)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\
+	\mathbb{Z}/2,&\iif i=1;\\ 
+	\mathbb{Z}\oplus \mathbb{Z}/5,&\iif i=3;\\
+	\mathbb{Z}/5,&\iif i=6;\\
+	0,&\otherwise.
+\end{cases}\]
+
 
 \end{solution}
 
@@ -129,7 +334,177 @@ Compute both the homology and cohomology groups of the following spaces, both wi
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+\item We can use UCT for homology to calculate the homology groups of \(K\) in different coefficients and we summarized them as follows. 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.5\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+	  & H_*(K)                        & H_*(K;\mathbb{Z}/2)             & H_*(K:\mathbb{Z}/3) \\ \hline
+	0 & \mathbb{Z}                    & \mathbb{Z}/2                    & \mathbb{Z}/3        \\ \hline
+	1 & \mathbb{Z}\oplus \mathbb{Z}/2 & \mathbb{Z}/2\oplus \mathbb{Z}/2 & \mathbb{Z}/3        \\ \hline
+	2 & 0                             & \mathbb{Z}/2                    & 0                   \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
 
+From this we know that the tensor product is 
+\[H_p(K)\otimes H_q(K)=\begin{cases}
+	\mathbb{Z},&\iif p+q=0;\\ 
+	\mathbb{Z}^2\oplus (\mathbb{Z}/2)^2,&\iif p+q=1;\\ 
+	\mathbb{Z}\oplus (\mathbb{Z}/2)^3,&\iif p+q=2;\\ 
+	0,&\otherwise.
+\end{cases}\]
+The only non trivial \(\Tor_1\) is given by \(\Tor_1(H_1(K),H_1(K))=\mathbb{Z}/2\). Thus, the homology groups of \(K\) is
+\[H_i(K\times K;\mathbb{Z})=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\ 
+	\mathbb{Z}^2\oplus (\mathbb{Z}/2)^2,&\iif i=1;\\
+	\mathbb{Z}\oplus (\mathbb{Z}/2)^3,&\iif i=2;\\ 
+	\mathbb{Z}/2,&\iif i=3;\\
+	0,&\otherwise.
+\end{cases}\]
+Next, we use UCT for homology to calculate the homology groups with \(\mathbb{Z}/2\) and \(\mathbb{Z}/3\) coefficients. 
+\begin{multicols}{2}
+
+\[H_i(K\times K;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0;\\
+	(\mathbb{Z}/2)^4,&\iif i=1;\\
+	(\mathbb{Z}/2)^6,&\iif i=2;\\
+	(\mathbb{Z}/2)^4,&\iif i=3;\\
+	(\mathbb{Z}/2),&\iif i=4;\\
+	0,&\otherwise.
+\end{cases}\]
+
+\columnbreak
+\null \vfill
+\[H_i(K\times K;\mathbb{Z}/3)=\begin{cases}
+	\mathbb{Z}/3,&\iif i=0;\\
+	(\mathbb{Z}/3)^2,&\iif i=1;\\
+	\mathbb{Z}/3,&\iif i=2;\\
+	0,&\otherwise.
+\end{cases}\]
+\vfill \null
+\end{multicols}
+\item The homology of \(K\) and \(T^g\) are as follows:
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.3\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|}
+	\hline
+	  & H_*(K)                        & H_*(T^g)        \\ \hline
+	0 & \mathbb{Z}                    & \mathbb{Z}      \\ \hline
+	1 & \mathbb{Z}\oplus \mathbb{Z}/2 & \mathbb{Z}^{2g} \\ \hline
+	2 & 0                             & \mathbb{Z}      \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
+
+Note that \(H_*(T^g)\) are all free, so by Künneth theorem, we have 
+\[H_*(K\times T^g)\cong \bigoplus_{i+j=n}H_i(K)\otimes H_j(T^g). \]
+Thus, we conclude \(H_*(K\times T^g)\) as follows:
+\[H_i(K\times T^g)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\
+	\mathbb{Z}^{2g+1}\oplus \mathbb{Z}/2,&\iif i=1;\\
+	\mathbb{Z}^{2g+1}\oplus (\mathbb{Z}/2)^{2g},&\iif i=2;\\
+	\mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=3;\\
+	0,&\otherwise.
+\end{cases}\]
+Next, we use UCT for homology to calculate different coefficients.
+\begin{multicols}{2}
+
+\[H_i(K\times T^g;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0;\\
+	(\mathbb{Z}/2)^{2g+2},&\iif i=1;\\
+	(\mathbb{Z}/2)^{4g+2},&\iif i=2;\\
+	(\mathbb{Z}/2)^{2g+2},&\iif i=3;\\
+	\mathbb{Z}/2,&\iif i=4;\\
+	0,&\otherwise.
+\end{cases}\]
+
+\columnbreak
+
+\null \vfill
+\[H_i(K\times T^g;\mathbb{Z}/3)=\begin{cases}
+	\mathbb{Z}/3,&\iif i=0;\\
+	(\mathbb{Z}/3)^{2g+1},&\iif i=1;\\
+	(\mathbb{Z}/3)^{2g+1},&\iif i=2;\\
+	\mathbb{Z}/3,&\iif i=3;\\
+	0,&\otherwise.
+\end{cases}\]
+\vfill \null 
+\end{multicols}
+\item \(\mathbb{R}P^n\) has different homology groups when \(n\) is odd or even. 
+\begin{enumerate}[(1)]
+\item Suppose \(n\) is even.\\ 
+The homology groups of \(\mathbb{R}P^n\) can be summarized as follows:
+\begin{itemize}
+	\item \(H_0(\mathbb{R}P^n)=\mathbb{Z}\).
+	\item \(H_i(\mathbb{R}P^n)=\mathbb{Z}/2\) if \(i\geq 0\) and \(i\) is odd.
+	\item \(0\) otherwise.
+\end{itemize}
+Use Künneth theorem, we can calculate the homology groups of \(K\times \mathbb{R}P^n\):
+\[H_i(K\times \mathbb{R}P^n)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\
+	\mathbb{Z}\oplus (\mathbb{Z}/2)^2,&\iif i=1;\\
+	(\mathbb{Z}/2)^2,&\iif 2\leq i\leq n;\\
+	\mathbb{Z}/2,&\iif i=n+1;\\
+	0,&\otherwise.
+\end{cases}\]
+Next, we use UCT for homology to calculate the homology groups with other coefficients. 
+
+\[H_i(K\times \mathbb{R}P^n;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0;\\
+	(\mathbb{Z}/2)^3,&\iif i=1;\\
+	(\mathbb{Z}/2)^4,&\iif 2\leq i\leq n;\\
+	(\mathbb{Z}/2)^3,&\iif i=n+1;\\
+	\mathbb{Z}/2,&\iif i=n+2;\\
+	0,&\otherwise.
+\end{cases}\]
+
+\[H_i(K\times \mathbb{R}P^n;\mathbb{Z}/3)=\begin{cases}
+	\mathbb{Z}/3,&\iif i=0,1;\\
+	0,&\otherwise.
+\end{cases}\] 
+\item Suppose \(n\) is odd.\\
+The homology groups of \(\mathbb{R}P^n\) can be summarized as follows:
+\begin{itemize}
+	\item \(H_0(\mathbb{R}P^n)=H_n(\mathbb{R}P^n)=\mathbb{Z}\).
+	\item \(H_i(\mathbb{R}P^n)=\mathbb{Z}/2\) for \(1\leq i\leq n-1\) if \(i\) is odd.
+	\item \(0\) otherwise.
+\end{itemize}
+Use Künneth theorem, we can calculate the homology groups of \(K\times \mathbb{R}P^n\):
+\[H_i(K\times \mathbb{R}P^n)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\
+	\mathbb{Z}\oplus (\mathbb{Z}/2)^2,&\iif i=1;\\
+	(\mathbb{Z}/2)^2,&\iif 2\leq i\leq n-1;\\
+	\mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=n;\\
+	\mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=n+1;\\
+	0,&\otherwise.
+\end{cases}\]
+Next, we use UCT for homology to calculate the homology groups with coefficients:
+\[H_i(K\times \mathbb{R}P^n;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0;\\
+	(\mathbb{Z}/2)^3,&\iif i=1;\\
+	(\mathbb{Z}/2)^4,&\iif 2\leq i\leq n;\\
+    (\mathbb{Z}/2)^3,&\iif i=n+1;\\
+	\mathbb{Z}/2,&\iif i=n+2;\\
+	0,&\otherwise.
+\end{cases}\]
+\[H_i(K\times \mathbb{R}P^n;\mathbb{Z}/3)=\begin{cases}
+	\mathbb{Z}/3,&\iif i=0,1,n,n+1;\\
+	0,&\otherwise.
+\end{cases}\]
+\end{enumerate}
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -166,7 +541,50 @@ Verify that the connecting homomorphism is really just the map \(f_*:H_{i-1}(A)\
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item We need to prove that for any \(n\geq 0\), we have the following commutative diagrams where the top row and bottom row is exact.
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkJfbiJdLFsyLDAsIkFfe24tMX1cXG9wbHVzIEJfbiJdLFszLDAsIkFfe24tMX0iXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkJfe24tMX0iXSxbMiwxLCJBX3tuLTJ9XFxvcGx1cyBCX3tuLTF9Il0sWzMsMSwiQV97bi0yfSJdLFs0LDEsIjAiXSxbMCwxXSxbMSwyLCJpX24iXSxbMiwzLCJwX24iXSxbMyw0XSxbNSw2XSxbNiw3LCJpX3tuLTF9IiwyXSxbNyw4LCJwX3tuLTF9IiwyXSxbOCw5XSxbMSw2LCJkX0IiLDJdLFszLDgsImRfQSJdLFsyLDcsImQiXV0=
+\[\begin{tikzcd}
+	0 & {B_n} & {A_{n-1}\oplus B_n} & {A_{n-1}} & 0 \\
+	0 & {B_{n-1}} & {A_{n-2}\oplus B_{n-1}} & {A_{n-2}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["{i_n}", from=1-2, to=1-3]
+	\arrow["{d_B}"', from=1-2, to=2-2]
+	\arrow["{p_n}", from=1-3, to=1-4]
+	\arrow["d", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["{d_A}", from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{i_{n-1}}"', from=2-2, to=2-3]
+	\arrow["{p_{n-1}}"', from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+We choose \(i_n:B_n\rightarrow A_{n-1}\oplus B_n\) as the inclusion \(b\mapsto (0,b)\) and \(p_n:A_{n-1}\oplus B_n\rightarrow A_{n-1}\) as the projection \((a,b)\mapsto a\). It is easy to see the top row and the bottom row is exact. For any \((a,b)\in A_{n-1}\oplus B_n\), we have 
+\begin{align*}
+	(p_{n-1}\circ d)(a,b)&=p_{n-1}(d_A(a),(-1)^{n-1}f(a)+d_B(b))\\ 
+	                     &=d_A(a)\\ 
+						 &=(d_A\circ p_n)(a,b).
+\end{align*} 
+This proves the right square commutes. Moreover, for any \(b\in B_n\), we have 
+\begin{align*}
+	(d\circ i_n)(b)&=d(0,b)\\
+	               &=(0,0+d_B(b))\\
+				   &=(i_{n-1}\circ d_B)(b).
+\end{align*}
+This proves the left square commutes. Thus, we have a short exact sequence of chain complex 
+\[0\rightarrow B_*\rightarrow (Cf)_*\rightarrow \Sigma A_*\rightarrow 0\]
+where \((Cf)_n=A_{n-1}\oplus B_n\) and \((\Sigma A)_n=A_{n-1}\) for all \(n\).
+\item By the snake lemma, we have a long exact sequence of homology groups deduced from the short exact sequence of chain complexes 
+\[0\rightarrow B_*\rightarrow (Cf)_*\rightarrow \Sigma A_*\rightarrow 0.\]
+Take \(a\in \ker d_A\subseteq A_{n-1}\), we specify how to define \(\partial a\in B_{n-1}\) from the snake lemma. We take the preimage \((a,0)\in (Cf)_n\), send it to \(d(a,0)=(0,(-1)^{n-1}f(a))\in (Cf)_{n-1}\), lastly we take the preimage \((-1)^{n-1}f(a)\in B_{n-1}\). Thus, we can conclude that the map 
+\begin{align*}
+	\partial: H_{n-1}(A)&\rightarrow H_{n-1}(B),\\
+	          [a]&\mapsto [(-1)^{n-1}f(a)]
+\end{align*}
+This implies the connecting homomorphism is just the map induced by \(f\)
+\[f_*:H_{n-1}(A)\rightarrow H_{n-1}(B)\]
+up to a sign.  
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -195,7 +613,7 @@ is a commutative diagram
 Let \(P:\mathcal{V}^I\rightarrow \mathcal{V}\) be the pushout functor. \(P\) assigns each diagram its pushout.
 \begin{enumerate}[(a)]
 \item Let \(F_1\), \(F_0\) and \(F_2\) be the three diagrams 
-\[F_1:[k\leftarrow 0\rightarrow 0]\ \ \ F_0=[k\leftarrow k\rightarrow k]\ \ \ F_2=[0\leftarrow 0\rightarrow 0]\]
+\[F_1:[k\leftarrow 0\rightarrow 0]\ \ \ F_0=[k\leftarrow k\rightarrow k]\ \ \ F_2=[0\leftarrow 0\rightarrow k]\]
 where in \(F_0\) the maps are the identities. These diagrams are "free" in a certain sense: namely, if \(D\) is an object of \(\mathcal{V}^I\) then morphisms \(F_i\rightarrow D\) are in bijective correspondence with elements of \(D_i\). 
 Convince yourself that this is true. 
 \item Let \(D=[0\leftarrow k\rightarrow 0]\) and \(E=[0\leftarrow k\rightarrow k]\), where in \(E\) the nontrivial map is the identity. Determine free resolutions for \(D\) and \(E\). 
@@ -209,7 +627,132 @@ Find the free resolution of the object \((k,id)\) and compute \((L_iP)(k,id)\) f
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+\item 
+\item Consider the following sequence 
+\[0\rightarrow F_1\oplus F_2\rightarrow F_0\rightarrow D\rightarrow 0.\]
+Note that \(F_1\oplus F_2\) is the following diagram \([k\leftarrow 0\rightarrow k]\) Namely the following diagram 
+% https://q.uiver.app/#q=WzAsMjAsWzEsMywiMCJdLFsyLDMsImsiXSxbMywzLCIwIl0sWzEsMiwiayJdLFsyLDIsImsiXSxbMywyLCJrIl0sWzEsMSwiayJdLFszLDEsImsiXSxbMiwxLCIwIl0sWzAsMywiRCJdLFswLDIsIkZfMCJdLFswLDEsIkZfMVxcb3BsdXMgRl8yIl0sWzAsMCwiMCJdLFswLDQsIjAiXSxbMSw0LCIwIl0sWzIsNCwiMCJdLFszLDQsIjAiXSxbMSwwLCIwIl0sWzIsMCwiMCJdLFszLDAsIjAiXSxbOCw2XSxbOCw3XSxbNCwzLCJpZCIsMl0sWzQsNSwiaWQiXSxbNiwzLCJpZCJdLFs3LDUsImlkIiwyXSxbOCw0XSxbMywwXSxbNCwxLCJpZCJdLFs1LDJdLFswLDFdLFsxLDJdLFsxMSwxMF0sWzEwLDldLFsxMiwxMV0sWzksMTNdLFsxNyw2XSxbMTgsOF0sWzE5LDddLFsxOCwxN10sWzE4LDE5XSxbMCwxNF0sWzEsMTVdLFsyLDE2XSxbMTUsMTRdLFsxNSwxNl1d
+\[\begin{tikzcd}
+	0 & 0 & 0 & 0 \\
+	{F_1\oplus F_2} & k & 0 & k \\
+	{F_0} & k & k & k \\
+	D & 0 & k & 0 \\
+	0 & 0 & 0 & 0
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=3-1]
+	\arrow["id", from=2-2, to=3-2]
+	\arrow[from=2-3, to=2-2]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow["id"', from=2-4, to=3-4]
+	\arrow[from=3-1, to=4-1]
+	\arrow[from=3-2, to=4-2]
+	\arrow["id"', from=3-3, to=3-2]
+	\arrow["id", from=3-3, to=3-4]
+	\arrow["id", from=3-3, to=4-3]
+	\arrow[from=3-4, to=4-4]
+	\arrow[from=4-1, to=5-1]
+	\arrow[from=4-3, to=4-2]
+	\arrow[from=4-2, to=5-2]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=4-4, to=5-4]
+	\arrow[from=5-3, to=5-2]
+	\arrow[from=5-3, to=5-4]
+\end{tikzcd}\]
+The vertical columns are exact because we only have isomorphisms. 
+For \(E\), consider the following sequence
+\[0\rightarrow F_1\rightarrow F_0\rightarrow E\rightarrow 0.\]
+This can be written as the diagram 
+% https://q.uiver.app/#q=WzAsMjAsWzEsMywiMCJdLFsyLDMsImsiXSxbMywzLCJrIl0sWzEsMiwiayJdLFsyLDIsImsiXSxbMywyLCJrIl0sWzEsMSwiayJdLFszLDEsIjAiXSxbMiwxLCIwIl0sWzAsMywiRSJdLFswLDIsIkZfMCJdLFswLDEsIkZfMSJdLFswLDAsIjAiXSxbMCw0LCIwIl0sWzEsNCwiMCJdLFsyLDQsIjAiXSxbMyw0LCIwIl0sWzEsMCwiMCJdLFsyLDAsIjAiXSxbMywwLCIwIl0sWzgsNl0sWzgsN10sWzQsMywiaWQiLDJdLFs0LDUsImlkIl0sWzYsMywiaWQiXSxbNyw1XSxbOCw0XSxbMywwXSxbNCwxLCJpZCJdLFs1LDIsImlkIl0sWzEsMiwiaWQiXSxbMTEsMTBdLFsxMCw5XSxbMTIsMTFdLFs5LDEzXSxbMTcsNl0sWzE4LDhdLFsxOSw3XSxbMTgsMTddLFsxOCwxOV0sWzAsMTRdLFsxLDE1XSxbMiwxNl0sWzE1LDE0XSxbMTUsMTZdLFsxLDBdXQ==
+\[\begin{tikzcd}
+	0 & 0 & 0 & 0 \\
+	{F_1} & k & 0 & 0 \\
+	{F_0} & k & k & k \\
+	E & 0 & k & k \\
+	0 & 0 & 0 & 0
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=3-1]
+	\arrow["id", from=2-2, to=3-2]
+	\arrow[from=2-3, to=2-2]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-1, to=4-1]
+	\arrow[from=3-2, to=4-2]
+	\arrow["id"', from=3-3, to=3-2]
+	\arrow["id", from=3-3, to=3-4]
+	\arrow["id", from=3-3, to=4-3]
+	\arrow["id", from=3-4, to=4-4]
+	\arrow[from=4-1, to=5-1]
+	\arrow[from=4-2, to=5-2]
+	\arrow[from=4-3, to=4-2]
+	\arrow["id", from=4-3, to=4-4]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=4-4, to=5-4]
+	\arrow[from=5-3, to=5-2]
+	\arrow[from=5-3, to=5-4]
+\end{tikzcd}\]
+This is a free resolution for \(E\). 
+\item Apply the pushout functor to the free resolution
+\[0\rightarrow F_1\oplus F_2\oplus F_0\rightarrow 0.\]
+The pushout of \(F_1\oplus F_2\) is \(k^2\) and the pushout of \(F_0\) is \(k\). The map \(F_1\oplus F_2\rightarrow F_0\) induces a map \(p\) between pushouts
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJrIl0sWzIsMCwiayJdLFsxLDAsIjAiXSxbMSwyLCJrIl0sWzAsMiwiayJdLFsyLDIsImsiXSxbMSwxLCJrXjIiXSxbMSwzLCJrIl0sWzAsNCwiaWQiLDJdLFsxLDUsImlkIl0sWzAsNiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsxLDYsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbMiwwXSxbMyw0XSxbMyw1XSxbMiwxXSxbNCw3LCJpZCIsMl0sWzUsNywiaWQiXSxbNiw3LCJwIiwyLHsibGFiZWxfcG9zaXRpb24iOjMwLCJjdXJ2ZSI6Mn1dXQ==
+\[\begin{tikzcd}
+	k & 0 & k \\
+	& {k^2} \\
+	k & k & k \\
+	& k
+	\arrow[tail, from=1-1, to=2-2]
+	\arrow["id"', from=1-1, to=3-1]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[tail, from=1-3, to=2-2]
+	\arrow["id", from=1-3, to=3-3]
+	\arrow["p"'{pos=0.3}, curve={height=12pt}, from=2-2, to=4-2]
+	\arrow["id"', from=3-1, to=4-2]
+	\arrow[from=3-2, to=3-1]
+	\arrow[from=3-2, to=3-3]
+	\arrow["id", from=3-3, to=4-2]
+\end{tikzcd}\]
+We can see from the diagram that \(p=(id,id)\), so \(p\) is surjective, so we have 
+\((L_0P)(D)=P(D)=0\) and \((L_1P)(D)=k\).
 
+Apply the pushout functor to the free resolution 
+\[0\rightarrow F_1\rightarrow F_0\rightarrow E\rightarrow 0.\]
+The map \(F_1\rightarrow F_0\) induces a map between pushouts 
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJrIl0sWzIsMCwiMCJdLFsxLDAsIjAiXSxbMSwyLCJrIl0sWzAsMiwiayJdLFsyLDIsImsiXSxbMSwxLCJrIl0sWzEsMywiayJdLFswLDQsImlkIiwyXSxbMSw1XSxbMCw2LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzEsNl0sWzIsMF0sWzMsNF0sWzMsNV0sWzIsMV0sWzQsNywiaWQiLDJdLFs1LDcsImlkIl0sWzYsNywiaWQiLDIseyJsYWJlbF9wb3NpdGlvbiI6MzAsImN1cnZlIjoyfV1d
+\[\begin{tikzcd}
+	k & 0 & 0 \\
+	& k \\
+	k & k & k \\
+	& k
+	\arrow[tail, from=1-1, to=2-2]
+	\arrow["id"', from=1-1, to=3-1]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-2]
+	\arrow[from=1-3, to=3-3]
+	\arrow["id"'{pos=0.3}, curve={height=12pt}, from=2-2, to=4-2]
+	\arrow["id"', from=3-1, to=4-2]
+	\arrow[from=3-2, to=3-1]
+	\arrow[from=3-2, to=3-3]
+	\arrow["id", from=3-3, to=4-2]
+\end{tikzcd}\]
+This map must be identity, so we have 
+\[(L_1P)(E)=(L_0P)(E)=P(E)=0.\]
+\end{enumerate}
 \end{solution}
 
 
