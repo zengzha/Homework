@@ -392,6 +392,24 @@ Next, we use UCT for homology to calculate the homology groups with \(\mathbb{Z}
 \end{cases}\]
 \vfill \null
 \end{multicols}
+
+Lastly, we use UCT for cohomology to calculate the cohomology groups. 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+	  & H^*(K\times K)                    & H^*(K\times K;\mathbb{Z}/2) & H^*(K\times K;\mathbb{Z}/3) \\ \hline
+	0 & \mathbb{Z}                        & \mathbb{Z}/2                & \mathbb{Z}/3                \\ \hline
+	1 & \mathbb{Z}^2                      & (\mathbb{Z}/2)^4            & (\mathbb{Z}/3)^2            \\ \hline
+	2 & \mathbb{Z}\oplus (\mathbb{Z}/2)^2 & (\mathbb{Z}/2)^6            & \mathbb{Z}/3                \\ \hline
+	3 & (\mathbb{Z}/2)^3                  & (\mathbb{Z}/2)^4            & 0                           \\ \hline
+	4 & \mathbb{Z}/2                      & \mathbb{Z}/2                & 0                           \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
 \item The homology of \(K\) and \(T^g\) are as follows:
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -442,9 +460,28 @@ Next, we use UCT for homology to calculate different coefficients.
 \end{cases}\]
 \vfill \null 
 \end{multicols}
+
+Lastly, we use UCT to calculate the cohomology groups.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+	  & H^*(K\times T^g)                     & H^*(K\times T^g;\mathbb{Z}/2) & H^*(K\times T^g;\mathbb{Z}/3) \\ \hline
+	0 & \mathbb{Z}                           & \mathbb{Z}/2                  & \mathbb{Z}/3                  \\ \hline
+	1 & \mathbb{Z}^{2g+1}                    & (\mathbb{Z}/2)^{2g+2}         & (\mathbb{Z}/3)^{2g+1}         \\ \hline
+	2 & \mathbb{Z}^{2g+1}\oplus \mathbb{Z}/2 & (\mathbb{Z}/2)^{4g+2}         & (\mathbb{Z}/3)^{2g+1}         \\ \hline
+	3 & \mathbb{Z}\oplus (\mathbb{Z}/2)^{2g} & (\mathbb{Z}/2)^{2g+2}         & \mathbb{Z}/3                  \\ \hline
+	4 & \mathbb{Z}/2                         & \mathbb{Z}/2                  & 0                             \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
+
 \item \(\mathbb{R}P^n\) has different homology groups when \(n\) is odd or even. 
 \begin{enumerate}[(1)]
-\item Suppose \(n\) is even.\\ 
+\item Suppose \(n\geq 2\) is even.\\ 
 The homology groups of \(\mathbb{R}P^n\) can be summarized as follows:
 \begin{itemize}
 	\item \(H_0(\mathbb{R}P^n)=\mathbb{Z}\).
@@ -474,7 +511,28 @@ Next, we use UCT for homology to calculate the homology groups with other coeffi
 	\mathbb{Z}/3,&\iif i=0,1;\\
 	0,&\otherwise.
 \end{cases}\] 
-\item Suppose \(n\) is odd.\\
+
+Lastly, we use UCT for cohomology to calculate the cohomology groups.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+		   & H^*(K\times \mathbb{R}P^n) & H^*(K\times \mathbb{R}P^n;\mathbb{Z}/2) & H^*(K\times \mathbb{R}P^n;\mathbb{Z}/3) \\ \hline
+	0      & \mathbb{Z}                 & \mathbb{Z}/2                            & \mathbb{Z}/3                            \\ \hline
+	1      & \mathbb{Z}                 & (\mathbb{Z}/2)^3                        & \mathbb{Z}/3                            \\ \hline
+	2      & (\mathbb{Z}/2)^2           & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	\vdots & (\mathbb{Z}/2)^2           & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	n      & (\mathbb{Z}/2)^2           & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	n+1    & (\mathbb{Z}/2)^2           & (\mathbb{Z}/2)^3                        & 0                                       \\ \hline
+	n+2    & \mathbb{Z}/2               & \mathbb{Z}/2                            & 0                                       \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
+
+\item Suppose \(n\geq 3\) is odd.\\
 The homology groups of \(\mathbb{R}P^n\) can be summarized as follows:
 \begin{itemize}
 	\item \(H_0(\mathbb{R}P^n)=H_n(\mathbb{R}P^n)=\mathbb{Z}\).
@@ -503,6 +561,73 @@ Next, we use UCT for homology to calculate the homology groups with coefficients
 	\mathbb{Z}/3,&\iif i=0,1,n,n+1;\\
 	0,&\otherwise.
 \end{cases}\]
+
+Lastly, we use UCT for cohomology to calculate the cohomology groups.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+		   & H^*(K\times \mathbb{R}P^n)        & H^*(K\times \mathbb{R}P^n;\mathbb{Z}/2) & H^*(K\times \mathbb{R}P^n;\mathbb{Z}/3) \\ \hline
+	0      & \mathbb{Z}                        & \mathbb{Z}/2                            & \mathbb{Z}/3                            \\ \hline
+	1      & \mathbb{Z}                        & (\mathbb{Z}/2)^3                        & \mathbb{Z}/3                            \\ \hline
+	2      & (\mathbb{Z}/2)^2                  & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	\vdots & (\mathbb{Z}/2)^2                  & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	n-1    & (\mathbb{Z}/2)^2                  & (\mathbb{Z}/2)^4                        & 0                                       \\ \hline
+	n      & \mathbb{Z}\oplus (\mathbb{Z}/2)^2 & (\mathbb{Z}/2)^4                        & \mathbb{Z}/3                            \\ \hline
+	n+1    & \mathbb{Z}\oplus \mathbb{Z}/2     & (\mathbb{Z}/2)^3                        & \mathbb{Z}/3                            \\ \hline
+	n+2    & \mathbb{Z}/2                      & \mathbb{Z}/2                            & 0                                       \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
+
+\item The last case is \(n=1\). We have \(\mathbb{R}P^1\cong S^1\). The homology of \(S^1\) is free, so we have 
+\[H_i(K\times \mathbb{R}P^1)=\bigoplus_{p+q=i}H_p(K)\otimes H_q(S^1)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\
+	\mathbb{Z}^2\oplus \mathbb{Z}/2,&\iif i=1;\\
+	\mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=2;\\
+	0,&\otherwise.
+\end{cases}\]
+Use UCT for homology we can calculate the homology groups with different coefficients:
+\begin{multicols}{2}
+	
+\[H_i(K\times  \mathbb{R}P^1;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0;\\
+	(\mathbb{Z}/2)^3,&\iif i=1;\\
+	(\mathbb{Z}/2)^3,&\iif i=2;\\
+	\mathbb{Z}/2,&\iif i=3;\\
+	0,&\otherwise.
+\end{cases}\]
+
+\columnbreak 
+\null \vfill 
+\[H_i(K\times \mathbb{R}P^1;\mathbb{Z}/3)=\begin{cases}
+	\mathbb{Z}/3,&\iif i=0;\\
+	(\mathbb{Z}/3)^2,&\iif i=1;\\
+	\mathbb{Z}/3,&\iif i=2;\\
+	0,&\otherwise.
+\end{cases}\]
+\vfill \null
+\end{multicols}
+
+Lastly, we use UCT for cohmology to calculate the cohomology groups. 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+	\(\begin{array}{|c|c|c|c|}
+	\hline
+	  & H^*(K\times \mathbb{R}P^1)    & H^*(K\times \mathbb{R}P^1;\mathbb{Z}/2) & H^*(K\times \mathbb{R}P^1;\mathbb{Z}/3) \\ \hline
+	0 & \mathbb{Z}                    & \mathbb{Z}/2                            & \mathbb{Z}/3                            \\ \hline
+	1 & \mathbb{Z}^2                  & (\mathbb{Z}/2)^3                        & (\mathbb{Z}/3)^2                        \\ \hline
+	2 & \mathbb{Z}\oplus \mathbb{Z}/2 & (\mathbb{Z}/2)^3                        & \mathbb{Z}/3                            \\ \hline
+	3 & \mathbb{Z}/2                  & \mathbb{Z}/2                            & 0                                       \\ \hline
+	\end{array}\)%
+	}
+	\end{table}
 \end{enumerate}
 \end{enumerate}
 \end{solution}
@@ -850,7 +975,11 @@ The map \(P(A)\) is the zero map. Similarly, we apply the colimit functor \(P\) 
 	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}", from=3-3, to=4-2]
 \end{tikzcd}\]
 Thus, apply the colimit functor \(P\) to the free resolution, and we obtain a chain complex
-\[k\rightarrow0\]
+\[\cdots\xrightarrow{2}k\xrightarrow{0}k\xrightarrow{2}k\xrightarrow{0}k\rightarrow0\]
+\begin{itemize}
+	\item When the characteristic of \(k\) is 2, all the boundary maps all zero, we have \((L_iP)(k,id)=k\) for all \(i\geq 0\).
+	\item When the characteristic of \(k\) is not equal to \(2\), this means \(2\) is invertible in \(k\), so they are isomorphisms. In this case we have \((L_iP)(k,id)=0\) for all \(i\).
+\end{itemize}
 \end{enumerate}
 \end{solution}
 
