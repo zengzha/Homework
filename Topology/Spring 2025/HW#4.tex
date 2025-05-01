@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[letterpaper, 12pt]{article}
 
 \usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
 
@@ -8,7 +8,7 @@
 \large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 4} \\
 Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
 \normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
-Instructor: Dr.Daniel Dugger \hfill Due Date: $02^{nd}$ May, 2025 \\ 
+Instructor: Dr. Daniel Dugger \hfill Due Date: $02^{nd}$ May 2025 \\ 
 \noindent\rule{7in}{2.8pt}
 \setstretch{1.1}
 
@@ -16,7 +16,7 @@ Instructor: Dr.Daniel Dugger \hfill Due Date: $02^{nd}$ May, 2025 \\
 % Problem 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{1}
-Compute all of the homology groups for the spaces in parts (a) and (b) below, and use your calculations to show that 
+Compute all the homology groups for the spaces in parts (a) and (b) below, and use your calculations to show that 
 \begin{enumerate}[(a)]
 \item \(\mathbb{R}P^2\times S^3\) and \(\mathbb{R}P^3\times S^2\) have isomorphic homotopy groups (in all dimensions), but non-isomorphic homology groups. 
 \item \(S^4\times S^2\) and \(\mathbb{C}P^3\) have isomorphic homology groups but non-isomorphic homotopy groups. 
@@ -24,7 +24,7 @@ Compute all of the homology groups for the spaces in parts (a) and (b) below, an
 \end{problem}
 \begin{solution}
 \begin{enumerate}[(a)]
-\item Let \(X=\mathbb{R}P^2\times S^3\) and \(Y=\mathbb{R}P^3\times S^2\). It is easy to see that both \(X\) and \(Y\) are path-connected, so \(\pi_0(X)=\pi_0(Y)=*\). By direct calcualtion, we have 
+\item Let \(X=\mathbb{R}P^2\times S^3\) and \(Y=\mathbb{R}P^3\times S^2\). It is easy to see that both \(X\) and \(Y\) are path-connected, so \(\pi_0(X)=\pi_0(Y)=*\). By direct calculation, we have 
 \begin{align*}
 	\pi_1(X)&=\pi_1(\mathbb{R}P^2)\times \pi_1(S^3)=0,\\ 
 	\pi_1(Y)&=\pi_1(\mathbb{R}P^3)\times \pi_1(S^2)=0.
@@ -75,9 +75,9 @@ From this we can see that \(X\) and \(Y\) have non-isomorphic homology groups.
 \item We know that \(\mathbb{C}P^3\) has a cellular structure with one \(0\)-cell, one \(2\)-cell, one \(4\)-cell, and one \(6\)-cell. The boundary maps in the cellular chain complex are all zero, so \(H_i(\mathbb{C}P^3)=\mathbb{Z}\) for \(i=0,2,4,6\) and \(0\) otherwise. For the space \(S^4\times S^2\), use Künneth theorem and note that \(S^2\) does not have torsion in homology, so \(H_i(S^4\times S^2)=\mathbb{Z}\) for \(i=0,2,4,6\) and \(0\) otherwise. This shows that \(S^4\times S^2\) and \(\mathbb{C}P^3\) have isomorphic homology groups. 
 
 Recall that we have a fibration \(S^1\rightarrow S^7\rightarrow \mathbb{C}P^3\). This induces a long exact sequence in homotopy groups
-\[\cdots\rightarrow \pi_2(S^7)\rightarrow \pi_2(\mathbb{C}P^3)\rightarrow \pi_1(S^1)\rightarrow \pi_1(S^7)\rightarrow \cdots\]
-Note that \(\pi_2(S^7)=\pi_1(S^7)=0\) and \(\pi_1(S^1)=\mathbb{Z}\). This implies that \(\pi_2(\mathbb{C}P^3)=\mathbb{Z}\). On the other hand, we know that 
-\[\pi_2(S^4\times S^2)\cong \pi_2(S^4)\times \pi_2(S^2)=0.\]
+\[\cdots\rightarrow \pi_3(S^1) \rightarrow \pi_3(S^7)\rightarrow \pi_3(\mathbb{C}P^3)\rightarrow \pi_2(S^1)\rightarrow \cdots\]
+Note that \(\pi_3(S^1)=\pi_2(S^1)\) is trivial. This implies that \(\pi_3(\mathbb{C}P^3)\cong \pi_3(S^7)=\left\{ 1 \right\}\) is also trivial. On the other hand, we know that 
+\[\pi_3(S^4\times S^2)\cong \pi_3(S^4)\times \pi_3(S^2)=\mathbb{Z}.\]
 This implies that \(S^4\times S^2\) and \(\mathbb{C}P^3\) have non-isomorphic homotopy groups.
 \end{enumerate}
 \end{solution}
@@ -97,7 +97,7 @@ that \(f\) and \(g\) are chain maps and the collection \(\left\{ s_n \right\}\) 
 \end{problem}
 \begin{solution}
 \begin{enumerate}[(a)]
-\item We denote bothe the boundary map in \(C_*\) by \(d_C\). Consider the double complex \(I_*\otimes C_*\) first.
+\item We denote both the boundary map in \(C_*\) by \(d_C\). Consider the double complex \(I_*\otimes C_*\) first.
 % https://q.uiver.app/#q=WzAsMTIsWzAsMywiSV8wXFxvdGltZXMgQ18wIl0sWzAsMiwiSV8wXFxvdGltZXMgQ18xIl0sWzAsMSwiSV8wXFxvdGltZXMgQ18yIl0sWzEsMywiSV8xXFxvdGltZXMgQ18wIl0sWzEsMiwiSV8xXFxvdGltZXMgQ18xIl0sWzEsMSwiSV8xXFxvdGltZXMgQ18yIl0sWzAsMCwiXFx2ZG90cyJdLFsxLDAsIlxcdmRvdHMiXSxbMiwzLCIwIl0sWzIsMiwiMCJdLFsyLDEsIjAiXSxbMiwwLCJcXHZkb3RzIl0sWzYsMl0sWzIsMV0sWzEsMF0sWzUsMl0sWzQsMV0sWzMsMF0sWzcsNV0sWzEwLDVdLFs5LDRdLFs1LDRdLFs0LDNdLFs4LDNdLFsxMCw5XSxbOSw4XSxbMTEsMTBdXQ==
 \[\begin{tikzcd}
 	\vdots & \vdots & \vdots \\
@@ -335,7 +335,7 @@ Compute both the homology and cohomology groups of the following spaces, both wi
 \end{problem}
 \begin{solution}
 \begin{enumerate}[(a)]
-\item We can use UCT for homology to calculate the homology groups of \(K\) in different coefficients and we summarized them as follows. 
+\item We can use UCT for homology to calculate the homology groups of \(K\) in different coefficients, and we summarized them as follows. 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
 % Please add the following required packages to your document preamble:
@@ -362,7 +362,7 @@ From this we know that the tensor product is
 	\mathbb{Z}\oplus (\mathbb{Z}/2)^3,&\iif p+q=2;\\ 
 	0,&\otherwise.
 \end{cases}\]
-The only non trivial \(\Tor_1\) is given by \(\Tor_1(H_1(K),H_1(K))=\mathbb{Z}/2\). Thus, the homology groups of \(K\) is
+The only non-trivial \(\Tor_1\) is given by \(\Tor_1(H_1(K),H_1(K))=\mathbb{Z}/2\). Thus, the homology groups of \(K\) is
 \[H_i(K\times K;\mathbb{Z})=\begin{cases}
 	\mathbb{Z},&\iif i=0;\\ 
 	\mathbb{Z}^2\oplus (\mathbb{Z}/2)^2,&\iif i=1;\\
@@ -617,7 +617,7 @@ Let \(P:\mathcal{V}^I\rightarrow \mathcal{V}\) be the pushout functor. \(P\) ass
 where in \(F_0\) the maps are the identities. These diagrams are "free" in a certain sense: namely, if \(D\) is an object of \(\mathcal{V}^I\) then morphisms \(F_i\rightarrow D\) are in bijective correspondence with elements of \(D_i\). 
 Convince yourself that this is true. 
 \item Let \(D=[0\leftarrow k\rightarrow 0]\) and \(E=[0\leftarrow k\rightarrow k]\), where in \(E\) the nontrivial map is the identity. Determine free resolutions for \(D\) and \(E\). 
-\item Apply the functor \(P\) to your resolution, to produce a chain complex of vector spaces. Compute the homology groups, which are the groups \((L_iP)(D)\) and \((L_iP)(E)\). These are the derived functor of the psuhout functor \(P\). Confirm in your example that \(L_0P=P\). 
+\item Apply the functor \(P\) to your resolution, to produce a chain complex of vector spaces. Compute the homology groups, which are the groups \((L_iP)(D)\) and \((L_iP)(E)\). These are the derived functor of the pushout functor \(P\). Confirm in your example that \(L_0P=P\). 
 \item Now let \(I\) be the category with one object \(0\) and one non-identity map \(t:0\rightarrow 0\) such that \(t^2=id\). Objects of \(\mathcal{V}^I\) are then pairs \((W,t)\) consisting of a vector space \(W\) and an endomorphism \(t:W\rightarrow W\) such that \(t^2=id\). 
 In \(\mathcal{V}^I\) the basic "free" object is \((k^2,\begin{pmatrix}
 	0&1\\ 
@@ -752,6 +752,105 @@ The map \(F_1\rightarrow F_0\) induces a map between pushouts
 \end{tikzcd}\]
 This map must be identity, so we have 
 \[(L_1P)(E)=(L_0P)(E)=P(E)=0.\]
+\item Consider the following free resolution of \(k\xrightarrow{id} k\):
+% https://q.uiver.app/#q=WzAsNyxbNSwwLCJrIl0sWzYsMCwiMCJdLFs0LDAsImteMiJdLFszLDAsImteMiJdLFsyLDAsImteMiJdLFsxLDAsImteMiJdLFswLDAsIlxcY2RvdHMiXSxbNSw1LCJ0Il0sWzQsNCwidCJdLFszLDMsInQiXSxbMiwyLCJ0Il0sWzAsMCwiaWQiXSxbNSw0LCJcXGJlZ2lue3BtYXRyaXh9MSYtMVxcXFwgLTEmMVxcZW5ke3BtYXRyaXh9IiwyXSxbMiwwLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwxXSxbMywyLCJcXGJlZ2lue3BtYXRyaXh9MSYtMVxcXFwgLTEmMVxcZW5ke3BtYXRyaXh9IiwyXSxbNCwzLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxcXCAxJjFcXGVuZHtwbWF0cml4fSIsMl0sWzYsNSwiXFxiZWdpbntwbWF0cml4fTEmMVxcXFwgMSYxXFxlbmR7cG1hdHJpeH0iLDJdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&,column sep=4em]
+	\cdots \& {k^2} \& {k^2} \& {k^2} \& {k^2} \& k \& 0
+	\arrow["{\begin{pmatrix}1&1\\ 1&1\end{pmatrix}}"', from=1-1, to=1-2]
+	\arrow["t", from=1-2, to=1-2, loop, in=55, out=125, distance=10mm]
+	\arrow["{\begin{pmatrix}1&-1\\ -1&1\end{pmatrix}}"', from=1-2, to=1-3]
+	\arrow["t", from=1-3, to=1-3, loop, in=55, out=125, distance=10mm]
+	\arrow["{\begin{pmatrix}1&1\\ 1&1\end{pmatrix}}"', from=1-3, to=1-4]
+	\arrow["t", from=1-4, to=1-4, loop, in=55, out=125, distance=10mm]
+	\arrow["{\begin{pmatrix}1&-1\\ -1&1\end{pmatrix}}"', from=1-4, to=1-5]
+	\arrow["t", from=1-5, to=1-5, loop, in=55, out=125, distance=10mm]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}"', two heads, from=1-5, to=1-6]
+	\arrow["id", from=1-6, to=1-6, loop, in=55, out=125, distance=10mm]
+	\arrow[from=1-6, to=1-7]
+\end{tikzcd}\]
+Let \(A=\begin{pmatrix}
+   1&-1\\
+   -1&1
+\end{pmatrix}\) and \(B=\begin{pmatrix}
+   1&1\\
+   1&1
+\end{pmatrix}\). Both \(A\) and \(B\) are compatible with the map \(t\) because 
+\begin{align*}
+	At&=\begin{pmatrix}
+	   1&-1\\
+	   -1&1
+	\end{pmatrix}\begin{pmatrix}
+	   0&1\\
+	   1&0
+	\end{pmatrix}=\begin{pmatrix}
+	   -1&1\\
+	   1&-1
+	\end{pmatrix}=\begin{pmatrix}
+	   1&-1\\
+	   -1&1
+	\end{pmatrix}\begin{pmatrix}
+	   0&1\\
+	   1&0
+	\end{pmatrix}=tA,\\[5pt]
+	Bt&=\begin{pmatrix}
+	   0&1\\
+	   1&0
+	\end{pmatrix}\begin{pmatrix}
+	   1&1\\
+	   1&1
+	\end{pmatrix}=\begin{pmatrix}
+	   1&1\\
+	   1&1
+	\end{pmatrix}=\begin{pmatrix}
+	   1&1\\
+	   1&1
+	\end{pmatrix}\begin{pmatrix}
+	   0&1\\
+	   1&0
+	\end{pmatrix}=Bt.
+\end{align*}
+Moreover, the sequence is exact at every spot. Apply the colimit functor \(P\), the map \(A=\begin{pmatrix}
+   1&-1\\
+   -1&1	
+\end{pmatrix}:k^2\rightarrow k^2\) will give you the following diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJrXjIiXSxbMiwwLCJrXjIiXSxbMSwxLCJrIl0sWzAsMiwia14yIl0sWzIsMiwia14yIl0sWzEsMywiayJdLFswLDEsInQiXSxbMSwyLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iXSxbMCwyLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iLDJdLFswLDMsIlxcYmVnaW57cG1hdHJpeH0xJi0xXFxcXCAtMSYxXFxlbmR7cG1hdHJpeH0iLDJdLFszLDQsInQiLDJdLFszLDUsIlxcYmVnaW57cG1hdHJpeH0xJjFcXGVuZHtwbWF0cml4fSIsMl0sWzQsNSwiXFxiZWdpbntwbWF0cml4fTEmMVxcZW5ke3BtYXRyaXh9Il0sWzEsNCwiXFxiZWdpbntwbWF0cml4fTEmLTFcXFxcIC0xJjFcXGVuZHtwbWF0cml4fSJdLFsyLDUsIjAiLDIseyJsYWJlbF9wb3NpdGlvbiI6MzAsImN1cnZlIjoyfV1d
+\[\begin{tikzcd}[ampersand replacement=\&,column sep=5em,row sep=3em]
+	{k^2} \&\& {k^2} \\
+	\& k \\
+	{k^2} \&\& {k^2} \\
+	\& k
+	\arrow["t", from=1-1, to=1-3]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}"', from=1-1, to=2-2]
+	\arrow["{\begin{pmatrix}1&-1\\ -1&1\end{pmatrix}}"', from=1-1, to=3-1]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}", from=1-3, to=2-2]
+	\arrow["{\begin{pmatrix}1&-1\\ -1&1\end{pmatrix}}", from=1-3, to=3-3]
+	\arrow["0"'{pos=0.3}, curve={height=12pt}, from=2-2, to=4-2]
+	\arrow["t"', from=3-1, to=3-3]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}"', from=3-1, to=4-2]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}", from=3-3, to=4-2]
+\end{tikzcd}\]
+The map \(P(A)\) is the zero map. Similarly, we apply the colimit functor \(P\) to the map \(B=\begin{pmatrix}
+   1&1\\
+   1&1
+\end{pmatrix}:k^2\rightarrow k^2\):
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJrXjIiXSxbMiwwLCJrXjIiXSxbMSwxLCJrIl0sWzAsMiwia14yIl0sWzIsMiwia14yIl0sWzEsMywiayJdLFswLDEsInQiXSxbMSwyLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iXSxbMCwyLCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iLDJdLFswLDMsIlxcYmVnaW57cG1hdHJpeH0xJjFcXFxcIDEmMVxcZW5ke3BtYXRyaXh9IiwyXSxbMyw0LCJ0IiwyXSxbMyw1LCJcXGJlZ2lue3BtYXRyaXh9MSYxXFxlbmR7cG1hdHJpeH0iLDJdLFs0LDUsIlxcYmVnaW57cG1hdHJpeH0xJjFcXGVuZHtwbWF0cml4fSJdLFsxLDQsIlxcYmVnaW57cG1hdHJpeH0xJjFcXFxcIDEmMVxcZW5ke3BtYXRyaXh9Il0sWzIsNSwiMiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMCwiY3VydmUiOjJ9XV0=
+\[\begin{tikzcd}[ampersand replacement=\&, column sep=5em,row sep=3em]
+	{k^2} \&\& {k^2} \\
+	\& k \\
+	{k^2} \&\& {k^2} \\
+	\& k
+	\arrow["t", from=1-1, to=1-3]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}"', from=1-1, to=2-2]
+	\arrow["{\begin{pmatrix}1&1\\ 1&1\end{pmatrix}}"', from=1-1, to=3-1]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}", from=1-3, to=2-2]
+	\arrow["{\begin{pmatrix}1&1\\ 1&1\end{pmatrix}}", from=1-3, to=3-3]
+	\arrow["2"'{pos=0.3}, curve={height=12pt}, from=2-2, to=4-2]
+	\arrow["t"', from=3-1, to=3-3]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}"', from=3-1, to=4-2]
+	\arrow["{\begin{pmatrix}1&1\end{pmatrix}}", from=3-3, to=4-2]
+\end{tikzcd}\]
+Thus, apply the colimit functor \(P\) to the free resolution, and we obtain a chain complex
+\[k\rightarrow0\]
 \end{enumerate}
 \end{solution}
 
