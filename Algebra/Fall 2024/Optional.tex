@@ -1,0 +1,942 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{quiver}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\dstirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Optional Problems}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: End of fall term, 2024 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.6.7.}
+Let \(V\) be an infinite dimensional vector space. Show that the linear map \(\iota_V:V\rightarrow V^{**}\) defined just before Exercise 1.2.8. is injective but not surjective.
+\end{problem} 
+\begin{solution}
+We first prove that \(\iota_V\) is injective. Let \(v \in \text{ker}(\iota_V)\), we have \(f(v)=0\) for every \(f\in V^*\). We claim that \(v=0\). Assume the opposite. \(\left\{v\right\}\) is linearly independent and can 
+be extended to a basis for \(V\). Define a linear functional \(g\in V^*\) which sends \(v\) to 1 and sends any other base vectors to 0. This contradicts that \(g(v)=0\). Thus, \(\text{ker}(\iota_V)=0\) and \(\iota_V\) is injective.
+\par 
+Now we are going to prove that \(\iota_V\) can never be surjective by show that \(\dim V^*\) is strictly larger than \(\dim V\) if \(V\) is infinite dimensional. Let \(X\) be a set of basis of \(V\) and since \(X\) is infinite, it must contain a 
+countable subset, denoted by \(\left\{ e_n \right\}_{n\in \mathbb{N}}\). For each \(a\in \mathbb{F}\), we define a functional \(f_a:V\rightarrow \mathbb{F}\, ,\, f_a(e_n)=a^n \) for all \(n\in \mathbb{N}\) and \(f_a\) maps the basis in \(X\setminus \left\{ e_n \right\}_{n\in \mathbb{N}}\) to \(0\). 
+\begin{claim}
+The set \(\left\{ f_a \right\}_{a\in \mathbb{F}}\subset V^*\) is linearly independent.
+\end{claim}
+\begin{claimproof}
+Assume the opposite. Then there exists different \(a_1,\ldots,a_n\in \mathbb{F}\) and \(c_1,\ldots,c^n\in \mathbb{F}\) such that 
+\[c_1f_{a_1}+\cdots+c_n f_{a_n}=0\]
+and \(c_1,\ldots,c_n\) are not all zero. Evaluate the above functional on \(e_0,e_1,\ldots,e_m\) and we have 
+\[\begin{pmatrix}
+	1   & 1   & \cdots & 1\\ 
+	a_1 & a_2 & \cdots & a_n\\ 
+	a_1^2 & a_2^2 & \cdots & a_n^2\\ 
+	\vdots & \vdots & \ddots & \vdots \\ 
+	a_1^m & a_2^m & \cdots & a_n^m
+\end{pmatrix}
+\begin{pmatrix}
+	c_1\\ 
+	c_2\\ 
+	\vdots\\ 
+	c_n
+\end{pmatrix}=0\]
+This function has a nonzero solution for \(c_1,\ldots,c_n\), so we know that the determinant of 
+\[A=\begin{pmatrix}
+	1   & 1   & \cdots & 1\\ 
+	a_1 & a_2 & \cdots & a_n\\ 
+	a_1^2 & a_2^2 & \cdots & a_n^2\\ 
+	\vdots & \vdots & \ddots & \vdots \\ 
+	a_1^m & a_2^m & \cdots & a_n^m
+\end{pmatrix}\]
+must be \(0\). But \(A\) is the transpose of Vandermonde matrix and \(0=\det A=\prod_{1\leq i<j\leq m}(a_j-a_i)\). Thus, there exist \(1\leq i<j\leq m \) such that \(a_i=a_j\). This contradicts our assumption 
+that \(a_1,\ldots,a_n\) are different elements in \(\mathbb{F}\).
+\end{claimproof}
+We know that \(\left\{ f_a \right\}_{a\in \mathbb{F}}\) is linearly independent subset in \(V^*\) and can be extended to a basis of \(V^*\), therefore, we know that \(\dim V^*\geq |\mathbb{F}|\). By Exercise 1.6.5., 
+\(|V^*|=\text{max}(|\mathbb{F}|,\dim V^*)=\dim V^*\). By Exercise 1.6.6., \(|V^*|=\dim V^*>\dim V\), so \(|V^*|>\text{max}(|\mathbb{F}|,\dim V)=|V|\), it is impossible to have a surjective map from \(V\) to \(V^*\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.6}
+For a commutative ring \(R\), let \(GL_n(R)\) be the group of all invertible \(n\times n\) matrices with the entries in \(R\) with respect to the usual matrix multiplication. 
+Given a homomorphism \(f:R\rightarrow S\) of commutative rings, show that the map \(GL_n(f):GL_n(R)\rightarrow GL_n(S)\) obtained by applying \(f\) to all of the entries of an \(n\times n\) matrix 
+is actually a group homomorphism. Then verify that this defines a group scheme \(GL_n\).
+\end{problem}
+\begin{solution}
+Let \(M,N\in GL_n(R)\) be matrices with entries in \(R\). Write \(M=(a_{ij})_{1\leq i,j\leq n}\) and \(N=(b_{kl})_{1\leq k,l\leq n}\). Then by matrices multiplication \((MN)_{ij}=\Sigma_{k=1}^n a_{ik}b_{kj}\). Apply \(GL_n(f)\) and we get 
+\begin{align*}
+(f(MN)) & =f((\Sigma_{k=1}^n a_{ik}b_{kj})_{1\leq i,j\leq n})\\ 
+        & =(\Sigma_{k=1}^n f(a_{ik})f(b_{kj}))_{1\leq i,j\leq n}\\ 
+        & =f((a_{ij})_{1\leq i,j\leq n})\cdot f((b_{kl})_{1\leq k,l\leq n})\\ 
+        & =f(M)\cdot f(N).
+\end{align*}
+The middle equality is because \(f:R\rightarrow S\) is a ring homomorphism. This proves that \(GL_n(f)\) is actually a group homomorphism. 
+Next, we are going to show that \(GL_n\) is compatible with morphisms composition in \textbf{CRings}. Suppose \(f:R\rightarrow S\) and \(g:S\rightarrow T\) are morphisms between commutative rings. 
+Let \(M=(a_{ij})_{1\leq i,j\leq n}\) be a \(n\times n\) matrix with entries in \(R\). Then for each \(1\leq i,j\leq n\), we have 
+$$(GL_n(g\circ f)(M))_{ij}=(g\circ f)(a_{ij})=g(f(a_{ij}))=(GL_n(g)\circ GL_n(f)(M))_{ij}.$$
+Let \(id:R\rightarrow R\) be an identity morphism of a commutative ring \(R\). Then \(GL_n(id):GL_n(R)\rightarrow GL_n(R)\) is also the identity morphism since for each entry of the matrix, it is the identity. Thus we can conclude that 
+\(GL_n\) is a functor from \textbf{CRings} to \textbf{Groups}, which means that it is a group scheme. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.9}
+Let \(\mathbf{A}\),\(\mathbf{B}\) and \(\mathbf{C}\) be categories. Use the interchange law to show that there is a bifunctor 
+$$\textbf{Func}(\mathbf{B},\mathbf{C})\times \textbf{Func}(\mathbf{A},\mathbf{B})\rightarrow \textbf{Func}(\mathbf{A},\mathbf{C})$$
+mapping an object \((\mathcal{G},\mathcal{F})\) to \(\mathcal{G}\circ \mathcal{F}\) and a morphism \((\beta,\alpha)\) to \(\beta\star \alpha\).
+
+\end{problem}
+\begin{solution}
+Write the bifunctor as \(T\). Let \(\mathcal{G}:\mathbf{B}\rightarrow \mathbf{C}\) and \(\mathcal{F}:\mathbf{A}\rightarrow\mathbf{B}\) be two functors. Write \(id_{\mathcal{F}}\) and \(id_{\mathcal{G}}\) as 
+the identity natural transformation of \(\mathcal{F}\) and \(\mathcal{G}\). Then \(T(id_{\mathcal{G}},id_{\mathcal{F}})=id_{\mathcal{G}}\star id_{\mathcal{F}}\). For every object \(X\in \text{Ob}\, A\), by Exerise 2.4.7.(3), we have 
+\((id_{\mathcal{G}}\star id_{\mathcal{F}})_X=(id_{\mathcal{G}}\mathcal{F})_X=\mathcal{G}\mathcal{F}X\). So \(T(id_{\mathcal{G}},id_{\mathcal{F}})=id_{\mathcal{G\circ F}}\). 
+\par 
+Let \(\mathcal{E},\mathcal{F},\mathcal{G}:\mathbf{A}\rightarrow \mathbf{B}\) and \(\mathcal{H},\mathcal{I},\mathcal{J}:\mathbf{B}\rightarrow \mathbf{C}\) be 
+functors, and \(\alpha:\mathcal{E}\Rightarrow \mathcal{F}\), \(\beta:\mathcal{F}\Rightarrow \mathcal{G}\), \(\gamma:\mathcal{H}\Rightarrow \mathcal{I}\) and 
+\(\delta:\mathcal{I}\Rightarrow \mathcal{J}\) be natural transformations as the following diagram:
+$$\begin{tikzcd}
+	{\mathbf{C}} && {\mathbf{B}} && {\mathbf{A}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathcal{J}}"', curve={height=30pt}, from=1-3, to=1-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathcal{H}}", curve={height=-30pt}, from=1-3, to=1-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\mathcal{I}}"{description}, from=1-3, to=1-1]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\mathcal{G}}"', curve={height=30pt}, from=1-5, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\mathcal{E}}", curve={height=-30pt}, from=1-5, to=1-3]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\mathcal{F}}"{description}, from=1-5, to=1-3]
+	\arrow["\delta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=0]
+	\arrow["\gamma"', shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=2]
+	\arrow["\beta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=5, to=3]
+	\arrow["\alpha"', shorten <=4pt, shorten >=4pt, Rightarrow, from=4, to=5]
+\end{tikzcd}$$
+We know from Exercise 2.4.8. (The interchange law) that 
+$$T((\delta\circ \gamma),(\beta\circ \alpha))=(\delta\circ \gamma)\star (\beta\circ \alpha)=(\delta\star \beta)\circ (\gamma\star \alpha)=T(\delta,\beta)\circ T(\gamma,\alpha).$$
+This proves that \(T\) is a bifunctor. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.3.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.3.6}
+If \(G\) is a finite group with an even number of elements, then the number of involutions in \(G\) is odd.
+\end{problem}
+\begin{solution}
+To prove that the number of involutions in \(G\) is odd, it is the same as showing that the number of elements in \(G\) which are not involutions is odd. 
+Let \(a\in G\) such that the order of \(a\) is larger than 2. We claim that \(a\neq a^{-1}\). Indeed, if \(a=a^{-1}\), then \(a^2=1\), which means that \(a\) has order 2. A contradiction. 
+Moreover, both \(a\) and \(a^{-1}\) has the same order as \((a^{-1})^n=1\) if and only if \(a^n=1\). So the elements in \(G\) with order larger than 2 come in pairs, which means the number of them must be even. 
+And the identity element has order 1. So the number of elements in \(G\) which are not involutions must be odd. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.3.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.3.10}
+Let \(H\leq G\) and \(K\unlhd G\). Show that \(K\unlhd HK\leq G\) and that the map \(f:H\rightarrow HK/K,h\mapsto hK\) is surjective with the kernel \(H\cap K\). Hence it 
+induces an isomorphism \(f:H/(H\cap K)\xrightarrow{\sim}HK/K\).
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+\item \(K\unlhd HK\unlhd G\)\\ 
+We know that \(HK=\left\{ hk\, |\, h\in H,\, k\in K\right\}\). Given \(k_1\in K\), for every \(h\in H\) and \(k\in K\), since \(K\) is normal in \(G\), we have \((hk)k_1(hk)^{-1}=hk\cdot k_1\cdot k^{-1}h^{-1}=h(kk_1k^{-1})h^{-1}\in K\). Thus, 
+\(K\unlhd HK\). Given \(h_1k_1,h_2k_2\in HK\), we have \(h_1k_1h_2k_2=(h_1h_2)(h_2^{-1}k_1h_2)k_2\), where \(h_1h_2\in H\) and \((h_2^{-1}k_1h_2)k_2\in K\) as \(K\unlhd G\). This proves that \(h_1k_1h_2k_2\in HK\), meaning \(HK\) is a subgroup of \(G\). 
+\item \(f\) is surjective and \(\bar{f}\) is an isomorphism.\\ 
+We first show that for every \(h\in H\) and \(k_1,k_2\in K\), \(hk_1\) and \(hk_2\) are in the same coset. Indeed, \(hk_1(hk_2)^{-1}=hk_1k_2^{-1}h^{-1}\in K\). Therefore, for any coset \(hK\in HK/K\), its preimage under \(f\) must contain \(h\). This proves that 
+\(f\) is surjective. Let \(a\in H\). We have \(f(a)=aK\). We know that \(aK=K\) if and only if \(a\in K\), which means \(a\in \ker f\) if and only if \(a\in H\cap K\). This proves that \(\ker f=H\cap K\). By the first isomorphism theorem (Exercise 3.3.9.), we know that 
+\(\bar{f}:H/(H\cap K)\xrightarrow{\sim} HK/K\) is an isomorphism.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.6}
+Show that \(\mathbb{F}[x_1,\ldots,x_n]\) is an integral domain.
+	
+\end{problem}
+\begin{solution}
+We prove this by induction on the number \(n\) of indeterminates. When \(n=1\), write the free \(\mathbb{F}\)-algebra as \(\mathbb{F}[x]\), where the elements are just polynomials. Assume 
+\(f=a_0+a_1x+a_2x^2+\cdots+a_nx^n\) and \(g=b_0+b_1x+b_2x^2+\cdots+b_mx^m\) where the leading term \(a_n,b_m\) are nonzero and we have \(fg=0\) for some \(m,n\geq 0\). Then \(fg\) can be written as 
+\[0=fg=a_0b_0+(a_1b_0+a_0b_1)x+\cdots+(\sum_{i=0}^{k}a_ib_{k-i})x^k+\cdots+(\sum_{i=0}^{m+n}a_ib_{m+n-i})x^{m+n}.\]
+This implies \(\sum_{i=0}^{k}a_ib_{k-i}=0\) for \(k=0,1,\ldots,m+n\). A field is always an integral domain so we can see that 
+\begin{align*}
+	a_0b_0=0 & & \Rightarrow a_0=b_0=0  \\ 
+	a_2b_0+a_1b_1+a_0b_2=0 & \Rightarrow a_1b_1=0 &\Rightarrow a_1=b_1=0\\ 
+	\sum_{i=0}^{4}a_ib_{4-i}=0 &\Rightarrow a_2b_2=0 &\Rightarrow a_2=b_2=0\\ 
+	\cdots 
+\end{align*}
+This proves that both \(f=g=0\).
+\par 
+Now assume \(n\geq 2\) and we have prove that \(\mathbb{F}[x_1,\ldots,x_{n-1}]\) is an integral domain. View the field \(\mathbb{F}[x_1,\ldots,x_n]\) as a free \(\mathbb{F}[x_1,\ldots,x_{n-1}]\)-algebra. 
+Let \(f,g\in \mathbb{F}[x_1,\ldots,x_n]\). Write \(f=p_0+p_1x_n+p_2x_n^2+\cdots+p_kx_n^k\) and \(g=q_0+q_1x_n+q_2x_n^2+\cdots+q_lx_n^l\) where \(k,l\in \mathbb{N}\) and \(p_i,q_j\in \mathbb{F}[x_1,\ldots,x_{n-1}]\) for all 
+\(i=0,1,\ldots,k\) and \(j=0,1,\ldots,l\). Use the assumption that \(\mathbb{F}[x_1,\ldots,x_{n-1}]\) is an integral domain and a similar argument in the case \(n=1\), we can show that \(f=g=0\). This prove that \(\mathbb{F}[x_1,\ldots,x_n]\) is also 
+an integral domain. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.10(Polynomial Functions).}
+Suppose \(\mathbb{F}\) is an infinite field.
+\begin{enumerate}[(1)]
+	\item Prove that polynomials \(f,g\in \mathbb{F}[x]\) are equal if and only if \(f(c)=g(c)\) for infinitely many \(c\in \mathbb{F}\). Hence, \(f\) and \(g\) are equal if and only if 
+	      they define the same polynomial function.
+	\item More generally, use induction on \(n\) to show that \(f,g\in \mathbb{F}[x_1,\ldots,x_n]\) are equal if and only if \(f(x_1,\ldots,x_n)=g(x_1,\ldots,x_n)\) as functions.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item If \(f(x)=g(x)\in \mathbb{F}[x]\) are equal, then it is easy to see that \(f(c)=g(c)\) for infinite many \(c\in \mathbb{F}\) since \(\mathbb{F}\) is an infinite field. Now assume there exist infinitely many \(c\in \mathbb{F}\) such that \(f(c)=g(c)\) for some 
+\(f,g\in \mathbb{F}[x]\). Note that by Exercise 3.6.9., for every \(n\geq 1\), there exists different \(c_1,c_2,\ldots,c_n\in \mathbb{F}\) such that 
+\[f(x)-g(x)=(x-c_1)(x-c_2)\cdots(x-c_n)q(x)\]
+where \(q(x)\in \mathbb{F}[x]\) is a polynomial. But \(\deg (f-g)\) is finite, so it is only possible if \(f(x)=g(x)\). Thus, we can conclude that \(f\) and \(g\) are equal if and only if they define the same polynomial function.
+\item We prove this by induction on the number \(n\) of indeterminates. When \(n=1\), this has been proved in (1). Now assume \(n\geq 2\) and this is true for \(\mathbb{F}[x_1,\ldots,x_{n-1}]\).
+
+\begin{claim}
+If \(R\) is a commutative ring and an integral domain, then \(c\in R\) is a root of \(f\in R[x]\) if and only if \(f\) can be written as \(f(x)=(x-c)q(x)\) where \(q(x)\in R[x]\) and \(\deg q(x)<\deg f(x)\).
+\end{claim}
+\begin{claimproof}
+Write \(f(x)=a_nx^n+\cdots+a_1x+a_0\) for some \(a_n,\ldots,a_0\in R\). There exists a polynomial \(g(x)\in R[x]\) with leading term \(a_nx^{n-1}\) such that 
+\[f(x)=(x-c)g(x)+r(x)\]
+where \(r(x)\in R[x]\) with \(r(c)=0\) and \(\deg r(x)<\deg f(x)\). Repeat this process with \(r(x)\) and finally we will obtain a polynomial of degree 1 which has \(c\) as its root, so it can only be \(x-c\). This implies \(x-c|f(x)\). 
+\end{claimproof}
+
+View \(f,g\in \mathbb{F}[x_1,\ldots,x_n]\) as polynomials in \(R[x_n]\) with \(R=\mathbb{F}[x_1,\ldots,x_{n-1}]\). By our discussion in \((1)\), \(f=g\) if and only if \(f(x_n)=g(x_n)\) as functions. This implies they have the same coefficents in \(R\), by our assumption, 
+\(f=g\) if and only if \(f(x_1,\ldots,x_n)=g(x_1,\ldots,x_n)\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.11}
+Suppose \(\mathbb{F}\) is a finite field with \(|\mathbb{F}|=q\). How many functions \(f:\mathbb{F}\rightarrow \mathbb{F}\) are there? How many polynomials \(f(x)\in \mathbb{F}[x]\) are there? Deduce that 
+there are infinitely many different polynomials \(f(x)\in \mathbb{F}[x]\) such that \(f(c)=0\) for all \(c\in \mathbb{F}\). Give two examples of such polynomials.
+\end{problem}
+\begin{solution}
+\(\mathbb{F}\) is a finite set with \(q\) elements. So there are \(q^2\) functions \(\mathbb{F}\rightarrow \mathbb{F}\). \(\mathbb{F}[x]\) can be viewed as an infinite dimensional \(\mathbb{F}\)-vector space with basis 
+\(\left\{ 1,x,x^2,\ldots,x^n,\ldots \right\}\). By Exercise 1.6.5, we know that 
+\[|\mathbb{F}[x]|=\text{max}(|\mathbb{F}|,\dim_{\mathbb{F}}\mathbb{F}[x])=\aleph_0.\]
+So the cardinality of polynomials over \(\mathbb{F}\) is \(\aleph_0\). Every polynomial can be viewed as a function \(\mathbb{F}\rightarrow \mathbb{F}\), and since the number of functions is finite, we have infinite pairs of polynomials 
+\((f,g)\) with \(f\neq g\) as polynomials in \(\mathbb{F}[x]\) but \(f(c)=g(c)\) for every \(c\in \mathbb{F}\). Each pair \((f,g)\) will give us a polynomial \(f-g\) with \((f-g)(c)=0\) for every \(c\in \mathbb{F}\). For example, consider 
+\begin{align*}
+    h_1(x)&=(x-c_1)(x-c_2)\cdots(x-c_q),\\
+    h_2(x)&=(x-c_1)^2(x-c_2)^2\cdots(x-c_q)^2
+\end{align*}
+where \(c_1,\ldots,c_q\) are different elements in \(\mathbb{F}\). It is easy to see that \(h_1(x)\neq h_2(x)\) because \(\deg h_1=q\neq 2q=\deg h_2\), but for any \(c\in \mathbb{F}\), we have \(h_1(c)=h_2(c)=0\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.7.19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7.19}
+Let \(X\) be a small set and \((X_i)_{i\in I}\)	be the collection of all finite subsets of \(X\). View \(I\) as a directed set so that \(i\leq j\Leftrightarrow X_i\subset X_j\); then 
+\((X_i)_{i\in I}\) is a direct system with \(f_{i,j}:X_i\hookrightarrow X_j\) being the inclusion for all \(i\leq j\). Show that \((X,(\iota_i)_{i\in I})\) is a direct limit of \((X_i)_{i\in I}\) 
+in the category \(\mathbf{Sets}\), where \(\iota_i:X_i\hookrightarrow X\) is the inclusion.
+\end{problem}
+\begin{solution}
+We prove this by showing that \((X,(\iota_i)_{i\in I})\) satisfies the universal property. Let \(Y\) be a set and for every \(i\in I\), there exists a map \(f_i:X_i\rightarrow H\) such that if \(i\leq j\), we have a commutative diagram: 
+\[\begin{tikzcd}
+	{X_i} && {X_j} \\
+	& Y
+	\arrow["{\text{inclusion}}", hook, from=1-1, to=1-3]
+	\arrow["{f_i}"', from=1-1, to=2-2]
+	\arrow["{f_j}", from=1-3, to=2-2]
+\end{tikzcd}\]
+For every \(x\in X\), consider all the one element set \(\left\{ x \right\}\subset X\). Since it is finite, we have \(\left\{ x \right\}\in (X_i)_{i\in I}\). So there exists a map \(f_x:\left\{ x \right\}\rightarrow Y\). Define \(f:X\rightarrow Y\) by sending 
+\(x\in X\) to \(f_x(x)\in Y\). This map is the unique map making the following diagram commutes:
+\[\begin{tikzcd}
+	{\left\{x\right\}} && {\left\{x\right\}} \\
+	& X \\
+	& Y
+	\arrow["id", from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow["{f_x}"', from=1-1, to=3-2]
+	\arrow[hook', from=1-3, to=2-2]
+	\arrow["{f_x}", from=1-3, to=3-2]
+\end{tikzcd}\]
+where \(\left\{ x \right\}\rightarrow X\) is the inclusion map. Moreover for any inclusion of finite set \(X_i\hookrightarrow X_j\), we have a commutative diagram:
+\[\begin{tikzcd}
+	{X_i} && {X_j} \\
+	& X \\
+	& Y
+	\arrow["{f_{i,j}}", hook, from=1-1, to=1-3]
+	\arrow["{\iota_i}", hook, from=1-1, to=2-2]
+	\arrow["{f_i}"', from=1-1, to=3-2]
+	\arrow["{\iota_j}"', hook', from=1-3, to=2-2]
+	\arrow["{f_j}", from=1-3, to=3-2]
+	\arrow["f", from=2-2, to=3-2]
+\end{tikzcd}\]
+The commutativity can be seen by the composition 
+\[\left\{ x \right\}\hookrightarrow X_i\hookrightarrow X\]
+for every \(x\in X_i\) and for every \(i\in I\). This proves that \((X,\iota_i)\) is the colimit of the direct system \((X_i)_{i\in I}\).	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.13}
+Let \(V\) be a two-dimensional vector space over \(\mathbb{F}\) with basis \(x,y\) and set 
+\[t:2x\otimes x\otimes x+x\otimes y\otimes y+y\otimes x\otimes y+y\otimes y\otimes x.\]
+\begin{enumerate}[(1)]
+	\item For \(\mathbb{F}=\mathbb{R}\) check that 
+	      \[t=(x+cy)\otimes (x+cy)\otimes (x+cy)+(x-cy)\otimes (x-cy)\otimes (x-cy)\]
+		  where \(c:=1/\sqrt{2}\). Deduce that \(t\) has rank 2.
+     \item For \(\mathbb{F}=\mathbb{Q}\) show that \(t\) has rank strictly greater than 2.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item We have 
+\begin{align*}
+    &(x+cy)\otimes (x+cy)\otimes (x+cy)\\ 
+   =&x\otimes x\otimes x+cx\otimes y\otimes x+cx\otimes x\otimes y+c^2x\otimes y\otimes y\\ 
+    &+cy\otimes x\otimes x+c^2y\otimes y\otimes x+c^2 y\otimes x\otimes y+c^3y\otimes y\otimes y 
+\end{align*}
+Note that \(c=-\frac{1}{\sqrt{2}}\) is negative, so we have 
+\begin{align*}
+    &(x+cy)\otimes (x+cy)\otimes (x+cy)+(x-cy)\otimes (x-cy)\otimes (x-cy)\\ 
+   =&2x\otimes x\otimes x+2c^2x\otimes y\otimes y+2c^2y\otimes y\otimes x+2c^2y\otimes x\otimes y\\ 
+   =&2x\otimes x\otimes x+x\otimes y\otimes y+y\otimes y\otimes x+y\otimes x\otimes y\\ 
+   =&t 
+\end{align*}
+We can see that \(t\) has rank 2.
+\item Assume the opposite. Suppose 
+\[t=f_1(x,y)\otimes f_2(x,y)\otimes f_3(x,y)+g_1(x,y)\otimes g_2(x,y)\otimes g_3(x,y)\]
+where \(f_i(x,y),g_i(x,y)\in \mathbb{Q}[x,y]\) for \(i=1,2,3\). If the degree of \(f_i(x,y)\) is larger than 1, than the corresponding \(g_i(x,y)\) must have the same leading term with opposite sign, so 
+without loss of generality, we could assume every \(f_i\) and \(g_i\) are of degree 1 and have no constant terms. Write \(f_i(x,y)=a_ix+b_iy\) and \(g_i(x,y)=c_ix+d_iy\) where \(a_i,b_i\in \mathbb{Q}\) for \(i=1,2,3\), we have 
+\begin{align*}
+    &a_1a_2a_3+c_1c_2c_3=2,\\
+    &
+\end{align*} 
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.15}
+Assume that the ground field \(\mathbb{F}=\mathbb{R}\). Show that 
+\[M_2(\mathbb{R})\otimes M_2(\mathbb{R})\cong M_4(\mathbb{R})\cong \mathbb{H}\otimes \mathbb{H}\]
+as \(\mathbb{R}\)-algebras.
+\end{problem}
+\begin{solution}
+Let \(A,B\in M_2(\mathbb{R})\) be two \(2\times 2\) matrices where \(A=\begin{pmatrix}
+    a & b\\ 
+    c&d
+\end{pmatrix}\) and \(B=\begin{pmatrix}
+    e&f\\ 
+    g&h
+\end{pmatrix}\). We define the following map 
+\begin{align*}
+    \phi:M_2(\mathbb{R})\otimes M_2(\mathbb{R})&\rightarrow M_4(\mathbb{R}),\\ 
+             A\otimes B&\mapsto \begin{pmatrix}
+                aB&bB\\ 
+                cB&dB
+             \end{pmatrix}=\begin{pmatrix}
+                ae&af&be&bf\\ 
+                ag&ah&bg&bh\\ 
+                ce&cf&de&df\\ 
+                cg&ch&dg&dh
+             \end{pmatrix}
+\end{align*}
+To see that this is a well-defined map between \(\mathbb{R}\)-algebras, let \(A_1,B_1,A_2,B_2\in M_2(\mathbb{R})\). We have 
+\begin{align*}
+    &\phi((A_1\otimes B_1)(A_2\otimes B_2))\\[1em]
+   =&\phi((A_1A_2)\otimes (B_1B_2))\\[1em]
+   =&\phi(\begin{pmatrix}
+    a_1a_2+b_1c_2&a_1c_2+b_1d_2\\
+    a_2c_1+c_2d_1&c_1c_2+d_1d_2
+   \end{pmatrix}\otimes B_1B_2 )\\[1em] 
+   =&\begin{pmatrix}
+    (a_1a_2+b_1c_2)B_1B_2&(a_1c_2+b_1d_2)B_1B_2\\ 
+    (a_2c_1+c_2d_1)B_1B_2&(c_1c_2+d_1d_2)B_1B_2
+   \end{pmatrix}\\[1em] 
+   =&\begin{pmatrix}
+    a_1B_1&b_1B_1\\ 
+    c_1B_1&d_1B_1
+   \end{pmatrix}\begin{pmatrix}
+    a_2B_2&b_2B_2\\ 
+    c_2B_2&d_2B_2
+   \end{pmatrix}\\[1em]
+   =&\phi(A_1\otimes B_1)\phi(A_2\otimes B_2)
+\end{align*}
+Moreover, \(\phi\) is injective. Indeed, suppose \(A\otimes B\in \ker \phi\). This means that 
+\[\begin{pmatrix}
+    aB &bB\\
+    cB &dB
+\end{pmatrix}=\begin{pmatrix}
+    0&0\\ 
+    0&0
+\end{pmatrix}.\]
+If \(A=0\), then \(A\otimes B=0\otimes B=0\). If there is at least one nonzero entry in \(A\), for example \(a\neq 0\), then \(aB=0\) being the zero matrix implies 
+that \(B=0\), and we have \(A\otimes B=A\otimes 0=0\). Note that 
+\[\dim (M_2(\mathbb{R})\otimes M_2(\mathbb{R}))=(\dim(M_2(\mathbb{R})))^2=16=\dim M_4(\mathbb{R}).\]
+So \(\phi\) is an isomorphism. 
+
+Recall that the quaternions \(\mathbb{H}\) over \(\mathbb{R}\) has a basis \(\left\{ 1,i,j,k \right\}\) with multiplication \(i^2=j^2=k^2=-1\) and \(ij=-ji=k\). View \(\mathbb{H}\) as a 4-dimensional 
+\(\mathbb{R}\)-vector space. And we know that \(End_{\mathbb{R}}(\mathbb{H})\cong M_4(\mathbb{R})\). Define a bilinear map 
+\begin{align*}
+    \mathbb{H}\times \mathbb{H}&\rightarrow End_{\mathbb{R}}(\mathbb{H}),\\ 
+    (a,b)&\mapsto (h\mapsto ah\bar{b}).
+\end{align*}
+where 
+\[\bar{b}=\overline{b_1+b_2i+b_3j+b_4k}=b_1-b_2i-b_3j-b_4k.\]
+This map induces a linear map \(\psi:\mathbb{H}\otimes \mathbb{H}\rightarrow End_{\mathbb{R}}(\mathbb{H})\). Let \((a,b)\in \ker \psi\). For every \(h\in H\), we have 
+\(ah\bar{b}=0\). Note that \(\mathbb{R}\) has characteristic 2, so either \(a\) or \(\bar{b}\) must \(0\). Thus, \(a\otimes b=0\) and \(\psi\) is injective. Moreover, we know that 
+\[\dim(\mathbb{H}\otimes \mathbb{H})=16=\dim (End_{\mathbb{R}}(\mathbb{H})).\]
+So we have the isomorphisms 
+\[\mathbb{H}\otimes \mathbb{H}\cong M_4(\mathbb{R})\cong M_2(\mathbb{R})\otimes M_2(\mathbb{R}).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.2.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.2.12(Duailty of symmetric and divided powers).}
+Let \(V\) be a finite dimensional vector space. From Example 4.1.3, we get a natural isomorphism \(T^n(V^*)\xrightarrow{\sim} T^n(V)^*\) mapping a pure tensor 
+\(f_1\otimes \cdots\otimes f_n\in T^n(V^*)\) to the unique linear map \(f_1\bar{\otimes} \cdots\bar{\otimes}f_n:T^n(V)\rightarrow \mathbb{F} \) which sends \(v_1\otimes \cdots\otimes v_n\in T^n(V)\) to 
+\(f(v_1)\cdots f(v_n)\). Composing the dual map \(\pi^*\) to the quotient map \(\pi:T^n(V)\rightarrow S^n(V)\) with this isomorphism gives a linear map \(\pi^*:S^n(V)^*\hookrightarrow T^n(V^*)\). Prove 
+that \(\pi^*\) is an isomorphism between \(S^n(v)^*\) and \(\Gamma^n(V^*)\).
+\end{problem}
+\begin{solution}
+	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.3.17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.3.17}
+Let \(V\) be a vector space.
+\begin{enumerate}[(1)]
+\item Vectors \(v_1,\ldots,v_m\in V\) are linearly independent if and only if \(v_1\wedge \cdots\wedge v_m\neq 0\) in \(\bigwedge^m V\).
+\item Let \(v_1,\ldots,v_m\) and \(w_1,\ldots,w_m\) be two linearly independent systems of vectors in \(V\). Show that \(\mathbb{F}v_1+\cdots+\mathbb{F}v_m=\mathbb{F}w_1+\cdots+\mathbb{F}w_m\) 
+      if and only if \(v_1\wedge \cdots\wedge v_m\) is proportional to \(w_1\wedge \cdots\wedge w_m\) in \(\bigwedge^m V\).
+\item Show that there is a well-defined embedding \(Gr_m(V)\hookrightarrow \mathbb{P}(\bigwedge^m V)\) sending a subspace with basis \(v_1,\ldots,v_m\) to the line spanned by \(v_1\wedge\cdots\wedge v_m\).
+\item Give an example to show that the map from (3) is not surjective in general.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.4.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.4.4}
+Assume char\(\mathbb{F}=2\). Then a \textit{quadratic form} on a vector space \(V\) is a function \(Q:V\rightarrow \mathbb{F}\) such that \(Q(\lambda v)=\lambda^2 Q(v)\) and \(Q(v+w)=Q(v)+Q(w)+(v|w)\) for some 
+(necessarily unique) bilinear form \((-|-):V\times V\rightarrow \mathbb{F}\). Show that the form \((-|-)\) is skew-symmetric. Convince yourself that you cannot recover \(Q\) from \((-|-)\).
+\end{problem}
+\begin{solution}
+Because char\(\mathbb{F}=2\), for any \(v\in V\), we have 
+\[(v|v)=Q(v+v)+Q(v)+Q(v)=Q(2v)+2Q(v)=0.\]
+Thus, \((-|-)\) is skew-symmetric. \(Q\) cannot be recovered from \((-|-)\) since \(2\) is not invertible in \(\mathbb{F}\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.4.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.4.9}
+Let \(V\) be a finite dimensional vector space equipped with a non-degenerate skew-symmetric bilinear form \((-|-)\). If \(V\subseteq V\) is an isotropic subspace with 
+basis \(u_1,\ldots,u_m\), then there exists an isotropic subspace \(U'\), with basis \(u_1',\ldots,u_m'\) such that \(U\cap U'=0\) and \((u_i|u_j')=\delta_{i,j}\) for all \(1\leq i,j\leq m\).
+\end{problem}
+\begin{solution}
+	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.4.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.4.10(Witt's Theorem for skew-symmetric bilinear form).}
+Let \(V\) be a finite dimensional vector space equipped with a non-degenerate skew-symmetric bilinear form. Let \(U\) be a subspace of \(V\) with the induced bilinear form. Prove that any isometric embedding 
+\(f:U\hookrightarrow V\) of \(U\) into \(V\) can be extended to an isometry \(\hat{f}:V\rightarrow V\).
+\end{problem}
+\begin{solution}
+	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.4.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.4.12(Pfaffians).}
+Assume that \(\mathbb{F}\) is of characteristic zero. Let \(n=2m\) be even and \(A=[a_{ij}]_{1\leq i,j\leq n}\) be an \(n\times n\) skew-symmetric matrix with entries in \(\mathbb{F}\). Let \(V\) be a vector space with basis \(v_1,\ldots,v_n\) and 
+set \(a:=\sum_{1\leq i,j\leq n} a_{ij}v_i\wedge v_j\in \bigwedge^2(V)\).
+\begin{enumerate}[(1)]
+\item Prove that \(a^m=2^m m!(\text{Pf}\, A)v_1\wedge \cdots\wedge v_n\) (\(m\)th power taken in the exterior algebra \(\wedge(V)\).
+\item For any matrix \(P=[p_{ij}]_{1\leq i,j\leq n}\), show that \(\text{Pf}(P^T AP)=(\det P)(\text{Pf}\, A)\).
+\item Show that \(\det A=(\text{Pf}\, A)^2\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.1.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.1.12}
+Let \(H\) be a characteristic subgroup of \(G\). Prove:
+\begin{enumerate}[(1)]
+\item If \(G\) is a characteristic subgroup of \(K\), then \(H\) is a characteristic subgroup of \(K\).
+\item If \(G\unlhd K\), then \(H\unlhd K\).
+\item If \(K\) is a characteristic subgroup of \(G\), then \(HK\) and \(H\cap K\) are characteristic subgroups of \(G\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item Let \(\phi:K\rightarrow K\) be a group automorphism. We know that \(\phi(G)\subset G\) since \(G\) is a characteristic subgroup of \(K\). This means that \(\phi\) can be viewes as a group 
+automorphism of \(G\). Thus, \(\phi(H)\subset H\) because \(H\) is a characteristic subgroup of \(G\). This proves that \(H\) is a characteristic subgroup of \(K\). 
+\item For any \(k\in K\), we have \(kHk^{-1}\subset G\) since \(G\) is a normal subgroup of \(K\). Note that in this case we have a group automorphism:
+\begin{align*}
+    \phi:G&\rightarrow G,\\ 
+    g&\mapsto kgk^{-1}.
+\end{align*}
+And because \(H\) is a characteristic subgroup of \(G\), we have \(\phi(H)\subset H\). This proves that \(kHk^{-1}=H\). \(H\) is a normal subgroup of \(K\). 
+\item For any \(hk\in HK\) and any automorphism \(\phi:G\rightarrow G\), we have \(\phi(gh)=\phi(g)\phi(h)\in HK\) since both \(H\) and \(K\) are characteristic subgroups of \(G\). Similarly for any \(a\in H\cap K\), we have 
+\(\phi(a)\in H\cap K\). So \(HK\) and \(H\cap K\) are characteristic subgroups of \(G\). 
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.17}
+Let \(p\) be a prime.
+\begin{enumerate}[(1)]
+\item Construct an isomorphism between \(C_{p^\infty}\) and the subgroup of \(\mathbb{C}^\times\) which consists of all \(p^n\)th roots of \(1\) for all \(n\in \mathbb{Z}_{\geq 0}\).
+\item Explain why the map \(g\mapsto g^p\) yields an isomorphism \(C_{p^\infty}/C_p\cong C_{p^\infty}\).
+\item \(C_{p^\infty}\) is not finitely generated.
+\item Describe all subgroups of \(C_{p^\infty}\).
+\item Any non-trivial quotient of \(C_{p^\infty}\) is isomorphic to \(C_{p^\infty}\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.18}
+Let \(p\) be a prime and \(\mathbb{Q}_{(p)}\) be a subgroup of \((\mathbb{Q},+)\) which consists of all numbers of the form \(m/p^n\) for \(m,n\in \mathbb{Z}\).Use the map 
+\begin{align*}
+    \mathbb{Q}_{(p)}&\rightarrow C_{p^\infty},\\ 
+    m/p^n&\mapsto e^{2\pi im/p^n}
+\end{align*} 
+to deduce an isomorphism \(\mathbb{Q}_{(p)}/\mathbb{Z}\cong C_{p^\infty}\).  
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.3.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.3.8}
+Let \(p\) be a prime, \(\sigma\) be any \(p\)-cycle in \(S_p\) and \(\tau\) be any transposition in \(S_p\). Prove that \(\la \sigma,\tau\ra=S_p\).
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.5.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.5.3(Elements of \(O(2)\)).}
+\begin{enumerate}[(a)]
+\item The matrix \(\begin{pmatrix}
+    a&b\\ 
+    c&d
+\end{pmatrix}\) is orthogonal if and only if \(a^2+c^2=b^2+d^2=1\) and \(ab+cd=0\).
+\item Deduce that a matrix if orthogonal if and only if it looks like 
+\begin{equation}
+    \begin{pmatrix}
+    \cos \alpha&-\sin \alpha\\ 
+    \sin \alpha&\cos \alpha
+\end{pmatrix}
+\end{equation}
+or
+\begin{equation}
+    \begin{pmatrix}
+    \cos \alpha&\sin \alpha\\ 
+    \sin \alpha&-\cos \alpha
+\end{pmatrix}
+\end{equation}
+for some \(\alpha\in \mathbb{R}\).
+\item Prove that a matrix is in \(SO(2)\) if and only if it is of the form (1) for some \(\alpha\in \mathbb{R}\).
+\item The linear transformation whose matrix is of the form (1) is the rotation through the angle \(\alpha\); the linear transformation whose matrix is of the form (2) is 
+the reflection through the line forming the angle \(\alpha/2\) with the \(x\)-axis.
+\item The group \(O(2)\) is generated by reflections. 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item A matrix \(A=\begin{pmatrix}
+    a&b\\ 
+    c&d
+\end{pmatrix}\) is orthogonal if and only if \(A^T A=I_2\), written as 
+\[\begin{pmatrix}
+    a&c\\ 
+    b&d
+\end{pmatrix}\begin{pmatrix}
+    a&b\\ 
+    c&d
+\end{pmatrix}=\begin{pmatrix}
+    1&0\\ 
+    0&1
+\end{pmatrix}.\]
+This is the same as the following equations:
+\begin{align*}
+    a^2+c^2&=1,\\
+    ab+cd&=0,\\ 
+    b^2+d^2&=1. 
+\end{align*}
+\item It is easy to check directly that this is a sufficient condition. We prove that it is also necessary. Since \(a^2+c^2=1\), we know there exists some \(\alpha\in \mathbb{R}\) such that \(a=\cos \alpha\) and 
+\(c=\sin \alpha\). If \(a=\cos \alpha=0\), then \(c^2=\sin^2 \alpha=1\), and \(ab+cd=0\) tells us that \(d=0\). Thus, \(b^2=1\). Since \(b^2=d^2=1\), if \(b=d\) then \(A\) has the form (2). If \(b=-d\), then \(A\) 
+has the form (1). Now suppose \(a=\cos \alpha\neq 0\). We can write 
+\[b=-\frac{d\sin \alpha}{\cos \alpha}.\]
+Plug this into \(b^2+d^2=1\), and we have 
+\[d^2(1+\frac{\sin^2 \alpha}{\cos^2 \alpha})=\frac{d^2}{\cos^2 \alpha}=1.\]
+If \(d=\cos \alpha\), then \(A\) has the form (1). If \(d=-\cos \alpha\), then \(A\) has the form (2).
+\item A matrix \(A\) is in \(SO(2)\) if and only if \(A\) is orthogonal and \(\det A=1\). From what we have proved in (b), \(A\) must be of the form (1). 
+\item Given a point nonzero point \(v=(x,y)\in \mathbb{R}^2\) and a matrix \(A\) of the form (1). The linear transformation associated with \(A\) maps \(v\) to 
+\[Av=(x\cos \alpha-y\sin \alpha,x\sin \alpha+y\cos \alpha).\]
+We can see that 
+\[|Av|^2=(x\cos \alpha-y\sin \alpha)^2+(x\sin \alpha+y\cos \alpha)^2=x^2+y^2=|v|^2.\]
+And moreover, the angle \(\theta\) between the vector \(v\) and \(Av\) can be calculated as 
+\[\cos \theta=\dfrac{v\cdot Av}{|v||Av|}=\dfrac{(x^2+y^2)\cos \alpha}{x^2+y^2}=\cos \alpha.\]
+So \(A\) is the rotation through angle \(\alpha\). 
+
+Now assume the linear transformation has the form (2). In this case, \(Av\) can be written as 
+\[Av=(x\cos \alpha+y\sin \alpha,x\sin \alpha-y\cos \alpha).\]
+We still have \(|Av|^2=x^2+y^2=|v|^2\) and consider the line represented by the vector \(w=(\cos \frac{\alpha}{2},\sin \frac{\alpha}{2})\). The angle \(\theta_1\) between \(v\) and \(w\) is 
+\[\cos \theta_1=\dfrac{v\cdot w}{|v|}=\dfrac{x\cos \frac{\alpha}{2}+y\sin \frac{\alpha}{2}}{x^2+y^2}.\]
+and the angle \(\theta_2\) between \(Av\) and \(w\) is 
+\[\cos \theta_2=\dfrac{Av\cdot w}{|Av|}=\dfrac{x(\cos \alpha\cos \frac{\alpha}{2}+\sin \alpha\sin \frac{\alpha}{2})+y(\sin \alpha\cos \frac{\alpha}{2}-\cos \alpha\sin \frac{\alpha}{2})}{x^2+y^2}=\dfrac{x\cos \frac{\alpha}{2}+y\sin \frac{\alpha}{2}}{x^2+y^2}.\]
+This shows that \(\theta_1=\theta_2\) and we can conclude that \(A\) of the form (2) is the reflection through the line forming the angle \(\frac{\alpha}{2}\) with the \(x\)-axis.
+\item We prove that the matrices of the form (1) can be generated by the matrices of the form (2), namely reflections. Write \(A=R(\alpha)\) is of the form (1) (rotation) for some \(\alpha\in \mathbb{R}\) and \(A=F(\beta)\) is of the form (2) (reflection) for some \(\beta\in \mathbb{R}\). 
+\begin{claim}
+For any \(\alpha\in \mathbb{R}\), we have \(R(\alpha)=F(\pi)F(\pi-\alpha)\).
+\end{claim}
+\begin{claimproof}
+Just some computation. 
+\begin{align*}
+            F(\pi)F(\pi-\alpha)&=\begin{pmatrix}
+                -1&0\\ 
+                0&1
+            \end{pmatrix}\begin{pmatrix}
+                \cos(\pi-\alpha)&\sin (\pi-\alpha) \\ 
+                \sin(\pi-\alpha)&-\cos (\pi-\alpha)
+            \end{pmatrix}\\ 
+            &=\begin{pmatrix}
+                -\cos(\pi-\alpha)& -\sin(\pi-\alpha)\\ 
+                \sin(\pi-\alpha)&-\cos (\pi-\alpha)
+            \end{pmatrix}\\ 
+            &=\begin{pmatrix}
+                \cos \alpha&-\sin \alpha\\ 
+                \sin \alpha&\cos \alpha
+            \end{pmatrix}\\ 
+            &=R(\alpha).
+\end{align*}
+\end{claimproof}
+
+The claim above shows that an orthogonal matrix can be written as a product of reflections, thus \(O(2)\) is generated by reflections.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.5.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.5.5}
+Let \(c_1,\ldots,c_l\in \mathbb{F}\) satisfy \(c_1+\cdots+c_l=1\), and \(v_1,\ldots,v_l\in V\). If \(f\) is an affine transformation of \(V\), then 
+\[f(c_1v_1+\cdots+c_lv_l)=c_1f(v_1)+\cdots+c_lf(v_l).\]
+Deduce that \(f\) fixes points \(v\neq w\) in \(V\) only if it fixes every point of the line through \(v\) and \(w\).
+\end{problem}
+\begin{solution}
+We know that \(AGL(V)=GL(V)T(V)\), so an affine transformation \(f\) can be written as \(f=g t_w\) where \(g\in GL(V)\) is a linear transformation and \(t_w\) is a translation. Now we have 
+\begin{align*}
+    f(c_1v_1+\cdots+c_lv_l)&=gt_w(c_1v_1+\cdots+c_lv_l)\\ 
+                           &=g(c_1v_1+\cdots+c_lv_l+w)\\ 
+                           &=c_1g(v_1)+\cdots+c_lg(v_l)+g(w)\\ 
+                           &=c_1g(v_1)+\cdots+c_lg(v_l)+(c_1+\cdots+c_l)g(w)\\ 
+                           &=c_1(g(v_1)+g(w))+\cdots+c_l(g(v_l)+g(w))\\ 
+                           &=c_1(gt_w)(v_1)+\cdots+c_l(gt_w)(v_l)\\ 
+                           &=c_1f(v_1)+\cdots+c_lf(v_l).
+\end{align*}
+Now suppose \(f\) fixes points \(v,w\in V\) with \(v\neq w\). Any point on the line through \(v\) and \(w\) can be written as \(c_1v+c_2w\) for some \(c_1,c_2\in \mathbb{F}\) satisfying \(c_1+c_2=1\). So by the 
+previous discussion, we have 
+\begin{align*}
+    f(c_1v+c_2w)&=c_1f(v)+c_2f(w)\\ 
+                &=c_1v+c_2w.
+\end{align*}
+We can see that \(c_1v+c_2w\) is also a fixed point of \(f\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.5.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.5.6}
+Suppose that the ground field \(\mathbb{F}\) has characteristic \(0\). If \(G\) is a finite subgroup of \(AGL(V)\) then there is an element \(v\in V\) fixed by every element of \(G\).
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.5.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.5.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.5.8}
+\begin{enumerate}[(1)]
+\item The group \(AO(2)\) of motions of the Euclidean space \(\mathbb{R}^2\) is generated by reflections relative to arbitrary lines.
+\item Each element of the group \(ASO(2)\) of rigid motions of \(\mathbb{R}^2\) is either a tranlation or a rotation about some point.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.6.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.6.4(Finite subgroups of \(O(2)\)).}
+Let \(G\) be a finite subgroup of \(O(2)\). Then \(G\) is one of the following:
+\begin{enumerate}[(i)]
+\item \(G=C_n\), the cyclic group of order \(n\) generated by the rotation through \(2\pi/n\);
+\item \(G=D_{2n}\), the dihedral group of order \(2n\) generated by the rotation through \(2\pi/n\) and a reflection about a line through the origin.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.6.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.6.6(Symmetries of a cube)}
+Let \(C^3\) be a regular cube in \(\mathbb{R}^3\). Use the action of \(\text{Sym}_+(C^3)\) on the four diagonals of the cube to show that \(\text{Sym}_+(C^3)\cong S_4\). Show that 
+\(\text{Sym}(C^3)\cong S_4\times C_2\). Any idea on \(\text{Sym}_+(C^n)\) and \(\text{Sym}(C^n)\)?
+\end{problem}
+\begin{solution}
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.7.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.7.5}
+Prove that the group of upper unitriangular \(3\times 3\) matrices over \(\mathbb{F}_3\) is non-abelian and has exponent 3.
+\end{problem}
+\begin{solution}
+Let \(A=\begin{pmatrix}
+    1 &a&c\\ 
+    & 1&b \\ 
+  & & 1
+\end{pmatrix}\) and \(B=\begin{pmatrix}
+    1&d&f\\ 
+    &1&e\\ 
+    &&1
+\end{pmatrix}\) where \(a,b,c,d,e,f\in \mathbb{F}_3\). We have 
+\[AB=\begin{pmatrix}
+    1&a&c\\ 
+    &1&b\\ 
+    &&1
+\end{pmatrix}\begin{pmatrix}
+    1&d&f\\ 
+    &1&e\\ 
+    &&1
+\end{pmatrix}=\begin{pmatrix}
+    1&a+d&c+f+ae\\ 
+    &1&b+e\\ 
+    &&1
+\end{pmatrix}.\]
+On the other hand, we have 
+\[BA=\begin{pmatrix}
+    1&a+d&c+f+bd\\ 
+    &1&b+e\\ 
+    &&1
+\end{pmatrix}.\]
+So \(AB\neq BA\) unless \(bd=ae\). For example, 
+\[\begin{pmatrix}
+    1&1&0\\ 
+    &1&2\\ 
+    &&1
+\end{pmatrix}\begin{pmatrix}
+    1&1&0\\ 
+    &1&1\\ 
+    &&1
+\end{pmatrix}\neq \begin{pmatrix}
+    1&1&0\\ 
+    &1&1\\ 
+    &&1
+\end{pmatrix}\begin{pmatrix}
+    1&1&0\\ 
+    &1&2\\ 
+    &&1
+\end{pmatrix}.\]
+For any upper unitriangular matrix \(A=\begin{pmatrix}
+    1&a&c\\ 
+    &1&b\\ 
+    &&1
+\end{pmatrix}\), we have 
+\[A^3=\begin{pmatrix}
+    1& 3a&3ab+3c\\ 
+    &1&3b\\ 
+    &&1
+\end{pmatrix}=I_3\in GL_3(\mathbb{F}_3).\] 
+So this group has exponent \(3\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.7.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.7.6}
+Let \(G\) be a finitely generated group. Assume that \(g^3=1\) for all \(g\in G\).
+\begin{enumerate}[(a)]
+\item Show that \(G\) is finite. 
+\item Assume further that \(G\) is generated by two elements. Show that \(|G|\leq 27\) and that this estimate cannot be improved.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.8.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.8.7}
+The group of upper unitriangular \(3\times 3\) matrices over \(\mathbb{F}_3\) from Exercise 6.7.5. is of the form \(C_3\ltimes (C_3\times C_3)\).
+\end{problem}
+\begin{solution}
+Denote by \(G\) the group of \(3\times 3\) upper unitriangular matrices over \(\mathbb{F}_3\). Consider the following group homomorphism 
+\begin{align*}
+    C_3&\rightarrow G,\\ 
+    a&\mapsto \begin{pmatrix}
+        1&a&0\\ 
+        &1&0\\ 
+        &&1
+    \end{pmatrix} 
+\end{align*}
+and 
+\begin{align*}
+    C_3\times C_3&\rightarrow G,\\ 
+    (b,c)&\mapsto \begin{pmatrix}
+        1&0&c\\ 
+        &1&b\\ 
+        &&1
+    \end{pmatrix}. 
+\end{align*}
+These are well-defined group homomorphisms. Consider the group homomorphism 
+\begin{align*}
+    \phi:C_3&\rightarrow \text{Aut}(C_3\times C_3),\\ 
+         a&\mapsto (\phi(a):(b,c)\rightarrow (b,ab+c)).
+\end{align*}
+The multiplication in the semidirect product \(C_3\ltimes (C_3\times C_3)\) is given by 
+\[(a,b,c)\cdot (d,e,f)=(a+d,b+\phi(a)(e),c+\phi(a)(f))=(a+d,b+e,c+f+ae)\]
+which is exactly the matrices multiplication 
+\[\begin{pmatrix}
+    1&a&c\\ 
+    &1&b\\ 
+    &&1
+\end{pmatrix}\begin{pmatrix}
+    1&d&f\\ 
+    &1&e\\ 
+    &&1
+\end{pmatrix}=\begin{pmatrix}
+    1&a+d&c+f+ae\\ 
+    &1&b+e\\ 
+    &&1
+\end{pmatrix}.\]
+Note that \(a,b,c,d,e,f\in \mathbb{F_3}\cong C_3\). We have an isomorphism \(G\cong C_3\ltimes (C_3\times C_3)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.2.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.2.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+ 

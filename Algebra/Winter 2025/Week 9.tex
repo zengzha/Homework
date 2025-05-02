@@ -1,0 +1,454 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\iif}{\ \ \text{if}\ \ }
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\coind}{\text{coind}}
+\newcommand{\res}{\text{res}}
+\newcommand{\li}{\leftindex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 9}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 648 - Abstract Algebra  \hfill Term: Winter 2025\\
+Instructor: Professor Arkady Berenstein \hfill Due Date: $12^{th}$ March, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.1.4}
+Let \(V\) and \(W\) be finite dimensional \(\mathbb{F}G\)-modules. Define a \(\mathbb{F}G\)-module structure on \(\hom_\mathbb{F}(V,W)\), so that \(\hom_\mathbb{F}(V,W)\cong V^{*}\otimes W\) as 
+\(\mathbb{F}G\)-module and \(\hom_{\mathbb{F}G}(V,W)=\hom_\mathbb{F}(V,W)^G\). 
+\end{problem}
+\begin{solution}
+We define a \(\mathbb{F}G\)-module structure on \(\hom_\mathbb{F}(V,W)\). For any \(g\in G\), \(f\in \hom_\mathbb{F}(V,W)\) and \(v\in V\), we define 
+\[(g\cdot f)(v)=g\cdot f(g^{-1}v).\]
+This is a well-defined \(\mathbb{F}G\)-module structure. Indeed, for any \(h,g\in G\), we have 
+\begin{align*}
+	(h\cdot (g\cdot f))(v)&=h\cdot (g\cdot f)(h^{-1}v)\\ 
+	                      &=h\cdot g\cdot f(g^{-1}h^{-1}v)\\ 
+						  &=(hg)\cdot f((hg)^{-1}v)\\ 
+						  &=((hg\cdot f))(v).
+\end{align*}
+This \(\mathbb{F}G\)-module structure is compatible with the isomorphism \(\hom_\mathbb{F}(V,W)\cong V^*\otimes W\). Indeed, consider the isomorphism 
+\begin{align*}
+	\phi:V^*\otimes W&\rightarrow \hom_\mathbb{F}(V,W),\\ 
+	  (l\otimes w)&\mapsto (v\mapsto l(v)w).
+\end{align*}
+We check that the \(G\)-action we defined above is compatible. For any \(g\in G\), \(v\in V\), \(l\in V^*\) and \(w\in W\), we have 
+\begin{align*}
+	\phi(g\cdot (l\otimes w))(v)&=\phi((g\cdot l)\otimes gw)(v)\\ 
+	                            &=(g\cdot l)(v)gw\\ 
+								&=l(g^{-1}v)gw\\ 
+								&=g\cdot l(g^{-1}v)w\\ 
+								&=(g\cdot (\phi(l\otimes w)))(v).
+\end{align*}
+So we know that the isomorphism \(\phi\) is also a \(\mathbb{F}G\)-module isomorphism. 
+
+Consider a map between \(\mathbb{F}G\)-modules 
+\begin{align*}
+	\hom_{\mathbb{F}G}(V,W)&\rightarrow \hom_\mathbb{F}(V,W),\\ 
+	\alpha&\mapsto \alpha.
+\end{align*}
+We first prove that for any \(\alpha\in \hom_{\mathbb{F}G}(V,W)\), if we view \(\alpha\) as an element in \(\hom_\mathbb{F}(V,W)\), then \(\alpha\) must be invariant under the \(G\)-action we defined above. Indeed, for 
+any \(g\in G\) and \(v\in V\), we have 
+\[(g\cdot \alpha)(v)=g\alpha(g^{-1}v)=\alpha(gg^{-1}v)=\alpha(v).\]
+We have a well-defined \(\mathbb{F}G\)-module homomorphism \(\psi:\hom_{\mathbb{F}G}(V,W)\rightarrow \hom_\mathbb{F}(V,W)^G\). We check \(\psi\) is injective. Suppose 
+\(\alpha\in \ker \psi\), note that the zero map is invariant under the \(G\)-action, by definition of \(\psi\), \(\alpha=0\). Next, we check that \(\psi\) is surjective. Given a \(G\)-invariant \(\mathbb{F}\)-linear map \(\beta\), for any \(g\in G\) and \(v\in V\), we have 
+\[g\beta(v)=g(g^{-1}\cdot \beta)(v)=gg^{-1}\beta(gv)=\beta(gv).\]
+This proves that \(\beta\) is also a homomorphism if we view \(V\) and \(W\) as \(\mathbb{F}G\)-modules. Thus, \(\psi\) is an isomorphism. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.1.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.1.7}
+Let \(G\) be a finite group and \(H\leq G\). Then each irreducible \(\mathbb{F}G\)-module is a quotient of a module induced from an irreducible \(\mathbb{F}H\)-module. 
+\end{problem}
+\begin{solution}
+Let \(V\) be an irreducible \(\mathbb{F}G\)-module. We know that \(\res^G_HV\) is a finite dimensional \(\mathbb{F}H\)-module, so it is artinian. Every descending chain must stabilizes. Thus, there exists an irreducible \(\mathbb{F}H\) submodule \(W\subseteq \res^G_HV\). Consider the \(\mathbb{F}H\)-module homomorphism 
+\[W\rightarrow \res^G_HV\]
+defined by inclusion. By adjointness of \(\res^G_H\) and \(\ind^G_H\), we know there exists an \(\mathbb{F}G\)-module homomorphism 
+\[f:\ind^G_HW\rightarrow V\]
+which is not the zero homomorphism. So there exists \(v\in V\) such that \(f(a)=v\) for some \(a\in \ind^G_HW\). Note that \(V\) is irreducible, so for any \(v'\in V\), there exists \(\sum k_g g\) such that \(\sum k_g gv=v'\). Therefore, we have 
+\[f(\sum k_g ga)=\sum k_g gf(a)=\sum k_g gv=v'.\]
+This proves that \(f\) is surjective. Thus, we can write 
+\[V\cong \ind^G_HW/\ker f\]
+where \(W\) is an irreducible \(\mathbb{F}H\)-module.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.1.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.1.10}
+If \(G\) acts transitively on a set \(X\) with a point stabilizer \(H\), then the permutation module \(\mathbb{F}X\) is isomorphic to the induced module \(\ind^G_H 1_H\).
+\end{problem}
+\begin{solution}
+Let \(H=\text{Stab}(x)\) be the stabilizer for the point \(x\in X\). For \(\ind^G_H1_H=\mathbb{F}G\otimes_{\mathbb{F}H}1_H\), we define a map 
+\begin{align*}
+	\phi:\ind^G_H1_H&\rightarrow \mathbb{F}X,\\ 
+	     g\otimes 1&\mapsto g\cdot x.
+\end{align*}
+For any \(h\in G\), we have 
+\[h\phi(g\otimes 1)=h(g\cdot x)=(hg)\cdot x=\phi(hg\otimes 1).\]
+This is a well-defined \(\mathbb{F}G\)-module homomorphism. Moreover, since the \(G\)-action on \(X\) is transive, we know that \(\phi\) is surjective. By theorem 7.1.7, we know that \(X\cong G/H\) is an isomorphism of \(G\)-sets. So we have \(\dim_\mathbb{F}\mathbb{F}X=|G/H|\). Let \(g_1,\ldots,g_k\) be coset 
+representatives for \(G/H\). By Lemma 24.1.9, \(\left\{ g_1\otimes 1,\ldots,g_k\otimes 1 \right\}\) is a basis for \(\ind^G_H1_H\). This tells us 
+\[\dim_\mathbb{F}\ind^G_H1_H=\dim_\mathbb{F}\mathbb{F}X=|G/H|.\]
+So \(\phi\) is an isomorphism by dimension reasons. We have proved \(\ind^G_H1_H\) is isomorphic to \(\mathbb{F}X\) as \(\mathbb{F}G\)-modules.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.2.4}
+Show that the map \(g\mapsto \begin{pmatrix}
+	0&1\\ 
+	-1&-1
+\end{pmatrix}\) defines a representation of the cyclic group \(C_3=\la g\ra\). Prove that this representation is irreducible over the field of real numbers.
+\end{problem}
+\begin{solution}
+Let \(A=\begin{pmatrix}
+	0&1\\ 
+	-1&-1
+\end{pmatrix}\). To check that \(\rho:g\rightarrow A\) is a representation of \(C_3\), we need to check that 
+\[I_3=\rho(1)=\rho(g^3)=\rho(g)^3=A^3.\]
+And indeed we have
+\[\begin{pmatrix}
+	0&1\\ 
+	-1&-1
+\end{pmatrix}\begin{pmatrix}
+	0&1\\ 
+	-1&-1
+\end{pmatrix}\begin{pmatrix}
+	0&1\\ 
+	-1&-1
+\end{pmatrix}=\begin{pmatrix}
+	1&0\\ 
+	0&1
+\end{pmatrix}.\]
+To show that \(\rho\) is an irreducible \(\mathbb{R}C_3\) representation, suppose the corresponding \(\mathbb{C}C_3\)-module \(V\) is generated by \(v_1,v_2\) as \(\mathbb{C}\)-vector space. If \(V\) 
+has a nontrivial submodule, then it must be one dimensional and generated by \(av_1+bv_2\) where \(a,b\in \mathbb{C}\). Since it is a submodule of \(V\), we have 
+\[A\begin{pmatrix}
+	a\\ 
+	b
+\end{pmatrix}\in \la av_1+bv_2\ra.\]
+So 
+\[A\begin{pmatrix}
+	a\\ 
+	b
+\end{pmatrix}=\begin{pmatrix}
+	ka\\ 
+	kb
+\end{pmatrix}\]
+for some \(k\in \mathbb{R}\). \(k\) must be an eigenvalue of \(A\) but \(A\) only have two complex eigenvalues. This is a contradiction and thus, \(V\) is irreducible.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.2.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.2.6}
+True or false? A non-abelian group of order 55 has exactly five one-dimensional complex representations up to isomorphism.
+\end{problem}
+\begin{solution}
+This is true. Let \(G\) be a non-abelian group of order 55. We know that \(|G|=55=5\times 11\). By Sylow's theory, we know that the Sylow 11-subgroup must be unique and is isomorphic to the cyclic group \(C_{11}\). There are two cases for the Sylow 5-subgroup. Either we have 
+a unique Sylow \(5\)-subgroup, or we have \(11\) Sylow \(5\)-subgroup, each of them isomorphic to \(C_5\) and conjugate to each other. Suppose \(G\) has a unique Sylow \(5\)-subgroup \(C_5\) and a unique Sylow \(11\)-subgroup \(C_{11}\). By Proposition 7.5.16(2), Both Sylow subgroups are normal and \(G\) is the 
+direct product \(G\cong C_5\times C_{11}\cong C_{55}\), which is abelian. So \(G\) must have \(11\) Sylow \(5\)-subgroup. In this case, \(C_{11}\) is the smallest normal subgroup of \(G\) such that \(G/C_{11}\cong C_5\) is abelian. So the commutator subgroup \(G'=C_{11}\). From Exercise 24.2.5, we know that \(G\) has exactly five 1-dimensional complex representations 
+up to isomorphism.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.2.8(Irreducible representation of dihedral groups)}
+Let 
+\[D_{2n}=\la\la a,b\mid a^n=b^2=1, bab^{-1}=a^{-1}\ra\ra\]
+be the dihedral group, \(\varepsilon:=e^{2\pi i/n}\), and set 
+\[B:=\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix},\ \ \ \ A_j:=\begin{pmatrix}
+	\varepsilon^j&0\\ 
+	0&\varepsilon^{-j}
+\end{pmatrix}\ \ \ \ (1\leq j<n).\]
+\begin{enumerate}[(1)]
+\item Show that for \(j=1,\ldots,n-1\) there is a matrix representation \(\rho_j:D_{2n}\rightarrow GL_2(\mathbb{C})\) such that \(\rho_j(a)=A_j\) and \(\rho_j(b)=B\). 
+\item Use Schur's Lemma to prove that \(\rho_1,\ldots,\rho_{n-1}\) are irreducible unless \(n\) is even and \(j=n/2\). 
+\item Use Schur's Lemma to prove that the representation \(\rho_1, \ldots,\rho_{\lfloor (n-1)/2\rfloor}\) are pairwise non-isomorphic. 
+\item If \(n=2k\) is even, then \(D_{2n}\) has four non-isomorphic one-dimensional representations, which together with \(\rho_1,\ldots,\rho_{k-1}\) give a complete and irrdundant list of irreducible \(\mathbb{C}D_{2n}\)-modules up to isomorphism. 
+\item If \(n=2k+1\) is odd, then \(D_{2n}\) has two non-isomorphic representations, which together with \(\rho_1,\ldots,\rho_k\) give a complete and irredundant list of irreducible \(\mathbb{C}D_{2n}\)-modules up to isomorphism.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item We need to check that \(B\) and \(A_j\) satisfy the relations for the dihedral group \(D_{2n}\). We have 
+\begin{align*}
+B^2&=\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix}\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix}=I_2,\\ 
+A^n&=\begin{pmatrix}
+	\varepsilon^j&0\\ 
+	0&\varepsilon^{-j}
+\end{pmatrix}^n=\begin{pmatrix}
+	\varepsilon^{nj}&0\\ 
+	0&\varepsilon^{-nj}
+\end{pmatrix}=I_2.\\ 
+BAB^{-1}&=\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix}\begin{pmatrix}
+	\varepsilon^j&0\\ 
+	0&\varepsilon^{-j}
+\end{pmatrix}\begin{pmatrix}
+	0&1\\ 
+	1&0
+\end{pmatrix}=\begin{pmatrix}
+	\varepsilon^{-j}&0\\ 
+	0&\varepsilon^j
+\end{pmatrix}=A^{-1}.
+\end{align*}
+This proves \(\rho_j\) is a matrix representation for all \(1\leq j\leq n-1\).
+\item Let \(V_j\) be the corresponding \(\mathbb{C}D_{2n}\)-module with repesct to the representation \(\rho_j\). Suppose it has an \(\mathbb{F}\)-basis \(v_1,v_2\). If \(V_j\) has a non-trivial 1-dimensional submodule \(W\), then \(W\) must be generated by 
+\(av_1+bv_2\) for some \(a,b\in \mathbb{C}\). We know that \(W\) is irreducible because it is 1-dimensional, by Schur's lemma, \(A_j\) acts on \(W\) by a scalar \(\lambda\in \mathbb{C}\). We have 
+\[A_j\begin{pmatrix}
+	a\\ 
+	b
+\end{pmatrix}=\begin{pmatrix}
+\varepsilon^j&0\\ 
+0&\varepsilon^{-j}
+\end{pmatrix}\begin{pmatrix}
+a\\ 
+b
+\end{pmatrix}=\begin{pmatrix}
+\varepsilon^ja\\ 
+\varepsilon^{-j}b
+\end{pmatrix}=\begin{pmatrix}
+	\lambda a\\
+	\lambda b
+\end{pmatrix}.\]
+This means \(\varepsilon^{2j}=1\), namely, \(e^{2\pi i\cdot \frac{2j}{n}}=1\). We have \(2j|n\). Since \(1\leq j\leq n-1\), we have \(2j=n\). Thus, \(V_j\) is not irreducible if and only if \(n\) is even and \(j=n/2\). 
+\item Let \(n=2k\) and \(1\leq i<j\leq k-1\). Let \(V_i,V_j\) be the \(\mathbb{C}D_{2n}\)-modules corresponding to the irreducible representation \(\rho_i\) and \(\rho_j\). Let \(\phi:V_i\rightarrow V_j\) be an isomorphism of \(\mathbb{C}D_{2n}\)-modules, represented by 
+an invertible matrix \(M\in GL_2(\mathbb{C})\). For any \(v\in V_1\), \(M\) being compatible with \(D_{2n}\)-action tells us that 
+\[A_j(Mv)=M(A_iv).\]
+This implies \(A_jM-MA_i\in \Ann V_i\). Because \(V_i\) is a two dimensional \(\mathbb{C}\)-vector space, so \(\Ann V_i=0\). We have 
+\[A_i=M^{-1}A_jM.\]
+Thus, \(\tr(A_i)=\tr(A_j)\). This is a contradiction because \(1\leq i<j\leq k-1\) and \(\varepsilon^{i}+\varepsilon^{-i}\neq \varepsilon^{j}+\varepsilon^{-j}\). 
+\item We calculate the commutator subgroup \(D'_{2n}\). Note that \(aba^{-1}b=a^2\in D'_{2n}\). So the cyclic subgroup generated by \(a^2\) is contained in \(D'_{2n}\). From a claim below by calculating conjugacy classes we know that \(\la a^2\ra\) is normal in \(D_{2n}\). Consider the quotient group \(D_{2n}/\la a^2\ra\), we can check that \(D_{2n}/\la a^2\ra\) is an abelian group by direct computation. Since the commutator subgroup 
+is the smallest subgroup such that \(D_{2n}/D'_{2n}\) is abelian. This proves that \(D'_{2n}=\la a^2\ra\). When \(n=2k\), we have 
+\[|D_{4k}/D'_{4k}|=4k/k=4.\]
+By Exercise 24.2.5(3), there exists four isomorphism classes of 1-dimensional complex representation of \(D_{2n}\). To show that this is a complete list of irreducible representations for \(\mathbb{C}D_{2n}\), by Theorem 24.2.2, we need to calculate the conjugacy classes for \(D_{2n}\). 
+\begin{claim}
+If \(n=2k\) is even, then the conjuagcy classes of \(D_{2n}\) is given by 
+\[\left\{ 1 \right\},\left\{ a,a^{2k-1} \right\},\ldots,\left\{ a^{k-1},a^{k+1} \right\},\left\{ a^k \right\},\left\{ b,a^2b,\ldots,a^{2k-2}b \right\},\left\{ ab,a^3b,\ldots,a^{2k-1}b \right\}.\]
+If \(n=2k+1\) is odd, then the conjugacy classes of \(D_{2n}\) is given by 
+\[\left\{ 1 \right\},\left\{ a,a^{2k} \right\},\left\{ a^2,a^{2k-1} \right\}\ldots,\left\{ a^k,a^{k+1} \right\},\left\{ b,ab,\ldots,a^{2k}b \right\}.\]
+\end{claim}
+\begin{claimproof}
+Assume \(n=2k\) is even, we first show \(\left\{ a^i,a^{2k-i} \right\}\) is a conjugate class for \(1\leq i\leq k\). Note that all elements in \(D_{2n}\) can be written as \(a^pb^q\), it is easy to see the conjugate action of \(a^p\) sends \(a^i\) to \(a^i\), so we only need to consider the conjugate action by \(a^p b\) for \(0\leq p\leq 2k-1\). We have 
+\[(a^p b) a^i (a^pb)^{-1}=a^pba^iba^{2k-p}=a^{p-i+2k-p}=a^{2k-i}.\]
+Similarly, we have 
+\[(a^pb)a^{2k-i}(a^pb)^{-1}=a^{2k-2k+i}=a^i.\] 
+This proves \(\left\{ a^i,a^{2k-i} \right\}\) is a conjugate class for \(i=0,1,\ldots,k\). We need to show the rest two is also conjugate classes. Consider the conjugate class of \(b\), we have 
+\begin{align*}
+	aba^{-1}&=aab=a^2b,\\ 
+	a(a^2b)a^{-1}&=aa^2ab=a^4b,\\ 
+	&\cdots\\ 
+	a(a^{2k-2}b)a^{-1}&=a^{2k}b=b.
+\end{align*}
+And for any \(0\leq i\leq k-1\), we have 
+\[b(a^{2i}b)b=ba^{2i}=a^{2k-2i}b.\]
+This calculates all elements insider the conjuagcy class of \(b\). Lastly, for the conjugacy class of \(ab\), we have 
+\begin{align*}
+	a(ab)a^{-1}&=a^3b,\\ 
+	a(a^3b)a^{-1}&=a^5b,\\ 
+	&\cdots\\ 
+	a(a^{2k-1}b)a^{-1}&=ab.
+\end{align*}
+Also, for \(0\leq i\leq k-1\), we have 
+\[b(a^{2i+1}b)b=a^{2k-2i-1}b=a^{2(k-1-i)+1}.\]
+This calculates the last conjugate class. 
+
+Now assume \(n=2k+1\) is odd. A similar calculation shows that we have \(k+1\) conjugacy classes 
+\[\left\{ a^i,a^{2k+1-i} \right\}\]
+for \(i=0,1,\ldots,k\). We need to show that rest elements are in the same conjugacy class. Note that 
+\begin{align*}
+	aba^{-1}&=a^2b,\\ 
+	&\cdots\\ 
+	a(a^{2k}b)a^{-1}&=a^{2k+2}b=ab,\\ 
+	&\cdots\\ 
+	a(a^{2k-1}b)a^{-1}&=a^{2k+1}b=b.
+\end{align*}
+This proves the rest elements are in the same conjugacy class.
+\end{claimproof}
+
+From the claim we know \(D_{4k}\) has \(k+3\) conjuagcy classes, so this is a complete and irredundant list of all the \(\mathbb{C}D_{2n}\)-modules up to isomorphism.
+\item Similar to what we have discussed above, the commutator group is generated by \(\la a^2\ra\). When \(n=2k+1\) is odd, note that \(a\) has odd order, so in this case \(a^2\) can generate the element \(a=a^{2k+2}\), so the commutator subgroup   
+\[|D'_{2n}|=2k+1.\]
+So \(D_{4k+2}\) has exactly two 1-dimensional complex representations up to isomorphism. From the claim above, we know that it has \(k+2\) conjugacy classes, so this is a complete and irredundant list of irreducible complex representations.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.3.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.3.3}
+Describe the character of the two-dimensional irreducible \(\mathbb{C}S_3\)-module.
+\end{problem}
+\begin{solution}
+We can calculate directly from Example 24.2.7, suppose \(V\) is the irreducible 2-dimensional \(\mathbb{C}S_3\)-module, then we know that 
+\begin{align*}
+	\chi_V((1))=\tr\begin{pmatrix}
+		1&0\\ 
+		0&1
+	\end{pmatrix}=2,\ \ \chi_V((12))=\tr\begin{pmatrix}
+		-1&1\\ 
+		0&1
+	\end{pmatrix}=0,\\ 
+	\chi_V((23))=\tr\begin{pmatrix}
+        1&0\\ 
+		1&-1
+	\end{pmatrix}=0,\ \ \chi_V((13))=\tr\begin{pmatrix}
+	     0&-1\\ 
+		-1&0
+	\end{pmatrix}=0,\\ 
+	\chi_V((123))=\tr\begin{pmatrix}
+         0&-1\\ 
+		 1&-1
+	\end{pmatrix}=-1,\ \ \chi_V((1))=\tr\begin{pmatrix}
+	     -1&1\\ 
+		 -1&0
+	\end{pmatrix}=-1.
+\end{align*}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.3.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.3.7}
+If \(g\in G\) is an involution then \(\chi(g)\in \mathbb{Z}\) and \(\chi(g)\equiv \chi(1)\) (mod 2) for any character \(\chi\).
+\end{problem}
+\begin{solution}
+Let \(d\) be the dimension of the representation and \(A=\rho(g)\) be the corresponding matrix representation for \(g\in G\). \(g\) being an involution tells us that 
+\(A^2-I=0\). So the minimal of polynomial of \(A\) is a factor of \(x^2-1\) with roots \(1\) and \(-1\). We know that the characteistic polynomial and the minimal polynomial have the same roots and the trace of 
+\(A\) is just the sum of all the roots of the characteistic polynomial, counting multiplicity. This means \(\tr(A)\) is the sum of \(1\) and \(-1\), so \(\chi(g)=\tr(A)\) is an integer. Suppose the minimal polynomial of \(A\) is 
+\(x-1\) or \(x+1\). In this case \(A=I\) or \(A=-I\), so they have the same parity. Now assume the minimal polynomial is \(x^2-1\). When \(d=2\), the characteistic polynomial of \(A\) is also \(x^2-1\), so \(2\) and \(\tr(A)=0\) has the same parity. Now suppose \(d\geq 3\). We can 
+write the characteistic polynomial as \((x^2-1)p(x)\) where \(p(x)\) is a product of \(x-1\) and \(x+1\) and \(\deg p(x)=d-2\). Note that when the dimension \(d\) increase \(1\), we add \(1\) or \(-1\) to the trace, so the 
+parity of the trace and the parity of the dimension is always the same. This proves 
+\[\chi(g)\equiv \chi(1)=d\ \  (\text{mod}\  2).\] 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.3.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.3.12}
+Let \(C_n\) be the cyclic group of order \(n\). Write dow explicit formulas for the central idempotents \(e_1,\ldots,e_n\in \mathbb{C}C_n\).
+\end{problem}
+\begin{solution}
+\(C_n=\la g\ra\) is an abelian group, so every irreducible \(\mathbb{C}C_n\) module has dimensional \(1\). From Example 24.2.3, let \(\xi\) be the \(n\)th primitive root of \(1\), then the irreducible 
+\(C_n\) representation \(\rho_i\) is given by \(\rho_i(g)=\xi^i\). Since every \(\rho_i\) is 1-dimensional, for any \(0\leq k\leq n-1\), we have \(\chi_i(g^k)=\rho_i(g^k)=\xi^{ik}\). And 
+\[\chi_i(g^{-k})=\chi_i(g^{n-k})=\xi^{i(n-k)}.\]
+By Lemma 24.3.11, we know that the central idempotent 
+\[e_i=\frac{1}{n}\sum_{k=0}^{n-1} \chi_i(g^{n-k})g^k=\frac{1}{n}\sum_{k=0}^{n-1}\xi^{i(n-k)}g^k.\] 	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 24.3.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{24.3.18}
+For any finite dimensional \(\mathbb{C}G\)-modules \(V\) and \(W\), we have 
+\[\dim \hom_{\mathbb{C}G}(V,W)=(\chi_V,\chi_W).\]
+\end{problem}
+\begin{solution}
+By the Wedderburn-Artin theorem, every finite dimenisonal \(\mathbb{C}G\)-module is semisimple and 
+\[\mathbb{C}G\cong M_{n_1}(\mathbb{C})\times \cdots\times M_{n_r}(\mathbb{C}).\]
+Let \(\left\{ L_1,\cdots,L_r \right\}\) be a complete and irrdundant set of irreducible \(\mathbb{C}G\)-modules. We know both \(V\) and \(W\) are semisimple, assume 
+\(V=\oplus_i V_i\) and \(W=\oplus_j W_j\) where \(V_i,W_j\in \left\{ L_1,\ldots,L_r \right\}\) are irreducible \(\mathbb{C}G\)-modules for any \(i,j\). On the left hand side, we have 
+\[\hom_{\mathbb{C}G}(V,W)=\hom_{\mathbb{C}G}(\oplus_i V_i,\oplus_j W_j)=\oplus_{i,j}\hom_{\mathbb{C}G}(V_i,W_j).\]
+On the left hand side, by Exercise 23.3.4, we have 
+\[(\chi_V,\chi_W)=(\chi_{\oplus_i V_i},\chi_{\oplus_j W_j})=(\sum_i \chi_{V_i},\sum_j \chi_{W_j})=\sum_{i,j}(\chi_{V_i},\chi_{W_j})\]
+since \((-,-)\) is an inner product. We only need to show that for two irreducible \(\mathbb{C}G\)-module \(L_i,L_j\) and the corresponding character \(\chi_i,\chi_j\), we have 
+\[\dim \hom_{\mathbb{C}G}(L_i,L_j)=(\chi_i,\chi_j).\]
+This is true. By Schur's lemma, we know that 
+\[\hom_{\mathbb{C}G}(L_i,L_j)=\begin{cases}
+	\mathbb{C},&\iif i=j,\\ 
+	0,&\iif i\neq j.
+\end{cases}\] 
+By Theorem 24.3.16, we know that \(\chi_1,\ldots,\chi_r\) are orthonormal with respect to the inner product \((-,-)\), so we also have 
+\[(\chi_i,\chi_j)=\begin{cases}
+	1,&\iif i=j,\\ 
+	0,&\iif i\neq j.
+\end{cases}\]
+This proves that 
+\[\dim \hom_{\mathbb{C}G}(L_i,L_j)=(\chi_i,\chi_j).\]
+\end{solution}
+
+\end{document}

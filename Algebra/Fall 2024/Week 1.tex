@@ -1,0 +1,262 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[numbered]{mcode}
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 1}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $9^{th}$ October, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.3}
+Let \(V\) be a finite dimensional vector space and \(W\subseteq V\) be a subspace. Show that \(W\) is finite dimensional and any basis of \(W\) can be extended to a basis of \(V\). Deduce that \(\text{dim}\ W\leq \text{dim}\ V\) with equality if and only if \(W=V\).
+\end{problem}
+\begin{solution}
+Write \(\text{dim}\ V=n\) where \(n\) is a positive integer. If \(\text{dim}\ W\geq n+1\), then there exist \(n+1\) linearly independent vectors \(w_1,w_2,\ldots,w_n,w_{n+1}\in W\). Denote by \(U\) the span of \(\left\{w_1,w_2,\ldots,w_n,w_{n+1}\right\}\), then by definition \(U\subseteq V\) and  \(\text{dim}\ V\geq n+1\). A contradiction. This proves that \(\text{dim}\ W\leq \text{dim}\ V\) and the vector space \(W\) is finite dimensional. Now by Corollary 1.2.2., \(W\) has a basis and by Lemma 1.2.1 (The Steinitz Exchange Lemma) that this basis can be extended to a basis of \(V\). This also shows that \(\text{dim}\ W=\text{dim}\ V\) if and only if \(W=V\).
+\end{solution} 
+
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{1.2.4}
+Let \(U\) and \(V\) be subspaces of a finite dimensional vector space \(W\). Prove that 
+$$\text{dim}\ (U+V)+\text{dim}\ (U\cap V)=\text{dim}\ U+\text{dim}\ V.$$
+
+\end{problem}
+\begin{solution}
+Suppose \(\text{dim}\, U=m\) and \(\text{dim}\, V=n\) where both \(m\) and \(n\) are positive integers. If \(U\cap V\) is empty, let \(\left\{u_1,\ldots,u_m\right \}\) be a basis for \(U\) and \(\left\{ v_1,\ldots,v_n\right\}\) a basis for \(V\), then the vectors
+$$\left\{u_1,\ldots,u_m, v_1,\ldots,v_n\right\} $$
+spanning \(U+V\) are linearly independent since \(U\) and \(V\) have no intersection. It follows that 
+$$\text{dim}\, (U+V)=m+n=\text{dim}\, U+\text{dim}\, V.$$
+\\
+Now assume \(W=U\cap V\) is not empty and \(\text{dim}\, W=l>0\) . By Exercise 1.2.3., \(W\) has a basis \(\left\{w_1,\ldots,w_l\right\}\) and it can be extended to a basis \(\left\{w_1,\ldots,w_l,u_{l+1},\ldots, u_m\right\}\) for \(U\) and a basis \(\left\{w_1,\ldots,w_l,v_{l+1},\ldots,v_n\right\}\) for \(V\). If the following claim is true, then the result follows. So we only need to prove the claim.
+\begin{claim}
+The set \(\left\{w_1,\ldots,w_l,u_{l+1},\ldots,u_m,v_{l+1},\ldots,v_n\right\}\) is a basis for \(U+V\).
+\end{claim}
+
+
+\begin{claimproof}
+It is clear that this set spans \(U+V\), we only need to prove that each vector is linearly independent. By definition, we see that 
+$$\left\{ w_1,\ldots,w_l,u_{l+1},\ldots,u_m \right\}$$
+is linearly independent. Suppose this is not true, then 
+$$\text{span}\left\{u_{l+1},\ldots,u_m,v_{l+1},\ldots,v_n\right\}\cap W\neq \varnothing.$$
+This contradicts that \(\left\{w_1,\ldots,w_l\right\}\) spans \(W\). 
+\end{claimproof}
+\end{solution} 
+
+
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.5}
+Let \(\theta:V\rightarrow W\) be a linear map between finite dimensional vector spaces. Show that 
+$$\text{dim}\ \text{im}\theta +\text{dim}\ \text{ker}\theta =\text{dim}\ V.$$
+    
+\end{problem}
+\begin{solution}
+Without loss of generality, we could assume \(\theta\) is surjective and we only need to show that
+$$\text{dim}\, \text{ker}\theta+\text{dim}\, W=\text{dim}\, V.$$
+Write \(\text{dim}\, V=n\) and \(\text{dim}\, W=m\). Note that 
+$$\text{ker}\theta=\left\{ v\in V\ |\ \theta(v)=0 \right\}$$
+is a vector subspace of \(V\). If \(\text{ker}\theta=0\), then \(\text{dim}\, \text{ker}\theta=0\) and \(\theta\) is both injective and subjective, thus it gives an isomorphism between \(V\) and \(W\). The result follows. Now assume \(\text{ker}\theta\) has nonzero vectors and by Corollary 1.2.2., it has a basis \(\left\{v_1,\ldots,v_l\right\}\) where \(l>0\) is the dimension of \(\text{ker}\theta\). By Lemma 1.2.1., this basis can be extended to 
+$$\left\{v_1,\ldots,v_l,v_{l+1},\ldots,v_n\right\},$$
+which is a basis of \(V\). If the following claim is true, then the result follows by counting the size of the basis.
+\begin{claim}
+The set \(\left\{\theta(v_{l+1},\ldots,\theta(v_n)\right\}\) is a basis for \(W\). 
+\end{claim}
+\begin{claimproof}
+First we are going to show that this indeed spans \(W\). Let \(w\in W\) be a nonzero vector. Since \(\theta\) is subjective, there exist \(v\in V \) such that \(\theta(v)=w\). Write \(v\) in the basis \(\left\{v_1,\ldots,v_n\right\}\), we have 
+$$\begin{align*}
+    w & = \theta(a_1v_1+\cdots+a_nv_n)\\ 
+      & = a_1\theta(v_1)+\cdots+a_n\theta(v_n)\\ 
+      & = a_{l+1}\theta(v_{l+1})+\cdots+a_n\theta(v_n).
+\end{align*}$$
+The last equality is because \(v_1,\ldots,v_l\in \text{ker}\theta\). Next we are going to show that they are linearly independent. Suppose there exist not all zero \(b_{l+1},\ldots,b_n\in \mathb{F}\) such that 
+$$\begin{align*}
+    0 & =b_{l+1}\theta(v_{l+1})+\cdots+b_n\theta(v_n)\\ 
+      & =\theta(b_{l+1}v_{l+1}+\cdots+b_nv_n).
+\end{align*}$$
+This implies that a nonzero vector \(b_{l+1}v_{l+1}+\cdots+b_nv_n \in \text{ker}\theta\). But \(\text{ker}\theta\) is spanned by \(\left\{v_1,\ldots,v_l\right\}\). A contradiction.
+\end{claimproof}
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.8}
+Assume that \(V\) is finite dimensional, prove that \(\iota_V:V\rightarrow V^{**}\) is an isomorphism of vector spaces. Show moreover the restriction of \(\iota_V\) define an isomorphism between \(U\) and \(U^{\circ \circ}\) for any subspace \(U\subseteq V\). (Usually, one use \(\iota_V\) to identify \(V\) with \(V^{**}\), and then the final result here asserts simply that \(U=U^{\circ \circ}\).)
+    
+\end{problem}
+\begin{solution}
+First we prove that the map \(\iota_V\) is injective. Suppose \(v\in V\) is in the kernel of \(\iota_V\). We have \(\iota_V(v)\in V^{**}\) is the zero morphism, which means \(f(v)=0\) for every \(f\in V^*\). This implies \(v=0\) and thus \(\text{ker}\iota_V=0\). This shows injectivity. Furthermore, take the dual space does not change dimension and since \(V\) is finite dimensional, we have \(\text{dim}\, V=\text{dim}\, V^{**}\). Therefore, \(\iota_V\) must be an isomorphism between vector spaces.
+\\
+Now restrict \(\iota_V\) to a subspace \(U\subseteq V\). By definition, we have 
+$$U^{\circ \circ}=\left\{u\in U^{**}\, |\, \iota_V(u)(f)=0\, \text{for all}\, f\in U^\circ \right\}.$$
+Identifying \(U\) with \(U^{**}\) and note that \(\iota_V(u)(f)=f(u)\). The result follows.
+\\
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.11}
+    Let \(\theta:V\rightarrow W\) be a linear map between finite dimensional vector spaces. Show that the following diagram commutes:
+$$\begin{tikzcd}
+	V & W \\
+	{V^{**}} & {W^{**}}
+	\arrow["\theta", from=1-1, to=1-2]
+	\arrow["{\iota_V}"', from=1-1, to=2-1]
+	\arrow["{\iota_W}", from=1-2, to=2-2]
+	\arrow["{\theta^{**}}"', from=2-1, to=2-2]
+\end{tikzcd}$$
+(In other words, identifying \(V\) with \(V^{**}\) and \(W\) with \(W^{**}\), we have that \(\theta=\theta^{**}\).)
+\end{problem}
+\begin{solution}
+Let \(v\in V\) be a nonzero vector. We have that \(\iota_W(\theta(v))\) is the element in \(W^{**}\) that sends every \(f\in W^*\) to \(f(\theta(v)\). On the other hand, \(\iota_V(v)\) is the element in \(V^{**}\) that sends \(g\in V^*\) to \(g(v)\). Then \(\theta^{**}(\iota_V(v))\) also sends \(f\in W^*\) to \(\theta^*f(v)=f(\theta(v))\). The diagram commutes.
+\\
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.12}
+Let \(\theta:V\rightarrow W\) be a linear map between finite dimensional vector spaces. Prove that \((\text{im}\theta)^\circ=\text{ker}(\theta^*)\) and \((\text{ker}\theta)^\circ=\text{im}(\theta^*)\). Deduce that \(\theta\) is subjective if and only if \(\theta^*\) is injective and vice versa.
+\end{problem}
+\begin{solution}
+First we prove \((\text{im}\theta)^\circ=\text{ker}(\theta^*)\). The dual map \(\theta^*\) is defined as follows:
+$$\begin{align*}
+    \theta^* : W^* & \rightarrow V^*,\\ 
+               f & \mapsto (v\mapsto f(\theta(v)).
+\end{align*}$$
+The kernel of \(\theta^*\) is the linear maps in \(W^*\) satisfying \(f(\theta(v))=0\) for all \(v\in V\). This is exactly the definition of \((\text{im}\theta)^\circ\). Now for the second part, replace the linear map \(\theta:V\rightarrow W\) with \(\theta^*:W^*\rightarrow V^*\) and use what we have proved, we obtain 
+$$\text{ker}(\theta^{**})=(\text{im}\theta^*)^\circ.$$
+Take the annihilator and use Exercise 1.2.8. and Exercise 1.2.11, we identify \(\theta\) with \(\theta^{**}\) and \((\text{im}\theta^*)^{\circ \circ}\) with \(\text{im}(\theta^*)\). The conclusion follows.
+\par 
+If \(\theta\) is surjective, then 
+$$\text{ker}(\theta^*)=(\text{im}\theta)^\circ=W^\circ=0.$$
+This implies \(\theta^*\) is injective. The converse situation is similar.
+\\
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.5.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{1.5.10}
+If \(I\) is an infinite set and \(X_i\) is a finite set for each \(i\in I\), then \(|\cup_{i\in I}X_i|\leq |I|\).
+\end{problem}
+\begin{solution}
+By assumption, for every \(i\in I\), \(|X_i|=a_i\) is a positive integer. Define a map \(f\) from \(\cup_{i\in I}X_i\) to \(\text{Fin}(I)\). For each \(i\in I\), first find a finite subset \(U\) of \(I\) with the size \(a_i+1\), next define \(f\) maps each element in \(X_i\) to a subset of U with the size \(a_i\).  Each element in \(X_i\) is mapped to a different subset. This is possible because \(2^{a_i+1}>a_i\). For different \(i,j\in I\), choose two finite subset of \(I\) which have no intersection. This can be done because \(I\) is infinite and each choice is a finite subset. Thus we define an injective map from \(\cup_{i\in I}\) to \(\text{Fin}(I)\). By Theorem 1.5.2. and Corollary 1.5.9., we have 
+$$|\cup_{i\in I}X_i|\leq |\text{Fin}(I)|=|I|.$$
+\\
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{1.6.3}
+Let \(V\) be a vector space and \(W\subseteq V\) be a subspace. Show that any basis of \(W\) can be extended to a basis of \(V\). Deduce that \(\text{dim}\, W\leq \text{dim}\, V\). If \(\text{dim}\, W=\text{dim}\, V\), is it true that \(W=V\)?
+\end{problem}
+\begin{solution}
+If \(W=0\), then use Theorem 1.6.1., and any basis of \(V\) would suffice. Now assume \(W\) has nonzero vectors. By Theorem 1.6.1., \(W\) has a basis set \(S\). Consider \(\Sigma\) of all linearly independent subsets of V containing \(S\), partially ordered by inclusion. \(\Sigma\) still satisfying the conditions for Zorn's lemma. Apply Zorn's lemma to \(\Sigma\) and the maximal element \(B\) in \(\Sigma\) is a basis of \(V\) extended from \(S\).
+\par 
+The inclusion \(S\hookrightarrow B\) is injective and therefore \(\text{dim}\, W \leq \text{dim}\, V\).If \(\text{dim}\, W=\text{dim}\, V\), it is not necessarily true that that \(W=V\). For example, consider the polynomial ring \(\mathbb{R}[x]\) as an infinite dimensional \(\mathbb{R}\)-vector space with a basis \(1,x,x^2,\ldots\). The subspace \(\mathbb{R}[x^2]\) with a basis \(1,x^2,x^4,\ldots\) has the same dimension since their bases are both countable, but \(\mathbb{R}[x^2]\) is strictly included in \(\mathbb{R}[x]\).
+
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{1.6.5}
+Let \(V\) be an infinite dimensional vector space over the filed \(\mathbb{F}\). Show that \(|V|=\text{max}(|\mathbb{F}|,\text{dim}\, V)\). Deduce that \(\text{dim}_\mathbb{Q}\mathbb{R}=2^{\aleph_0}\).
+\end{problem}
+\begin{solution}
+Any basis is a subset of \(V\), so by definition \(\text{dim}\, V\leq |V|\). Now choose a nonzero vector \(v\in V\) and consider the one dimensional subspace \(W=\text{span}\left\{v\right\}\). This is a subspace of \(V\) and we have \(|W|=|\mathbb{F}|\leq |V|\). So 
+$$|V|\geq \text{max}(|\mathbb{F}|,\text{dim}\, V).$$  
+Let \(S\) be a basis of \(V\). \(S\) is an infinite set. Note that every \(v\in V\) can be written as a linear combination of elements in \(S\) with coefficients in \(\mathbb{F}\). This implies \(|V|\leq |\mathbb{F}||S|\). Since \(|\mathbb{F}|\neq 0\) and \(|S|\) is infinite, by Theorem 1.5.7., \(|\mathbb{F}||S|=\text{max}(|\mathbb{F}|,\text{dim}\, V)\). This gives us 
+$$|V|\leq \text{max}(|\mathbb{F}|,\text{dim}\, V).$$
+We conclude that \(|V|= \text{max}(|\mathbb{F}|,\text{dim}\, V)\). Using this, we could calculate 
+$$\begin{align*}
+    |\mathbb{R}| & = \text{max}(|\mathbb{Q}|, \text{dim}_\mathbb{Q}\mathbb{R} )\\ 
+                 & = \text{max}(\aleph_0, \text{dim}_\mathbb{Q}\mathbb{R}) \\
+                 & = 2^{\aleph_0}.
+\end{align*}$$
+Now we have \(\text{dim}_\mathbb{Q}\mathbb{R}=2^{\aleph_0}\).
+\\
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.6.6}
+If \(V\) is infinite dimensional, then \(\text{dim}\, V^*=|\mathbb{F}|^{\text{dim}\, V}>\text{dim}\, V\).
+    
+\end{problem}
+\begin{solution}
+Let \(S\) be a basis of \(V\). We know that \(\text{dim}\, V=|S|\). If we could define a map from \(S\) to \(\mathbb{F}\) and then extend by \(\mathbb{F}\)-linearity, we get an element in \(V^*\). Every element in \(V^*\) can be obtained in this way. Now we can say \(V^*\cong \Pi_{i\in S}\mathbb{F}\). If \(|\mathbb{F}|\neq |\mathbb{F}|^{|S|}\), then \(\text{dim}\, V^*=|V^*|=|\mathbb{F}|^{|S|}>|S|\).
+\par
+Now suppose \(|\mathbb{F}|= |\mathbb{F}|^{|S|}\). Since \(|S|<|\mathbb{F}|\), there exist a strictly injective map \(h:S\hookrightarrow \mathbb{F}\). For any \(a\in \mathbb{F}\setminus \text{im}h\), we have a linear functional \(f(a)\) which sends each vector \(s\) in the basis to \(\frac{1}{h(s)-a}\). They are linearly independent for different \(a\) because \(h(s)\) is different for each vector \(s\in S\). Therefore, 
+$$\text{dim}\, V^*\geq |\mathbb{F}\setminus S|=|\mathbb{F}|=|\mathbb{F}|^{|S|}.$$
+And since \(|\mathbb{F}|^{|S}=|V^*|=\text{max}(|\mathbb{F}|,\text{dim}\, V^*)\), we have that 
+$$\text{dim}\, V^*=|\mathbb{F}|^{|S|}>|S|.$$
+\end{solution}
+\end{document}
+ 

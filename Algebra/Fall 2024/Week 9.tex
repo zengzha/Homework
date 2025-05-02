@@ -1,0 +1,317 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 9}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $4^{th}$ December, 2024 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.7.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.7.2}
+\(Z(Q_{4m})=\left\{ 1,a^m \right\}\), and \(Q_{4m}/Z(Q_{4m})\cong D_{2m}\).
+\end{problem}
+\begin{solution}
+When \(m=1\), we have a presentation 
+\[Q_4=\la\la a,b\,|\, a^2=1, b^2=a, bab^{-1}=a^{-1}=a\ra\ra.\]
+This is the presentation of the abelian group \(C_4\). In this case, the center \(Z(Q_4)=Q_4\cong C_4\), and \(Q_4/Z(Q_4)=Q_4/Q_4=\left\{ 1 \right\}\) is trivial. 
+
+When \(m\geq 2\), we know that every element of \(Q_{4m}\) can be written in the form \(a^ib^j\) for \(0\leq i<2m\) and \(j\in \left\{ 0,1 \right\}\). We first show that an element of the 
+form \(a^ib\) for \(0\leq i<2m\) is not in the center \(Z(Q_{4m})\). Suppose the opposite is true. Then we have \(a\cdot a^ib=a^ib\cdot a\). This implies \(ab=ba\), but we know that in \(Q_{4m}\), \(ba=a^{-1}b\), so 
+we have \(a^{-1}b=ab\). Note that \(m\geq 2\), so \(a^{-1}\neq a\). A contradiction. 
+
+\(Z(Q_{4m})\) only has the elements of the form \(a^i\) for some \(0\leq i<2m\). To make \(a^i\) commutes with \(b\), we must have 
+\[a^i=ba^ib^{-1}=a^{-1}ba^{i-1}b^{-1}=\cdots=a^{-i}.\]
+This shows that \(a^{2i}=1\). So \(2m|2i\) for some \(0\leq i<2m\) and \(i\) can only equal to \(m\) or \(0\). It is easy to see that \(a^0=1\) is indeed in the center. For \(a^m\), we know that \(a^m\) commutes with any 
+elements of the form \(a^i\) for \(0\leq i<2m\), and we have 
+\[a^m(a^ib)=a^i(a^mb)=a^i(ba^{-m})=(a^ib)a^m.\]
+So we can conclude that \(Z(Q_{4m})=\left\{ 1,a^m \right\}\). The quotient group \(Q_{4m}/Z(Q_{4m})\) has the following presentation 
+\[\la\la a,b\, |\, a^m=1,b^2=a^m=1,bab^{-1}=a^{-1}\ra\ra.\]
+This is the presentation of the dihedral group \(D_{2m}\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.7.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.7.11}
+Show that the free product \(\coprod_{i\in I}G_i\) together with homomorphism \(\iota_j:G_j\rightarrow \coprod_{i\in I}G_i\), \(g\mapsto (g)\) is the coproduct of the family 
+\((G_i)_{i\in I}\) in the category of groups.
+\end{problem}
+\begin{solution}
+We prove the universal property of \((\coprod_{i\in I}G_i,\iota_j)\). Suppose \(H\) is a group and we have a collection of maps \(f_j:G_j\rightarrow H\) such that for all \(j,k\in I\), if we have a map \(p_{jk}:G_j\rightarrow G_k\), the following diagram 
+commutes:
+\[\begin{tikzcd}
+	{G_j} & {G_k} \\
+	H
+	\arrow["{p_{jk}}", from=1-1, to=1-2]
+	\arrow["{f_j}"', from=1-1, to=2-1]
+	\arrow["{f_k}", from=1-2, to=2-1]
+\end{tikzcd}\]
+Consider a map \(f:\coprod_{i\in I}G_i\rightarrow H\) defined as follows. We define \(f(1)=1\) and for an alternating word \((g_1,\ldots,g_n)\) where \(g_l\in G_{i_l}\setminus \left\{ 1 \right\}\) and \(i_l\neq i_{l+1}\) for all 
+\(1\leq l<n\), we define 
+\[f(g_1,\ldots,g_n)=f_{i_1}(g_1)f_{i_2}(g_2)\cdots f_{i_n}(g_n).\] 
+Note that \(f\) defined in this way is the unique \(f\) making the following diagram commutes:
+\[\begin{tikzcd}
+	{G_j} && {G_j} \\
+	& {\coprod_{i\in I}G_i} \\
+	& H
+	\arrow["id", from=1-1, to=1-3]
+	\arrow["{\iota_j}", from=1-1, to=2-2]
+	\arrow["{f_j}"', from=1-1, to=3-2]
+	\arrow["{\iota_j}"', from=1-3, to=2-2]
+	\arrow["{f_j}", from=1-3, to=3-2]
+	\arrow["f", from=2-2, to=3-2]
+\end{tikzcd}\]
+for any \(j\in I\). For any \(g\in G_j\), this forces \(f\) mapping \((g)\in \coprod_{i\in I}G_i\) to \(f(g)\). Given \(p_{jk}:G_j\rightarrow G_k\), we have a commutative diagram:
+\[\begin{tikzcd}
+	{G_j} && {G_k} \\
+	& {\coprod_{i\in I}G_i} \\
+	& H
+	\arrow["{p_{jk}}", from=1-1, to=1-3]
+	\arrow["{\iota_j}", from=1-1, to=2-2]
+	\arrow["{f_j}"', from=1-1, to=3-2]
+	\arrow["{\iota_k}"', from=1-3, to=2-2]
+	\arrow["{f_k}", from=1-3, to=3-2]
+	\arrow["f", from=2-2, to=3-2]
+\end{tikzcd}\]
+This proves that \(\coprod_{i\in I}G_i\) is the coproduct of \((G_i)_{i\in I}\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.1.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{7.1.8}
+Prove that no infinite simple group \(G\) has a proper subgroup of finite index.
+\end{problem}
+\begin{solution}
+Suppose we have \(H<G\) a proper subgroup of index \(2<k<\infty\). Consider \(G\) acts on the set of left coset \(X=\left\{ gH\,|\, g\in G \right\}\), which is a 
+finite set of \(k\) elements: 
+\begin{align*}
+    G\times X&\rightarrow X,\\ 
+    g_1\cdot g_2H&\mapsto g_1g_2H. 
+\end{align*}
+This is a well-defined group action and for every \(g\in G\),note that if \(g g_1H=g g_2H\), then \(g_1H=g_2H\) is the same element in \(X\). This implies that \(g\) defines a permutation of the elements in \(X\), and 
+we have a map \(f:G\rightarrow S_k\). This is a group homomorphism since we have 
+\[(g_1g_2)\cdot gH=g_1 \cdot (g_2g)H.\]
+Note that \(\ker f\) is normal subgroup of \(G\) and since \(G\) is simple, \(\ker f=\left\{ 1 \right\}\) or \(\ker f=G\). If \(\ker f=\left\{ 1 \right\}\), then \(f\) is injective but \(G\) is infinite and \(S_k\) is finite. This is impossible. 
+Now assume \(\ker f=G\). This means that \(f\) is the trivial map and for any \(g\in G\), \(g\cdot g'H=gg'H=g'H\) for any \(g,g'\in G\). This shows that \(H=G\), which contradicts that \(H\) is a proper subgroup. This concludes that such \(H\) does not exists.  
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.2.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{7.2.3}
+Let \(G\) be a finite group. We choose an element \(g\in G\) randomly. Then replace it and make another random choice of an element \(h\in G\). Prove that the probability that \(g\) and \(h\) commute equals to \(k/|G|\), 
+where \(k\) is the number of conjugacy classes in \(G\).
+\end{problem}
+\begin{solution}
+This is the same as asking the probability of  randomly choosing two elements \(g,h\in G\) with the property that one is in the centralizer of another. For every fixed \(g\in G\), the probability of choosing \(g\) is \(\frac{1}{|G|}\), now we need to choose an element \(h\in C_G(g)\). The probability is 
+\(\frac{|C_G(g)|}{|G|}\). So the total probability should be summing over all elements \(g\in G\), which is 
+\[\sum_{g\in G}\dfrac{|C_G(g)|}{|G|^2}.\]
+\begin{claim}
+\(\sum_{g\in G}|C_G(g)|=k\cdot |G|\) where \(k\) is the number of conjugacy classes in \(G\).
+\end{claim}  
+\begin{claimproof}
+Let \(G\) acts on \(G\) by conjugation. By Lemma 7.1.6 (Orbit counting lemma), we have 
+\[k=\frac{1}{|G|}\sum_{g\in G}|G^g|\]
+where \(|G^g|=\left\{ h\in G\,|\, ghg^{-1}=h \right\}=C_G(g)\).
+\end{claimproof}
+
+So the probability is 
+\[\sum_{g\in G}\dfrac{|C_G(g)|}{|G|^2}=\dfrac{k|G|}{|G|^2}=\dfrac{k}{|G|}.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{7.2.4}
+Suppose that a finite group \(G\) has exactly two conjugacy classes. Determine \(G\) up to isomorphism.
+\end{problem}
+\begin{solution}
+If \(a\in Z(G)\), then the conjugacy classes of \(a\) must be of size \(1\). We know that \(1\in G\) is in the center \(Z(G)\). So this is one of the two conjugacy classes. Suppose the other conjugacy classes also has only 1 
+element \(g\). This is the same as for any \(h\in G\), we have \(hgh^{-1}=g\). So \(g\in Z(G)\). This means \(G\) is an abelian group of order 2. Thus, \(G\cong C_2\). Now assume the size of the other conjugacy class is \(k\geq 2\). By the class 
+equation 
+\[|G|=|Z(G)|+[G:C_G(g)]\]
+where \(g\notin Z(G)\) and by Theorem 7.1.7, \([G:C_G(g)]=\frac{|G|}{|C_G(g)|}=G\cdot g=k\geq 2\). And we have 
+\[|C_G(g)|=\frac{k+1}{k}.\]
+For any \(k\geq 2\), \(\frac{k+1}{k}\) is not an integer. A contradiction. So the group \(G\) can only be isomorphic to \(C_2\).   
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 7.5.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{7.5.7}
+If \(H<G\) contains a Sylow \(p\)-subgroup of \(G\) for each prime \(p\), then \(H=G\).
+\end{problem}
+\begin{solution}
+Suppose the order \(|G|=p_1^{a_1}\cdots p_n^{a_n}\). For any \(1\leq i\leq n\), we have a Sylow \(p\)-group of order \(p_i^{a_i}\). \(H\) containing this subrgoup means \(p_i^{a_i}||H|\). So we have 
+\[|H|\geq lcd(p_1^{a_1},\ldots,p_n^{a_n})=p_1^{a_1}\cdots p_n^{a_n}=|G|.\]
+So we conclude that \(H=G\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 8.1.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{8.1.10}
+If \(G\) is a finite solvable group, then \(G\) contains a non-trivial normal abelian subgroup. If \(G\) is not solvable then it contains a normal subgroup \(H\) such that 
+\(H'=H\).
+\end{problem}
+\begin{solution}
+Assume \(G\) is finite, solvable and simple. Then the only Jordan-H\"{o}lder factor \(G\) must be cyclic, in which case \(G\) itself is a nor-trivial normal abelian group. Now assume \(G\) is not simple and let \(H\) be 
+a non-trivial proper normal subgroup of \(G\). Consider the derived series of \(G\):
+\[G=G^{(0)}>G^{(1)}>\cdots>G^{(n)}=\left\{ 1 \right\}.\]
+If \(G\) is already abelian, then we are done. If \(G\) is not abelian, then there exists \(1\leq i\leq n\) such that \(H\cap G^{(i)}\) is non-trivial but \(H\cap G^{(i+1)}=\left\{ 1 \right\}\).
+
+\begin{claim}
+For \(1\leq i\leq n\), \(G^{(i)}\) is a normal subgroup of \(G\).
+\end{claim}
+\begin{claimproof}
+For any group \(G\) and a group automorphism \(\phi:G\rightarrow G\). For any \(x,y\in G\), we have 
+\[\phi(xyx^{-1}y^{-1})=\phi(x)\phi(y)\phi(x)^{-1}\phi(y)^{-1}\in G'.\]
+So we can see that \(\phi(G')\subset G'\), thus, the commutator subgroup is a characteristic subgroup. In particular, \(G'\) is normal in \(G\). So 
+we have \(G^{(i)}\) is a characteristic subgroup in \(G^{(i-1)}\) for \(1\leq i\leq n\), and by Exercise 6.1.12, \(G^{(i)}\) is a characteristic subgroup of \(G\) by induction. 
+In particular, \(G{(i)}\) is normal in \(G\).   
+\end{claimproof}
+
+Both \(G^{(i)}\) and \(H\) are normal subgroups of \(G\), so \(H\cap G^{(i)}\) is normal in \(G\). Note that for any \(a,b\in H\cap G^{(i)}\), we have \(aba^{-1}b^{-1}=1\) since \(H\cap G^{(i+1)}\) is trivial. 
+So \(H\cap G^{(i)}\) is a non-trivial normal abelain group in \(G\).
+
+Now assume \(G\) is finite and not solvable. Note that we have proved that for every \(i\geq 0\), \(G^{(i)}\) is a normal subgroup of \(G\). Consider the derived series 
+\[G=G^{(0)}>G^{(1)}>G^{(2)}>\cdots.\]
+Since \(G\) is not solvable, this sequence does not terminate and because \(G\) is finite, there must exists a \(G^{(k)}\) such that \(G^{(k+1)}=G^{(k)}\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 8.1.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{8.1.12}
+Let \(G\) be a finite group containing elements \(x\) and \(y\) such that the orders of \(x\), \(y\) and \(xy\) are pairwise relatively prime (and not all equal to 1). Prove that \(G\) is not solvable.
+\end{problem}
+\begin{solution}
+Let \(H=\la x,y\ra\) be the finite subgroup generated by \(x,y\). Assume ord\((x)=a\), ord\((y)=b\) and ord\((xy)=c\). \(a,b,c\) are pairwise coprime to each other. We know that the quotient group \(H/H'\) is abelian since 
+\(H'\) is the commutator subgroup. We have \(1=(xH)^a=(yH)^b=(xyH)^c\). So \(\ord (xH)|a\), \(\ord (yH)|b\) and \(\ord (xyH)|c\). Since \(a,b\) are coprime, \(\ord (xH)\) and \(\ord (yH)\) are also coprime. This means that 
+\[\ord (xyH)=\ord(xH\cdot yH)=\ord (xH) \cdot \ord (yH)\]
+is a divisor of \(c\). But \(a,b,c\) are pairwise coprime, so we have \(a=b=c=1\). This shows that \(H=H'\) and we can conclude that \(H\) is not solvable. Therefore, \(G\) is also not solvable as \(H\) is a subgroup of \(G\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 8.2.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{8.2.2}
+The group \(U\) of upper unitriangular \(n\times n\) matirces (over any field) is nilpotent.
+\end{problem}
+\begin{solution}
+Let \(A=(a_{ij})_{1\leq i,j\leq n}\) and \(B=(b_{ij})_{1\leq i,j\leq n}\) be two unitriangular matrices. We have 
+\begin{align*}
+    0=a_{ij}=b_{ij},\ &\, \text{if}\ 1\leq j<i\leq n,\\ 
+    1=a_{ii}=b_{ii},\ &\, \text{if}\ 1\leq i\leq n.
+\end{align*}
+Note that for any \(1\leq i\leq n\), the product \((AB)_{i,i+1}\) can be written as 
+\[(AB)_{i,i+1}=\sum_{k=1}^{n}a_{i,k}b_{k,i+1}=a_{i,i+1}+b_{i,i+1}.\]
+So we have \((A^{-1})_{i,i+1}=-a_{i,i+1}\) and 
+\[(ABA^{-1}B^{-1})_{i,i+1}=a_{i,i+1}+b_{i,i+1}-a_{i,i+1}-b_{i,i+1}=0.\]
+for all \(1\leq i\leq n\). The commutator subgroup \(\gamma_1(U)=[U,U]\) consists of upper unitriangular matrices \(A\) with the property that \(a_{i,i+1}=0\) for all \(1\leq i\leq n\). 
+
+Now use induction and we assume \(\gamma_m(U)\) consists of upper unitriangular matrices \(A\) with the property \(a_{i,i+m}=0\) for all \(1\leq i\leq n\). We have prove the case \(m=1\). For \(m\geq 2\), assume we have proved the case \(m-1\). 
+Let \(A=(a_{ij})\in \gamma_{m-1}(U)\) and \(B=(b_{ij})\in U\). We have 
+\[(AB)_{i,i+m}=\sum_{k=1}^{n}a_{i,k}b_{k,i+m}.\]
+Note that \(a_{i,k}=0\) if \(i+1\leq k\leq i+m-1\) by assumption and \(b_{k,i+m}=0\) if \(k>i+m\). SO 
+\[(AB)_{i,i+m}=a_{i,i+m}+b_{i,i+m}.\]
+This implies that 
+\[(ABA^{-1}B^{-1})_{i,i+m}=a_{i,i+m}+b_{i,i+m}-a_{i,i+m}-b_{i,i+m}=0.\]
+Now if \(m=n\), then \([\gamma_n(G),G]=\left\{ I_n \right\}\) is the trivial group and we can conclude that \(U\) is nilpotent.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 8.2.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{8.2.13}
+Let \(G\) be a finite group. Then \(G\) is nilpotent if and only if \(N_G(H)\gneq  H\) whenever \(H\lneq G\).
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item Necessity.
+
+Consider a finite central series for \(G\):
+\[\left\{ 1 \right\}=G_0\leq G_1\leq \cdots\leq G_n=G\] 
+such that \(G_i/G_{i-1}\leq Z(G/G_{i-1})\) for all \(1\leq i\leq n\). There exists \(1\leq k\leq n\) such that \(G_k\leq H\) but \(G_{k+1}\) is not a subgroup of \(H\). 
+Note that 
+\[G_{k+1}/G_k\leq Z(G/G_k)\leq N_{G/G_k}(H/G_k).\]
+
+\begin{claim}
+\(N_{G/G_k}(H/G_k)\) is a subgroup of \(N_G(H)/G_k\).
+\end{claim}
+\begin{claimproof}
+Let \(gG_k\in N_{G/G_k}(H/G_k)\). For any \(h\in H\), we have 
+\[(gG_k)(hG_k)(g^{-1}G_k)=(ghg^{-1})G_k\in H/G_k.\]
+There exist \(h'\in H\) such that \(ghg^{-1}h'^{-1}\in G_k\leq H\). This implies that \(ghg^{-1}\in H\), thus \(g\in N_G(H)\).
+\end{claimproof}
+
+Now we have \(G_{k+1}/G_k\leq N_G(H)/G_k\). \(G_{k+1}\) is a subgroup of \(N_G(H)\) and since \(G_{k+1}\) is strictly larger than \(H\), we have \(N_G(H)\gneq H\). 
+\item Sufficiency. 
+
+Let \(H<G\) be a maximal proper subgroup of \(G\). We know \(N_G(H)\) is strictly larger than \(H\). Since \(H\) is already maxmial, so \(N_G(H)=G\). This means for any \(g\in G=N_G(H)\), we have \(gHg^{-1}=H\). \(H\) is normal 
+in \(G\). By Proposition 8.2.12, we know that \(G\) is nilpotent.
+\end{enumerate}
+\end{solution}
+
+\end{document}

@@ -1,0 +1,436 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\Rad}{\text{Rad}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 6}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 648 - Abstract Algebra  \hfill Term: Winter 2025\\
+Instructor: Professor Arkady Berenstein \hfill Due Date: $19^{th}$ February, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.3}
+Let \((V_i)_{i\in I}\) be a family of \(R\)-modules. Then:
+\begin{enumerate}[(1)]
+\item \(\oplus_{i\in I}V_i\) is projective if and only if each \(V_i\) is projective. 
+\item \(\prod_{i\in I}V_i\) is injective if and only if each \(V_i\) is injective. 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item Note that \(\oplus_{i\in I}V_i\) is the coproduct of a family of \(R\)-modules \((V_i)_{i\in I}\) and thus has the universal property. Assume \(\oplus_{i\in I}V_i\) is projective. Fix \(k\in I\). Let \(\pi:V\twoheadrightarrow W\) be a surjective map 
+and \(\phi:V_k\rightarrow W\) is an \(R\)-module homomorphism. Define a family of \(R\)-module homomorphisms \(p_i:V_i\rightarrow W\) for any \(i\in I\) as follows: if \(i=k\), then \(p_i=\phi\). Otherwise \(p_i\) is the zero map. By universal property of \(\oplus_{i\in I}V_i\), we have a 
+unique map \(p:\oplus_{i\in I}V_i\rightarrow W\) such that \(p\circ j_k=\phi\) where \(j_k:V_k\rightarrow \oplus_{i\in I}V_i\) is the canonical inclusion. 
+\[\begin{tikzcd}
+	& {V_k} \\
+	& {\oplus_{i\in I}V_i} \\
+	V & W & 0
+	\arrow["{j_k}", from=1-2, to=2-2]
+	\arrow["\phi", curve={height=-30pt}, from=1-2, to=3-2]
+	\arrow["\psi"', dashed, from=2-2, to=3-1]
+	\arrow["p", from=2-2, to=3-2]
+	\arrow["\pi"', two heads, from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+\end{tikzcd}\]
+By projectivity of \(\oplus_{i\in I}V_i\), there exists a map \(\psi:\oplus_{i\in I}V_i\rightarrow V\) such that \(\pi\circ \psi=p\). So for any \(v\in V_k\), we have 
+\[\phi(v)=(p\circ j_k)(v)=(\pi\circ \psi\circ j_k)(v).\]
+This implies \(\psi\circ j_k\) is a map making the following diagram commutes:
+\[\begin{tikzcd}
+	& {V_k} \\
+	V & W & 0
+	\arrow["{\psi\circ j_k}"', dashed, from=1-2, to=2-1]
+	\arrow["\phi", from=1-2, to=2-2]
+	\arrow["\pi"', two heads, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+This proves that \(V_k\) is projective for any \(k\in I\).
+
+On the other hand, assume for each \(i\in I\), \(V_i\) is a projective \(R\)-module. Suppose \(\pi:V\rightarrow W\) is surjective and we have a homomorphism \(\phi:\oplus_{i\in I}V_i\rightarrow W\). For each \(i\in I\), consider the composition with canonical 
+inclusion \(\phi\circ j_i:V_i\rightarrow W\). By the projectivity of \(V_i\), there exists a map \(\psi_i:V_i\rightarrow V\) such that \(\pi\circ \psi_i=\phi\circ j_i\). 
+\[\begin{tikzcd}
+	& {V_i} \\
+	& {\oplus_{i\in I}V_i} \\
+	V & W & 0
+	\arrow["{j_i}", from=1-2, to=2-2]
+	\arrow["{\psi_i}"', dashed, from=1-2, to=3-1]
+	\arrow["\phi", from=2-2, to=3-2]
+	\arrow["\pi"', two heads, from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+\end{tikzcd}\]
+The universal property tells us there exists a map \(\psi:\oplus_{i\in I}V_i\rightarrow V\) such that \(\psi\circ j_i=\psi_i\). We claim that \(p\circ \psi=\phi\). For any \(v\in \oplus_{i\in I}V_i\), \(v\) can be written as \(v=\sum_{i\in I}v_i\) for each \(v_i\in V_i\). Then 
+\begin{align*}
+(\pi\circ\psi)(v)&=(\pi\circ\psi)(\sum_{i\in I}v_i)\\ 
+                 &=\sum_{i\in I}(\pi\circ \psi\circ j_i)(v_i)\\ 
+                 &=\sum_{i\in I}(\pi\circ\psi_i)(v_i)\\ 
+                 &=\sum_{i\in I}(\phi\circ j_i)(v_i)\\ 
+                 &=\phi(\sum_{i\in I}j_i(v_i))\\ 
+                 &=\phi(v)
+\end{align*}
+We have the following commutative diagram 
+\[\begin{tikzcd}
+	& {V_i} \\
+	& {\oplus_{i\in I}V_i} \\
+	V & W & 0
+	\arrow["{j_i}", from=1-2, to=2-2]
+	\arrow["{\psi_i}"', dashed, from=1-2, to=3-1]
+	\arrow["\psi", dashed, from=2-2, to=3-1]
+	\arrow["\phi", from=2-2, to=3-2]
+	\arrow["\pi"', two heads, from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+\end{tikzcd}\]
+This proves that \(\oplus_{i\in I}V_i\) is projective.
+\item Assume \(\prod_{i\in I}V_i\) is injective. Fix \(k\in I\). Given an injective homomorphism \(\iota:W\rightarrow V\) and a homomorphism \(\phi:W\rightarrow V_k\), for any \(k\neq i\in I\), consider 
+a family of zero maps \(W\rightarrow V_i\). By the universal property of the product \(\prod_{i\in I}V_i\), we have a unique map \(q:W\rightarrow \prod_{i\in I}V_i\) such that \(p_k\circ q=\phi\) where 
+\(p_k:\prod_{i\in I}V_i\rightarrow V_k\) is the canonical projection. 
+\[\begin{tikzcd}
+	0 & W & V \\
+	& {\prod_{i\in I}V_i} \\
+	& {V_k}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\iota", hook, from=1-2, to=1-3]
+	\arrow["q", from=1-2, to=2-2]
+	\arrow["\phi"', curve={height=30pt}, from=1-2, to=3-2]
+	\arrow["{p_k}", from=2-2, to=3-2]
+\end{tikzcd}\]
+\(\prod_{i\in I}V_i\) being injective implies that there exists \(\psi:V\rightarrow \prod_{i\in I}V_i\) such that \(\psi\circ \iota=q\). We claim we have the following commutative diagram 
+\[\begin{tikzcd}
+	0 & W & V \\
+	& {V_k}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\iota", hook, from=1-2, to=1-3]
+	\arrow["\phi"', from=1-2, to=2-2]
+	\arrow["{p_k\circ \psi}", dashed, from=1-3, to=2-2]
+\end{tikzcd}\]
+Indeed, given any \(w\in W\), we have 
+\begin{align*}
+    (p_k\circ \psi\circ \iota)(w)&=(p_k)(\psi\circ \iota)(w)\\
+                                 &=(p_k\circ q)(w)\\ 
+                                 &=\phi(w).
+\end{align*}
+This proves that for each \(i\in I\), \(V_i\) is injective. 
+
+Conversely, assume for any \(i\in I\), each \(V_i\) is injective. Given an injective homomorphism \(\iota:W\rightarrow V\) and a homomorphism \(\phi:W\rightarrow \prod_{i\in I}V_i\), consider the composition 
+\(p_i\circ \phi:W\rightarrow V_i\) where \(p_i:\prod_{i\in I}V_i\rightarrow V_i\) is the canonical projection. Since \(V_i\) is injective, there exists a homomorphism \(\psi_i:v\rightarrow V_i\) such that \(p_i\circ \phi=\psi_i\circ \iota\). 
+\[\begin{tikzcd}
+	& {V_i} \\
+	& {\prod_{i\in I}V_i} \\
+	0 & W & V
+	\arrow["{p_i}"', from=2-2, to=1-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow["\phi"', from=3-2, to=2-2]
+	\arrow["\iota"', hook, from=3-2, to=3-3]
+	\arrow["{\psi_i}"', dashed, from=3-3, to=1-2]
+\end{tikzcd}\]
+We have a family of homomorphisms \((\psi_i)_{i\in I}\). By the universal property of product, there exists a unique homomorphism \(\psi:V\rightarrow \prod_{i\in I}V_i\) such that for any \(i\in I\), we have \(p_i\circ \psi=\psi_i\). We claim that \(\psi\circ \iota=\phi\), namely 
+the following diagram commutes
+\[\begin{tikzcd}
+	& {\prod_{i\in I}V_i} \\
+	0 & W & V
+	\arrow[from=2-1, to=2-2]
+	\arrow["\phi", from=2-2, to=1-2]
+	\arrow["\iota"', hook, from=2-2, to=2-3]
+	\arrow["\psi"', from=2-3, to=1-2]
+\end{tikzcd}\]
+For any \(w\in W\) and \(i\in I\), we have 
+\begin{align*}
+    (p_i\circ\psi\circ \iota)(w)&=(\psi_i\circ \iota)(w)\\ 
+                                &=(p_i\circ \phi)(w).
+\end{align*}
+Since \(p_i:\prod_{i\in I}V_i\rightarrow V_i\) is the projection. We have \(\psi\circ \iota=\phi\). This proves that \(\prod_{i\in I}V_i\) is injective.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.5}
+Let \(P\), \(I\) and \(V\) be \(R\)-modules.
+\begin{enumerate}[(1)]
+\item If \(I\) is injective and \(I\subseteq V\) is a submodule then \(I\) is a summand of \(V\). 
+\item If \(P\) is projective and \(P\cong V/W\) for some submodule \(W\subseteq V\) then \(W\) is a summand of \(V\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item We have an exact sequence 
+\[\begin{tikzcd}
+	0 & I & V
+	\arrow[from=1-1, to=1-2]
+	\arrow["\iota", hook, from=1-2, to=1-3]
+\end{tikzcd}\]
+where \(\iota:I\rightarrow V\) is the inclusion. By Theorem 17.1.4, \(I\) being injective implies that there exists \(\psi:V\rightarrow I\) such that \(\psi\circ \iota=id_I\). We know that 
+\(\ker \psi\) is a submodule of \(V\) and by the first isomorphism theorem for modules we have \(V/\ker \psi\cong I\). We have a short exact sequence 
+\[\begin{tikzcd}
+	0 & {\ker\psi} & V & I & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow["\psi", shift left, from=1-3, to=1-4]
+	\arrow["\iota", shift left, from=1-4, to=1-3]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+Note that \(\psi\circ \iota=id_i\) implies that this sequence splits by Lemma 14.2.8. So we have \(\ker\psi\oplus I=V\). This proves that \(I\) is a summand of \(V\).
+\item \(P\cong V/W\) implies that we have a short exact sequence 
+\[\begin{tikzcd}
+	0 & W & V & P & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["i", hook, from=1-2, to=1-3]
+	\arrow["\pi", two heads, from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+where \(i\) is the inclusion and \(\pi\) is the projection. By Theorem 17.1.4, there exists a map \(\psi:P\rightarrow V\) such that \(\pi\circ \psi=id_P\). By Lemma 14.2.8, this sequence must split and we have 
+\(V\cong P\oplus W\) and thus, \(W\) is a summand of \(V\).
+\end{enumerate} 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.8 (Schanuel's Lemma)}
+Let 
+\begin{align*}
+    0\rightarrow B&\xrightarrow{j} P\xrightarrow{\pi} A\rightarrow 0,\\
+    0\rightarrow B'&\xrightarrow{j'} P'\xrightarrow{\pi'} A\rightarrow 0.
+\end{align*}
+be two short exact sequences of \(R\)-modules with \(P\) and \(P'\) projective. Then \(B\oplus P'\cong B'\oplus P\).
+\end{problem}
+\begin{solution}
+Consider the suset \(W\subseteq P\times P'\) satisfying the following property: for any \((a,b)\in P\times P'\), we have \(\pi(a)=\pi'(b)\). We claim that \(W\) is a submodule of \(P\times P'\). Indeed, for 
+any \(r\in R\) and \((a,b)\in W\), we have 
+\[\pi(ra)=r\pi(a)=r\pi'(b)=\pi'(rb).\]
+This implies \(r(a,b)=(ra,rb)\in W\). So \(W\) is a submodule of \(P\times P'\). Consider the composition 
+\begin{align*}
+    f:W&\rightarrow P\times P'\rightarrow P,\\ 
+    g:W&\rightarrow P\times P'\rightarrow P'.
+\end{align*}
+where the first map is the inclusion of submodules and the second map is the projection. We are going to show that \(f\) and \(g\) are surjective. For any \(p\in P\), \(\pi(p)\) is an element in \(A\). Since \(\pi'\) is surjective, 
+there exists \(p'\in P'\) such that \(\pi(p)=\pi'(p')\). Note that by definition, \((p,p')\) is in \(W\), and \(f(p,p')=p\). This proves that \(f\) is surjective. Similarly, we can show that \(g\) is surjective. 
+
+Next, we are going to show that the kernel of the map \(f:W\rightarrow P\) is isomorphic to \(B'\) and the kernel of \(g:W\rightarrow P'\) is isomorphic to \(B\). Suppose \((a,b)\in \ker f\), namely \(f(a,b)=a=0\in P\). Then by definition of \(W\), we have 
+\[0=\pi(0)=\pi(a)=\pi'(b).\]
+This tells us \(b\in \ker \pi'=B'\) by exactness. Conversely, suppose \(b\in B'=\ker \pi'\) and consider \((0,b)\in W\), we have \(f(0,b)=0\in P\). So \((0,b)\in \ker f\).
+This implies that the map \(B'\rightarrow W\) sending \(b\in B'\) to \((0,b)\in W\) is exactly the kernel of \(f:W\rightarrow P\). Similarly, we can prove that \(B\) is isomorphic to the kernel of \(g:W\rightarrow P'\). We have the following two 
+short exact sequence:
+\begin{align*}
+    0&\rightarrow B'\rightarrow W\xrightarrow{f}P\rightarrow 0,\\ 
+    0&\rightarrow B\rightarrow W\xrightarrow{g}P'\rightarrow 0.
+\end{align*}
+Note that \(P\) and \(P'\) is projective, so by Theorem 17.1.7, these two short exact sequences splits and we have 
+\[B'\oplus P\cong W\cong B\oplus P'.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.10}
+If every irreducible \(R\)-module is projective then \(R\) is semisimple artinian.
+\end{problem}
+\begin{solution}
+We want to prove that \(R\) is semisimple artinian, by Lemma 16.2.1, it is the same as proving the left regualr module \(\leftindex_R R\) is semisimple. By Theorem 14.2.19, it suffice to show that \(R\) is the sum of all of 
+its simple submodules. Consider \(S\) is the sum of all simple submodules in \(R\). Note that for every element \(a\in S\), \(a\) can be written as \(a=\sum v_i\) for some \(v_i\in V_i\) where each \(V_i\) is a simple ideal of \(R\). So for 
+any \(r\in R\), we have \(rv_i\in V_i\) for any \(i\). So \(ra=\sum rv_i\in S\). This proves that \(S\) is an ideal in \(R\). Assume \(S\neq R\), then \(S\) must be contained in some maximal ideal \(M\) in \(R\). Consider the following short exact sequence 
+\[0\rightarrow M\rightarrow R\rightarrow R/M\rightarrow 0.\]
+Since \(M\) is maximal, so \(R/M\) is isomorphic to a simple \(R\)-module by Exercise 14.1.23. We have known that every simple \(R\)-module is projective, so \(R/M\) is projective and the above short exact sequence splits. We have 
+\[R\cong M\oplus R/M.\]
+This shows that \(R/M\) is a simple \(R\)-submodule of \(R\) which is not in \(S\). A contradiction. So \(S=R\) and we have proved \(R\) is the sum of all its simple submodules, thus \(R\) is semisimple artinian.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.11}
+True or false? Every short exact sequence of \(\mathbb{C}[x]/(x^2-1)\)-modules is split.
+\end{problem}
+\begin{solution}
+This is true. The ideal \((x^2-1)=(x-1)\cap (x+1)\). The polynomials \(x-1\) and \(x+1\) are coprime in \(\mathbb{C}[x]\). By the Chinese remainder theorem, we have 
+\[\mathbb{C}[x]/(x^2-1)\cong \mathbb{C}[x]/(x-1)\times \mathbb{C}[x]/(x+1)\cong \mathbb{C}\times \mathbb{C}.\]
+By the Wedderburn-Artin theorem for algebras and Corollary 16.2.15, \(\mathbb{C}[x]/(x^2-1)\) is semisimple artinian and by Proposition 17.1.9, every \(\mathbb{C}[x]/(x^2-1)\)-module is projective. By Theorem 17.1.7, every short exact sequence of \(\mathbb{C}[x]/(x^2-1)\)-modules must split.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.16}
+Let \(P\) be a projective \(R\)-module, and 
+\[\cdots\rightarrow V_{n-1}\xrightarrow{f_n}V_n\xrightarrow{f_{n+1}}V_{n+1}\rightarrow \cdots \]
+be an exact complex of \(R\)-modules and \(R\)-module homomorphisms. Prove that the corresponding complex 
+\[\cdots\rightarrow\hom_R(P,V_{n-1})\xrightarrow{(f_n)_*}\hom_R(P,V_n)\xrightarrow{(f_{n+1})_*}\hom(P,V_{n+1})\rightarrow\cdots\]
+is exact. Formulate and prove the dual statement involving injective modules.
+\end{problem}
+\begin{solution}
+We first prove two useful claims.
+\begin{claim}
+\(\hom_R(P,\ker f_{n+1})=\ker (f_{n+1})_*\). Here we view \(\hom(P,\ker f_{n+1})\) as a subset of \(\hom(P,V_n)\).
+\end{claim}
+\begin{claimproof}
+Given \(g:P\rightarrow \ker f_{n+1}\hookrightarrow V_n\), the composition 
+\[f_{n+1}\circ g:P\rightarrow V_{n+1}\]
+must be the zero map since it factors through \(\ker f_{n+1}\). So we have \(\hom_R(P,\ker f_{n+1})\subseteq \ker (f_{n+1})_*\). Conversely, given \(g:P\rightarrow V_n\) such that 
+\[f_{n+1}\circ g:P\rightarrow V_{n+1}\] 
+is the zero map, by the universal property of the kernel, \(g\) must factor through \(\ker f_{n+1}\), so \(g\) can be viewed as an element in \(\hom_R(P,\ker f_{n+1})\). This proves that 
+\[\hom(P,\ker f_{n+1})=\ker (f_{n+1})_*.\]
+\end{claimproof}
+\begin{claim}
+\(\hom_R(P,\im f_n)=\im (f_n)_*\). Here \(\hom_R(P,\im f_n)\) is viewed as a subset of \(\hom_R(P,V_n)\).
+\end{claim}
+\begin{claimproof}
+Given \(g:P\rightarrow \im f_n\), consider the following diagram 
+\[\begin{tikzcd}
+	& P \\
+	{V_{n-1}} & {\text{im}f_n} & 0
+	\arrow["{g'}"', dashed, from=1-2, to=2-1]
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["{f_n}"', two heads, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+Because \(P\) is projective, there exists \(g':P\rightarrow V_{n-1}\) such that the above diagram commutes. 
+This proves that \(\hom_R(P,\im f_n)\subseteq \im (f_n)_*\). Conversely, consider a composition \(P\xrightarrow{h}V_{n-1}\xrightarrow{f_n}V_n\). We need to show that \(f_n\circ h\in \hom_R(P,\im f_n)\). This is true since 
+\(\im(f_n\circ h)\) must be contained in \(\im f_n\). Thus, \(\hom_R(P,\im f_n)=\im (f_n)_*\).
+\end{claimproof}
+
+The exactness of the original sequence tells us that \(\ker f_{n+1}=\im f_n\) and by the claims, we have 
+\[\ker(f_{n+1})_*= \hom_R(P,\ker f_{n+1})=\hom_R(P, \im f_n)=\im (f_n)_*.\]
+Therefore, we have an exact sequence 
+\[\cdots\rightarrow\hom_R(P,V_{n-1})\xrightarrow{(f_n)_*}\hom_R(P,V_n)\xrightarrow{(f_{n+1})_*}\hom(P,V_{n+1})\rightarrow\cdots\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.19}
+Consider \(\mathbb{Z}/2 \mathbb{Z}\) as a \(\mathbb{Z}/6 \mathbb{Z}\)-module via the natural projection \(\mathbb{Z}/6 \mathbb{Z}\twoheadrightarrow \mathbb{Z}/2 \mathbb{Z}\). 
+Then \(\mathbb{Z}/2 \mathbb{Z}\) is a projective \(\mathbb{Z}/6 \mathbb{Z}\)-module.
+\end{problem}
+\begin{solution}
+By the Chinese remainder Theorem, we have 
+\[\mathbb{Z}/6 \mathbb{Z}\cong \mathbb{Z}/2 \mathbb{Z}\oplus \mathbb{Z}/3 \mathbb{Z}.\]
+By Theorem 17.1.17, \(\mathbb{Z}/2 \mathbb{Z}\) is a projective \(\mathbb{Z}/6 \mathbb{Z}\)-module.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.21
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.21}
+If \(e\in R\) is an idempotent then \(Re\) is a projective \(R\)-module.
+\end{problem}
+\begin{solution}
+By Lemma 14.5.1, \(e\) being an idempotent implies that 
+\[R=Re\oplus R(1-e).\]
+By Theorem 17.1.17, \(Re\) is a projective \(R\)-module.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.26
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.26}
+Let \(R\) be a domain and \(\mathbb{F}\) be its field of fractions. Prove that \(\mathbb{F}\) is an injective \(R\)-module.
+\end{problem}
+\begin{solution}
+Let \(I\subset R\) be an ideal and \(\phi:I\rightarrow \mathbb{F}\) is a \(R\)-module homomorphism. If \(I\) is the zero ideal and \(\phi\) is the zero map, then \(\phi\) can be extended to the zero map 
+\(R\rightarrow \mathbb{F}\). Assume \(I\) contains nonzero elements. Pick \(a\in I\) and \(a\neq 0\), note that \(R\) is a domain so \(a\in I\subset R\) is invertible in \(\mathbb{F}\) since \(\mathbb{F}\) is the fraction field of \(R\). Define 
+\begin{align*}
+    \psi:R&\rightarrow \mathbb{F},\\ 
+         b&\mapsto \frac{b\phi(a)}{a}.
+\end{align*}
+For any \(r\in R\), we have 
+\[\psi(rb)=\frac{rb\phi(a)}{a}=r\psi(b).\]
+This is a \(R\)-module homomorphism. Moreover, for any \(b\in I\), note that \(R\) is commutative and we have 
+\[\psi(b)=\frac{b\phi(a)}{a}=\frac{\phi(ba)}{a}=\frac{a\phi(b)}{a}=\phi(b).\]
+We have a commutative diagram 
+\[\begin{tikzcd}
+	I & {\mathbb{F}} \\
+	R
+	\arrow["\phi", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["\psi"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+By Baer's Criterion, \(\mathbb{F}\) is an injective \(R\)-module. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.1.27
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.1.27}
+Let \(n\geq 1\). Then \(\mathbb{Z}/n \mathbb{Z}\) is an injective \(\mathbb{Z}/n \mathbb{Z}\)-module.
+\end{problem}
+\begin{solution}
+The ideals in \(\mathbb{Z}/n \mathbb{Z}\) are of the form \(\mathbb{Z}/d \mathbb{Z}\) where \(d|n\). Given a homomorphism \(\phi: \mathbb{Z}/d \mathbb{Z}\rightarrow \mathbb{Z}/n \mathbb{Z}\), we have \(d\phi(1)=0\in \mathbb{Z}/n \mathbb{Z}\). This implies 
+\(n|(d\phi(1))\). There exists \(r\in \mathbb{Z}\) such that \(rn=d\phi(1)\). Note that \(r<n\) since \(d\phi(1)<dn\). We define a homomorphism \(\psi:\mathbb{Z}/n \mathbb{Z}\rightarrow \mathbb{Z}/n \mathbb{Z}\) with \(\psi(1)=r\). We have the following diagram 
+\[\begin{tikzcd}
+	{\mathbb{Z}/d\mathbb{Z}} & {\mathbb{Z}/n\mathbb{Z}} \\
+	{\mathbb{Z}/n\mathbb{Z}}
+	\arrow["\phi", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["\psi"', from=2-1, to=1-2]
+\end{tikzcd}\]
+where \(i\) sends \(1\) to \(\frac{n}{d}\), thus identify \(\mathbb{Z}/d \mathbb{Z}\) as an ideal \(\frac{n}{d} \mathbb{Z}/n \mathbb{Z}\) in \(\mathbb{Z}/n \mathbb{Z}\). It is easy to check that for  any \(a\in \mathbb{Z}/d \mathbb{Z}\), we have 
+\[(\psi\circ i)(a)=\psi(\frac{n}{d}a)=\frac{n}{d}ra=\phi(1)a=\phi(a).\]
+By Baer's Criterion, \(\mathbb{Z}/n \mathbb{Z}\) is injective.
+\end{solution}
+\end{document}

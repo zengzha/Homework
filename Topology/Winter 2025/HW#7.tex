@@ -1,0 +1,1067 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{capt-of}
+\usepackage{multicol}
+\usepackage{unicode-math}
+\DeclareMathAlphabet\amsmathbb{U}{msb}{m}{n}
+\DeclareMathAlphabet\cmmathcal{OMS}{cmsy}{m}{n}
+%\setmathfont{Latin Modern Math}
+%\setmathfont[range={\mathscr,\mathbfscr}]{XITS Math}
+\usepackage{quiver}
+\usepackage{setspace}
+
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+%\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+\newenvironment{background}
+{\begin{center}
+    \begin{tabular}{|p{\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}}
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+%\let\mathbb\oldmathbb
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\im}{\text{Im}\,}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\renewcommand{\mathbb}{\amsmathbb}
+\newcommand{\iif}{\ \ \ \text{if}\ \ \ }
+\newcommand{\colim}{\text{colim}}
+\newcommand{\otherwise}{\text{otherwise}}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\ti}{\tilde}
+\newcommand{\Stab}{\text{Stab}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 7}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 635 - Algebraic Topology II \hfill Term: Winter 2025\\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $27^{th}$ February, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Let \(\mathcal{C}\) be a category, and \(i:A\rightarrow B\) and \(p:X\rightarrow Y\) be two maps. One says that \(p\) has the \textbf{Right Lifting Property}(RLP) 
+with respect to \(i\) if every solid-arrow diagram 
+\[\begin{tikzcd}
+	A & X \\
+	B & Y
+	\arrow[from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow[dashed, from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+has a lifting as shown. One also says that \(i\) has the \textbf{Left Lifting Property} (LLP) with respect to \(p\) in the same situation. Prove the following:
+\begin{enumerate}[(a)]
+\item If \(i:A\rightarrow B\) and \(j:B\rightarrow C\) both have the LLP with respect to \(p\), then so does \(ji\). 
+\item If \(i:A\rightarrow B\) has the LLP with respect to \(p\) and 
+\[\begin{tikzcd}
+	A & C \\
+	B & {B\sqcup_AC}
+	\arrow[from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+is a pushout diagram, then \(f\) also has the LLP with respect to \(p\). 
+\item If \(i_\alpha:A_\alpha\rightarrow B_\alpha\) is a set of maps having the LLP with respect to \(p\), then \(\sqcup_\alpha A_\alpha\rightarrow \sqcup_\alpha B_\alpha\) also 
+has the LLP with respect to \(p\). 
+\item If \(X_1\rightarrow X_2\rightarrow X_3\rightarrow \cdots\) is a sequence of maps and each \(X_i\rightarrow X_{i+1}\) has the LLP with respect to \(p\), then so does the map 
+\(X_1\rightarrow \colim_n X_n\). 
+\item One says that a map \(f':A'\rightarrow B'\) is a retract of a map \(f:A\rightarrow B\) if there exists a commutative diagram 
+\[\begin{tikzcd}
+	{A'} & A & {A'} \\
+	{B'} & B & {B'}
+	\arrow["{i_A}", from=1-1, to=1-2]
+	\arrow["{f'}"', from=1-1, to=2-1]
+	\arrow["{r_A}", from=1-2, to=1-3]
+	\arrow["f"', from=1-2, to=2-2]
+	\arrow["{f'}", from=1-3, to=2-3]
+	\arrow["{i_B}"', from=2-1, to=2-2]
+	\arrow["{r_B}"', from=2-2, to=2-3]
+\end{tikzcd}\]
+in which the two horizontal composites are the identities (compare this to the definition of one space being a retract of another). Prove that if \(f'\) is a retract of \(f\) and 
+\(f\) has the LLP with respect to \(p\), then so does \(f'\). 
+\item Explain the following: If a map of topological spaces \(E\rightarrow B\) has the RLP with respect to the maps \(I^{n-1}\times \left\{ 0 \right\}\hookrightarrow I^n\) (for all \(n\)), then it also has the RLP with respect to the following maps: 
+\begin{enumerate}[i.]
+\item \(\left\{ (0,0,\ldots,0) \right\}\hookrightarrow I^{n+1}\)
+\item \((I^n\times \left\{ 0 \right\})\cup (\partial I^n\times I)\hookrightarrow I^{n+1}\) 
+\item \((D^n\times \left\{ 0 \right\})\cup (S^{n-1}\times I)\rightarrow D^n\times I\) 
+\item \((X\times \left\{ 0 \right\})\cup (A\times I)\hookrightarrow X\times I\), for any inclusion \(A\hookrightarrow X\) where \(X\) is obtained from \(A\) by attaching a single \(n\)-cell. 
+\item \((X\times \left\{ 0 \right\})\cup A\times I\hookrightarrow X\times I\), for any relative CW-complex \((X,A)\).
+\item 
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item Suppose we have a commutative square 
+\[\begin{tikzcd}
+	A & X \\
+	C & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["ji"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We want to construct a lift \(\tilde{f}:C\rightarrow X\). The above square is the same as the following solid-arrow square 
+\[\begin{tikzcd}
+	A & X \\
+	B & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["h", dashed, from=2-1, to=1-2]
+	\arrow["fj"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We know that \(i:A\rightarrow B\) has the LLP with respect to \(p:X\rightarrow Y\), so there exists \(h:B\rightarrow X\) such that \(hi=g\) and \(ph=fj\). Next, consider the following solid-arrow square 
+\[\begin{tikzcd}
+	B & X \\
+	C & Y
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["j"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{f}}", dashed, from=2-1, to=1-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+This square commutes because the construction of \(h\) guarantees \(ph=fj\). Since \(j:B\rightarrow C\) has the LLP with respect to \(p:X\rightarrow Y\), there exists \(\tilde{f}:C\rightarrow X\) such that 
+\(p\tilde{f}=f\) and \(\tilde{f}j=h\). We claim that \(\ti{f}\) is the lift we wants, namely the following diagram commutes 
+\[\begin{tikzcd}
+	A & X \\
+	C & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["ji"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{f}}", from=2-1, to=1-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We need to check the two triangle commutes. By definition of \(\ti{f}\), we have \(p\ti{f}=f\), so the bottom triangle commutes. For the top triangle, we have 
+\(\ti{f}ji=hi=g\) by definition of \(h\) and \(\ti{f}\). We are done. 
+\item Suppse we have the following square 
+\[\begin{tikzcd}
+	C & X \\
+	{B\sqcup_AC} & Y
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["q"', from=2-1, to=2-2]
+\end{tikzcd}\]
+satisfying \(ph=qf\). We need to find a lift \(\ti{q}:B\sqcup_AC\rightarrow X\). We know we have a pushout square 
+\[\begin{tikzcd}
+	A & C \\
+	B & {B\sqcup_AC}
+	\arrow["j", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+satisfying \(fj=gi\). Consider the composition \(hj:A\rightarrow X\) and \(qg:B\rightarrow Y\), we have a solid-arrow diagram 
+\[\begin{tikzcd}
+	A & X \\
+	B & Y
+	\arrow["hj", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["r", dashed, from=2-1, to=1-2]
+	\arrow["qg"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We check the commutativity on the outer square. Indeed, \(phj=qfj=qgi\) from the commutativity of the previous two squares. We know \(i:A\rightarrow B\) has the LLP with respect to \(p:X\rightarrow Y\), so 
+there exists \(r:B\rightarrow X\) such that \(qg=pr\) and \(ri=hj\). Note that \(ri=hj\) gives us the following commutative diagram 
+\[\begin{tikzcd}
+	A & C \\
+	B & {B\sqcup_AC} \\
+	&& X
+	\arrow["j", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["h", curve={height=-18pt}, from=1-2, to=3-3]
+	\arrow["g"', from=2-1, to=2-2]
+	\arrow["r"', curve={height=18pt}, from=2-1, to=3-3]
+	\arrow["{\tilde{q}}"', dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+The universal property of the pushout \(B\sqcup_AC\) tells us there exists \(\ti{q}:B\sqcup_AC\rightarrow X\) such that \(\ti{q}g=r\) and \(\ti{q}f=h\). We claim that \(\ti{q}\) is the lift we are looking for. Consider the diagram 
+\[\begin{tikzcd}
+	C & X \\
+	{B\sqcup_AC} & Y
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{q}}", from=2-1, to=1-2]
+	\arrow["q"', from=2-1, to=2-2]
+\end{tikzcd}\]
+we need to check this commutes in both triangles. For the top triangle, we have \(\ti{q}f=h\) from the previous diagram. For the bottom triangle, we need to show that \(p\ti{g}=q\). Consider the following solid-arrow diagram 
+\[\begin{tikzcd}
+	A & C \\
+	B & {B\sqcup_AC} \\
+	&& Y
+	\arrow["j", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["{p\tilde{q}f}", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["g", from=2-1, to=2-2]
+	\arrow["qg"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow[dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+This outer diagram commutes because 
+\[p\ti{q}fj=phj=qgi\]
+By the universal property of the pushout, there exists a unique map \(B\sqcup_AC\rightarrow Y\) such that the two diagrams commutes. Note that 
+\[qf=ph=p\ti{q}f\]
+and 
+\[p\ti{q}g=pr=qg.\]
+So both \(q:B\sqcup_AC\rightarrow Y\) and \(p\ti{q}:B\sqcup_AC\rightarrow Y\) satisfy this condition. By uniqueness we know that \(p\ti{q}=q\). 
+\item Suppose we have a commutative diagram 
+\[\begin{tikzcd}
+	{\sqcup_\alpha A_\alpha} & X \\
+	{\sqcup_\alpha B_\alpha} & Y
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{\sqcup_\alpha i_\alpha}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+satisfying \(pf=g(\sqcup_\alpha i_\alpha)\). We need to find a lift \(\ti{g}:\sqcup_\alpha B_\alpha\rightarrow X\). For any \(\alpha\), we have the canonical inclusion 
+\(j_\alpha:A_\alpha\rightarrow \sqcup_\alpha A_\alpha\) and \(k_\alpha:B_\alpha\rightarrow \sqcup_\alpha B_\alpha\). By the definition of disjoint union, we have a commutative diagram 
+\[\begin{tikzcd}
+	{A_\alpha} & {\sqcup_\alpha A_\alpha} \\
+	{B_\alpha} & {\sqcup_\alpha B_\alpha}
+	\arrow["{j_\alpha}", from=1-1, to=1-2]
+	\arrow["{i_\alpha}"', from=1-1, to=2-1]
+	\arrow["{\sqcup_\alpha i_\alpha}", from=1-2, to=2-2]
+	\arrow["{k_\alpha}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+namely, \((\sqcup_\alpha i_\alpha)j_\alpha=k_\alpha i_\alpha\). For each \(\alpha\), we have the following solid-arrow diagram 
+\[\begin{tikzcd}
+	{A_\alpha} & X \\
+	{B_\alpha} & Y
+	\arrow["{fj_\alpha}", from=1-1, to=1-2]
+	\arrow["{i_\alpha}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{h_\alpha}", dashed, from=2-1, to=1-2]
+	\arrow["{gk_\alpha}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+This diagram commutes because \(pfj_\alpha=g(\sqcup_\alpha i_\alpha)j_\alpha=gk_\alpha i_\alpha\). We know each \(i_\alpha:A_\alpha\rightarrow B_\alpha\) has the LLP with respect to 
+\(p:X\rightarrow Y\), so there exists \(h_\alpha:B_\alpha\rightarrow X\) such that \(ph_\alpha=gk_\alpha\) and \(h_\alpha i_\alpha=fj_\alpha\). Consider the family of maps \(\left\{ h_\alpha:B_\alpha\rightarrow X \right\}_\alpha\), the universal 
+property of \(\sqcup_\alpha B_\alpha\) tells us that there exists a map \(\ti{g}:\sqcup_\alpha B_\alpha\rightarrow X\) such that \(\ti{g}k_\alpha=h_\alpha\). We claim that \(\ti{g}\) is the lift we want. We need to show we have a commutative diagram 
+\[\begin{tikzcd}
+	{\sqcup_\alpha A_\alpha} & X \\
+	{\sqcup_\alpha B_\alpha} & Y
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{\sqcup_\alpha i_\alpha}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{g}}", from=2-1, to=1-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We need to check the commutativity of the two triangle. For the top triangle, we have 
+\[\ti{g}(\sqcup_\alpha i_\alpha)j_\alpha=\ti{g}k_\alpha i_\alpha=h_\alpha i_\alpha=fj_\alpha\]
+So they should induce a unique map \(\sqcup_\alpha A_\alpha\rightarrow X\). This means \(\ti{g}(\sqcup_\alpha i_\alpha)=f\). For the bottom triangle, we have \(p\ti{g}k_\alpha=ph_\alpha=gk_\alpha\). So they should induce a unqiue map \(\sqcup_\alpha B_\alpha\rightarrow Y\). This means \(p\ti{g}=g\). We are done. 
+\item Let 
+\[X_1\xrightarrow{j_1}X_2\xrightarrow{j_2}\cdots\]
+be a sequence of maps and each \(j_i:X_i\rightarrow X_{i+1}\) has the LLP with respect to \(p:X\rightarrow Y\). Denote the colimit \(\colim_n X_n\) by \(Z\) and the canonical map by \(f_i:X_i\rightarrow Z\). We have a commutative diagram 
+\[\begin{tikzcd}
+	{X_i} & {X_{i+1}} \\
+	Z
+	\arrow["{j_i}", from=1-1, to=1-2]
+	\arrow["{f_i}"', from=1-1, to=2-1]
+	\arrow["{f_{i+1}}", from=1-2, to=2-1]
+\end{tikzcd}\]
+satisfying \(f_{i+1}j_i=f_i\) for all \(i\geq 1\). Suppose we have a commutative diagram 
+\[\begin{tikzcd}
+	{X_1} & X \\
+	Z & Y
+	\arrow["{g}", from=1-1, to=1-2]
+	\arrow["{f_1}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["q"', from=2-1, to=2-2]
+\end{tikzcd}\] 
+satisfying \(pg=qf_1\). We need to find a lift \(\ti{q}:Z\rightarrow X\). Note that the previous square gives us a lift \(g:X_1\rightarrow X\) for the following solid-arrow square 
+\[\begin{tikzcd}
+	{X_1} & X \\
+	{X_1} & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["id=k_1"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["g", dashed, from=2-1, to=1-2]
+	\arrow["{qf_1}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+Define \(k_1:X_1\rightarrow X_1\) be the identity map and for \(i\geq 2\), define 
+\[k_i=j_{i-1}j_{i-2}\cdots j_1:X_1\rightarrow X_i.\]
+We have proved in (a) that composition has the LLP if each of them has the LLP, so for any \(i\geq 1\), \(k_i:X_1\rightarrow X_i\) has the LLP with respect to \(p:X\rightarrow Y\). Consider the following solid-arrow diagram 
+\[\begin{tikzcd}
+	{X_1} & X \\
+	{X_i} & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{k_i}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{h_i}", dashed, from=2-1, to=1-2]
+	\arrow["{qf_i}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+This diagram commutes because
+\[pg=qf_1=qf_2j_1=qf_3j_2j_1=\cdots=qf_i j_{i-1}\cdots j_1=qf_ik_i.\]
+We know that \(k_i:X_1\rightarrow X_i\) has the LLP with respect to \(p:X\rightarrow Y\), so there exists \(h_i:X_i\rightarrow X\) such that \(h_ik_i=g\) and \(ph_i=qf_i\). Note that \(h_1=g\) by our previous discussion. Consider the family of maps 
+\(\left\{ h_i:X_i\rightarrow X \right\}_{i\geq 1}\), by the universal property of \(Z=\colim_n X_n\), there exists \(h:Z\rightarrow X\) such that \(hf_i=h_i\) for all \(i\geq 1\). We claim that \(h\) is the lift we are looking for. We need 
+to show that there is a commutative diagram 
+\[\begin{tikzcd}
+	{X_1} & X \\
+	Z & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{f_1}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["h", from=2-1, to=1-2]
+	\arrow["q"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We need to check the two triangles commutes. For the top triangle, we have \(hf_1=h_1=g\). For the bottom triangle, for every \(\i\geq 1\), we have 
+\[phf_i=ph_i=qf_i.\]
+This means \(ph=q\) because \(phf_i=qf_i\) indueces a unqiue map \(Z\rightarrow Y\). We are done. 
+\item 
+We have two commutative squares 
+\[\begin{tikzcd}
+	{A'} & A & {A'} \\
+	{B'} & B & {B'}
+	\arrow["{i_A}", from=1-1, to=1-2]
+	\arrow["{f'}"', from=1-1, to=2-1]
+	\arrow["{r_A}", from=1-2, to=1-3]
+	\arrow["f"', from=1-2, to=2-2]
+	\arrow["{f'}", from=1-3, to=2-3]
+	\arrow["{i_B}"', from=2-1, to=2-2]
+	\arrow["{r_B}"', from=2-2, to=2-3]
+\end{tikzcd}\]
+such that \(f'r_A=r_Bf\), \(fi_A=i_Bf'\), \(r_Ai_A=id_A\) and \(r_Bi_B=id_B\). 
+Suppose we have a commutative square 
+\[\begin{tikzcd}
+	{A'} & X \\
+	{B'} & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{f'}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["j"', from=2-1, to=2-2]
+\end{tikzcd}\]
+satisfying \(pg=jf'\). We need to find a lift \(h:B'\rightarrow X\). Consider the following solid-arrow square 
+\[\begin{tikzcd}
+	A & X \\
+	B & Y
+	\arrow["{gr_A}", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["k", dashed, from=2-1, to=1-2]
+	\arrow["{jr_B}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+This diagram commutes because \(pgr_A=jf'r_A=jr_Bf\). We know that \(f:A\rightarrow B\) has the LLP with respect to \(p:X\rightarrow Y\), so there exists \(k:B\rightarrow X\) 
+such that \(pk=jr_B\) and \(kf=gr_A\). Now let \(h=ki_B:B'\rightarrow X\). We claim that this is the lift we want. We need to prove the following digram commutes 
+\[\begin{tikzcd}
+	{A'} & X \\
+	{B'} & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{f'}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{ki_B}", from=2-1, to=1-2]
+	\arrow["j"', from=2-1, to=2-2]
+\end{tikzcd}\]
+For the top triangle, we have \(ki_Bf'=kfi_A=gr_Ai_A=g(id_A)=g\). For the bottom triangle, we have \(pki_B=jr_Bi_B=j(id_B)=j\). We are done. 
+\item This is equivalent to saying \(i:I^{n-1}\times \left\{  0\right\}\rightarrow I^n\) has the LLP with respect to \(p:E\rightarrow B\). We need to show the following maps also have LLP 
+with respect to \(p:E\rightarrow B\). 
+\begin{enumerate}[i.]
+\item We write \(\left\{0,\ldots,0\right\}\rightarrow I^{n+1}\) as the composition of the following maps 
+\[\left\{0,\ldots,0\right\}\rightarrow I\rightarrow I^2\rightarrow \cdots\rightarrow I^{n+1}\]
+where 
+\[I^i=\left\{(x_1,x_2,\ldots,x_i,0,\ldots,0):0\leq x_1,\ldots,x_i\leq 1\right\}.\]
+From the the assumption we know each \(I^i\rightarrow I^{i+1}\) has the LLP with respect to \(p:E\rightarrow B\). By (a), we know the composition also has the LLP with respect to \(p:E\rightarrow B\).
+\item We show that the space \(A=(I^n\times \left\{ 0 \right\})\cup (\partial I^n\times I)\) is homeomorphic to \(I^n\times \left\{ 0 \right\}\). The key idea here is to note that 
+\(\partial I^n\times I\) is homeomorphic to an annulus and \(A\) is the same \(n\)-disk with larger radius, so \(A\) is homeomorphic to \(I^n\times \left\{ 0 \right\}\). We know that \(I^n\times \left\{ 0 \right\}\hookrightarrow I^{n+1}\) has the LLP with 
+respect to \(p:E\rightarrow B\) from our assumption. Use (e) and we choose \(i\) and \(r\) to be the homeomorphisms in this case. 
+\item Note that \(I^n\) is homeomorphic to \(D^n\) with \(\partial I^n\cong S^{n-1}\), so \((D^n\times \left\{ 0 \right\})\cup (S^{n-1}\times I)\hookrightarrow D^n\times I\) is a retract of the map in 
+ii. (use the homeomorphism and its inverse as \(i\) and \(r\)), then use (e). 
+\item We know that \(X\) as a CW complex can be obtained from \(A\) by attaching a \(n\)-cell, so \((X,A)\) is a relative CW complex and recall that \(X\times I\) has a CW structure obatined from \(X\times \left\{ 0 \right\}\cup A\times I\) by attaching \(D^n\times I\) via the map 
+\[D^n\times \left\{ 0 \right\}\cup S^{n-1}\times I\rightarrow (X\times \left\{ 0 \right\})\cup (A\times I).\]
+This implies we have a pushout square 
+\[\begin{tikzcd}
+	{(D^n\times\left\{0\right\})\cup(S^{n-1}\times I)} && {(X\times\left\{0\right\})\cup(A\times I)} \\
+	{D^n\times I} && {X\times I}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}\]
+We know the left vertical map has the LLP with respect to \(p:E\rightarrow B\) from iii., so by (b), the right vertical map also has the LLP. 
+\item Combine iv. and iii., we define \(X_0=X\times \left\{ 0 \right\}\cup A\times I\). For \(i\geq 1\), \(X_i\) is obtained from \(X_{i-1}\) by adding one cell in \(X\).  So \(X_i\) can be written as \(X_i=(X\times \left\{ 0 \right\})\cup X_{i-1}\times I\). We obtain a sequence of spaces 
+\[X_1\hookrightarrow X_2\hookrightarrow\cdots\]
+For any \(i\geq 1\), \(X_{i-1}\hookrightarrow X_i\) has the LLP with respect to \(p:E\rightarrow B\) from iv. Moreover, note that \(X\times I\) is the colimit of this sequence. From (d), we know that 
+\[X_0=(X\times \left\{ 0 \right\})\cup (A\times I)\hookrightarrow X\times I\]
+also has the LLP with respect to \(p:E\rightarrow B\).
+\end{enumerate}  
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Suppose that \(A\hookrightarrow X\) is a CW-pair and a strong deformation retract (meaning that the deformation retraction can be taken to be constant on \(A\) at 
+all times). Let \(p:E\rightarrow B\) be a Serre fibration. Prove that any square 
+\[\begin{tikzcd}
+	A & E \\
+	X & B
+	\arrow[from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+has a lifting. 
+\end{problem}
+\begin{solution}
+Suppose we have the following commutative square 
+\[\begin{tikzcd}
+	A & E \\
+	X & B
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+satisfying \(pf=gi\). The strong deformation retraction implies there exists a homotopy \(H:X\times I\rightarrow X\) such that \(H(-,0)=id_X\), \(H(x,1)\in A\) for any \(x\in X\) and \(H(a,t)=a\) for any \(a\in A\) and \(t\in I\). 
+\(H(x,1)\in A\) for any \(x\in X\) tells us there exists \(r:X\rightarrow A\) such that the following diagram commutes 
+\[\begin{tikzcd}
+	X & X \\
+	& A
+	\arrow["{H(-,1)}", from=1-1, to=1-2]
+	\arrow["r"', from=1-1, to=2-2]
+	\arrow["i"', from=2-2, to=1-2]
+\end{tikzcd}\]
+namely, \(ir=H(-,1)\). Define a constant homotopy \(F:A\times I\rightarrow E\) with \(F(a,t)=f(a)\) for all \(t\in I\). Consider the following solid-arrow square 
+\[\begin{tikzcd}
+	{X\times\left\{1\right\}\cup A\times I} && E \\
+	{X\times I} && B
+	\arrow["{fr\cup F}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["p", from=1-3, to=2-3]
+	\arrow["J", dashed, from=2-1, to=1-3]
+	\arrow["gH"', from=2-1, to=2-3]
+\end{tikzcd}\]
+where \(i':X\times \left\{ 1 \right\}\rightarrow X\times I\) and \(i:A\times I\rightarrow X\times I\) are both inclusions. This is commutative because on\(X\times \left\{ 1 \right\}\), we have \(gH(-,1)=gir=pfr\). On \(A\times I\), for any time \(t\in I\) and \(a\in A\), we have \(pF(a,t)=pf(a)=gi(a)\). We know 
+\((X,A)\) is a CW pair and \(p:E\rightarrow B\) is a Serre fibration, by HELP, there exists a map \(J:X\times I\rightarrow E\) such that \(pJ=gH\) and \(J(i'\cup i)=fr\cup F\). Take \(h=J(-,0):X\rightarrow E\). We claim that \(h\) is the lift we are looking for. We need to show the following diagram commmutes 
+\[\begin{tikzcd}
+	A & E \\
+	X & B
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["h", from=2-1, to=1-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We check the commutativity for two triangles. For the top triangle, we have \(hi=J(-,0)i=F(-,0)=f\). For the bottom triangle, we have \(ph=pJ(-,0)=gH(-,0)=g\circ id_X=g\). We are done. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Let 
+\begin{align*}
+V_k(\mathbb{R}^n)&=\left\{ (v_1,\ldots,v_k):v_i\in \mathbb{R}^n,v_i\cdot v_j=\delta_{i,j} \right\},\\
+V'_k(\mathbb{R}^n)&=\left\{ (v_1,\ldots,v_k):v_i\in \mathbb{R}^n-\left\{ 0 \right\},v_i\cdot v_j=0 \ \ \text{if}\ \ i\neq j \right\}\\ 
+VI_k(\mathbb{R}^n)&=\left\{ (v_1,\ldots,v_k):v_i\in \mathbb{R}^n\ \ \text{and}\ \ v_1,\ldots,v_k\ \ \text{are linearly independent} \right\}.
+\end{align*}
+Note that there are inclusions 
+\[V_k(\mathbb{R}^n)\hookrightarrow V'_k(\mathbb{R}^n)\hookrightarrow VI_k(\mathbb{R}^n)\hookrightarrow (\mathbb{R}^n)^k.\]
+Prove that the first two of these inclusions are homotopy equivalences. Deduce that \(O(n)\hookrightarrow GL_n(\mathbb{R})\) is a homotopy equivalence, where 
+\(O(n)\) is the usual group of orthogonal \(n\times n\) matrices.
+\end{problem}
+\begin{solution}
+We divide the solution into three parts. In part (a), we prove that \(V_k(\mathbb{R}^n)\hookrightarrow V'_k(\mathbb{R}^n)\) is a homotopy equivalence. In part (b), we prove that \(V'_k(\mathbb{R})\hookrightarrow VI_k(\mathbb{R}^n)\) is a 
+homotopy equivalence. In part (c), we show that \(O(n)\hookrightarrow GL_n(\mathbb{R}^n)\) is a homotopy equivalence.
+\begin{enumerate}[(a)]
+\item Choose \(e_1,\ldots,e_n\in \mathbb{R}^n\) to be the canonical basis of \(\mathbb{R}^n\) (\(e_i\) has all coordinates equal to 0 except for \(i\)th coordinate equal to \(1\)). For \(v\in \mathbb{R}^n\), let 
+\(|v|\) denote the standard norm under this basis. We define a map \(H:V'_k(\mathbb{R}^n)\times I\rightarrow V'_k(\mathbb{R}^n)\). For any \(t\in I=[0,1]\), given \((v_1,\ldots,v_k)\in V'_k(\mathbb{R}^n)\), let 
+\[H((v_1,\ldots,v_k),t)=((1-t+\frac{t}{|v_1|})v_1,\ldots,(1-t+\frac{t}{|v_k|})v_k).\]
+\(H\) is continous and well-defined because for any \(t\in I\), we have 
+\[(1-t+\frac{t}{|v_i|})v_i\cdot (1-t+\frac{t}{|v_j|})v_j=(1-t+\frac{t}{|v_i|})(1-t+\frac{t}{|v_j|})v_i\cdot v_j=0\]
+if \(i\neq j\). Note that for any \((v_1,\ldots,v_k)\in V'_k(\mathbb{R}^n)\), we have \(H((v_1,\ldots,v_k),0)=(v_1,\ldots,v_k)\) and 
+\[H((v_1,\ldots,v_k),1)=(\frac{v_1}{|v_1|},\ldots,\frac{v_k}{|v_k|})\in V_k(\mathbb{R}^n).\]
+\(H\) defines a strong deformation retraction between \(V_k(\mathbb{R}^n)\) and \(V'_k(\mathbb{R}^n)\), so the inclusion map is a homotopy equivalence. 
+\item We choose the same basis and norm for \(\mathbb{R}^n\) as before and let \(v\cdot w\) denote the canonical inner product of two vectors in \(\mathbb{R}^n\). Let \((v_1,\ldots,v_k)\in VI_k(\mathbb{R}^n)\) be linearly independent vectors in \(\mathbb{R}^n\). 
+Recall the Gram-Schmit Process. we define 
+\begin{align*}
+	p:\mathbb{R}^n-\left\{ 0 \right\}\times \mathbb{R}^n-\left\{ 0 \right\}&\rightarrow \mathbb{R},\\ 
+	  (u,v)&\mapsto \frac{u\cdot v}{u\cdot u}.
+\end{align*}
+\(p\) is continous in both variables. Now define inductively 
+\begin{align*}
+	u_1&=v_1,\\ 
+	u_2&=v_2-p(u_1,v_2)u_1,\\ 
+	u_3&=v_3-p(u_1,v_3)u_1-p(u_2,v_3)u_2,\\ 
+	\cdots\\ 
+	u_k&=v_k-\sum_{i=1}^{k-1}p(u_i,v_k)u_i.
+\end{align*}
+For \(t\in I\) and every \(1\leq j\leq k\), consider the following sequence of \(k\times k\) matrices: \(M_1(t)=0\) is the zero matrix, for \(2\leq j\leq k\), \(M_j(t)\) has all entries zero except the \(j\)th row, which is 
+\[\begin{pmatrix}
+	-p(u_1,v_j)t&-p(u_2,v_j)t&\cdots-p(u_{j-1},v_j)t&0&\cdots&0
+\end{pmatrix}.\]
+Now we define 
+\[M(t)=(I+M_k(t))(I+M_{k-1}(t))\cdots(I+M_1(t)).\]
+When \(t=0\), all \(M_j(t)=0\), so \(M(0)=I\) is the identity matrix. When \(t=1\), we can see that 
+\begin{align*}
+(I+M_1(1))\begin{pmatrix}
+	v_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}&=\begin{pmatrix}
+1&&\\ 
+ &\ddots&\\ 
+ &&1
+\end{pmatrix}\begin{pmatrix}
+	v_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}=\begin{pmatrix}
+	u_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix},\\ 
+(I+M_2(1))\begin{pmatrix}
+	u_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}&=\begin{pmatrix}
+	1&&&\\ 
+	-p(u_1,v_2)&1&&\\ 
+	&&\ddots&\\ 
+	&&&1
+\end{pmatrix}\begin{pmatrix}
+	u_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}=\begin{pmatrix}
+	u_1\\ 
+	u_2\\
+	v_3\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}
+\end{align*}
+Similarly, after applying all \((I+M_j(1))\), we obatin 
+\[M(1)\begin{pmatrix}
+	v_1\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}=(I+M_k(1))(I+M_{k-1}(1))\cdots(I+M_1(1))=\begin{pmatrix}
+	u_1\\ 
+	u_2\\ 
+	\vdots\\ 
+	u_k
+\end{pmatrix}.\]
+Now we can define a homotopy, write 
+\[M(t)\begin{pmatrix}
+	v_1\\ 
+	v_2\\ 
+	\vdots\\ 
+	v_k
+\end{pmatrix}=\begin{pmatrix}
+	w_1(t)\\ 
+	w_2(t)\\ 
+	\vdots\\ 
+	w_k(t)
+\end{pmatrix}.\]
+Note that for any \(t\in I\), \(I+M_j(t)\) is a lower triangular matrix for all \(j\), we have 
+\[\det M(t)=\det (I+M_k(t))\cdot\det (I+M_{k-1}(t))\cdots\det(I+M_1(t))=1.\] 
+So \(w_1(t),\ldots,w_k(t)\) are always linearly independent. The map 
+\begin{align*}
+	J:VI_k(\mathbb{R}^n)\times I&\rightarrow VI_k(\mathbb{R}^n),\\ 
+	  ((v_1,\ldots,v_k),t)&\mapsto (w_1(t),\ldots,w_k(t)). 
+\end{align*}
+is continous and well-defined. When \(t=0\), note that \(M(0)=I_k\), so \(J(-,0)\) is the identity map. When \(t=1\), \(w_1(1),\ldots, w_k(1)\) is the result after applying the Gram-Schmit process, so we have 
+\[w_i(1)\cdot w_j(1)=0\]
+if \(i\neq j\). This means the image of \(J(-,1)\) is contained in \(V'_k(\mathbb{R}^n)\). So we proved the inclusion \(V'_k(\mathbb{R})\hookrightarrow VI_k(\mathbb{R}^n)\) is a strong deformation retraction, so it is a homotopy equivalence. 
+\item From the definition, it is easy to see that \(GL_n(\mathbb{R})=VI_n(\mathbb{R}^n)\) if we write \(n\times n\) a matrix \(A=(v_1,v_2,\ldots,v_n)\) and each \(v_i\) is a column vector. Note that the transpose 
+\[A^T=\begin{pmatrix}
+	v_1^T\\ 
+	v_2^T\\ 
+	\vdots\\
+	v_n^T
+\end{pmatrix}\]
+where each of \(v_i^T\) is a row vector. So we have 
+\[A^TA=\begin{pmatrix}
+	v_1^T\\ 
+	v_2^T\\ 
+	\vdots\\ 
+	v_n^T
+\end{pmatrix}\begin{pmatrix}
+	v_1&v_2&\cdots&v_n
+\end{pmatrix}=\begin{pmatrix}
+	v_1\cdot v_1&v_1\cdot v_2&\cdots&v_1\cdot v_n\\ 
+	v_2\cdot v_1&v_2\cdot v_2&\cdots&v_2\cdot v_n\\ 
+	\vdots&\vdots& &\vdots\\ 
+	v_n\cdot v_1&v_n\cdot v_2&\cdots&v_n\cdot v_n
+\end{pmatrix}=I_n.\]
+This proves that \(A\in O(n)\) if and only if \((v_1,\ldots,v_n)\in V_n(\mathbb{R}^n)\), from we proved in (a) and (b), we know that \(O(n)\hookrightarrow GL_n(\mathbb{R})\) is a homotopy equivalence.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+Let \(p_1:V_k(\mathbb{R}^n)\rightarrow S^{n-1}\) be the map that sends a \(k\)-frame \((v_1,\ldots, v_k)\) to its first vector \(v_1\). 
+\begin{enumerate}[(a)]
+\item For \(n\geq 2\) prove that \(p_1\) is a fiber bundle with fiber \(V_{k-1}(\mathbb{R}^{n-1})\). 
+\item Here is an easy fact: if \(E\rightarrow B\) is a fiber bundle with fiber \(F\) and both \(B\) and \(F\) are manifolds, then \(E\) is also a manifold and \(\dim E=\dim B+\dim F\). Using this 
+prove that \(V_k(\mathbb{R}^n)\) is a manifold and calculate its dimension. Calculate the dimension of \(O_n\). 
+\item Compute \(\pi_i(V_2(\mathbb{R}^7))\) for \(i\geq 4\) and say as much as you can about \(\pi_5\). Then figure out as much as you can about \(\pi_*(V_3(\mathbb{R}^8))\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item By symmetry it suffices to produce a local trivilization on some open neighborhood of \(U\) around the point \(e_1=(1,0,\ldots,0)\in S^{n-1}\). We first prove the following useful result that will help us produce the local trivialization.
+\begin{claim}
+If we choose \(U\) small enough, there exists a well-defined, continous map \(R:U\rightarrow O(n)\) such that for any \(x\in S^{n-1}\), where \(x\) is viewed as 
+a row vector in \(\mathbb{R}^n\), the first row of the image \(R(x)\in O(n)=V_n(\mathbb{R}^n)\) coincides with \(x\).
+\end{claim}
+\begin{claimproof}
+We first define a map \(R':U\rightarrow VI_n(\mathbb{R}^n)\): 
+\begin{align*}
+	R':U&\rightarrow VI_n(\mathbb{R}^n),\\ 
+	   x&\mapsto \begin{pmatrix}
+		x\\ 
+		e_2\\ 
+		\vdots\\ 
+		e_n
+	   \end{pmatrix}
+\end{align*}
+Here \(x\) is a row vector and for \(i\geq 2\), \(e_i\) is the standard basis in \(\mathbb{R}^n\). Note that \(U\) is an open neighborhood of \(e_1\), so if we choose \(U\) small enough, \(x,e_2,\ldots, e_n\) is linearly independent, thus 
+\(R'\) is well-defined and continous. From the previous problem, we know that \(VI_n(\mathbb{R}^n)\) is homotopy equivalent to \(V_n(\mathbb{R}^n)=O(n)\), so there exists \(r:VI_n(\mathbb{R}^n)\rightarrow O(n)\) such that the 
+first row does not change under this map \(r\). Let \(R=r\circ r'\), and \(R\) is well-defined and continous. Write 
+\[R(x)=\begin{pmatrix}
+	x\\ 
+	t_1\\ 
+	\vdots\\ 
+	t_n
+\end{pmatrix}\]
+where for any \(2\leq i\leq n\), each \(t_i\) viewed as a row vector is orthogonal to \(x\) and \(t_i\cdot t_i=1\).
+\end{claimproof}
+
+Choose \(U\) small enough to satisfy the claim. We define a map \(h:p^{-1}(U)\rightarrow U\times V_{k-1}(\mathbb{R}^{n-1})\). By definition of \(p:V_k(\mathbb{R}^n)\rightarrow S^{n-1}\) (this is just a projection), we can write every element in \(p^{-1}(U)\) as a 
+\(n\times k\) matrix 
+\[\begin{pmatrix}
+	x&v_2&\cdots&v_k
+\end{pmatrix}\]
+where 
+\[x=\begin{pmatrix}
+x_1\\ 
+x_2\\ 
+\cdots\\ 
+x_n
+\end{pmatrix}\in U\subset S^{n-1}\] 
+and 
+\[v_i=\begin{pmatrix}
+v_{i1}\\ 
+v_{i2}\\ 
+\vdots\\ 
+v_{in}
+\end{pmatrix}\]
+is a column vector for \(2\leq i\leq k\). For any \(x\in U\), apply \(R(x)\) in the claim to the \(n\times k-1\) matrix \(\begin{pmatrix}
+	v_2&\cdots&v_k
+\end{pmatrix}\) and we have 
+\[R(x)\begin{pmatrix}
+	v_2&\cdots&v_k
+\end{pmatrix}=\begin{pmatrix}
+	x\\ 
+	t_1\\ 
+	\vdots\\ 
+	t_n
+\end{pmatrix}\begin{pmatrix}
+	v_{21}&v_{31}&\cdots&v_{k1}\\ 
+	v_{22}&v_{32}&\cdots&v_{k2}\\ 
+	\vdots&\vdots&&\vdots\\ 
+	v_{2n}&v_{3n}&\cdots&v_{kn}
+\end{pmatrix}\]
+Note that \(x\) is orthogonal to \(v_2,v_3,\ldots,v_k\), so what we obtain is 
+\[R(x)\begin{pmatrix}
+	v_2&\cdots&v_k
+\end{pmatrix}=\begin{pmatrix}
+	0&0&\cdots&0\\ 
+	w_2&w_3&\cdots&w_k
+\end{pmatrix}\]
+where \(w_k\in \mathbb{R}^{n-1}\) and \(\left\{ w_2,w_2,\ldots,w_k \right\}\subset \mathbb{R}^{n-1}\) is still orthonormal because \(R(x)\in O(n)\) for any \(x\in U\). Define 
+\begin{align*}
+	h:p^{-1}(U)&\rightarrow U\times V_{k-1}(\mathbb{R}^{n-1}),\\ 
+	  \begin{pmatrix}
+		x&v_2&\cdots&v_k
+	  \end{pmatrix}&\mapsto (x,w_2,\ldots,w_k).
+\end{align*}
+This map is continous because \(R\) is continous. \(h\) is also invertible because \(R(x)\in O(n)\) is invertible and we can define an inverse, for any point \(x,w_2,\ldots,w_k\) for \(x\in S^{n-1}\) and \(w_2,\ldots,w_k\in V_{k-1}(\mathbb{R}^{n-1})\), we first embed it into 
+the \(n\times k\) matrix 
+\[\begin{pmatrix}
+	x_1&0&\cdots&0\\ 
+	x_2&&&\\ 
+	\vdots&w_2&\cdots&w_k\\ 
+	x_n& & &
+\end{pmatrix}\]
+Then multiply \(R(x)^{-1}\) on the left. It is easy to check that \(h\circ h^{-1}=id\) and \(h^{-1}\circ h=id\). This proves that \(h\) is a homeomorphism. We have a commutative diagram 
+\[\begin{tikzcd}
+	{U\times V_{k-1}(\mathbb{R}^{n-1})} && {p^{-1}(U)} \\
+	& U
+	\arrow[from=1-1, to=2-2]
+	\arrow["h"', from=1-3, to=1-1]
+	\arrow["p", from=1-3, to=2-2]
+\end{tikzcd}\]
+For \(n\geq 2\), we have a fiber bundle 
+\[V_{k-1}(\mathbb{R}^{n-1})\rightarrow V_k(\mathbb{R}^n)\rightarrow S^{n-1}.\]
+\item If \(k> n\), then \(V_k(\mathbb{R}^n)\) is empty by definition. For \(n=k=1\), \(V_1(\mathbb{R})=\left\{ 1,-1 \right\}\) contains only two points, so it is a zero dimensional manifold. For \(n\geq 2\), assume \(k\leq n\), 
+then by definition \(V_1(\mathbb{R}^{n-k+1})\cong S^{n-k}\) is a \((n-k)\)-dimensional manifold. We have a fiber bundle 
+\[V_1(\mathbb{R}^{n-k+1})\rightarrow V_2(\mathbb{R}^{n-k+2})\rightarrow S^{n-k+1}.\]
+where \(S^{n-k+1}\) is a \((n-k+1)\)-dimensional manifold. This implies that \(V_2(\mathbb{R}^{n-k+2})\) is a manifold and 
+\[\dim V_2(\mathbb{R}^{n-k+2})=\dim S^{n-k+1}+\dim V_1(\mathbb{R}^{n-k+1})=n-k+n-k+1=2n-2k+1\]
+By induction we can prove that \(V_k(\mathbb{R}^n)\) is a manifold and 
+\begin{align*}
+	\dim V_k(\mathbb{R}^n)&=(n-k)+(n-k+1)+(n-k+2)+\cdots+(n-1)\\ 
+	                      &=\dfrac{(n-1+n-k)k}{2}\\ 
+						  &=\dfrac{k(2n-k-1)}{2}
+\end{align*}
+Recall that \(O(n)=V_n(\mathbb{R}^n)\), so \(\dim O(n)=\dfrac{n(n-1)}{2}\).
+\item We have a fiber bundle 
+\(V_1(\mathbb{R}^6)\rightarrow V_2(\mathbb{R}^7)\rightarrow S^6\).
+% https://q.uiver.app/#q=WzAsMzEsWzEsMCwiU141Il0sWzIsMCwiVl8yKFxcbWF0aGJie1J9XjcpIl0sWzMsMCwiU142Il0sWzAsMSwiXFxwaV82Il0sWzAsMiwiXFxwaV81Il0sWzAsNCwiXFxwaV8zIl0sWzAsMywiXFxwaV80Il0sWzAsNSwiXFxwaV8yIl0sWzAsNiwiXFxwaV8xIl0sWzAsNywiXFxwaV8wIl0sWzEsMSwiPyJdLFsyLDEsIj8iXSxbMywxLCJcXG1hdGhiYntafSJdLFsxLDIsIlxcbWF0aGJie1p9Il0sWzIsMiwiPyJdLFszLDIsIjAiXSxbMywzLCIwIl0sWzMsNCwiMCJdLFszLDUsIjAiXSxbMyw2LCIwIl0sWzMsNywiKiJdLFsxLDcsIioiXSxbMSw2LCIwIl0sWzEsNSwiMCJdLFsxLDQsIjAiXSxbMSwzLCIwIl0sWzIsNywiPyJdLFsyLDYsIj8iXSxbMiw1LCI/Il0sWzIsNCwiPyJdLFsyLDMsIj8iXSxbMTIsMTMsIlxccGFydGlhbF82IiwyXSxbMTAsMTFdLFsxMSwxMl0sWzEzLDE0XSxbMTQsMTVdLFsxNSwyNV0sWzI1LDMwXSxbMzAsMTZdLFsxNiwyNF0sWzI0LDI5XSxbMjksMTddLFsxNywyM10sWzIzLDI4XSxbMjgsMThdLFsxOCwyMl0sWzIyLDI3XSxbMjcsMTldLFsxOSwyMV0sWzIxLDI2XSxbMjYsMjBdXQ==
+\[\begin{tikzcd}
+	& {S^5} & {V_2(\mathbb{R}^7)} & {S^6} \\
+	{\pi_6} & {?} & {?} & {\mathbb{Z}} \\
+	{\pi_5} & {\mathbb{Z}} & {?} & 0 \\
+	{\pi_4} & 0 & {?} & 0 \\
+	{\pi_3} & 0 & {?} & 0 \\
+	{\pi_2} & 0 & {?} & 0 \\
+	{\pi_1} & 0 & {?} & 0 \\
+	{\pi_0} & {*} & {?} & {*}
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow["{\partial_6}"', from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=4-2]
+	\arrow[from=4-2, to=4-3]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=5-2]
+	\arrow[from=5-2, to=5-3]
+	\arrow[from=5-3, to=5-4]
+	\arrow[from=5-4, to=6-2]
+	\arrow[from=6-2, to=6-3]
+	\arrow[from=6-3, to=6-4]
+	\arrow[from=6-4, to=7-2]
+	\arrow[from=7-2, to=7-3]
+	\arrow[from=7-3, to=7-4]
+	\arrow[from=7-4, to=8-2]
+	\arrow[from=8-2, to=8-3]
+	\arrow[from=8-3, to=8-4]
+\end{tikzcd}\]
+Note that \(V_1(\mathbb{R}^6)\cong S^5\), and we have a long exact sequence in homotopy groups as above. 
+By exactness, we know that \(\pi_i(V_2(\mathbb{R}^7))\) is trivial for \(0\leq i\leq 4\). For \(\pi_5(V_2(\mathbb{R}^7))\), from the exact sequence we know it is isomorphic to 
+\(\mathbb{Z}/\im \partial_6\) where \(\partial_6:\pi_6(S^6)\rightarrow \pi_5(S^5)\) is the connecting homeomorphism. So \(\pi_5(V_2(\mathbb{R}^7)\) is cyclic. Next, consider the fiber bundle 
+\[V_2(\mathbb{R}^7)\rightarrow V_3(\mathbb{R}^8)\rightarrow S^7.\]
+This induces a long exact sequence in homotopy groups 
+% https://q.uiver.app/#q=WzAsMzEsWzEsMCwiVl8yKFxcbWF0aGJie1J9XjcpIl0sWzIsMCwiVl8zKFxcbWF0aGJie1J9XjgpIl0sWzMsMCwiU143Il0sWzAsMSwiXFxwaV82Il0sWzAsMiwiXFxwaV81Il0sWzAsNCwiXFxwaV8zIl0sWzAsMywiXFxwaV80Il0sWzAsNSwiXFxwaV8yIl0sWzAsNiwiXFxwaV8xIl0sWzAsNywiXFxwaV8wIl0sWzEsMSwiPyJdLFsyLDEsIj8iXSxbMywxLCIwIl0sWzEsMiwiXFxtYXRoYmJ7Wn0vXFx0ZXh0e2ltfVxcLFxccGFydGlhbF82Il0sWzIsMiwiPyJdLFszLDIsIjAiXSxbMywzLCIwIl0sWzMsNCwiMCJdLFszLDUsIjAiXSxbMyw2LCIwIl0sWzMsNywiKiJdLFsxLDcsIioiXSxbMSw2LCIwIl0sWzEsNSwiMCJdLFsxLDQsIjAiXSxbMSwzLCIwIl0sWzIsNywiPyJdLFsyLDYsIj8iXSxbMiw1LCI/Il0sWzIsNCwiPyJdLFsyLDMsIj8iXSxbMTIsMTNdLFsxMCwxMV0sWzExLDEyXSxbMTMsMTRdLFsxNCwxNV0sWzE1LDI1XSxbMjUsMzBdLFszMCwxNl0sWzE2LDI0XSxbMjQsMjldLFsyOSwxN10sWzE3LDIzXSxbMjMsMjhdLFsyOCwxOF0sWzE4LDIyXSxbMjIsMjddLFsyNywxOV0sWzE5LDIxXSxbMjEsMjZdLFsyNiwyMF1d
+\[\begin{tikzcd}
+	& {V_2(\mathbb{R}^7)} & {V_3(\mathbb{R}^8)} & {S^7} \\
+	{\pi_6} & {?} & {?} & 0 \\
+	{\pi_5} & {\mathbb{Z}/\text{im}\,\partial_6} & {?} & 0 \\
+	{\pi_4} & 0 & {?} & 0 \\
+	{\pi_3} & 0 & {?} & 0 \\
+	{\pi_2} & 0 & {?} & 0 \\
+	{\pi_1} & 0 & {?} & 0 \\
+	{\pi_0} & {*} & {?} & {*}
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=4-2]
+	\arrow[from=4-2, to=4-3]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=5-2]
+	\arrow[from=5-2, to=5-3]
+	\arrow[from=5-3, to=5-4]
+	\arrow[from=5-4, to=6-2]
+	\arrow[from=6-2, to=6-3]
+	\arrow[from=6-3, to=6-4]
+	\arrow[from=6-4, to=7-2]
+	\arrow[from=7-2, to=7-3]
+	\arrow[from=7-3, to=7-4]
+	\arrow[from=7-4, to=8-2]
+	\arrow[from=8-2, to=8-3]
+	\arrow[from=8-3, to=8-4]
+\end{tikzcd}\]
+By exactness, we know that \(\pi_i(V_3(\mathbb{R}^8))\) is trivial for \(0\leq i\leq 4\), and 
+\[\pi_5(V_3(\mathbb{R}^8))\cong \pi_5(V_2(\mathbb{R}^7))\cong \mathbb{Z}/\partial_6\]
+is also cyclic.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Let \(G=D_4=\la a,b\mid a^4=b^2=1,abab=1\ra\), the dihedral group of order 8. Draw the Cayley graphs for all of the transitive \(G\)-sets. In each of your pictures, identify the stabilizer of each point in the \(G\)-set. 
+Which of the \(G\)-sets \(S\) have the property that \(\Aut_G(S)\) (the group of automorphisms of \(S\) as a left \(G\)-set) acts transitively on the points?
+\end{problem}
+\begin{solution}
+We know that any transitive \(G\)-set must have the form \(G/H\) for some \(H\leq G\) is a subgroup of \(G\). The order of \(G\) is \(8\), so the order of its subgroup must be 
+\(1,2,4,8\). So the size of the \(G\)-set \(S\) must be \(1,2,4,8\). In all the following Cayley graphs, the black line corresponds to the generator \(a\), and the red line corresponds to the generator \(b\). Note that the 
+group acts on the left for every \(G\)-set \(S\), so we apply the elements on \(S\) from the right. For convenience, we assume every element in \(G\) has the form \(b^ia^j\) where \(i=0,1\) and \(j=0,1,2,3\). \(e\) denotes the 
+identity element. Before discussing the group action, we prove a useful fact. 
+\begin{claim}
+Let \(S\) be a left \(G\)-set and \(\Aut_G(S)\) be the automorphism group of left \(G\)-set \(S\). Assume the group action is transitive. Suppose \(s\in S\) and \(\phi\in \Aut_G(S)\). Then \(\phi(s)\) and \(s\) have the same stabilizer. 
+Conversely, if \(s,t\in S\) have the same stabilizer, then there exists \(\phi\in \Aut_G(S)\) such that \(\phi(s)=t\). 
+\end{claim}
+\begin{claimproof}
+Let \(g\in \Stab_G(s)\). Then we have 
+\[\phi(s)=\phi(g\cdot s)=g\cdot \phi(s).\]
+So \(g\) is also in the stabilizer of \(\phi(s)\). Conversely, assume \(s,t\in S\) have the same stabilizer. Define \(\phi(s):=t\) and \(\phi(g\cdot s):=g\cdot \phi(s)=g\cdot t\). Since \(G\) acts transitively on \(S\), this defines a map 
+\(\phi:S\rightarrow S\) and compatible with group action. Note that \(\phi\) is well-defined. Indeed, suppose \(a\cdot s=b\cdot s\in S\), then \(b^{-1}a\in \Stab_G(S)\). And by definition, 
+\[a\cdot t=a\cdot \phi(s)=\phi(a\cdot s)=\phi(b\cdot s)=b\cdot\phi(s)=b\cdot t.\]
+So \(b^{-1}a\in \Stab_G(t)\). Since \(\Stab_G(s)=\Stab_G(t)\), this map \(\phi\) is well-defined.
+\end{claimproof}
+
+\begin{enumerate}[(1)]
+\item When \(|S|=1\).\\ 
+We have only one Cayley Graph as follows:
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% |S|=1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://q.uiver.app/#q=WzAsMSxbMCwwLCJcXGJ1bGxldCJdLFswLDAsImEiXSxbMCwwLCJiIiwwLHsiYW5nbGUiOjE4MCwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
+\begin{figure}[h]
+\centering
+  \begin{tikzcd}
+	\bullet
+	\arrow["a", from=1-1, to=1-1, loop, in=55, out=125, distance=10mm]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=1-1, loop, in=235, out=305, distance=10mm]
+\end{tikzcd}
+\caption{\text{Cayley Graph 1.1}}
+\end{figure}
+We only have one point in this graph, so the stabilizer is the whole group \(G\). The automorphism group \(\Aut_G(S)\) is trivial, and since we only have one point, it obviously acts transitively on the point.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% |S|=2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item When \(|S|=2\).\\ 
+We have three connected Cayley graphs.
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJzXzEiXSxbMSwwLCJzXzIiXSxbMCwwLCJiIiwwLHsiYW5nbGUiOi05MCwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMSwxLCJiIiwwLHsiYW5nbGUiOjkwLCJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFswLDEsImEiLDIseyJjdXJ2ZSI6M31dLFsxLDAsImEiLDIseyJjdXJ2ZSI6M31dXQ==
+\begin{figure}[h]
+\begin{subfigure}{0.33\textwidth}
+\centering
+\begin{tikzcd}
+	{s_1} & {s_2}
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+	\arrow["a"', curve={height=18pt}, from=1-1, to=1-2]
+	\arrow["a"', curve={height=18pt}, from=1-2, to=1-1]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=1-2, to=1-2, loop, in=325, out=35, distance=10mm]
+\end{tikzcd}
+\caption{Cayley Graph 2.1}
+\end{subfigure}
+\begin{subfigure}{0.33\textwidth}
+\centering
+\begin{tikzcd}
+	{s_1} & {s_2}
+	\arrow["a", curve={height=12pt}, from=1-1, to=1-2]
+	\arrow["b"', color={rgb,255:red,214;green,92;blue,92}, curve={height=30pt}, from=1-1, to=1-2]
+	\arrow["a", curve={height=12pt}, from=1-2, to=1-1]
+	\arrow["b"', color={rgb,255:red,214;green,92;blue,92}, curve={height=30pt}, from=1-2, to=1-1]
+\end{tikzcd}
+\caption{Cayley Graph 2.2}
+\end{subfigure}
+\begin{subfigure}{0.33\textwidth}
+\centering
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJzXzEiXSxbMSwwLCJzXzIiXSxbMCwwLCJhIiwwLHsiYW5nbGUiOi05MH1dLFsxLDEsImEiLDAseyJhbmdsZSI6OTB9XSxbMCwxLCJiIiwyLHsiY3VydmUiOjMsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzEsMCwiYiIsMix7ImN1cnZlIjozLCJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dXQ==
+\begin{tikzcd}
+	{s_1} & {s_2}
+	\arrow["a", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+	\arrow["b"', color={rgb,255:red,214;green,92;blue,92}, curve={height=18pt}, from=1-1, to=1-2]
+	\arrow["b"', color={rgb,255:red,214;green,92;blue,92}, curve={height=18pt}, from=1-2, to=1-1]
+	\arrow["a", from=1-2, to=1-2, loop, in=325, out=35, distance=10mm]
+\end{tikzcd}
+\caption{Cayley Graph 2.3}
+\end{subfigure}
+\end{figure}
+In all three Cayley Graphs, we can see that \(|S|=2\), so the stabilizer \(\Stab_G(s_1)=\Stab_G(s_2)\) is an order \(4\) subgroup of \(G\).\\ 
+In Cayley Graph 2.1, we have 
+\[\Stab_G(s_1)=\Stab_G(s_2)=\left\{ a^2,b,ba^2,e \right\}.\]
+In Cayley Graph 2.2, we have 
+\[\Stab_G(s_1)=\Stab_G(s_2)=\left\{ ba,a^2,ba^3,e \right\}.\]
+In Cayley Graph 2.3, we have 
+\[\Stab_G(s_1)=\Stab_G(s_2)=\left\{ a,a^2,a^3,e \right\}.\]
+We claim that for all three Cayley Graphs, the automorphism group \(\Aut_G(S)\) acts transitively on \(s_1,s_2\). We need to show that given \(\phi:S\rightarrow S\) by interchange \(s_1\) and \(s_2\), \(\phi\) 
+is compatible with the group action. This is true since \(s_1,s_2\) has the same stabilizer under every group action. 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% |S|=3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% |S|=4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item When \(|S|=4\).\\ 
+In this case, the size of the stabilizer is \(2\) and we have three connected Cayley Graphs:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJzXzEiXSxbMSwwLCJzXzIiXSxbMSwxLCJzXzMiXSxbMCwxLCJzXzQiXSxbMCwxLCJhIl0sWzEsMiwiYSJdLFsyLDMsImEiXSxbMywwLCJhIl0sWzEsMiwiYiIsMCx7Im9mZnNldCI6MiwiY3VydmUiOi0yLCJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFsyLDEsImIiLDAseyJvZmZzZXQiOjMsImN1cnZlIjotMiwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMCwzLCJiIiwwLHsib2Zmc2V0IjoyLCJjdXJ2ZSI6LTIsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzMsMCwiYiIsMCx7Im9mZnNldCI6MiwiY3VydmUiOi0yLCJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dXQ==
+\begin{figure}[h]
+\begin{subfigure}{0.33\textwidth}
+\centering
+\begin{tikzcd}
+	{s_1} & {s_2} \\
+	{s_4} & {s_3}
+	\arrow["a", from=1-1, to=1-2]
+	\arrow["b", shift right=2, color={rgb,255:red,214;green,92;blue,92}, curve={height=-12pt}, from=1-1, to=2-1]
+	\arrow["a", from=1-2, to=2-2]
+	\arrow["b", shift right=2, color={rgb,255:red,214;green,92;blue,92}, curve={height=-12pt}, from=1-2, to=2-2]
+	\arrow["a", from=2-1, to=1-1]
+	\arrow["b", shift right=2, color={rgb,255:red,214;green,92;blue,92}, curve={height=-12pt}, from=2-1, to=1-1]
+	\arrow["b", shift right=3, color={rgb,255:red,214;green,92;blue,92}, curve={height=-12pt}, from=2-2, to=1-2]
+	\arrow["a", from=2-2, to=2-1]
+\end{tikzcd}
+\caption{Cayley Graph 4.1}
+\end{subfigure}
+\begin{subfigure}{0.33\textwidth}
+\centering
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJzXzEiXSxbMSwwLCJzXzIiXSxbMSwxLCJzXzMiXSxbMCwxLCJzXzQiXSxbMCwxLCJhIl0sWzEsMiwiYSJdLFsyLDMsImEiXSxbMywwLCJhIl0sWzAsMiwiYiIsMCx7Im9mZnNldCI6LTEsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzIsMCwiYiIsMCx7Im9mZnNldCI6LTEsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzMsMywiYiIsMCx7ImFuZ2xlIjotMTM1LCJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFsxLDEsImIiLDAseyJhbmdsZSI6NDUsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV1d
+\begin{tikzcd}
+	{s_1} & {s_2} \\
+	{s_4} & {s_3}
+	\arrow["a", from=1-1, to=1-2]
+	\arrow["b", shift left, color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=2-2]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=1-2, to=1-2, loop, in=10, out=80, distance=10mm]
+	\arrow["a", from=1-2, to=2-2]
+	\arrow["a", from=2-1, to=1-1]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=2-1, to=2-1, loop, in=190, out=260, distance=10mm]
+	\arrow["b", shift left, color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=1-1]
+	\arrow["a", from=2-2, to=2-1]
+\end{tikzcd}
+\caption{Cayley Graph 4.2}    
+\end{subfigure}
+\begin{subfigure}{0.33\textwidth}
+\centering
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJzXzEiXSxbMSwwLCJzXzIiXSxbMSwxLCJzXzMiXSxbMCwxLCJzXzQiXSxbMCwxLCJhIl0sWzEsMiwiYiIsMCx7ImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzIsMywiYSJdLFszLDAsImIiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFsxLDAsImEiLDAseyJvZmZzZXQiOi0xfV0sWzIsMSwiYiIsMCx7Im9mZnNldCI6LTEsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzMsMiwiYSIsMCx7Im9mZnNldCI6LTF9XSxbMCwzLCJiIiwwLHsib2Zmc2V0IjotMSwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
+\begin{tikzcd}
+	{s_1} & {s_2} \\
+	{s_4} & {s_3}
+	\arrow["a", from=1-1, to=1-2]
+	\arrow["b", shift left, color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=2-1]
+	\arrow["a", shift left, from=1-2, to=1-1]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=1-2, to=2-2]
+	\arrow["b", color={rgb,255:red,214;green,92;blue,92}, from=2-1, to=1-1]
+	\arrow["a", shift left, from=2-1, to=2-2]
+	\arrow["b", shift left, color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=1-2]
+	\arrow["a", from=2-2, to=2-1]
+\end{tikzcd}
+\caption{Cayley Graph 4.3}
+\end{subfigure}
+\end{figure}
+In all three Cayley Graphs, the stabilizer has order \(2\).\\ 
+In Cayley Graph 4.1, we have 
+\begin{align*}
+	\Stab_G(s_1)&=\left\{ ba^3,e \right\},\\ 
+	\Stab_G(s_2)&=\left\{ ba,e \right\},\\ 
+	\Stab_G(s_3)&=\left\{ ba^3,e \right\},\\
+	\Stab_G(s_4)&=\left\{ ba,e \right\}.
+\end{align*}
+In Cayley Graph 4.2, we have 
+\begin{align*}
+	\Stab_G(s_1)&=\left\{ ba^2,e \right\},\\ 
+	\Stab_G(s_2)&=\left\{ b,e \right\},\\ 
+	\Stab_G(s_3)&=\left\{ ba^2,e \right\},\\ 
+	\Stab_G(s_4)&=\left\{ b,e \right\}.
+\end{align*}
+In Cayley Graph 4.3, we have 
+\begin{align*}
+	\Stab_G(s_1)&=\left\{ a^2,e \right\},\\ 
+	\Stab_G(s_2)&=\left\{ a^2,e \right\},\\ 
+	\Stab_G(s_3)&=\left\{ a^2,e \right\},\\
+	\Stab_G(s_4)&=\left\{ a^2,e \right\}. 
+\end{align*}
+From the claim we proved, we know that for Cayley Graph 4.1 and Cayley Graph 4.2, the automorphism group \(\Aut_G(S)\) does not act transitively on \(S\) because \(s_1\) and \(s_2\) have different stabilizers. In Cayley Graph 4.3, the automorphism 
+group \(\Aut_G(S)\) acts transitively on \(S\) because all the stabilizers are the same.  
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% |S|=8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item When \(|S|=8\).\\ 
+In the case, the \(G\)-set is just the quotient \(G/\left\{ e \right\}\), so \(S\) is isomorphic to \(G\), and the action is given by group operation. The Cayley Graph is as follows:
+% https://q.uiver.app/#q=WzAsOCxbMSwwLCJhIl0sWzIsMCwiYmFeMyJdLFszLDEsImFeMiJdLFszLDIsImJhXjIiXSxbMiwzLCJhXjMiXSxbMSwzLCJiYSJdLFswLDIsImUiXSxbMCwxLCJiIl0sWzAsMl0sWzIsNF0sWzQsNl0sWzYsMF0sWzcsMV0sWzEsM10sWzMsNV0sWzUsN10sWzAsNSwiIiwxLHsiY3VydmUiOi0xLCJjb2xvdXIiOlswLDYwLDYwXX1dLFs3LDYsIiIsMSx7ImN1cnZlIjo0LCJjb2xvdXIiOlswLDYwLDYwXX1dLFs2LDcsIiIsMSx7ImN1cnZlIjo0LCJjb2xvdXIiOlswLDYwLDYwXX1dLFs1LDAsIiIsMSx7ImN1cnZlIjotMSwiY29sb3VyIjpbMCw2MCw2MF19XSxbMSw0LCIiLDEseyJjdXJ2ZSI6MSwiY29sb3VyIjpbMCw2MCw2MF19XSxbNCwxLCIiLDEseyJjdXJ2ZSI6MSwiY29sb3VyIjpbMCw2MCw2MF19XSxbMiwzLCIiLDEseyJjdXJ2ZSI6LTMsImNvbG91ciI6WzAsNjAsNjBdfV0sWzMsMiwiIiwxLHsiY3VydmUiOi0zLCJjb2xvdXIiOlswLDYwLDYwXX1dXQ==
+\[\begin{tikzcd}
+	& a & {ba^3} \\
+	b &&& {a^2} \\
+	e &&& {ba^2} \\
+	& ba & {a^3}
+	\arrow[from=1-2, to=2-4]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=-6pt}, from=1-2, to=4-2]
+	\arrow[from=1-3, to=3-4]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=6pt}, from=1-3, to=4-3]
+	\arrow[from=2-1, to=1-3]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=24pt}, from=2-1, to=3-1]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=2-4, to=3-4]
+	\arrow[from=2-4, to=4-3]
+	\arrow[from=3-1, to=1-2]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=24pt}, from=3-1, to=2-1]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=3-4, to=2-4]
+	\arrow[from=3-4, to=4-2]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=-6pt}, from=4-2, to=1-2]
+	\arrow[from=4-2, to=2-1]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=6pt}, from=4-3, to=1-3]
+	\arrow[from=4-3, to=3-1]
+\end{tikzcd}\]
+The stabilizer for any point \(\Stab_G=\left\{ e \right\}\), and we know that \(\Aut_G(G)=G\). It is obvious that \(G\) acts on \(G\) transitively because for any \(g\in G\) and \(h\in G\), 
+we have \((hg^{-1})g=h\).
+\end{enumerate}
+\end{solution}
+\end{document}

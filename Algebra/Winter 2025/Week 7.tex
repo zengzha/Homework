@@ -1,0 +1,563 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 7}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 648 - Abstract Algebra  \hfill Term: Winter 2025\\
+Instructor: Professor Arkady Berenstein \hfill Due Date: $26^{th}$ February, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.2.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.2.5}
+True or false? \(\mathbb{Z}/m \mathbb{Z}\otimes_{\mathbb{Z}}\mathbb{Q}=0\) for any \(m\in \mathbb{Z}_{>0}\).
+\end{problem}
+\begin{solution}
+This is true. From Example 17.2.4 in the book, we know that 
+\[\mathbb{Z}/m \mathbb{Z}\otimes_\mathbb{Z}\mathbb{Q}\cong \mathbb{Q}/m \mathbb{Q}.\]
+Note that \(\mathbb{Q}\) is a field and \(m\) is invertible in \(\mathbb{Q}\), so \(m \mathbb{Q}\cong \mathbb{Q}\) and we have 
+\[\mathbb{Z}/ m \mathbb{Z}\otimes_\mathbb{Z}\mathbb{Q}=0.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.2.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.2.6}
+\(\mathbb{Q}\otimes_{\mathbb{Z}}\mathbb{Q}\cong \mathbb{Q}\) as abelian groups.
+\end{problem}
+\begin{solution}
+We define a map 
+\begin{align*}
+	f:\mathbb{Q}\times \mathbb{Q}&\rightarrow \mathbb{Q},\\ 
+	  (\frac{p}{q},\frac{r}{s})&\mapsto \frac{pr}{qs}.
+\end{align*}
+where \(\frac{p}{q},\frac{r}{s}\in \mathbb{Q}\). For any \(m\in \mathbb{Z}\), we have 
+\[mf(\frac{p}{q},\frac{r}{s})=\frac{mpr}{qs}=f(\frac{mp}{q},\frac{r}{s})=f(\frac{p}{q},\frac{mr}{s}).\]
+And for \(\frac{p_1}{q_1},\frac{p_2}{q_2}\in \mathbb{Q}\), we have 
+\begin{align*}
+f(\frac{p_1}{q_1}+\frac{p_2}{q_2},\frac{r}{s})&=(\frac{p_1}{q_1}+\frac{p_2}{q_2})\cdot \frac{r}{s}\\ 
+                                              &=\frac{p_1r}{q_1s}+\frac{p_2r}{q_2s}\\ 
+											  &=f(\frac{p_1}{q_1},\frac{r}{s})+f(\frac{p_2}{q_2},\frac{r}{s})
+\end{align*}
+By symmmetry, this is also true for the second component. Thus, we can conclude that \(f\) is a \(\mathbb{Z}\)-balanced map between \(\mathbb{Z}\)-modules. By the universal property of tensor product, there exists a map 
+\(\tilde{f}:\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\rightarrow \mathbb{Q}\) between abelian groups sending \(\frac{p}{q}\otimes \frac{r}{s}\) to \(\frac{pq}{rs}\). Consider a map 
+\begin{align*}
+	g:\mathbb{Q}&\rightarrow \mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q},\\ 
+	  \frac{p}{q}&\mapsto \frac{p}{q}\otimes 1
+\end{align*}
+It is easy to check this is also a map between abelian groups. For \(\frac{p}{q}, \frac{r}{s}\in \mathbb{Q}\), we have 
+\begin{align*}
+	(g\circ \tilde{f})(\frac{p}{q}\otimes \frac{r}{s})&=g(\frac{pr}{qs})\\ 
+	                                          &=\frac{pr}{qs}\otimes 1\\ 
+											  &=(r\cdot \frac{p}{qs})\otimes 1\\ 
+											  &=\frac{p}{qs}\otimes (s\cdot \frac{r}{s})\\ 
+											  &=(s\cdot \frac{p}{qs})\otimes \frac{r}{s}\\ 
+											  &=\frac{p}{q}\otimes \frac{r}{s}.
+\end{align*}
+This proves that \(g\circ \tilde{f}=id\). Conversely, we know that 
+\[(\tilde{f}\circ g)(\frac{p}{q})=\tilde{f}(\frac{p}{q}\otimes 1)=\frac{p}{q}.\]
+So \(\tilde{f}\circ g=id\). This proves that \(\tilde{f}\) is an isomorphism between abelian groups. Therefore we can conclude that 
+\[\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\cong \mathbb{Q}\]
+as abelian groups.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.2.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.2.7}
+If \(I\) is a right ideal of a ring \(R\) and \(V\) is a left \(R\)-module, then there is an isomorphism of abelian groups 
+\[R/I\otimes_R V\cong V/IV,\]
+where \(IV\) is the subgroup of \(V\) generated by all elements \(xv\) with \(x\in I\) and \(v\in V\).
+\end{problem}
+\begin{solution}
+We define a map 
+\begin{align*}
+	f:R/I\times V&\rightarrow V/IV,\\ 
+	  (r+I,v)&\mapsto rv+IV.
+\end{align*}
+We first check \(f\) is well-defined. Suppose \(r_1+I\) and \(r_2+I\) is the same element in \(R/I\), this means \(r_1-r_2\in I\). Then for any \(v\in V\), we have 
+\(r_1v-r_2v=(r_1-r_2)v\in IV\). This means \(r_1v+IV\) and \(r_2v+IV\) is the same element in \(V/IV\). Given \(s\in R\), we have 
+\[f(rs+I,v)=rsv+IV=f(r+I,sv).\]
+So \(f\) is a \(R\)-balanced map. By the universal property of tensor product, there exists a unique abelian group homomorphism \(\tilde{f}:R/I\otimes_R V\rightarrow V/IV\) sending 
+\((r+I)\otimes v\) to \(rv+IV\). Next, we are going to show that \(\tilde{f}\) is an isomorphism. 
+
+Given \((r+I)\otimes v\in R/I\otimes_R V\), if \(\tilde{f}((r+I)\otimes v)=0\in V/IV\), then \(rv\in IV\). By definition this means \(r\in I\), so \(r+I\) is the zero element in \(R/I\) and we have 
+\((r+I)\otimes v=(0+I)\otimes v=0\in R/I\otimes_R V\). This proves that \(\tilde{f}\) is injective. Conversely, given \(w+IV\in V/IV\), consider \((1+I)\otimes w\in R/I\otimes_R V\), we have 
+\[\tilde{f}((1+I)\otimes w)=w+IV.\]
+This proves \(\tilde{f}\) is surjective. Thus, we can conclude that \(\tilde{f}\) is an isomorphism between abelian groups and 
+\[R/I\otimes_R V\cong V/IV.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.2.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.2.13}
+Prove:
+\begin{enumerate}[(1)]
+\item If \(M\) is any \(\mathbb{Z}\)-module, then \(M\otimes_{\mathbb{Z}}\mathbb{Q}\) is an injective \(\mathbb{Z}\)-module. 
+\item Deduce that given an injective \(\mathbb{Z}\)-module homomorphism \(f:M\rightarrow N\), there exists a \(\mathbb{Z}\)-module homomorphism \(\alpha:N\rightarrow M\otimes_{\mathbb{Z}}\mathbb{Q}\) such that 
+\(\alpha(f(m))=m\otimes 1\).
+\item Let \(\mu:\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\rightarrow \mathbb{Q}\) be the product map, and 
+\[\beta:=(id\otimes \mu)\circ (\alpha\otimes id):N\otimes_\mathbb{Z}\mathbb{Q}\rightarrow M\otimes_\mathbb{Z}\mathbb{Q}.\]
+Then \(\beta\circ (f\otimes id)\) is identity on \(M\otimes_\mathbb{Z} \mathbb{Q}\). 
+\item Deduce that \(f\otimes id\) is injective and \(\mathbb{Q}\) is a flat \(\mathbb{Z}\)-module.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item Let \(n\geq 0\) be an integer. \((n)\) is an ideal in \(\mathbb{Z}\), viewed as a \(\mathbb{Z}\)-module. Suppose we have a \(\mathbb{Z}\)-module homomorphism \(p:(n)\rightarrow M\otimes_\mathbb{Z}\mathbb{Q}\). We know that 
+\(p\) is completely determined by the image of \(n\in (n)\). Assume \(p(n)=\sum_{i=1}^{k}m_i\otimes \frac{p_i}{q_i}\). Consider a map \(\tilde{p}:\mathbb{Z}\rightarrow M\otimes_\mathbb{Z} \mathbb{Q}\) by sending \(1\in \mathbb{Z}\) to 
+\(\sum_{i=1}^{k}m_i\otimes \frac{p_i}{nq_i}\). This is a \(\mathbb{Z}\)-module homomorphism and 
+\begin{align*}
+\tilde{p}(n)&=n(\sum_{i=1}^{k}m_i\otimes \frac{p_i}{nq_i})\\ 
+            &=\sum_{i=1}^{k}m_i\otimes n\cdot \frac{p_i}{nq_i}\\ 
+			&=\sum_{i=1}^k m_i\otimes \frac{p_i}{q_i}\\ 
+			&=p(n).
+\end{align*}
+Namely we have a commutative diagram 
+\[\begin{tikzcd}
+	{(n)} & {\mathbb{Z}} \\
+	& {M\otimes_\mathbb{Z}\mathbb{Q}}
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\tilde{p}}", from=1-2, to=2-2]
+\end{tikzcd}\]
+Note that \(\mathbb{Z}\) is a PID and every ideal in \(\mathbb{Z}\) has the form \((n)\) for some \(n\in \mathbb{Z}\). We have proved every \(\mathbb{Z}\)-module homomorphism \(p\) can be extended to a \(\mathbb{Z}\)-module homomorphism \(\tilde{p}\). By 
+Baer's Criterion, \(M\otimes_\mathbb{Z}\mathbb{Q}\) is an injective \(\mathbb{Z}\)-mdoule. 
+\item We use the definition of injective modules. Consider the following diagram of solid arrows 
+\[\begin{tikzcd}
+	& {M\otimes_\mathbb{Z}\mathbb{Q}} \\
+	0 & M & N
+	\arrow[from=2-1, to=2-2]
+	\arrow["i", from=2-2, to=1-2]
+	\arrow["f"', from=2-2, to=2-3]
+	\arrow["\alpha"', dashed, from=2-3, to=1-2]
+\end{tikzcd}\]
+where \(i:M\rightarrow M\otimes_\mathbb{Z}\mathbb{Q}\) is the inclusion map sending any \(m\in M\) to \(m\otimes 1\in M\otimes_\mathbb{Z}\mathbb{Q}\). There exists a \(\mathbb{Z}\)-module homomorphism \(\alpha:N\rightarrow M\otimes_\mathbb{Z}\mathbb{Q}\) such that the above 
+diagram commutes. For any \(m\in M\), we have 
+\[\alpha(f(m))=i(m)=m\otimes 1.\]
+\item \(-\otimes_\mathbb{Z}\mathbb{Q}\) is a functor and consider the following diagram 
+\[\begin{tikzcd}
+	{M\otimes_\mathbb{Z}\mathbb{Q}} \\
+	{N\otimes_\mathbb{Z}\mathbb{Q}} \\
+	{M\otimes_\mathbb{Z}\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}} \\
+	{M\otimes_\mathbb{Z}\mathbb{Q}}
+	\arrow["{f\otimes id_\mathbb{Q}}", from=1-1, to=2-1]
+	\arrow["\gamma"', curve={height=60pt}, from=1-1, to=4-1]
+	\arrow["{\alpha\otimes id_\mathbb{Q}}", from=2-1, to=3-1]
+	\arrow["\beta", curve={height=-60pt}, from=2-1, to=4-1]
+	\arrow["{id_M\otimes\mu}", from=3-1, to=4-1]
+\end{tikzcd}\]
+where \(\mu:\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\rightarrow \mathbb{Q}\) is the product map. For any \(m\in M\) and \(\frac{p}{q}\in \mathbb{Q}\), we have 
+\begin{align*}
+	\gamma(m\otimes \frac{p}{q})&=(\beta\circ (f\otimes id))(m\otimes \frac{p}{q})\\ 
+	                            &=\beta(f(m)\otimes \frac{p}{q})\\ 
+								&=(id\otimes \mu)\circ (\alpha\otimes id)(f(m)\otimes \frac{p}{q})\\ 
+								&=(id\otimes \mu)(\alpha(f(m))\otimes \frac{p}{q})\\ 
+								&=(id\otimes \mu)(m\otimes 1\otimes \frac{p}{q})\\ 
+								&=m\otimes \frac{p}{q}.
+\end{align*} 
+So \(\gamma=id:M\otimes_\mathbb{Z}\mathbb{Q}\rightarrow M\otimes_\mathbb{Z}\mathbb{Q}\) is the identity. 
+\item We first prove the following claim.
+\begin{claim}
+Suppose \(p:X\rightarrow Y\) and \(q:Y\rightarrow Z\) are two maps of \(\mathbb{Z}\)-modules. If \(q\circ p\) is injective, then \(p\) is injective. 
+\end{claim}
+\begin{claimproof}
+Let \(x\in \ker p\). We have \(p(x)=0\in Y\). This implies that \((q\circ p)(x)=q(0)=0\). So \(x\in \ker (q\circ p)\). Since \(q\circ p\) is injective, so 
+\(x=0\). This means \(p\) is also injective.
+\end{claimproof}
+
+Use the claim above, because \(id=\gamma=\beta\circ (f\otimes id)\) is injective, we can conclude that \(f\otimes id\) is also injective. And since \(-\otimes_\mathbb{Z} \mathbb{Q}\) sends 
+injective maps to injective maps, \(\mathbb{Q}\) is a flat \(\mathbb{Z}\)-module.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.2.20
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.2.20}
+Prove that a free module is flat. Then prove that a projective module is flat. 
+\end{problem}
+\begin{solution}
+We will use Exercise 17.2.18. We prove it in the claim.
+\begin{claim}
+Let \((V_i)_{i\in I}\) be a family of \(R\)-modules. Then \(\oplus_{i\in I}V_i\) is flat if and only if all \(V_i\) are flat. 
+\end{claim}
+\begin{claimproof}
+Let \(f:M\rightarrow N\) be an injective \(R\)-module homomorphism. Given a family of \(R\)-modules \((V_i)_{i\in I}\), by Theorem 17.2.16, we have a commutative diagram 
+\[\begin{tikzcd}
+	{M\otimes_R(\oplus_{i\in I}V_i)} && {N\otimes_R(\oplus_{i\in I}V_i)} \\
+	{\oplus_{i\in I}(M\otimes_RV_i)} && {\oplus_{i\in I}(N\otimes_RV_i)}
+	\arrow["{f\otimes id}", from=1-1, to=1-3]
+	\arrow["{\alpha_M}"', from=1-1, to=2-1]
+	\arrow["{\alpha_N}", from=1-3, to=2-3]
+	\arrow["{\oplus(f\otimes id)}", from=2-1, to=2-3]
+\end{tikzcd}\]
+where \(\alpha_M,\alpha_N\) are isomorphism of abelian groups. Assume \(\oplus_{i\in I}V_i\) is flat, this means \(f\otimes id\) in the top row is injective. Then 
+\[\alpha_N\circ (f\otimes id)=\oplus(f\otimes id)\circ \alpha_M\]
+is also injective because \(\alpha_N\) is an isomorphism. And since \(\alpha_M\) is also an isomorphism, we know that \(\oplus(f\otimes id)\) is injective. Conversely, if \(\oplus(f\otimes id)\) is injective, by the same 
+argument, we can see that \(f\otimes id\) in the top row is injective. This proves that \(\oplus_{i\in I}V_i\) is flat if and only if all \(V_i\) are flat.
+\end{claimproof}
+
+Let \(f:M\rightarrow N\) be an injective \(R\)-module homomorphism. We know that \(M\otimes_R R\cong M\) and \(N\otimes_R R\cong R\), this isomorphism is functorial so we have a commutative diagram 
+\[\begin{tikzcd}
+	{M\otimes_R R} & {N\otimes_R R} \\
+	M & N
+	\arrow["{f\otimes id }", from=1-1, to=1-2]
+	\arrow["\sim"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We can see that \(f\otimes id\) is also injective. So \(R\) is a flat \(R\)-module. By the claim we know that \(\oplus_{i\in I}R\) is also flat. Suppose \(P\) is a projective \(R\)-module, this is equivalent to that there exists 
+an \(R\)-module \(P'\) such that \(P\oplus P'=\oplus_{i\in I}R\). We have already known that the free module \(\oplus_{i\in I}R\) is flat, by the claim we know \(P\) is also flat. 
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.3.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.3.2}
+If \(R\) is commutative and \(I,J\) are ideals in \(R\), then there is an isomorphism of \(R\)-modules 
+\[R/I\otimes_R R/J\cong R/(I+J).\]
+\end{problem}
+\begin{solution}
+From what we know in Exercise 17.2.7, we can see that have an isomorphism of abelian groups 
+\[R/I\otimes_R R/J\cong (R/J)/I(R/J).\]
+Since \(R\) is commutative, both sides can be viewed as an \(R\)-module and we the isomorphism we defined before is a \(R\)-module isomorphism. 
+\begin{claim}
+If \(R\) is commmutative and \(I,J\subset R\) are ideals, then we have the following \(R\)-module isomorphisms.
+\[I(R/J)\cong I/(I\cap J)\cong (I+J)/J.\]
+\end{claim}
+\begin{claimproof}
+We define a map of \(R\)-modules. For any \(a(b+I)\in I(R/J)\) where \(a\in I\) and \(b+J\in R/J\),
+\begin{align*}
+	f:I(R/J)&\rightarrow I/(I\cap J),\\ 
+	  a(b+J)&\mapsto ab+I\cap J.
+\end{align*}
+We check this is well-defined. Suppose \(b_1+J\) and \(b_2+J\) are two representatives for the same element in \(R/J\). This means \(b_1-b_2\in J\). Then we know 
+\[f(a(b_1+J))-f(a(b_2+J))=a(b_1-b_2)+I\cap J.\]
+Since \(a\in I\) and \(b_1-b_2\in J\), \(a(b_1-b_2)\in I\cap J\), so \(f(a(b_1+J))=f(a(b_2+J))\). Next, we are going to show this is an isomorphism. For any \(a\in I\), consider the map 
+\begin{align*}
+	g:I/(I\cap J )&\rightarrow I(R/J),\\ 
+	  (a+I\cap J)&\mapsto a(1+J).
+\end{align*}
+This is well-defined. Indeed, suppose for \(a_1,a_2\in I\), \(a_1+I\cap J\) and \(a_2+I\cap J\) represents the same element in \(I/(I\cap J)\). This means \(a_1-a_2\in I\cap J\). Then the image 
+\[g(a_1+I\cap J)-g(a_2+I\cap J)=(a_1-a_2)(1+J).\]
+Note that \(a_1-a_2\in I\cap J\subset J\), so \((a_1-a_2)(1+J)=(a_1-a_2)+J=J\) is the zero element in \(R/J\). So \(g\) is a well-define \(R\)-module homomorphism. Moreover, we have 
+\(f\circ g=id\) and for any \(a\in I\) and \(b+J\in R/J\), 
+\[g(ab+I\cap J)=ab(1+J)=a(b+J).\]
+This proves that \(f\) is an isomorphism of \(R\)-modules and 
+\[I(R/J)\cong I/(I\cap J)\cong (I+J)/J.\]
+The next isomorphism is by the second isomorphism theorem in commutative rings. 
+\end{claimproof}
+
+Note that \(J\subset I+J\subset R\), use the third isomorphism theorem and we have 
+\[R/I\otimes_R R/J\cong (R/J)/I(R/J)\cong (R/J)/(I+J/J)\cong R/(I+J).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.3.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.3.10}
+\(\mathbb{H}\otimes_\mathbb{R}\mathbb{C}\cong M_2(\mathbb{C})\) as \(\mathbb{C}\)-algebras. 
+\end{problem}
+\begin{solution}
+\(\mathbb{H}\) is a \(4\)-dimensional \(\mathbb{R}\)-vector space with standard \(\mathbb{R}\)-basis \(\left\{ 1,i,j,k \right\}\) and \(\mathbb{C}\) is a \(\mathbb{R}\)-vector 
+space with \(\mathbb{R}\)-basis \(\left\{ 1,\sqrt{-1} \right\}\). By Theorem 17.3.4, \(\mathbb{H}\otimes_\mathbb{R}\mathbb{C}\) has a \(\mathbb{R}\)-basis 
+\begin{align*}
+	&1\otimes 1,i\otimes 1,j\otimes 1,k\otimes 1,\\ 
+    &1\otimes i,i\otimes i,j\otimes i,k\otimes i.
+\end{align*}
+If we view \(\mathbb{H}\otimes_\mathbb{R}\mathbb{C}\) as a \(\mathbb{C}\)-algebra, then for any \(a\in\left\{ 1,i,j,k \right\}\), we have 
+\[i(a\otimes 1)=a\otimes i.\]
+Thus, 
+\[1\otimes 1,i\otimes 1,j\otimes 1,k\otimes 1\]
+is a basis for \(\mathbb{H}\otimes_\mathbb{R}\mathbb{C}\) as a \(\mathbb{C}\)-algebra. Consider the following map 
+\begin{align*}
+	f:\mathbb{H}\otimes_\mathbb{R}\mathbb{C}&\rightarrow M_2(\mathbb{C}),\\ 
+	1\otimes 1&\mapsto \begin{pmatrix}
+		1&0\\ 
+		0&1
+	\end{pmatrix},\\[5pt]
+	i\otimes 1&\mapsto \begin{pmatrix}
+		i&0\\ 
+		0&-i
+	\end{pmatrix},\\[5pt] 
+	j\otimes 1&\mapsto \begin{pmatrix}
+		0&1\\ 
+		-1&0
+	\end{pmatrix},\\[5pt]
+    k\otimes 1&\mapsto \begin{pmatrix}
+		0&i\\ 
+		i&0
+	\end{pmatrix}.
+\end{align*}
+It is easy to check that 
+\[f(i\otimes 1)^2=f(j\otimes 1)^2=f(k\otimes 1)^2=\begin{pmatrix}
+	-1&0\\
+	0&-1
+\end{pmatrix}\]
+and 
+\begin{align*}
+	f(i\otimes 1)f(j\otimes 1)&=-f(j\otimes 1)f(i\otimes 1)=\begin{pmatrix}
+		0&\sqrt{-1}\\ 
+		-\sqrt{-1}&0
+	\end{pmatrix}=f(k\otimes 1),\\[5pt] 
+	f(j\otimes 1)f(k\otimes 1)&=-f(k\otimes 1)f(j\otimes 1)=\begin{pmatrix}
+		i&0\\ 
+		0&-i
+	\end{pmatrix}=f(i\otimes 1),\\[5pt] 
+	f(k\otimes 1)f(i\otimes 1)&=-f(i\otimes 1)f(k\otimes 1)=\begin{pmatrix}
+		0&1\\ 
+		-1&0
+	\end{pmatrix}=f(j\otimes 1). 
+\end{align*}
+So \(f\) defines a \(\mathbb{C}\)-algebra homomorphism. Next, we are going to show \(f\) is surjective. Let \(M\subset M_2(\mathbb{C})\) be the subspace generated by 
+\[\begin{pmatrix}
+	1&0\\ 
+	0&1
+\end{pmatrix},\begin{pmatrix}
+	i&0\\ 
+	0&-i
+\end{pmatrix},\begin{pmatrix}
+	0&1\\ 
+	-1&0
+\end{pmatrix},\begin{pmatrix}
+	0&i\\ 
+	i&0
+\end{pmatrix}.\]
+We can see that 
+\begin{align*}
+	\frac{1}{2}(f(1\otimes 1)-if(i\otimes 1))&=\frac{1}{2}(\begin{pmatrix}
+		1&0\\ 
+		0&1
+	\end{pmatrix}-\begin{pmatrix}
+		-1&0\\ 
+		0&1
+	\end{pmatrix})=\begin{pmatrix}
+		1&0\\
+		0&0
+	\end{pmatrix},\\[5pt] 
+	\frac{1}{2}(f(1\otimes 1)+if(i\otimes 1))&=\frac{1}{2}(\begin{pmatrix}
+		1&0\\ 
+		0&1
+	\end{pmatrix}+\begin{pmatrix}
+		-1&0\\ 
+		0&1
+	\end{pmatrix})=\begin{pmatrix}
+		0&0\\
+		0&1
+	\end{pmatrix},\\ 
+	\frac{1}{2}(f(j\otimes 1)-if(k\otimes 1))&=\frac{1}{2}(\begin{pmatrix}
+		0&1\\ 
+		-1&0
+	\end{pmatrix}-\begin{pmatrix}
+		0&-1\\ 
+		-1&0
+	\end{pmatrix})=\begin{pmatrix}
+		0&1\\
+		0&0
+	\end{pmatrix},\\[5pt]
+	-\frac{1}{2}(f(j\otimes 1)+if(k\otimes 1))&=-\frac{1}{2}(\begin{pmatrix}
+		0&1\\ 
+		-1&0
+	\end{pmatrix}+\begin{pmatrix}
+		0&-1\\ 
+		-1&0
+	\end{pmatrix})=\begin{pmatrix}
+		0&0\\
+		1&0
+	\end{pmatrix}. 
+\end{align*}
+We know that \(M_2(\mathbb{C})\) can be generated by 
+\[\begin{pmatrix}
+	1&0\\
+	0&0
+\end{pmatrix},\begin{pmatrix}
+	0&1\\
+	0&0
+\end{pmatrix},\begin{pmatrix}
+	0&0\\
+	1&0
+\end{pmatrix},\begin{pmatrix}
+	0&0\\
+	0&1
+\end{pmatrix}\]
+as a \(\mathbb{C}\)-algebra. This proves that \(M=M_2(\mathbb{C})\) and \(f\) is surjective. Note that 
+\[\dim_\mathbb{C}(\mathbb{H}\otimes_\mathbb{R}\mathbb{C})=4=\dim_\mathbb{C}(M_2(\mathbb{C})).\]
+So we have 
+\[\mathbb{H}\otimes_\mathbb{R}\mathbb{C}\cong M_2(\mathbb{C})\]
+as \(\mathbb{C}\)-algebras.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.3.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.3.11}
+\(M_n(R)\otimes_R M_m(R)\cong M_{mn}(R)\) for a commutative ring \(R\).
+\end{problem}
+\begin{solution}
+Let \(A=(a_{ij})_{1\leq i,j\leq n}\in M_n(R)\) and \(B=(b_{kl})_{1\leq k,l\leq m}\in M_m(R)\). We define a map 
+\begin{align*}
+	f:M_n(R)\times M_m(R)&\rightarrow M_{mn}(R),\\ 
+	  (A,B)&\mapsto \begin{pmatrix}
+		a_{11}B&a_{12}B&\cdots&a_{1n}B\\ 
+		a_{21}B&a_{22}B&\cdots&a_{2n}B\\ 
+		\vdots&\vdots&\ddots&\vdots\\ 
+		a_{n1}B&a_{n2}B&\cdots&a_{nn}B
+	  \end{pmatrix}.
+\end{align*}
+where the image is a block matrix and for \(1\leq i,j\leq n\), each block \(a_{ij}B\) is a \(m\times m\) matrix with \((k,l)\)-entry \(a_{ij}b_{kl}\) for \(1\leq k,l\leq m\). For any \(r\in R\), we have 
+\[f(Ar,B)=\begin{pmatrix}
+	a_{11}rB&a_{12}rB&\cdots&a_{1n}rB\\ 
+	a_{21}rB&a_{22}rB&\cdots&a_{2n}rB\\ 
+	\vdots&\vdots&\ddots&\vdots\\ 
+	a_{n1}rB&a_{n2}rB&\cdots&a_{nn}rB
+\end{pmatrix}=f(A,rB).\]
+So \(f\) is a \(R\)-balanced map and by universal property of tensor product, we have an \(R\)-module homomorphism \(\tilde{f}:M_n(R)\otimes_R M_m(R)\rightarrow M_{mn}(R)\). Suppose \(A\otimes B\in M_n(R)\otimes_R M_m(R)\) satisfying \(\tilde{f}(A\otimes B)=0\), namely 
+\(a_{ij}B\) is the zero matrix for any \(1\leq i,j\leq n\). Let \(E_{ij}\) be the \(n\times n\) matrix with \(1\) at the \((i,j)\)-entry and all other entries are zero. Then we can write 
+\begin{align*}
+A\otimes B&=(\sum_{1\leq i,j\leq n}a_{ij}E_{ij})\otimes B\\ 
+          &=\sum_{1\leq i,j\leq n}(a_{ij}E_{ij}\otimes B)\\ 
+		  &=\sum_{1\leq i,j\leq n}E_{ij}\otimes a_{ij}B\\ 
+		  &=\sum_(1\leq i,j\leq n)E_{ij}\otimes 0\\ 
+		  &=0
+\end{align*}
+This proves \(\ker \tilde{f}=0\), so \(\tilde{f}\) is injective. Note that both the matrix algebra \(M_n(R)\) is a free \(R\)-module of rank \(n^2\), so we have 
+\[\rank(M_n(R)\otimes_R M_m(R))=\rank M_n(R)\cdot \rank M_m(R)=n^2\cdot m^2=(mn)^2=\rank M_{mn}(R).\]
+This proves that \(\tilde{f}\) is an \(R\)-module isomorphism. The last thing we need to show is that \(\tilde{f}\) is compatible with matrix multiplication. Let \(A\otimes B, C\otimes D\in M_n(R)\otimes_R M_m(R)\), suppose 
+\(A=(a_{ij})_{1\leq i,j\leq n}\) and \(C=(c_{ij})_{1\leq i,j\leq n}\). Then we have 
+\[\tilde{f}(A\otimes B)\cdot \tilde{f}(C\otimes D)=\begin{pmatrix}
+	a_{11}B&a_{12}B&\cdots&a_{1n}B\\ 
+		a_{21}B&a_{22}B&\cdots&a_{2n}B\\ 
+		\vdots&\vdots&\ddots&\vdots\\ 
+		a_{n1}B&a_{n2}B&\cdots&a_{nn}B
+\end{pmatrix}\begin{pmatrix}
+	c_{11}D&c_{12}D&\cdots&c_{1n}D\\ 
+		c_{21}D&c_{22}D&\cdots&c_{2n}D\\ 
+		\vdots&\vdots&\ddots&\vdots\\ 
+		c_{n1}D&c_{n2}D&\cdots&c_{nn}D
+\end{pmatrix}\]
+Viewed as a block matrix, for \(1\leq i,j\leq n\), the \((i,j)\)-block entry is 
+\[\sum_{k=1}^n (a_{ik}B)(c_{kj}D)=\sum_{k=1}^{n} (a_{ik}c_{kj})BD=(AC)_{ij}BD\]
+where \((AC)_{ij}\) means the \((i,j)\)-entry for the matrix \(AC\). On the other hand, we know that 
+\[\tilde{f}(AC\otimes BD)=\begin{pmatrix}
+	(AC)_{11}BD&(AC)_{12}BD& \cdots&(AC)_{1n}BD\\ 
+	(AC)_{21}BD&(AC)_{22}BD&\cdots&(AC)_{2n}BD\\ 
+	\vdots&\vdots&\ddots&\vdots\\ 
+	(AC)_{n1}BD&(AC)_{n2}BD&\cdots&(AC)_{nn}BD
+\end{pmatrix}\]
+This proves that 
+\[\tilde{f}(A\otimes B)\cdot \tilde{f}(C\otimes D)=\tilde{f}(AC\otimes BD).\]
+So \(\tilde{f}\) is indeed an matrix algebra homomorphism. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.3.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.3.13}
+True or false? \(\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\cong \mathbb{Q}\) as \(\mathbb{Z}\)-algebras.
+\end{problem}
+\begin{solution}
+This is true. The isomorphism we defined in Exercise 17.2.6 is the map 
+\begin{align*}
+	f:\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}&\rightarrow \mathbb{Q},\\ 
+	  \frac{p}{q}\otimes \frac{r}{s}&\mapsto \frac{pq}{rs}
+\end{align*}
+We need to show \(f\) is compatible with multiplication. Suppose \(\frac{p_1}{q_1}\otimes \frac{r_1}{s_1},\frac{p_2}{q_2}\otimes \frac{r_2}{s_2}\in \mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\), we have 
+\begin{align*}
+f(\frac{p_1}{q_1}\otimes \frac{r_1}{s_1})\cdot f(\frac{p_2}{q_2}\otimes \frac{r_2}{s_2})&=\frac{p_1r_1}{q_1s_1}\cdot \frac{p_2r_2}{q_2s_2}\\ 
+                                                                                        &=\frac{p_1p_2r_1r_2}{q_1q_2s_1s_2}\\ 
+																						&=f(\frac{p_1p_2}{q_1q_2}\otimes \frac{r_1r_2}{s_1s_2})\\ 
+																						&=f((\frac{p_1}{q_1}\otimes \frac{r_1}{s_1})\cdot (\frac{p_2}{q_2}\otimes \frac{r_2}{s_2}))
+\end{align*}
+Now we know that \(\mathbb{Q}\otimes_\mathbb{Z}\mathbb{Q}\cong \mathbb{Q}\) as \(\mathbb{Z}\)-algebras.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 17.3.21
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{17.3.21}
+True or false? Let \(A\) and \(B\) be a finite dimensional semisimple algerbras over an alegbraically closed field \(\mathbb{F}\). Then every finite dimenisonal \(A\otimes B\)-module 
+is of the form \(V\boxtimes W\) for some \(A\)-module \(V\) and some \(B\)-module \(W\).
+\end{problem}
+\begin{solution}
+This is false. Consider \(A=M_2(\mathbb{C})\times M_3(\mathbb{C})\) and \(B=M_3(\mathbb{C})\times M_4(\mathbb{C})\). By Wedderburn-Artin Theorem for algebras, \(A\) and \(B\) are semisimple. By 
+Proposition 16.2.8, simple \(A\)-modules up to isomorphism have the form \(\mathbb{C}^2, \mathbb{C}^3\) and simple \(B\)-modules up to isomorphism have the form \(\mathbb{C}^3, \mathbb{C}^4\). Consider the 
+\(A\otimes_\mathbb{C} B\)-module \(M=(\mathbb{C}^2\boxtimes \mathbb{C}^4)\oplus (\mathbb{C}^3\boxtimes \mathbb{C}^3)\). By Theorem 17.3.20, we know that 
+both \(\mathbb{C}^2\boxtimes \mathbb{C}^4\) and \(\mathbb{C}^3\boxtimes \mathbb{C}^3\) are simple \(A\otimes_\mathbb{C}B\)-modules, so \(M\) is a finite dimensional \(A\otimes_\mathbb{F}B\)-module. Now we show that 
+\(M\) cannot be written as \(V\boxtimes W\) where \(V\) is a \(A\)-module and \(W\) is a \(B\)-module. Note that \(A\) and \(B\) are semisimple,  every \(A\)-module and \(B\)-module are semisimple, namely they can be written as 
+direct sum of simple \(A\)-modules and simple \(B\)-modules. For dimension reasons, we have 
+\[\dim_\mathbb{C}M=17=\dim_\mathbb{C}V\cdot \dim_\mathbb{C}W.\]
+So one of \(\dim_\mathbb{C}V\) or \(\dim_\mathbb{C}W\) has to be \(1\), but \(\mathbb{C}\) is not a simple \(A\)-module or simple \(B\)-module. Thus, \(M\) cannot be written in this form. 
+\end{solution}
+
+\end{document}

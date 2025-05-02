@@ -1,0 +1,374 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{unicode-math}
+\DeclareMathAlphabet\amsmathbb{U}{msb}{m}{n}
+\DeclareMathAlphabet\cmmathcal{OMS}{cmsy}{m}{n}
+%\setmathfont{Latin Modern Math}
+%\setmathfont[range={\mathscr,\mathbfscr}]{XITS Math}
+\usepackage{quiver}
+\usepackage{setspace}
+
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+%\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+\newenvironment{background}
+{\begin{center}
+    \begin{tabular}{|p{\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}}
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+%\let\mathbb\oldmathbb
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\im}{\text{Im}\,}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\renewcommand{\mathbb}{\amsmathbb}
+\newcommand{\iif}{\ \ \ \text{if}\ \ \ }
+\newcommand{\colim}{\text{colim}}
+\newcommand{\otherwise}{\text{otherwise}}
+\newcommand{\coker}{\text{coker}\,}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 4}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 635 - Algebraic Topology II \hfill Term: Winter 2025\\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $6^{th}$ February, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Prove that every map \(\mathbb{R}P^6\rightarrow S^6\) is homotopic to a map that is constant on the subspace \(\mathbb{R}P^5\subseteq \mathbb{R}P^6\).
+\end{problem}
+\begin{solution}
+Given a map \(f:\mathbb{R}P^6\rightarrow S^6\), by CAT, \(f\) is homotopic to a cellular map \(f':\mathbb{R}P^6\rightarrow S^6\). Note that \(S^6\) has only one 0-cell and one 6-cell, so the 5-skeleton 
+of \(S^6\) is a 0-cell, while the 5-skeleton of \(\mathbb{R}P^6\) is homeomorphic to \(\mathbb{R}P^5\). the cellularity implies that \(f'\) is constant on \(\mathbb{R}P^5\subseteq \mathbb{R}P^6\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+If \(S_1\) and \(S_2\) and \(S_3\) are pointed set, then a sequence \(S_1\xrightarrow{f}S_2\xrightarrow{g}S_3\) is said to be exact (in the middle spot) if \(\im f=g^{-1}(*)\). 
+
+Let \((X,A)\) be a relative CW complex, and choose a basepoint of \(A\) (also regard as a basepoint of \(X\)). Use HEP to prove that for any pointed space \(Z\), the evident sequence 
+\[[X/A,Z]_*\xrightarrow{f} [X,Z]_*\xrightarrow{g} [A,Z]_*\] 
+is exact in the middle spot. Here \([-,-]_*\) denotes homotopy classes of maps relative to the basepoint.
+\end{problem}
+\begin{solution}
+Let \(\pi:X\rightarrow X/A\) be the quotient map. Take \(\alpha:X/A\rightarrow Z\) be a pointed map. We know by definition that \(f([\alpha])=[\alpha\circ \pi]\). And 
+\[(g\circ f)([\alpha])=g([\alpha\circ \pi])=[\alpha\circ \pi|_A].\]
+We know that the map \(\alpha\circ \pi\) factors through \(X/A\), this means that it sends every point in \(A\) to the base point in \(Z\). So we have \(\im f\subset g^{-1}(*)\). 
+
+On the other hand, consider \(\beta:X\rightarrow Z\) with the property that \(\beta|_A\) is homotopic to the constant map. We need to show that there exists \(\gamma:X/A\rightarrow Z\) such that \(f([\gamma])=[\beta]\). \(\beta\) being 
+homotopic to the constant map \(C_*\) implies there exists \(h:A\times I\rightarrow Z\) such that \(h(-,0)=\beta|_A\) and \(h(-,1)=C_*\). We have the following diagram:
+\[\begin{tikzcd}
+	{X\times\left\{0\right\} \cup A\times I } && Z \\
+	{X\times I}
+	\arrow["{\beta\cup h}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\exists H}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+By HEP, we have a homotopy \(H:X\times I\rightarrow Z\) such that \(H(-,0)=\beta\). Take \(\delta=H(-,1):X\rightarrow Z\), since \(H\) is extended from \(h\), we know for any \(x\in A\), \(\delta(x)=H(x,1)=h(x,1)=*\) is the constant map. So 
+\(\delta\) factors through \(X/A\), namely there exists \(\gamma:X/A\rightarrow Z\) such that \(\gamma\circ \pi=\delta\). This is the same as saying \(f([\gamma])=[\beta]\). We have proved that 
+\(g^{-1}(*)\subset \im f\). Thus, we can conclude that \(\im f=g^{-1}(*)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Let \(X_1\hookrightarrow X_2\hookrightarrow \) be a sequence of CW inclusions (each \((X_i,X_{i-1})\) is a relative CW complex). Let \(X=\colim_n X_n\). 
+Each inclusion \(X_i\hookrightarrow X\) induces maps \([X,Z]\rightarrow [X_i,Z]\) for any space \(Z\), and together these yield a map \(\phi:[X,Z]\rightarrow \lim_n[X_n,Z]\). 
+Use HEP to prove that \(\phi\) is surjective.
+\end{problem}
+\begin{solution}
+For the limit, we have te following diagram:
+\[\begin{tikzcd}
+	&& {\lim_n[X_n,Z]} \\
+	{[X_1,Z]} & {[X_2,Z]} & \cdots & {[X_n,Z]} & \cdots
+	\arrow["{p_1}"', from=1-3, to=2-1]
+	\arrow["{p_2}", from=1-3, to=2-2]
+	\arrow["{p_n}", from=1-3, to=2-4]
+	\arrow["{j_2}", from=2-2, to=2-1]
+	\arrow["{j_3}", from=2-3, to=2-2]
+	\arrow["{j_n}", from=2-4, to=2-3]
+	\arrow["{j_{n+1}}", from=2-5, to=2-4]
+\end{tikzcd}\]
+Take an element \(s\in \lim_n[X_n,Z]\), we denote \(s_i:=p_is\in [X_i,Z]\). Let \(k_i:X_i\hookrightarrow X_{i+1}\) be the inclusion of \(i\)th skeleton into \((i+1)\)th skeleton of \(X\). By the commutativity 
+of the above diagram, we know that \(j_2([s_2])=[s_2\circ k_1]=[s_1]\). There exists a homotopy \(h_1:X_1\times I\rightarrow Z\) such that \(h_1(-,1)=s_1(-)\) and \(h_2(-,0)=(s_2\circ k_1)(-)\). Consider the following diagram: 
+\[\begin{tikzcd}
+	{X_2\times\left\{0\right\}\cup X_1\times I} && Z \\
+	{X_2\times I}
+	\arrow["{s_2\cup h_1}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\exists h_2}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+Note that for any \(x\in X_1\), \(h_1(x,0)=(s_2\circ k_1)(x)\). By HEP, we have a homotopy \(h_2:X_2\times I\rightarrow Z\) such that \(h_2(-,0)=s_2(-)\) and for any \(x\in X_1\), \(h_2(x,1)=h_1(x,1)=s_1(x)\), this means we have a commutative diagram: 
+\[\begin{tikzcd}
+	{X_1} & {X_2} \\
+	Z
+	\arrow["{k_1}", hook, from=1-1, to=1-2]
+	\arrow["{s_1}"', from=1-1, to=2-1]
+	\arrow["{h_2(-,1)\simeq s_2}"{pos=0}, from=1-2, to=2-1]
+\end{tikzcd}\]  
+We can construct \(h_3,h_4,\ldots\) consecutively in this way and obtain a diagram as follows 
+\[\begin{tikzcd}
+	{X_1} & {X_2} & \cdots & {X_n} & \cdots \\
+	Z
+	\arrow["{k_1}", from=1-1, to=1-2]
+	\arrow["{s_1}"', from=1-1, to=2-1]
+	\arrow["{k_2}", from=1-2, to=1-3]
+	\arrow["{h_2(-,1)}"{pos=0}, from=1-2, to=2-1]
+	\arrow["{k_{n-1}}", from=1-3, to=1-4]
+	\arrow["{k_n}", from=1-4, to=1-5]
+	\arrow["{h_n(-,1)}"{pos=0.2}, from=1-4, to=2-1]
+\end{tikzcd}\]
+where for any \(1\leq i\), \(h_i(-,1)\) is homotopic to \(s_i\). By the universal property of \(X=\colim_n X_n\), we have a unique map \(f:X\rightarrow Z\) such that the following diagram commutes: 
+\[\begin{tikzcd}
+	{X_1} & {X_2} & \cdots & {X_n} & \cdots \\
+	&& X \\
+	&& Z
+	\arrow["{k_1}", hook, from=1-1, to=1-2]
+	\arrow["{q_1}"{pos=0.3}, curve={height=12pt}, from=1-1, to=2-3]
+	\arrow["{h_1(-,1)}"', curve={height=18pt}, from=1-1, to=3-3]
+	\arrow["{k_2}", hook, from=1-2, to=1-3]
+	\arrow["{q_2}", from=1-2, to=2-3]
+	\arrow["{h_2(-,1)}"'{pos=0.4}, curve={height=12pt}, from=1-2, to=3-3]
+	\arrow["{k_{n-1}}", hook, from=1-3, to=1-4]
+	\arrow["{k_n}", hook, from=1-4, to=1-5]
+	\arrow["{q_n}"', from=1-4, to=2-3]
+	\arrow["{h_n(-,1)}", from=1-4, to=3-3]
+	\arrow["f"', dashed, from=2-3, to=3-3]
+\end{tikzcd}\]
+Note that \(f\) precompose with the canonical map \(f\circ q_i:X_i\rightarrow X\rightarrow Z\) is equal to \(h_i(-,1)\simeq s_i\). By the uniqueness of limit, this implies 
+that \(\phi(f)=s\) since \(p_i(\phi(f))=[s_i]\in [X_i,Z]\).  
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Regard \(\mathbb{R}P^3\) as a subspace of \(\mathbb{R}P6\) in the usual way. Take two copies of \(\mathbb{R}P^6\) and glue their 3-skeletons together (via the identity map), to make 
+a new space \(X\). Compute the groups \(H_*(X)\).
+\end{problem}
+\begin{solution}
+The space \(X\) has the following CW complex structure: for \(i\leq 3\), it has one \(i\)-cell in each dimension and the attatching map is the same as the cell structure for \(\mathbb{R}P^3\). For \(3\leq i\leq 6\), \(X\) has two \(i\)-cells 
+in each dimension and each \(i\)-cell glued to the \((i-1)\)-skeleton \(X_{i-1}\) in the same way as what happens in \(\mathbb{R}P^6\). So the cellular chain complex can be written as: 
+\[\mathbb{Z}^2\xrightarrow{(2,2)}\mathbb{Z}^2\xrightarrow{0}\mathbb{Z}^2\xrightarrow{(2,2)}\mathbb{Z}\xrightarrow{0}\mathbb{Z}\xrightarrow{2}\mathbb{Z}\xrightarrow{0} \mathbb{Z}\rightarrow 0.\]
+So the homology groups can be calculated as 
+\[H_i(X)=\begin{cases}
+	\mathbb{Z},&\ \ \iif\ i=0,4;\\ 
+	\mathbb{Z}/2,&\ \ \iif \ i=1,3;\\ 
+	\mathbb{Z}/2\oplus \mathbb{Z}/2,&\ \ \iif\ i=5;\\ 
+	0,&\ \ \otherwise.
+\end{cases}\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+Suppose \((X,A)\) is a pair for which HEP holds. Let \(j:A\hookrightarrow X\) be the inclusion, and let \(C_j\) denote the mapping cone of \(j\). Let \(p:C_j\rightarrow X/A\) be the projection that 
+collapse \(CA\) down to the basepoint. Use HEP to produce a map \(q:X/A\rightarrow C_j\) such that \(p\) and \(q\) are part of a homotopy equivalence.
+\end{problem}
+\begin{solution}
+Consider the canonical inclusion \(i:X\rightarrow C_j=X\cup_j CA\). Identify \(CA=(A\times I)/(A\times \left\{ 1 \right\})\) and the quotient map 
+\(h:A\times I\rightarrow CA\supseteq C_j\) can be viewed as a homotopy on the subspace \(A\subseteq X\). We know that \(h(-,0)=i|_A\) is just the inclusion \(j\). 
+\[\begin{tikzcd}
+	{X\times\left\{0\right\}\cup A\times I} & {C_j} \\
+	{X\times I}
+	\arrow["{i\cup h}", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\exists H}"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+By HEP, there exists a map \(H:X\times I\rightarrow C_j\) such that the above diagram commutes. Note that \(H(-,1):X\rightarrow C_j\) maps the subspace \(A\subseteq X\) to the peak in \(CA\subseteq C_j\) since 
+\(h(-,1)\) is the constant map on \(A\). So \(H(-,1)\) must factor through the quotient space \(X/A\), and we take \(q=H(-,1):X/A\rightarrow C_j\). Next, we need to show that \(p\) and \(q\) give us a homotopy equivalence 
+between \(X/A\) and \(C_j\).
+
+View \(pq=p\circ H(-,1):X\rightarrow C_j\rightarrow X/A\). We know by construction that \(H(-,1)\) is homotopic to \(H(-,0):X\rightarrow C_j\) which is just the inclusion. So \(pq\simeq p\circ H(-,0):X\rightarrow X/A\) is just the quotient map. When 
+factoring through \(X/A\), \(pq\) is homotopic to the identity \(id:X/A\rightarrow X/A\). On the other hand, we need to show that \(qp\) is homotopic to the identity \(C_j\rightarrow C_j\). Consider the following map \(K:C_j\times I\rightarrow C_j\) constructed in this way: 
+for any \(x\in X\) and \(t\in I\), \(K(x,t)=H(x,t)\). For \((y,s)\in CA=A\times I/\sim\), write \((y,s,t)\in CA\times I=(A\times I/\sim)\times I\) and \(v_0:=A\times \left\{ 1 \right\}\in CA\) is the point at the top of the cone. 
+We send \((y,s,t)\) to \((1-s)H(y,t)+sv_0\) where \(y\in A\subseteq X\). We check that this indeed defines a map \(K:C_j\times I\rightarrow C_j\). Note that \(C_j=X\cup_j CA\). We need to check that for any \(t\in I\), the image \(A\times \left\{ 0 \right\}\subseteq CA\) must be sent to the 
+same points as \(A\subseteq X\). This is true because \(K(y,0,t)=H(y,t)=K(y,t)\) if we identify  \(y\sim (y,0)\in A\times \left\{ 0 \right\}\cong A\xrightarrow{j}X\). \(K\) is continous by construction. Note that when \(t=0\), on \(X\), \(K(-,0)=H(-,0)\) is just the inclusion \(X\hookrightarrow C_j\) and 
+on \(CA\), \(K(y,s,0)=(1-s)H(y,0)+sv_0=(1-s)y+sv_0\) just maps the same line in \(CA\) to the same line, so \(K(-,0):C_j\rightarrow C_j\) is the identity. When \(t=1\), note that \(K(y,1)=H(y,1)=v_0\) for any \(y\in A\) by construction of \(H\), and \(K(-,1)\) is the composition \(qp:C_j\rightarrow C_j\). Thus, 
+we have constructed a homotopy \(K\) between \(qp\) and the identity. This proves that \(p\) and \(q\) give a homotopy equivalence between \(X/A\) and \(C_j\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Suppose \(M\) and \(N\) are \(n\)-dimensional manifold with boundary, and \(h:\partial M\rightarrow \partial N\) is a homeomorphism. Then one gets a new manifold (without boundary) by gluing \(M\) and \(N\) together along \(h\). That is, one takes the 
+space \(M\cup_h N=[M\sqcup N]/\sim\) where the quotient relation is \(x\sim h(x)\) for \(x\in \partial M\). 
+
+Let \(M=N=D^2\times S^1\). Then \(\partial M=\partial N=S^1\times S^1\). Let \(p,q,a,b\) be integers such that \(qa-pb=1\), and let \(h:S^1\times S^1\rightarrow S^1\times S^1\) be given by 
+\[(e^{ix},e^{iy})\mapsto (e^{i(ax+by)},e^{i(px+qy)}).\]
+The condition that \(qa-pb=1\) implies that \(h\) is a homeomorphism. Compute \(H_*(M\cup_h N)\).
+\end{problem}
+\begin{solution}
+\begin{claim}
+\(h\) is a homeomorphism.
+\end{claim}
+\begin{claimproof}
+Consider the following map \(h'\):
+\begin{align*}
+    h':S^1\times S^1&\rightarrow S^1\times S^1,\\ 
+    (e^{ix},e^{iy})&\mapsto (e^{i(qx-by)},e^{i(-px+ay)}).
+\end{align*}
+This map is continous by definition and we can check that 
+\begin{align*}
+    (e^{ix},e^{iy})\xrightarrow{h'\circ h}&h'(e^{i(ax+by)},e^{i(px+qy)})\\ 
+                                          &=((e^{i(ax+by)})^q\cdot (e^{i(px+qy)})^{-b},(e^{i(ax+by)})^{-p}\cdot (e^{i(px+qy)})^a)\\ 
+                                          &=(e^{i(aq-bp)x}\cdot e^{i(bq-bq)y}, e^{i(-ap+pa)x}\cdot e^{i(-bp+qa)y})\\ 
+                                          &=(e^{ix},e^{iy}).
+\end{align*}
+Similarly, we can check that \(h\circ h'\) is also the identity. So \(h\) is a homeomorphism.
+\end{claimproof}
+
+Write \(M=D^2_M\times S^1\) and \(N=D^2_N\times S^1\). Let \(0\) denote the center of the disks. Note that \(M-0:=(D^2_M-0)\times S^1\) and \(N-0:=(D^2_N-0)\times S^1\) are open and deforms retract into the boundary \(\partial M\) and \(\partial N\) resprectively. Take 
+\(U=M\cup_h(N-0)\) and \(V=(M-0)\cup_h N\). We have \(U\cup V=M\cup_h N\) and \(U\cap V\) is homotopic equivalent to the glued boundary \(\partial M=\partial N=S^1\times S^1\cong T\), which is homeomorphic to a torus \(T\). Since \(D^2_M-0\cong D^2_N-0\) is contractible, \(U\) and \(V\) are homotopic equivalent to \(\left\{ * \right\}\times S^1\). 
+The Mayer-Vietoris sequence gives us the following long exact sequence in reduced homology:
+\[\begin{tikzcd}
+	& {\tilde{H}_*(S^1\times S^1)\cong \tilde{H}_*(T)} & {\tilde{H}_*(S^1)\oplus \tilde{H}_*(S^1)} & {\tilde{H}_*(M\cup_h N)} \\
+	3 & 0 & 0 & {?} \\
+	2 & {\mathbb{Z}} & 0 & {?} \\
+	1 & {\mathbb{Z}\oplus \mathbb{Z}} & {\mathbb{Z}\oplus\mathbb{Z}} & {?} \\
+	0 & 0
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=4-2]
+	\arrow["i"', from=4-2, to=4-3]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=5-2]
+\end{tikzcd}\]
+Note that both \(M\) and \(N\) are path-connected, from the long exact sequence we know that 
+\[H_0(M\cup_h N)=H_3(M\cup_h N)=\mathbb{Z}.\]
+For the rest of the homology groups, we need to determine the homeomorphism \(i:H_1(S^1\times S^1)\rightarrow H_1(S^1)\oplus H_1(S^1)\). \(i\) is induced by the compostion of maps 
+\[\begin{tikzcd}
+	{S^1\times S^1} & {D^2\times S^1\cong M} \\
+	{S^1\times S^1} & {D^2\times S^1\cong N}
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow["h"', from=1-1, to=2-1]
+	\arrow[hook, from=2-1, to=2-2]
+\end{tikzcd}\]
+Passing to the first homology groups, we can see that 
+\[\begin{tikzcd}
+	{H_1(S^1\times S^1)} & {H_1(D^2\times S^1)\cong H_1(S^1)} \\
+	{H_1(S^1\times S^1)} & {H_1(D^2\times S^1)\cong H_1(S^1)}
+	\arrow["{p_1}", from=1-1, to=1-2]
+	\arrow["{h_*}"', from=1-1, to=2-1]
+	\arrow["{p_2}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We know that \(H_1(S^1\times S^1)\) has two generators corresponding to each \(S^1\). We can see from the diagram that \(p_1\) and \(p_2\) just project the generators to the second factor. Suppose \(\alpha,\beta\) generates \(H_1(S^1\times S^1)\). From the diagram we can see that 
+\(p_1(\alpha,\beta)=\beta\) and \(p_2(h_*(\alpha,\beta))=p_2(a\alpha+b\beta,p\alpha+q\beta)=p\alpha+q\beta\). So the map 
+\[i:H_1(S^1\times S^1)\rightarrow H_1(S^1)\oplus H_1(S^1)\]
+in the Mayer-Vietoris sequence is given by \((\alpha,\beta)\mapsto (\beta,p\alpha+q\beta)\). Alternatively,  this map can be viewed as a matrix \(A=\begin{pmatrix}
+    0&1\\ 
+    p&q
+\end{pmatrix}\) from \(\mathbb{Z}^2\) to \(\mathbb{Z}^2\). If \(p=0\), then \(\det A=0\) and \(\ker i=\mathbb{Z}\) and \(\coker i=\la \alpha,\beta\ra/\la \beta,q\beta\ra=\mathbb{Z}\). If 
+\(p=1\) or \(p=-1\), then \(A\) is invertible, and this implies \(i\) is an isomorphism, so \(\ker i=\coker i=0\). If \(p\neq 0,1,-1\), then \(\ker i=0\) and \(\coker i=\mathbb{Z}/ p \mathbb{Z}\). 
+We can summarize the homology groups as follows.\\ 
+If \(p=0\), then 
+\[H_i(M\cup_h N)=\begin{cases}
+    \mathbb{Z},&\iif i=0,1,2,3;\\ 
+    0,&\ \ \otherwise.
+\end{cases}\]
+If \(p=1\) or \(p=-1\), then 
+\[H_i(M\cup_h N)=\begin{cases}
+    \mathbb{Z},&\iif i=0,3;\\ 
+    0,&\ \ \otherwise.
+\end{cases}\]
+If \(p\neq 0,1,-1\), then 
+\[H_i(M\cup_h N)=\begin{cases}
+    \mathbb{Z},&\iif i=0,3;\\ 
+    \mathbb{Z}/p \mathbb{Z},&\iif i=1;\\ 
+    0,&\ \ \otherwise.
+\end{cases}\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Probelm 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{7}
+Let \((X,A)\) be a CW pair, and \(Y\) be any space. Suppose given \(f:X\rightarrow Y\) and \(h:A\times I\rightarrow Y\) such that \(h|_{A\times 0}=f|_A\). The HEP says that 
+there exists an \(H:X\times I\rightarrow Y\) such that \(H|_{A\times I}=h\) and \(H_0=f\). Now suppose that \(h':A\times I\rightarrow Y\) is another map such that \(h'|_{A\times 0}=f|_A\), and let 
+\(H':X\times I\rightarrow Y\) be an extension of \(h'\) just as \(H\) was an extension of \(h\). Prove that if \(h\) is homotopic to \(h'\) relative to \(A\times \left\{ 0 \right\}\), via a homotopy called \(\lambda\), then 
+\(H'\) can be chosen so that it is homotopic to \(H\) relative to \(X\times \left\{ 0 \right\}\) through a homotopy \(\Lambda\) that extends \(\lambda\).
+\end{problem}
+\begin{solution}
+Consider the pair of spaces \((X\times I, (X\times \left\{ 0 \right\})\cup(A\times I))\). This is a CW pair since \((X,A)\) is a CW pair and we can choose a CW complex structure for \(X\times I\) and \(A\times I\). Note 
+that the map \(f:X\rightarrow Y\) can be extended to a map \(F:X\times 0\times I\rightarrow Y\) with \(F(x,0,t)=f(x)\) for any \(x\in X\) and any \(t\in I\). Consider the map 
+\(H:X\times I\rightarrow Y\) and the homotopy \(F\cup \lambda: (X\times \left\{ 0 \right\}\times I)\cup (A\times I\times I)\rightarrow Y\). We know that 
+\[(F\cup \lambda)|_0=f\cup h=H|_{(X\times \left\{ 0 \right\})\cup (A\times I)}.\]
+The following diagram:
+\[\begin{tikzcd}
+	{(X\times 0\times I)\cup(A\times I\times I)\cup(X\times I\times 0)} && Y \\
+	{X\times I\times I}
+	\arrow["{F\cup \lambda\cup H}", from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["{\exists \Lambda}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+implies that there exists a homotopy \(\Lambda:X\times I\times I\rightarrow Y\) such that \(\Lambda(x,t,0)=H(x,t)\) and \(\Lambda|_{X\times \left\{ 0 \right\}\cup (A\times I)}=F\cup \lambda\). We choose \(H'(x,t)=\Lambda(x,t,1)\). 
+This proves that \(H'\) is homotopic to \(H\) relative to \(X\times \left\{ 0 \right\}\) through a a homotopy \(\Lambda\) that extends \(\lambda\).
+\end{solution}
+
+
+\end{document}

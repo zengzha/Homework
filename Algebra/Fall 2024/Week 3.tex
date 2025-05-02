@@ -1,0 +1,345 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[numbered]{mcode}
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 3}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $23^{th}$ October, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.10}
+A \textit{set-through-time} \(X\) is the data of sets \(X_n\) and functors \(X_n\rightarrow X_{n+1}\) for each \(n\in \mathbb{N}\):
+$$X=(X_0\rightarrow X_1\rightarrow X_2\rightarrow \cdots).$$
+A morphism \(f:X\rightarrow Y\) between two sets-through-time \(X\) and \(Y\) is the data of functions \(f_n:X_n\rightarrow Y_n\) for each 
+\(n\in \mathbb{N}\), such that all the squares in the following diagram commute:
+$$\begin{tikzcd}
+	{X_0} & {X_1} & {X_2} & \cdots \\
+	{Y_0} & {Y_1} & {Y_2} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_0}"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow["{f_1}"', from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["{f_2}"', from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}$$
+Let \textbf{SetThruTime} be the category of all sets-through-time. Also let \(\underline{\mathbb{N}}\) be the category from Exercise 2.1.4. for the natural ordering 
+and let \textbf{Func}(\(\underline{\mathbb{N}}\),\textbf{Sets}) be the functor category. Prove that there is an isomorphism of categories:
+$$\textbf{Fun}(\underline{\mathbb{N}},\textbf{Sets})\xrightarrow{\sim} \textbf{SetsThruTime}.$$
+mapping a functor \(\mathcal{F}:\underline{\mathbb{N}}\rightarrow \textbf{Sets}\) to the set-through-time \(X\) such that \(X_n:=\mathcal{F}(n)\) and \(X_n\rightarrow X_{n+1}\) 
+is the function obtained by applying \(\mathcal{F}\) to the unique morphism \(n\rightarrow(n+1)\).
+\end{problem}
+\begin{solution}
+Let \(\mathcal{E}:\textbf{Fun}(\underline{\mathbb{N}},\textbf{Sets})\rightarrow \textbf{SetsThruTime}\) be the functor described in the problem. We define a functor 
+$$\mathcal{G}:\textbf{SetsThruTime}\rightarrow \textbf{Fun}(\underline{\mathbb{N},\textbf{Sets}})$$
+as follows. Let \(X=(X_0\rightarrow X_1\rightarrow X_2\rightarrow\cdots)\) be a set-through-time. \(\mathcal{G}X\) is a functor from \(\underline{\mathbb{N}}\) to \textbf{Sets}. We 
+define for each \(n\in \mathbb{N}\), \(\mathcal{G}X(n):=X_n\) and \(\mathcal{G}X(n\leq n+1):=(X_n\rightarrow X_{n+1})\), which is the map between the sets \(X_n\rightarrow X_{n+1}\). We need to check that \(\mathcal{G}X\) is indeed a functor. 
+Note that \(\mathcal{G}X(n\leq n)=X_n\rightarrow X_n\) is just the identity map of the set \(X_n\). Furthermore, 
+$$\mathcal{G}X(n\leq m\leq l)=(X_n\rightarrow X_m\rightarrow X_l)=(\mathcal{G}X(n\leq m))(\mathcal{G}X(m\leq l))$$
+since functions between the sets can be composed. This proves that for each \(X\in \textbf{SetsThruTime}\), \(\mathcal{G}X\) is a functor. 
+\par 
+Next, we are going to show that \(\mathcal{G}\) itself is also a functor. Consider a morphism in \textbf{SetsThruTime}:
+$$\begin{tikzcd}
+	{X_0} & {X_1} & {X_2} & \cdots \\
+	{Y_0} & {Y_1} & {Y_2} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_0}"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow["{f_1}"', from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["{f_2}"', from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}$$
+We need to show that we have a natural transformation from \(\mathcal{G}X\) to \(\mathcal{G}Y\). Note that 
+$$\mathcal{G}f_i:\mathcal{G}X(i)=X_i\rightarrow \mathcal{G}Y(i)=Y_i$$ and morphisms are the same as \(X_i\rightarrow X_{i+1}\) or \(Y_i\rightarrow Y_{i+1}\). So the diagram for 
+natural transformations are exactly given by the diagram above. 
+\par 
+Finally, note that by defintion \(\mathcal{E}\mathcal{G}\) and \(\mathcal{G}\mathcal{E}\) are both identity functors by checking objects and morphisms. This proves that we have an isomorphism of categories. 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.5.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.5.6}
+Given any category \(\mathbf{C}\), a \textit{skeletal subcategory} of \(\mathbf{C}\) is a full subcategory \(\mathbf{S}\) such that Ob \(\mathbf{S}\) consists of 
+exactly one representative for each isomorphism class of objects in \(\mathbf{C}\). Use Theorem 2.5.3. to show that \(\mathbf{C}\) and \(\mathbf{S}\) are equivalent categories.
+\end{problem}
+\begin{solution}
+We define a functor \(\mathcal{F}:\mathbf{S}\rightarrow \mathbf{C}\) via the inclusion of the subcategory. Since \(\mathbf{S}\) is a full subcategory of \(\mathbf{C}\), the inclusion functor 
+is both full and faithful. Furthermore, every object in \(\mathbf{C}\) has an isomorphic representative in \(\mathbf{S}\) by the definition of the skeletal subcategory. We have shown that 
+\(\mathcal{F}\) is full, faithful and dense, by Theorem 2.5.3., \(\mathcal{F}\) is an equivalence of categories.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.6.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.6.1}
+Let \(\mathbf{C}\) be a locally small category, \(X\in \text{Ob}\, \mathbf{C}\), \(\mathcal{F}:\mathbf{C}\rightarrow \textbf{Sets}\) be any functors, and \(g\in \mathcal{F}X\).
+\begin{enumerate}
+    \item Show that there is a functor \(h^X:\mathbf{C}\rightarrow \textbf{Sets}\) defined on the object \(A\) by setting \(h^X A:=\text{Hom}_{\mathbf{C}}(X,A)\), and on a morphism 
+          \(f:A\rightarrow B\) by letting \(h^X f:h^X A\rightarrow h^X B\) be the function with \((h^X f)(\theta)=f\circ \theta\) for each \(\theta\in \text{Hom}_{\mathbf{C}}(X,A)\).
+    \item Show that there is a natural transformation \(h^g:h^X\Rightarrow \mathcal{F}\) such that \(h^g_A: h^X A\rightarrow \mathcal{F}A\) maps \(\theta\in \text{Hom}_{\mathbf{C}}(X,A)\) 
+          to \((\mathcal{F}\theta)(g)\in \mathcal{F}A\) for each \(A\in \text{Ob}\, \mathbf{C}\).
+    \item If \(\mathcal{F}=h^Y\) for some \(Y\in \text{Ob}\, ,\mathbf{C}\), so that \(g\in \mathcal{F}X\) is an arrow \(g:Y\rightarrow X\) in \(\mathbf{C}\), show that the natural transformtion 
+          \(h^g:h^X\Rightarrow h^Y\) from (2) is given by
+          \(h^g_A:h^X A\rightarrow h^Y A\), \(\theta \mapsto \theta\circ g\) for some \(A\in \text{Ob}\, \mathbf{C}\). 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+ \item We need to check that \(h^X\) is indeed a functor. Let \(\text{id}:A\rightarrow A\) is the identity morphism of object \(A\) in \(\mathbf{C}\). We have \(h^X\text{id}:\hom (X,A)\rightarrow \hom (X,A)\) which sends 
+       any morphism \(f:X\rightarrow A\) to \(\text{id}\circ f=f\), so \(h^X\text{id}\) is still the identity morphism. Furthermore, suppose we have two morphisms \(f:A\rightarrow B\) and \(g:B\rightarrow C\), given a morphism \(h:X\rightarrow A\), apply \(h^X\) and we get:
+       $$h^X(g\circ f)(h)=(g\circ f)\circ h=g\circ (f\circ h)=g\circ (h^Xf)(h)=(h^Xg)\circ(h^Xf)(h).$$
+ \item We need to show that for any morphism \(f:A\rightarrow B\) in \(\mathbf{C}\), we have a commutative diagram:
+       $$\begin{tikzcd}
+	{h^XA} & {\mathcal{F}A} \\
+	{h^XB} & {\mathcal{F}B}
+	\arrow["{h^g_A}", from=1-1, to=1-2]
+	\arrow["{h^Xf}"', from=1-1, to=2-1]
+	\arrow["{\mathcal{F}f}", from=1-2, to=2-2]
+	\arrow["{h^g_B}"', from=2-1, to=2-2]
+\end{tikzcd}$$
+       Given a morphism \(p:X\rightarrow A\), we have 
+       $$(h^g_B\circ h^Xf)(p)=h^g_B(f\circ p)=(\mathcal{F}(f\circ p))(g)=(\mathcal{F}f\circ \mathcal{F}p)(g).$$
+       On the other hand, 
+       $$(\mathcal{F}f\circ h^g_A)(p)=\mathcal{F}f(\mathcal{F}p)(g)=(\mathcal{F}f\circ \mathcal{F}p)(g).$$
+       This proves that the diagram commutes. So \(h^g:h^X\Rightarrow \mathcal{F}\) is indeed a natural transformation.
+ \item By the definition in (2), we need to show that given a morphism \(\theta:X\rightarrow A\) in \(\mathbf{C}\), \(h^g_A\) maps \(\theta\) to 
+       $$(h^Y\theta)(g)=\theta\circ g$$
+       is just the composition.  
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.6.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.6.3}
+Let \(\mathcal{P}:\textbf{Sets}\rightarrow \textbf{Sets}\) be the covariant power set functor, i.e. for a set \(X\), \(\mathcal{P}X\) is its power 
+set \(P(X)\), and for a function \(f:X\rightarrow Y\) sends a subset of \(X\) to its image under \(f\). Show that \(\mathcal{P}\) is not representable.
+\end{problem}
+\begin{solution}
+Suppose the covariant power set functor is represented by a set \(A\). Let \(X\) be a set with only one element. Then the power set \(\mathcal{P}X\) has two elements, the empty set \(\varnothing\) and \(X\) itself. 
+So, the Hom set \(\hom(A,X)\) should also have two maps. However, there only exists one morphism from any set to a set with only one element. A contradiction. So \(\mathcal{P}\) is not representable.  
+\end{solution}
+\\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.1.4}
+Show that the ring \(\mathbb{Z}\) is an initial object in the category \textbf{Rings}, and that any trivial ring is a terminal object. What about in the category \(\textbf{Alg}(\mathbb{F})\)?
+\end{problem}
+\begin{solution}
+Let \(R\) be the ring with multiplicative identity \(1_R\). We define a map \(f:\mathbb{Z}\rightarrow R\) by sending \(a\in \mathbb{Z}\) to \(a\cdot 1_R\in R\). This is a ring homomorphism because 
+for any \(a,b\in \mathbb{Z}\), we have \(f(ab)=ab\cdot 1_R=a\cdot 1_R\cdot b\cdot 1_R=f(a)f(b)\) and \(f(a+b)=(a+b)\cdot 1_R=a\cdot 1_R+b\cdot 1_R=f(a)+f(b)\). This ring homomorphism \(f\) is also 
+unique because the definition of ring homomorphisms requires that it must send \(1\) to \(1_R\), and then by extending it \(\mathbb{Z}\)-linearly we can define it on the whole \(\mathbb{Z}\). This proves that 
+\(\mathbb{Z}\) is the initial object in \textbf{Rings}.
+\par 
+Any ring \(R\) has a unique zero map to the trivial ring. This shows that the trivial ring the terminal object in \textbf{Rings}.
+\par 
+The initial object in \(\textbf{Alg}(\mathbb{F})\) is the field \(\mathbb{F}\). Indeed, \(\mathbb{F}\) is the trivial \(\mathbb{F}\)-algebra and for any 
+\(\mathbb{F}\)-algebra \(S\), we have a homomorphism \(\mathbb{F}\rightarrow S\) by sending \(a\in \mathbb{F}\) to \(a\cdot 1_S\). This homomorphism is also unique as we have to send \(1\in \mathbb{F}\) to 
+\(1_S\in S\). The trivial ring \(\left\{ 0 \right\}\) can also be viewed as an \(\mathbb{F}\)-algebra, so it is the terminal object in \(\textbf{Alg}(\mathbb{F})\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.1.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.1.7}
+Prove that there are no initial or terminal object in \textbf{Fields}.
+\end{problem}
+\begin{solution}
+By definition a field needs to have at least two distinctive elements, the additive identity \(0\) and the multiplicative identity \(1\). By definition, for any 
+field homomorphism \(f:E\rightarrow F\), we must have \(f(0_E)=0_F\) and \(f(1_E)=1_F\). Note that \(p\cdot 1_F=p\cdot f(1_E)=f(p\cdot 1_E)\), so if the characteristic of \(E\) is p, 
+then the characteristic of \(F\) must also be \(p\), for any prime number \(p\) or \(p=0\). This means that there does not exist field homomorphisms between fields of different 
+characteristics. Therefore, we do not have initial or terminal object in the category \textbf{Fields}.   
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.2.4}
+Let \(X\) be a partially ordered set. In the category \underline{X} from Exercise 2.1.4., show that the coproduct of \(x\) and \(y\) is their 
+supremum \(x\vee y\), and the product of \(x\) and \(y\) is their infimum \(x\wedge y\). If \(x\vee y\)(resp. \(x\wedge y\)) does not exist then the 
+coproduct (resp. product) of \(x\) and \(y\) does not exist.
+\end{problem}
+\begin{solution}
+Let \(x,y,z\in \underline{X}\) satisfying \(z\leq x\) and \(z\leq y\). By definition, it is easy to see that \((x\wedge y)\leq x\) and \((x\wedge y)\leq y\). We have a 
+diagram as follows:
+$$\begin{tikzcd}
+	z \\
+	& {x\wedge y} & y \\
+	& x
+	\arrow[dashed, from=1-1, to=2-2]
+	\arrow[curve={height=-12pt}, from=1-1, to=2-3]
+	\arrow[curve={height=18pt}, from=1-1, to=3-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+\end{tikzcd}$$
+We need to show that there exists a unique map \(f:z\rightarrow x\wedge y\). And this is true because by definition of infimum, \(z\leq x\) and \(z\leq y\) give us \(z\leq x\wedge y\). This is unique since 
+each Hom set has only one element. Thus, \(x\wedge y\), if exists, is the product of \(x\) and \(y\) in \(\underline{X}\). Reverse all the arrows and all the inequalities, we get that 
+\(x\vee y\), if exists, is the coproduct of \(x\) and \(y\) in \(\underline{X}\). 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.2.8}
+Let \(V\) be an abelian group (resp. a vector spce over \(\mathbb{F}\)) and \((V_i)_{i\in I}\) be a family of subgroups (resp. subspaces). Define \(\Sigma_{i\in I}V_i\) 
+to be the subgroup (resp. subspaces) of \(V\) consisting of the elements of the form \(\Sigma_{i\in I}v_i\) for \(v_i\in V_i\), all but finitely many of which are zero. Show that 
+the map 
+$$\oplus_{i\in I}V_i\rightarrow V,\ (v_i)_{i\in I}\mapsto \Sigma_{i\in I}v_i$$
+is an isomorphism if and only if the following conditions hold:
+\begin{enumerate}
+    \item \(V=\sum_{i\in I}V_i\).
+    \item \(V_i\cap \sum_{j\in I, j\neq i}V_j=\left\{ 0 \right\}\) for each \(i\in I\).
+\end{enumerate}
+The conditions (1)-(2) are equivalent to saying that every \(v\in V\) can be written as \(v=\sum_{i\in I}v_i\) for unique vectors \(v_i\in V_i\), all but 
+finitely many of which are zero.
+\end{problem}
+\begin{solution}
+Suppose the map is an isomorphism. By Theorem 3.2.7, we know that \(V\cong \oplus_{i\in I}V_i\) is the coproduct of \((V_i)_{i\in I}\). Note that for each \(i\in I\), 
+\(V_i\subset V\) is a subgroup (resp. subspace), we have \(\Sigma_{i\in I}V_i\subset V\). On the other hand, since \(\oplus_{i\in I}V_i\rightarrow V\) is an isomorphism, every \(v\in V\) can be written as 
+\(\Sigma_{i\in I}v_i\). Thus, \(V=\Sigma_{i\in I}V_i\) and we have proved (1). For (2), fix an \(i\in I\), suppose \(w\in (V_i\cap (\Sigma_{j\in I, j\neq i}V_j))\). We know that \(w\) 
+can be written as:
+$$w=\Sigma_{j\in I,j\neq i}v_j$$
+with only finitely many \(v_j\) nonzero. Consider \(w\) as a single entry of \(V_i\) and the element \((v_j)_{j\in I, j\neq i}\in \oplus_{j\in I}V_j\). Since the map \(\oplus_{j\in I}V_j\rightarrow V\) is an isomorphism, \(w\) and \((v_j)_{j\in I, j\neq i}\in \oplus_{j\in I}V_j\) 
+is the same element in \(\oplus_{j\in I}V_j\). This shows that for each \(j\in I, j\neq i\), \(v_j=0\) and \(w=0\). So we proved (2). 
+\par 
+Conversely, assume the conditions (1) and (2) are satisfied. Write the original map:
+\begin{align*}
+    f:\oplus_{i\in I}V_i & \rightarrow V,\\ 
+    (v_i)_{i\in I} & \mapsto \Sigma_{i\in I}v_i.
+\end{align*}
+We are going to construct an inverse \(g:V\rightarrow \oplus_{i\in I}V_i\). For each \(i\in I\), given \(v\in V\), since \(V=\Sigma_{i\in I}V_i\), we could write \(v=(v_i)_{i\in I}\). We define \(g_i:V\rightarrow V_i\) by sending 
+\(v\) to \(v_i\). Note that \(\oplus_{i\in I}V_i\) is the coproduct of \((V_i)_{i\in I}\), so by the universal property, we have a map \(g:V\rightarrow \oplus_{i\in I}V_i\). This map \(g\) is unique since condition (2) is satisfied, which means 
+every element \(v\in V\) can be uniquely written as finite sum of elements from \(V_i\). Next, we need to check \(f\circ g=\text{id}\) and \(g\circ f=\text{id}\). Write \(v=(v_i)_{i\in I}\) and use the universal property of \(g\), this is true. 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.3.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.3.3}
+Let \(M\) be a commutative monoid with operation \(+\). Let 
+$$A(M):=(M\times M)/\sim$$
+where \(\sim\) is the equivalence relation on \(M\times M\) defined from \((p,m)\sim (p',m')\Leftrightarrow p+m'+q=p'+m+q\) for some \(q\in M\). 
+Introduce the symbol \(p-m\) to denote the equivalence class of \((p,m)\in M\times M\). Show that \(A(M)\) is a well-defined abelian group with operation 
+\((p-m)+(p'+m'):=(p+p')-(m+m')\) and that the map \(\iota:M\rightarrow A(M), p\mapsto p-0_M\) is a monoid homomorphism. Show further that \(\iota\) is injective 
+if and only if \(M\) is cancellative in the obvious sense. What well-known abelian group is \(A(\mathbb{N})\)?
+\end{problem}
+\begin{solution}
+For every \(m,n\in M\), we have \((m,m)\sim (n,n)\) since \(m+n=m+n\). And \((m,m)\) is the identity element in \(A(M)\) because for \((p,q)\in A(M)\), we have 
+\((m,m)+(p,q)=(m+p,m+q)\sim (p,q)\) as \(m+p+q=m+q+p\). Write \((m,m)=e\). The operation defined is compatible with the equivalence relations. Suppose \((p,q)\sim (p',q')\) and 
+\((s,t)\sim (s',t')\), which means there exists \(m,n\in M\) such that \(p+q'+m=p'+q+m\) and \(s+t'+n=s'+t+n\). Add these two together, we have \(p+s+q'+t'+m+n=q+t+p'+s'+m+n\). This implies 
+\((p+q,s+t)\sim (p'+q',s'+t')\).
+\par 
+Next, we show that the operation is associative and commutative. Let \((m_1,n_1),(m_2,n_2),(m_3,n_3)\) be in \(A(M)\). We have 
+$$(m_1,n_1)+(m_2,n_2)=(m_1+m_2,n_1+n_2)=(m_2+m_1,n_2+n_1)=(m_2,n_2)+(m_1,n_1).$$
+This proves that \(A(M)\) is commutative. Moreover, 
+$$\begin{align*}
+    ((m_1,n_1)+(m_2,n_2))+(m_3,n_3) & = (m_1+m_2,n_1+n_2)+(m_3,n_3)\\ 
+                                    & = (m_1+m_2+m_3,n_1+n_2+n_3)\\ 
+                                    & = (m_1,n_1)+(m_2+m_3,n_2+n+3)\\ 
+                                    & = (m_1,n_1)+((m_2,n_2)+(m_3,n_3)).
+\end{align*}$$ 
+This is the operation in \(A(M)\) is associative. Now we need to show that every \((p,q)\in A(M)\) has inverse. Indeed, we have 
+$$(p,q)+(q,p)=(p+q,q+p)\sim e.$$
+So \((q,p)\) is the inverse of \((p,q)\) in \(A(M)\). This concludes that \(A(M)\) is an abelian group. Consider the map:
+$$\begin{align*}
+    \iota:M &\rightarrow A(M),\\ 
+          p &\mapsto (p,0_M)
+\end{align*}$$
+This is a monoid homomorphism as \(\iota(p+q)=(p+q,0_M)=(p,0_M)+(q,0_M)=\iota(p)+\iota(q)\). If we further assume \(M\) is cancellative, let \(p\in \ker \iota\), we know that 
+\((p,0_M)\sim (p,p)\), which means \(2p+m=p+m\) for some \(m\in M\). If \(M\) is cancellative, then \(p=0_M\) and thus \(\iota\) is injective. Conversely, assume \(\iota\) is injective. Let 
+\(a,b\in M\) and \(a+m=b+m\) for some \(m\in M\). This implies \(\iota(a)=(a,0_M)\sim (b,0_M)=\iota(b)\) in \(A(M)\). Because \(\iota\) is injective, so \(a=b\) in \(M\). This shows that \(M\) is a 
+cancellative monoid.
+\par
+The group completion \(A(\mathbb{N})\) is the abelian group \((\mathbb{Z},+)\). To see this, we prove the universal property for group completion. Suppose \(A\) is an abelian group with a monoid homomorphism \(f:\mathbb{N}\rightarrow A\). 
+Then we can define a group homomorphism \(\bar{f}:\mathbb{Z}\rightarrow A\) as follows. If \(n\in \mathbb{Z}\) is natural number, then \(\bar{f}(n)=f(n)\). If \(n\in \mathbb{Z}\) is negative, then \(\bar{f}(n)=f(0)-f(-n)\). We have a commutative diagram: 
+$$\begin{tikzcd}
+	{\mathbb{N}} & {\mathbb{Z}} \\
+	A
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[dashed, from=1-2, to=2-1]
+\end{tikzcd}$$
+This morphism \(\bar{f}\) is unique as it has been restricted by how it maps on \(\mathbb{N}\subset \mathbb{Z}\). This shows that \(A(\mathbb{N})=\mathbb{Z}\). 
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.3.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.3.9}
+If \(f:G\rightarrow H\) is a homomorphism of groups, its image \(\text{im}f\) is a subgroup of \(H\) and its kernel \(\text{ker}f:=f^{-1}(1_H)\) is a normal 
+subgroup of \(G\). Show that \(f\) induces a group isomorphism \(\bar{f}:G/\text{ker}f\xrightarrow{\sim} \text{im}f\).
+\end{problem}
+\begin{solution}
+Without loss of generality, we could assume \(f\) is surjective and in this case \(\text{im}f=H\). Write \(\ker f=K\unlhd G\) and by the definition of the kernel, we have 
+\(f(K)=\left\{ 1_H \right\}\). Use Theorem 3.3.8 (Universal property of quotient groups), we have a unique group homomorphism \(\bar{f}:G/K\rightarrow H\). By surjectivity of \(f\), for 
+every \(h\in H\), there exist \(g\in G\) such that \(f(g)=h\), thus \(gK\) is the preimage of \(h\) under the map \(\bar{f}\). This proves that \(\bar{f}\) is surjective. Moreover, 
+Suppose \(gK\in \ker \bar{f}\), we know that \(1_H=\bar{f}(gK)=(\bar{f}\circ \pi)(g)=f(g)\) where \(\pi:G\rightarrow G/K\) is the canonical projection. This implies \(g\in \ker f=K\), therefore \(gK=K\) is the 
+identity element in \(\ker \bar{f}\). We have shown \(\ker \bar{f}\) is trivial, thus \(\bar{f}\) is injective. Now we can conclude that \(\bar{f}\) is a group isomorphism.
+\end{solution}
+
+
+
+\end{document}

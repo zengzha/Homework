@@ -1,0 +1,424 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\coind}{\text{coind}}
+\newcommand{\res}{\text{res}}
+\newcommand{\li}{\leftindex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 8}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 648 - Abstract Algebra  \hfill Term: Winter 2025\\
+Instructor: Professor Arkady Berenstein \hfill Due Date: $5^{th}$ March, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.1.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.1.2}
+Let \(G\) be a group and \(P\) be a projective \(\mathbb{Z}G\)-module. If \(M\) is a \(\mathbb{Z}G\)-module, which is projective as a \(\mathbb{Z}\)-module, then 
+the \(\mathbb{Z}G\)-module \(P\otimes_\mathbb{Z}M\) (with diagonal action of \(G\)) is projective.
+\end{problem}
+\begin{solution}
+We first prove a useful fact.
+\begin{claim}
+Let \(U,V\) be \(\mathbb{Z}G\)-module, then there is a \(G\)-action on the \(\mathbb{Z}\)-module \(\hom_\mathbb{Z}(U,V)\) and we have a natural isomorphism 
+\[\hom_\mathbb{Z}(U,V)^G\cong \hom_{\mathbb{Z}G}(U,V)\]
+as abelian groups where \(\hom_\mathbb{Z}(U,V)\) is the \(G\)-invariant set under the previous action.
+\end{claim}
+\begin{claimproof}
+We first define a \(G\)-action on \(\hom_\mathbb{Z}(U,V)\). Let \(f:U\rightarrow V\) be a map of \(\mathbb{Z}\)-modules, for any \(u\in U\), we define 
+\[(g\cdot f)(u):=g\cdot f(g^{-1}u).\]
+This is a well-defined \(G\)-action. For \(g,h\in G\), we have 
+\[(g\cdot h\cdot f)(u)=g\cdot (h\cdot f)(g^{-1}u)=g\cdot h\cdot f(h^{-1}g^{-1}u)=(gh)\cdot f((gh)^{-1}u)=((gh)\cdot f)(u).\]
+Consider the \(G\)-invariant set \(\hom_\mathbb{Z}(U,V)^G\) under this action, consider extending the above \(G\)-action \(\mathbb{Z}\)-linearly, and we obtain a \(\mathbb{Z}G\)-module structure because 
+\[(gf)(u)=(g(g^{-1}\cdot f))(u)=g\cdot g^{-1}\cdot f(gu)=f(gu)\]
+for all \(g\in G\) and \(u\in U\). Conversely, given a \(\mathbb{Z}G\)-module homomorphism \(h:U\rightarrow V\), viewed as a \(\mathbb{Z}\)-module homomorphism, we need to show that \(h\) is \(G\)-invariant. Indeed, we have 
+\[(g\cdot h)(u)=g\cdot h(g^{-1}u)=h(gg^{-1}u)=h(u)\]
+for all \(g\in G\) and \(u\in U\). We have proved there is an isomorphism of abelian groups 
+\[\hom_{\mathbb{Z}G}(U,V)\cong \hom_\mathbb{Z}(U,V)^G.\]
+Lastly, we check this isomorphism is natural. Suppose we have \(\mathbb{Z}G\)-modules \(U,V_1,V_2\) and a \(\mathbb{Z}G\)-module homomorphism \(\phi:V_1\rightarrow V_2\), we have a diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGhvbV97XFxtYXRoYmJ7Wn1HfShVLFZfMSkiXSxbMSwwLCJcXGhvbV97XFxtYXRoYmJ7Wn19KFUsVl8xKV5HIl0sWzAsMSwiXFxob21fe1xcbWF0aGJie1p9R30oVSxWXzIpIl0sWzEsMSwiXFxob21fe1xcbWF0aGJie1p9fShVLFZfMileRyJdLFswLDJdLFswLDEsIlxcY29uZyJdLFsxLDNdLFsyLDMsIlxcY29uZyIsMl1d
+\[\begin{tikzcd}
+	{\hom_{\mathbb{Z}G}(U,V_1)} & {\hom_{\mathbb{Z}}(U,V_1)^G} \\
+	{\hom_{\mathbb{Z}G}(U,V_2)} & {\hom_{\mathbb{Z}}(U,V_2)^G}
+	\arrow["\cong", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\cong"', from=2-1, to=2-2]
+\end{tikzcd}\]
+It is commutative because the isomorphism is taking map \(f\) to the same map. 
+\end{claimproof}
+
+Suppose we have two \(\mathbb{Z}G\)-module \(U,V\) and a surjective \(\mathbb{Z}G\)-homomorphism \(f:U\twoheadrightarrow V\).
+By the adjointness of \(\otimes\) and \(\hom\) and the above claim, we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXGhvbV97XFxtYXRoYmJ7Wn1HfShQXFxvdGltZXNfe1xcbWF0aGJie1p9fU0sVSkiXSxbMSwwLCJcXGhvbV97XFxtYXRoYmJ7Wn19KFBcXG90aW1lc197XFxtYXRoYmJ7Wn19TSxVKV5HIl0sWzAsMSwiXFxob21fe1xcbWF0aGJie1p9R30oUFxcb3RpbWVzX3tcXG1hdGhiYntafX1NLFYpIl0sWzEsMSwiXFxob21fe1xcbWF0aGJie1p9fShQXFxvdGltZXNfe1xcbWF0aGJie1p9fU0sVileRyJdLFsyLDAsIlxcaG9tX1xcbWF0aGJie1p9KFAsXFxob21fe1xcbWF0aGJie1p9fShNLFUpKV5HIl0sWzMsMCwiXFxob21fe1xcbWF0aGJie1p9R30oUCxcXGhvbV9cXG1hdGhiYntafShNLFUpKSJdLFsyLDEsIlxcaG9tX1xcbWF0aGJie1p9KFAsXFxob21fe1xcbWF0aGJie1p9fShNLFYpKV5HIl0sWzMsMSwiXFxob21fe1xcbWF0aGJie1p9R30oUCxcXGhvbV9cXG1hdGhiYntafShNLFYpKSJdLFswLDJdLFsxLDNdLFswLDEsIlxcY29uZyJdLFsyLDMsIlxcY29uZyIsMl0sWzEsNCwiXFxjb25nIl0sWzQsNSwiXFxjb25nIl0sWzMsNiwiXFxjb25nIiwyXSxbNiw3LCJcXGNvbmciLDJdLFs0LDZdLFs1LDddXQ==
+\[\begin{tikzcd}[sep=1.8em]
+	{\hom_{\mathbb{Z}G}(P\otimes_{\mathbb{Z}}M,U)} & {\hom_{\mathbb{Z}}(P\otimes_{\mathbb{Z}}M,U)^G} & {\hom_\mathbb{Z}(P,\hom_{\mathbb{Z}}(M,U))^G} & {\hom_{\mathbb{Z}G}(P,\hom_\mathbb{Z}(M,U))} \\
+	{\hom_{\mathbb{Z}G}(P\otimes_{\mathbb{Z}}M,V)} & {\hom_{\mathbb{Z}}(P\otimes_{\mathbb{Z}}M,V)^G} & {\hom_\mathbb{Z}(P,\hom_{\mathbb{Z}}(M,V))^G} & {\hom_{\mathbb{Z}G}(P,\hom_\mathbb{Z}(M,V))}
+	\arrow["\cong", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\cong", from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\cong", from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow["\cong"', from=2-1, to=2-2]
+	\arrow["\cong"', from=2-2, to=2-3]
+	\arrow["\cong"', from=2-3, to=2-4]
+\end{tikzcd}\]
+\(M\) being a projective \(\mathbb{Z}\)-module implies that \(\hom_\mathbb{Z}(M,U)\rightarrow \hom_\mathbb{Z}(M,V)\) is surjective. \(P\) being a projective \(\mathbb{Z}G\)-module implies that 
+\[\hom_{\mathbb{Z}G}(P,\hom_\mathbb{Z}(M,U))\rightarrow \hom_{\mathbb{Z}G}(P,\hom_\mathbb{Z}(M,V))\]
+is surjective. So the right vertical map is surjective and by commutativity, we know the left vertical map 
+\[\hom_{\mathbb{Z}G}(P\otimes_{\mathbb{Z}}M,U)\rightarrow \hom_{\mathbb{Z}G}(P\otimes_{\mathbb{Z}}M,V)\]
+is also surjective. This proves that \(P\otimes_\mathbb{Z}M\) is a projective \(\mathbb{Z}G\)-module.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.1.4(Restriction is left adjoint to coinduction)}
+Let \(S\) be a subring of a ring \(R\). Define the coinduction functor 
+\begin{align*}
+\coind^R_S:S-\textbf{Mod}&\rightarrow R-\textbf{Mod},\\
+	        U&\mapsto \hom_S(\leftindex_S R_R,U).
+\end{align*}
+Prove that \(\coind_S^R\) is right adjoint to \(\res_S^R\).
+\end{problem}
+\begin{solution}
+By the adjointness of \(\otimes\) and \(\hom\), we know that the functor \(\hom_S(\li_S R_R,-)\) is right adjoint to \(\li_S R_R\otimes_R-\), so we need to show that 
+\(\res_S^R\) is isomorphic to \(\li_S R_R\otimes_R-\). Let \(M\) be a left \(R\)-module, viewed as a left \(S\)-module, we have an \(S\)-module homomorphism 
+\begin{align*}
+	\alpha:\li_S R_R\otimes_R M&\rightarrow \li_S M,\\ 
+	       r\otimes m&\mapsto rm.
+\end{align*}
+By Lemma 17.2.11, this is a functorial isomorphism. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.1.5}
+Let \(\phi:S\rightarrow R\) be a ring homomorphism. Then \(R\) can be regarded as a right \(S\)-module, and we have a functor \(R\otimes_S-:S-\textbf{Mod}\rightarrow R-\textbf{Mod}\). 
+Prove that \(R\otimes_S-\) is left adjoint to the functor \(R-\textbf{Mod}\rightarrow S-\textbf{Mod}\) obtained by composing the \(R\)-action with \(\phi\).
+\end{problem}
+\begin{solution}
+By the adjointness of \(\otimes\) and \(\hom\), if we view \(R\) as \(\li_R R_S\), a \((R,S)\) bimodule, then \(\li_R R_S\otimes_S-\) is left adjoint to the functor 
+\[\hom_R(\li_R R_S,-):R-\mathbf{Mod}\rightarrow S-\mathbf{Mod}.\]
+We need to show that this functor is isomorphic to the functor obtained by composing the \(R\)-action with \(\phi\). Let \(f:\li_R R_S\rightarrow M\) be a \(R\)-module homomorphism. For any \(s\in S\) and \(r\in R\), we have 
+\[(s\cdot f)(r)=f(r\phi(s)).\]
+Recall that we have an \(R\)-module isomorphism \(\hom_R(\li_RR_S,M)\rightarrow M\) by sending \(f\) to \(f(1)=m\). Then the induced left \(S\)-module structure on \(M\) under this isomorphism is given by
+\[s\cdot m=(s\cdot f)(1)=f(\phi(s))=\phi(s)\cdot m.\]
+This is exactly the \(S\)-module structure obtained from composing with \(\phi\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.1.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.1.6}
+In Theorem 18.1.1, Corollary 18.1.3, and Exercise 18.1.4, we have seen three examples of adjoint pairs of functors \((\mathcal{F},\mathcal{G})\). For each of those pairs explicitly 
+construct the unit and the counit of the adjunction.
+\end{problem}
+\begin{solution}
+We give the unit and counit of Theorem 18.1.1 in (a), Corollary 18.1.3 in (b), and Exercise 18.1.4 in (c). 
+\begin{enumerate}[(a)]
+\item Let \(V\) be a \((R,S)\)-bimodule and \(U\) be a left \(S\)-module. By Theorem 18.1.1 and Theorem 5.1.8, We have an isomorphism of abelian groups 
+\[\alpha:\hom_R(V\otimes_S U, V\otimes_S U)\xrightarrow{\sim}\hom_S(U, \hom_R(V,V\otimes_S U)).\]
+The unit 
+\[\eta:id_{S-\mathbf{Mod}}\Rightarrow\hom_R(V,V\otimes_S-)\]
+is a natural transformation given by 
+\[\eta_U=\alpha(id_{V\otimes_S U}):U\rightarrow \hom_R(V,V\otimes_S U)\]
+on each \(U\in S-\mathbf{Mod}\). More explicitly, for any \(u\in U\) and \(v\in V\), we have 
+\[\eta_U(u)(v)=v\otimes u.\]
+Conversely, given a left \(R\)-module \(W\), by Theorem 18.1.1, we have an isomorphism of abelian groups 
+\[\beta:\hom_S(\hom_R(V,W),\hom_R(V,W))\xrightarrow{\sim}\hom_R(V\otimes_S\hom_R(V,W),W).\]
+By theorem 5.1.8, the counit 
+\[\varepsilon:V\otimes_S\hom_R(V,-)\Rightarrow id_{R-\mathbf{Mod}}\]
+is given by 
+\[\varepsilon_W=\beta(id_{\hom_R(V,W)}):V\otimes_S \hom_R(V,W)\rightarrow W\] 
+on each \(W\in R-\mathbf{Mod}\). More explicitly, for any \(v\in V\) and \(f\in \hom_R(V,W)\), we have 
+\[\varepsilon_W(v\otimes f)=f(v).\]
+\item Let \(S\) be a subring of \(R\) and \(U\) be a left \(S\)-module. By Corollary 18.1.3, we have an isomorphism of abelian groups 
+\[\alpha:\hom_R(\ind_S^RU,\ind_S^RU)\xrightarrow{\sim}\hom_S(U,\res_S^R\ind_S^RU).\]
+By Theorem 5.1.8, the unit 
+\[\eta:id_{S-\mathbf{Mod}}\Rightarrow \res_S^R\ind_S^R(-)\]
+is given by 
+\[\eta_U=\alpha(id_{\ind_S^RU}):U\rightarrow \res_S^R\ind_S^RU\] 
+on each \(U\in S-\mathbf{Mod}\). More explicitly, for any \(u\in U\), we have 
+\[\eta_U(u)=1\otimes u\in R\otimes_S U\]
+where we restrict the action from \(R\) to \(S\) on \(R\otimes_S U\), viewing it as a \(S\)-module. 
+
+Conversely, given a left \(R\)-module \(V\), we have an isomorphism of abelian groups 
+\[\beta:\hom_S(\res_S^RV,\res_S^RV)\xrightarrow{\sim}\hom_R(\ind_S^R\res_S^RV,V).\]
+By Theorem 5.1.8, the counit 
+\[\varepsilon:\ind_S^R\res_S^R\Rightarrow id_{R-\mathbf{Mod}}\]
+is given by 
+\[\varepsilon_V=\beta(id_{\res_S^RV}):\ind_S^R\res_S^RV\rightarrow V\]
+on each \(V\in R-\mathbf{Mod}\). More explicitly, for any \(v\in V\), we first view \(v\) as an element in an \(S\)-module \(V\), then note that  
+\[\ind_S^R\res_S^RV=\li_RR_S\otimes_S\li_SV\]
+and we have 
+\[\varepsilon_V(r\otimes v)=rv.\]
+\item Let \(S\subseteq R\) be a subring and \(U\) be a left \(R\)-module. We have proved in Exercise 18.1.4 that we have an isomorphism of abelian groups 
+\[\alpha:\hom_S(\res_S^RU,\res_S^RU)\xrightarrow{\sim}\hom_R(U,\coind_S^R\res_S^RU).\]
+By Theorem 5.1.8, the unit 
+\[\eta:id_{R-\mathbf{Mod}}\Rightarrow \coind_S^R\res_S^R\]
+is given by 
+\[\eta_U=\alpha(id_{\res_S^RU}):U\rightarrow \coind_S^R\res_S^RU\]
+for each \(U\in R-\mathbf{Mod}\). More explicitly, for any \(u\in U\), we have 
+\[\eta_U(u)=f\in \hom_S(\li_SR_R,\li_SU)\]
+where \(\li_SU\) implies that \(U\) is viewed as a left \(S\)-module and \(f\) satisfies \(f(1)=u\).
+
+Conversely, given a left \(S\)-module \(V\), we have an isomorphism of abelian groups 
+\[\beta:\hom_R(\coind_S^RV,\coind_S^RV)\xrightarrow{\sim}\hom_S(\res_S^R\coind_S^RV,V).\]
+By Theorem 5.1.8, the counit 
+\[\varepsilon:\res_S^R\coind_S^R\Rightarrow id_{S-\mathbf{Mod}}\]
+is given by 
+\[\varepsilon_V=\beta(id_{\coind_S^RV}):\res_S^R\coind_S^RV\rightarrow V\]
+on each \(V\in S-\mathbf{Mod}\). More explicitly, we view \(\hom_S(\li_SR_R,V)\) as a left \(S\)-module by restricting the \(R\)-action, 
+then for any \(f\in \hom_S(\li_SR_R,V)\), we have  
+\[\varepsilon_V(f)=f(1).\]
+\end{enumerate} 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.1}
+Prove that in an additive category, initial and terminal objects are isomorphic, hence an additive category always has a zero object.
+\end{problem}
+\begin{solution}
+Let \(I\) be the initial object and \(T\) be the terminal object. By definition, there is a unique morphism \(id_I:I\rightarrow I\) and since \(\hom(I,I)\) is an abelian group, we have \(id_I=0\). Same thing is true 
+for the terminal object \(T\), we have \(id_T=0\). Note that \(\hom(I,T)\) and \(\hom(T,I)\) are abelian groups, so we have two zero maps \(\alpha:I\rightarrow T\) and \(\beta:T\rightarrow I\), note that 
+\[id_T=0=\alpha\circ \beta:T\rightarrow T,id_I=0=\beta\circ \alpha:I\rightarrow I\]
+by uniqueness of the map. We have proved that \(I\) and \(T\) are isomorphic. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.4}
+If \((X,p_i,q_i)\) is a biproduct of the \(X_i\), then \((X,p_i)\) is a product of the \(X_i\), and \((X,q_i)\) is a coproduct of the \(X_i\).
+\end{problem}
+\begin{solution}
+We prove that \((X,p_i)\) is the product of the product of \(X_i\) by showing that it satisfies the universal property of the product. Suppose \(Y\in \text{Ob}\mathbf{C}\) and we have a family of morphisms 
+\(\left\{ f_i:Y\rightarrow X_i \right\}_{i}\). For any \(1\leq i,j\leq n\), consider the morphism \(\sum_{i=1}^{n}q_i\circ f_i:Y\rightarrow X\) and \(p_j:X\rightarrow X_j\), by definition of biproduct, if 
+\(i\neq j\), then \(p_j\circ q_i\circ f_i=0\circ f_i=0\). If \(i=j\), then \(p_i\circ q_i\circ f_i=id_{X_i}\circ f_i=f_i\). This means that 
+\[p_j\circ (\sum_{i=1}^{n}q_i\circ f_i)=p_j\circ q_j\circ f_j=f_j.\]
+We know that \(g=\sum_{i=1}^{n}q_i\circ f_i\) makes the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJZIl0sWzEsMSwiWCJdLFswLDIsIlhfaSJdLFsyLDIsIlhfaiJdLFswLDEsIlxcc3VtX3trPTF9Xm5xX2tcXGNpcmMgZl9rIiwyXSxbMCwyLCJmX2kiLDIseyJjdXJ2ZSI6NX1dLFsxLDIsInBfaSJdLFsxLDMsInBfaiIsMl0sWzAsMywiZl9qIiwwLHsiY3VydmUiOi01fV1d
+\[\begin{tikzcd}
+	& Y \\
+	& X \\
+	{X_i} && {X_j}
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["{f_i}"', curve={height=10pt}, from=1-2, to=3-1]
+	\arrow["{f_j}", curve={height=-10pt}, from=1-2, to=3-3]
+	\arrow["{p_i}", from=2-2, to=3-1]
+	\arrow["{p_j}"', from=2-2, to=3-3]
+\end{tikzcd}\]
+Suppose there exists another map \(h:Y\rightarrow X\) satisfying \(p_i\circ h=f_i\) for all \(1\leq i\leq n\). Then we know 
+\[h=(\sum_{i=1}^{n}q_i\circ p_i)\circ h=\sum_{i=1}^{n}q_i\circ p_i\circ h=\sum_{i=1}^{n}q_i\circ f_i.\]
+So \(g\) is unique and this proves the universal property of \((X,p_i)\). 
+
+For the coproduct \((X,q_i)\), it is the same proof with arrow reversed. Suppose \(Y\) is an object in \(\mathbf{C}\) and we have a family of morphisms \(\left\{ f_i:X_i \rightarrow Y\right\}_i\). Consider the morphism 
+\[g=\sum_{i=1}^{n}f_i\circ p_i.\]
+By a similar argument, \(g\) is the unique morphism making the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJZIl0sWzEsMSwiWCJdLFswLDIsIlhfaSJdLFsyLDIsIlhfaiJdLFsxLDAsImciXSxbMiwwLCJmX2kiLDAseyJjdXJ2ZSI6LTJ9XSxbMywwLCJmX2oiLDIseyJjdXJ2ZSI6Mn1dLFsyLDEsInFfaSJdLFszLDEsInFfaiIsMl1d
+\[\begin{tikzcd}
+	& Y \\
+	& X \\
+	{X_i} && {X_j}
+	\arrow["g", from=2-2, to=1-2]
+	\arrow["{f_i}", curve={height=-12pt}, from=3-1, to=1-2]
+	\arrow["{q_i}", from=3-1, to=2-2]
+	\arrow["{f_j}"', curve={height=12pt}, from=3-3, to=1-2]
+	\arrow["{q_j}"', from=3-3, to=2-2]
+\end{tikzcd}\]
+We have proved the universal property for the coproduct \((X_i,q_i)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.7}
+The map 
+\begin{align*}
+\hom(X_1,X'_1)\oplus \cdots \oplus \hom(X_n,X'_n)&\rightarrow \hom(X_1\oplus\cdots \oplus X_n,X'_1\oplus\cdots\oplus X'_n),\\ 
+(f_1,\ldots,f_n)&\mapsto f_1\oplus\cdots\oplus f_n
+\end{align*}
+is an injection of abelian groups.
+\end{problem}
+\begin{solution}
+Suppose the map in the problem is \(\alpha\). To prove \(\alpha\) is injective, we need to find a map 
+\[\beta:\hom(X_1\oplus\cdots \oplus X_n,X'_1\oplus\cdots\oplus X'_n)\rightarrow \hom(X_1,X'_1)\oplus \cdots \oplus \hom(X_n,X'_n)\]
+such that \(\beta\circ \alpha=id\). Given a morphism 
+\[g:X_1\oplus\cdots X_n\rightarrow X'_1\oplus \cdots \oplus X'_n,\]
+consider the composition \(p'_j\circ g\circ q_j:X_j\rightarrow X'_j\) for any \(1\leq j\leq n\). In this way, we can define a map 
+\begin{align*}
+	\beta_j:\hom(X_1\oplus\cdots \oplus X_n,X'_1\oplus\cdots\oplus X'_n)&\rightarrow \hom(X_j,X'_j),\\ 
+	        g&\mapsto p'_j\circ g\circ q_j.
+\end{align*}
+And \(\beta\) can be defined as \(\beta=(\beta_1,\ldots,\beta_n)\). We need to check that \(\beta\circ \alpha=id\). Suppose we have a family of maps \(\left\{ f_i:X_i\rightarrow X'_i \right\}_{i=1}^n\), we know that 
+by definition 
+\begin{align*}
+(\beta\circ \alpha)(f_1,\ldots,f_n)&=(p'_1\circ (f_1\oplus \cdots\oplus f_n)\circ q_1,\ldots,p'_n\circ (f_1\oplus \cdots\oplus f_n)\circ q_n)\\ 
+                                   &=(f_1,\ldots,f_n).
+\end{align*}
+The last equality is due to Lemma 18.2.6(iii). 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.8}
+The assignment \((X_1,\ldots,X_n)\mapsto X_1\oplus \cdots\oplus X_n\) and \((f_1,\ldots,f_n)\mapsto f_1\oplus \cdots\oplus f_n\) define a fucntor \(\mathbf{C}^{\times n}\rightarrow \mathbf{C}\).
+\end{problem}
+\begin{solution}
+We check the assignment 
+\begin{align*}
+	\mathcal{F}:\mathbf{C}^{\times n}&\rightarrow \mathbf{C},\\ 
+	            (X_1,\ldots,X_n)&\mapsto X_1\oplus \cdots \oplus X_n,\\ 
+				(f_1,\ldots,f_n)&\mapsto f_1\oplus\cdots\oplus f_n.
+\end{align*}
+is a functor. Let \((id_1,\ldots,id_n)\) be an identity morphism of \((X_1,\ldots,X_n)\) in \(\mathbf{C}^{\times n}\). We need to prove the morphism 
+\[id_1\oplus \cdots\oplus id_n:X_1\oplus \cdots\oplus X_n\rightarrow X_1\oplus \cdots\oplus X_n\]
+is the identity morphism for \(X_1\oplus \cdots\oplus X_n\). Note that by Lemma 18.2.6, we have 
+\[id_1\oplus\cdots\oplus id_n=\sum_{i=1}^{n}q_i\circ id_i\circ p_i=\sum_{i=1}^{n}q_i\circ p_i=id_{X_1\oplus\cdots\oplus X_n}.\]
+Next suppose we have two families of morphisms \(\left\{ f_i:X_i\rightarrow Y_i \right\}_{i=1}^n\) and \(\left\{ g_i:Y_i\rightarrow Z_i \right\}_{i=1}^n\). 
+Let \((X=X_1\oplus\cdots\oplus X_n,p_i,q_i)\), \((Y=Y_1\oplus\cdots\oplus Y_n,p'_i,q'_i)\) and \((Z=Z_1\oplus\cdots\oplus Z_n,p''_i,q''_i)\) be the corresponding biproduct. 
+For any \(1\leq i,j\leq n\), we have 
+\begin{align*}
+	p''_j \circ \mathcal{F}(g_1,\ldots,g_n)\circ \mathcal{F}(f_1,\ldots,f_n)\circ q_i&=p''_j\circ (g_1\oplus\cdots\oplus g_n)\circ (f_1\circ \cdots\circ f_n)\circ q_j\\ 
+                                                                                     &=p''_j\circ (g_1\oplus\cdots\oplus g_n)\circ (\sum_{k=1}^{n}q'_k\circ  p'_k) \circ (f_1\circ \cdots\circ f_n)\circ q_j\\ 
+																					 &=\sum_{k=1}^{n}p''_j\circ (g_1\oplus\cdots\oplus g_n)\circ q'_k\circ  p'_k \circ (f_1\circ \cdots\circ f_n)\circ q_j\\ 
+																					 &=\sum_{k=1}^{n}\delta_{j,k}g_k\circ \delta_{k,i}f_i\\ 
+																					 &=\delta_{j,i}(g_i\circ f_i)\\
+																					 &=p''_j\circ ((g_1\circ f_1)\oplus\cdots\oplus(g_n\circ f_n))\circ q_i\\ 
+																					 &=p''_j\circ \mathcal{F}((g_1\circ f_1),\ldots,(g_n\circ f_n))\circ q_i.
+\end{align*}
+By the uniqueness in Lemma 18.2.6(iii), we know that 
+\[\mathcal{F}(g_1,\ldots,g_n)\circ \mathcal{F}(f_1,\ldots,f_n)=\mathcal{F}((g_1\circ f_1),\ldots,(g_n\circ f_n)).\]
+This proves that \(\mathcal{F}\) is indeed a functor. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.9}
+We have \(\Delta_X:=q_1+q_2\) and \(\nabla_X:=p_1+p_2\).
+\end{problem}
+\begin{solution}
+Note that 
+\begin{align*}
+	p_1\circ (q_1+q_2)&=p_1\circ q_1+p_1\circ q_2\\ 
+	                  &=id_X+0\\ 
+					  &=0+id_X\\ 
+					  &=p_2\circ q_1+p_2\circ q_2\\ 
+					  &=p_2\circ (q_1+q_2).
+\end{align*}
+Since \(\Delta_X\) is the unique morphism satisfying \(p_1\circ \Delta_X=id_X=p_2\circ \Delta_X\), we can see that \(\Delta_X=q_1+q_2\). Similarly, note that 
+\begin{align*}
+	(p_1+p_2)\circ q_1&=p_1\circ q_1+p_2\circ q_1\\ 
+	                  &=id_X+0\\ 
+					  &=0+id_X\\ 
+					  &=p_1\circ q_2+p_2\circ q_2\\ 
+					  &=(p_1+p_2)\circ q_2.
+\end{align*}
+Since \(\nabla_X\) is the unique morphism satisfying \(\nabla_X\circ q_1=id_X=\nabla_X\circ q_2\), we can see that \(\nabla_X=p_1+p_2\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 18.2.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{18.2.18}
+True or false? If \(R\) and \(R'\) are rings, \(\mathcal{F}:R-\textbf{Mod}\rightarrow R'-\textbf{Mod}\) is a functor left adjoint to a functor \(\mathcal{G}:R'-\textbf{Mod}\rightarrow R-\textbf{Mod}\), and 
+\(P\) is a projective \(R\)-module, then \(\mathcal{F}P\) is a projective \(R'\)-module.
+\end{problem}
+\begin{solution}
+This is false. Consider the functor 
+\[\mathbb{Z}/2 \mathbb{Z}\otimes -:\mathbb{Z}-\mathbf{Mod}\rightarrow \mathbb{Z}-\mathbf{Mod}\]
+By adjointness of \(\otimes\) and \(\hom\), we know that \(\mathbb{Z}/2 \mathbb{Z}\otimes -\) is left adjoint to the functor \(\hom(\mathbb{Z}/2 \mathbb{Z},-)\). We know \(\mathbb{Z}\) as a \(\mathbb{Z}\)-module is projective 
+because \(\mathbb{Z}\) is free. But \(\mathbb{Z}/2 \mathbb{Z}\otimes \mathbb{Z}\) is not projective. Consider the surjective quotient map \(q:\mathbb{Z}\rightarrow \mathbb{Z}/2 \mathbb{Z}\), by the adjointness, we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGhvbShcXG1hdGhiYntafS8yIFxcbWF0aGJie1p9XFxvdGltZXMgXFxtYXRoYmJ7Wn0sXFxtYXRoYmJ7Wn0pIl0sWzEsMCwiXFxob20oXFxtYXRoYmJ7Wn0vMlxcbWF0aGJie1p9XFxvdGltZXNcXG1hdGhiYntafSxcXG1hdGhiYntafS8yIFxcbWF0aGJie1p9KSJdLFswLDEsIlxcaG9tKFxcbWF0aGJie1p9LFxcaG9tKFxcbWF0aGJie1p9LzJcXG1hdGhiYntafSxcXG1hdGhiYntafSkpIl0sWzEsMSwiXFxob20oXFxtYXRoYmJ7Wn0sXFxob20oXFxtYXRoYmJ7Wn0vMlxcbWF0aGJie1p9LFxcbWF0aGJie1p9LzJcXG1hdGhiYntafSkpIl0sWzAsMiwiXFxob20oXFxtYXRoYmJ7Wn0vMlxcbWF0aGJie1p9LFxcbWF0aGJie1p9KSJdLFsxLDIsIlxcaG9tKFxcbWF0aGJie1p9LzJcXG1hdGhiYntafSxcXG1hdGhiYntafS8yXFxtYXRoYmJ7Wn0pIl0sWzAsMSwicV8qIl0sWzAsMiwiXFxzaW0iLDJdLFsyLDQsIlxcc2ltIiwyXSxbMSwzLCJcXHNpbSJdLFszLDUsIlxcc2ltIl0sWzIsM10sWzQsNV1d
+\[\begin{tikzcd}
+	{\hom(\mathbb{Z}/2 \mathbb{Z}\otimes \mathbb{Z},\mathbb{Z})} & {\hom(\mathbb{Z}/2\mathbb{Z}\otimes\mathbb{Z},\mathbb{Z}/2 \mathbb{Z})} \\
+	{\hom(\mathbb{Z},\hom(\mathbb{Z}/2\mathbb{Z},\mathbb{Z}))} & {\hom(\mathbb{Z},\hom(\mathbb{Z}/2\mathbb{Z},\mathbb{Z}/2\mathbb{Z}))} \\
+	{\hom(\mathbb{Z}/2\mathbb{Z},\mathbb{Z})} & {\hom(\mathbb{Z}/2\mathbb{Z},\mathbb{Z}/2\mathbb{Z})}
+	\arrow["{q_*}", from=1-1, to=1-2]
+	\arrow["\sim"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\sim"', from=2-1, to=3-1]
+	\arrow["\sim", from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+\end{tikzcd}\]
+We know that the bottom map is not surjective because we only have zero map from \(\mathbb{Z}/2 \mathbb{Z}\) to \(\mathbb{Z}\). This imples \(q_*\) is also not surjective, so \(\mathbb{Z}/2 \mathbb{Z}\otimes \mathbb{Z}\) is not a projective \(\mathbb{Z}\)-module. 
+\end{solution}
+
+\end{document}

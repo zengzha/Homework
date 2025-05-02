@@ -1,0 +1,213 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+%\usepackage{enumitem}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+%\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 5}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 634 - Algebraic Topology  \hfill Term: Fall 2024\\
+Instructor: Dr.Patricia Hersh \hfill Due Date: $7^{th}$ November, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.20
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.20}
+Show that \(\tilde{H}_n(X)\approx \tilde{H}_{n+1}(SX)\) for all \(n\), where \(SX\) is the suspension of \(X\). More generally, thinking of \(SX\) as the union 
+of two cones \(CX\) with their bases identified, compute the reduced homology groups of the union of any finite number of cones \(CX\) with their bases identified. 
+\end{problem}
+\begin{solution}
+Let \(X\) be a topological space. The suspension \(SX\) can be viewed as two cones \(CX:=(X\times I)/(X\times \left\{ 1 \right\})\) glued together along the base \(X\times \left\{ 0 \right\}\). Assume 
+\(SX=(X\times [-1,1])/(X\times \left\{ 1 \right\},X\times \left\{ -1 \right\})\). The two cones are given by \(A=(X\times [-0.1,1])/(X\times \left\{ 1 \right\})\) and \(B=(X\times [-1,0.1])/(X\times \left\{ -1 \right\})\). 
+We know that \(\text{int}(A)\cup \text{int}(B)=SX\) and \(A\cap B=X\times [-0.1,0.1]\simeq  X\). The Mayer-Vietoris sequences give us a long exact sequence:
+\[\cdots\rightarrow H_{n+1}(SX)\rightarrow H_n(X)\rightarrow H_n(A)\oplus H_n(B)\rightarrow H_n(SX)\rightarrow H_{n-1}(X)\rightarrow \cdots\]
+\begin{claim}
+For a topological space \(X\), the cone \(CX\) is contractible.
+\end{claim}
+\begin{claimproof}
+Note that \(CX=(X\times [0,1])/(X\times \left\{ 1 \right\})\).  Consider the continous map 
+\(F:(X\times [0,1])\times [0,1]\rightarrow X\times [0,1],\, (x,s,t)\mapsto (x,t+(1-t)s)\). We have \(F((x,s),0)=(x,s)\), \(F((x,s),1)=(x,1)\in X\times [0,1]\) and \(F((x,1),t)=(x,1)\). So \(f\) descends to a 
+contionous map between the quotient space \(\tilde{F}:CX\times [0,1]\rightarrow CX\), which gives us a homotopy equivalence between \(CX\) and the one point subspace \(\left\{ p \right\}=X\times \left\{ 1 \right\}\in CX\).
+\end{claimproof}\\ 
+Since both \(A\) and \(B\) are cones, \(A\) and \(B\) are contractible and we have \(H_n(A)=H_n(B)=0\) for all \(n\). By the Mayer-Vietoris sequence, we have \(H_{n+1}(SX)\cong H_n(X)\) for all \(n\). 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.22
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.22}
+Prove by induction on dimension the following facts about the homology of a finite-dimensional CW complex \(X\), using the observation that \(X^n/X^{n-1}\) is a wedge sum of \(n\)-spheres:
+\begin{enumerate}[(a)]
+	\item If \(X\) has dimension \(n\), then \(H_i(X)=0\) for \(i>n\) and \(H_n(X)\) is free. 
+	\item \(H_n(X)\) is free with basis in bijective correspondence with the \(n\)-cells if there are no cells of dimension \(n-1\) or \(n+1\).
+	\item If \(X\) has \(k\) \(n\)-cells, then \(H_n(X)\) is generated by at most \(k\) elements.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+	\item \(X\) has dimension \(n\) implies \(X=X^n\), the \((n-1)\)-skeleton \(X^{n-1}\) is a subcomplex of \(X\) and the pair \((X,X^{n-1})\) is a good pair. By proposition 2.22, the quotient map 
+	      \(q:(X,X^{n-1})\rightarrow (X/X^{n-1},X^{n-1}/X^{n-1})\) induces isomorphisms 
+		  \[q_*:H_i(X,X^{n-1})\xrightarrow{\sim} H_i(X/X^{n-1},X^{n-1}/X^{n-1})\cong \tilde{H}_i(X/X^{n-1})\] 
+		  for all \(i\). Note that \(X/X^{n-1}\cong X^n/X^{n-1}\) is a wedge sum of \(n\)-spheres, namely \(\bigvee_k S^n\), where \(k\) is the number of \(n\)-cells. We know that  by Corollary 2.25 for \(i=n\), 
+		  \begin{align*}
+			\tilde{H}_i(X/X^{n-1}) & \cong \tilde{H}_i(\bigvee_k S^n)\\ 
+			                       & \cong \bigoplus_k \tilde{H}_i(S^n)\\ 
+								   & \cong \bigoplus_k \mathbb{Z}\\ 
+								   & \cong \mathbb{Z}^k
+		  \end{align*}
+		  otherwise, \(\tilde{H}_i(X/X^{n-1})=0\). 
+		  \par 
+		  To prove that \(H_i(X)=0\) for \(i>n\), we do an induction on the dimension \(n\). If \(X\) has dimension \(0\), then \(X\) is just a collection of disjoint union of points, we know only \(H_0(X)\neq 0\). Now Suppose 
+		  the assumption is true for CW complex with dimension \(n-1\) and assume \(X\) has dimension \(n\). The inclusion of \((n-1)\)-skeleton \(X^{n-1}\) in \(X\) gives us a long exact sequence:
+\[\begin{tikzcd}
+	\cdots & {H_i(X^{n-1})} & {H_i(X)} & {H_i(X,X^{n-1})} \\
+	& {H_{i-1}(X^{n-1})} & \cdots & {H_{n+1}(X,X^{n-1})} \\
+	& {H_n(X^{n-1})} & {H_n(X)} & {H_n(X,X^{n-1})} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=3-5]
+\end{tikzcd}\]
+Note that 
+\[H_i(X^{n-1})=H_{i-1}(X^{n-1})=\cdots=H_n(X^{n-1})=0\]
+by our assumption and 
+\[H_i(X,X^{n-1})=H_{i-1}(X,X^{n-1})=\cdots=H_{n+1}(X,X^{n-1})=0\]
+by our previous calculations. So \(H_i(X)=0\) for \(i>n\). Moreover, \(H_n(X^{n-1})=0\) implies that \(H_n(X)\rightarrow H_n(X,X^{n-1})\cong \mathbb{Z}^k\) is injective. Thus, \(H_n(X)\) has no torsion and is a free \(\mathbb{Z}\)-module.
+\item First we prove that \(H_n(X)\cong H_n(X^n)\) where \(X^n\) is the \(n\)-skeleton of \(X\) by induction. Since \(X\) does not have \((n+1)\)-cells, we have \(X^{n+1}=X^n\), so \(H_n(X^n)=H_n(X^{n+1})\). Let \(m\geq 1\) be an integer and 
+      assume we have proved \(H_n(X^{n+m})\cong H_n(X^{n+m-1})\), we are going to show that \(H_n(X^{n+m+1})\cong H_n(X^{n+m})\). The inclusion \(X^{n+m}\hookrightarrow X^{n+m+1}\) gives us a long exact sequence:
+	  \[\cdots\rightarrow H_{n+1}(X^{n+m+1},X^{n+m})\rightarrow H_n(X^{n+m})\rightarrow H_n(X^{n+m+1})\rightarrow H_n(X^{n+m+1},X^{n+m})\rightarrow \cdots\]
+	  From the discussion in (a), we know that 
+	  \[H_{n+1}(X^{n+m+1},X^{n+m})\cong H_{n+1}(\bigvee_p S^{n+m+1})\cong \bigoplus_p H_{n+1}(S^{n+m+1})=0\]
+	  because \(m\geq 1\) and similarly,
+	  \[H_n(X^{n+m+1},X^{n+m})\cong H_n(\bigvee_q S^{n+m+1})\cong \bigoplus_q H_n(S^{n+m+1})=0\] 
+      So we know that \(H_n(X^{n+m})\cong H_n(X^{n+m+1})\) and by our assumption, \(H_n(X^n)\cong H_n(X^{n+m})\) for any \(m\geq 1\). Note that \(X\) is a finite dimensional CW complex, so there exists \(m\geq 0\) such that \(X=X^m\), therefore we 
+	  have \(H_n(X)=H_n(X^n)\).
+	\par 
+	The inclusion \(X^{n-1}\hookrightarrow X^n\) gives us a long exact sequence:
+	\[\cdots\rightarrow H_n(X^{n-1})\rightarrow H_n(X^n)\rightarrow H_n(X^n,X^{n-1})\rightarrow H_{n-1}(X^{n-1})\rightarrow \cdots\]
+	Because \(X\) does not have \((n-1)\)-cells, so \(X^{n-1}=X^{n-2}\). By the discussion in (a), we know that \(H_n(X^{n-2})=H_{n-1}(X^{n-2})=0\) and \(H_n(X^n,X^{n-1})=\bigoplus_k \mathbb{Z}^k\) where \(k\) is the number of \(n\)-cells. So we have 
+	\(H_n(X)\cong H_n(X^n)\cong \bigoplus_k \mathbb{Z}^k\), which means \(H_n(X)\) is free with basis in bijective with the \(n\)-cells.
+\item The discussion in (b) gives us \(H_n(X^{n+m})\cong H_n(X^{n+m+1})\) for \(m\geq 1\) and since \(X\) is finite dimensional, we have \(H_n(X)\cong H_n(X^{n+1})\). Now consider the inclusion \(X^n\hookrightarrow X^{n+1}\) and we have a long exact sequence:
+      \[\begin{tikzcd}
+	& \cdots & {H_{n+1}(X^{n+1},X^n)} \\
+	{H_n(X^n)} & {H_n(X^{n+1})} & {H_n(X^{n+1},X^n)} & \cdots
+	\arrow[from=1-2, to=1-3]
+	\arrow["\partial"', from=1-3, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}\]
+Note that \(H_n(X^{n+1},X^n)\cong \tilde{H}_n(\bigvee S^{n+1})=0\), so we have a short exact sequence:
+\[0\rightarrow \text{im}\partial \rightarrow H_n(X^n)\rightarrow H_n(X^{n+1})\rightarrow 0\]
+where \(\partial:H_{n+1}(X^{n+1},X^n)\rightarrow H_n(X^n)\) is the connecting homomorphism. Since \(X^n\) has dimension \(n\) as a CW complex, from the discussion in (a), we know that \(H_n(X^n)=\bigoplus_k \mathbb{Z}\) is generated by \(k\) elements and from the 
+short exact sequence we know that \(H_n(X)\cong H_n(X^{n+1})\cong H_n(X^n)/\text{im}\partial\), so it is generated by at most \(k\) elements.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.23}
+Show that the second barycentric subdivision of a \(\Delta\)-complex is a simplicial complex. Namely, show that the first barycentric subdivision produces a \(\Delta\)-complex 
+with the property that each simplex has all its vertices distinct, then show that for a \(\Delta\)-complex with this property, barycentric subdivision produces a simplicial complex.
+\end{problem}
+\begin{solution}
+Let \(X\) be a \(\Delta\)-complex, and denote the \(\Delta\)-complex obtained after first (respectively second)	barycentric subdivision by \(X_1\) (respectively \(X_2\)). 
+We first prove that for each \(n\)-simplex \([v_0,\ldots,v_n]\in X_1\), none of its vertices \(v_i\,(i=0,1,\ldots,n)\) is identified with another. Note that in \(v_0,\ldots,v_n\), only one vertex is from \(X\), the other are all barycenters of 
+simplices in \(X\). This vertex cannot be identified with a barycenter since we choose every barycentre using different coordiantes from the vertices in \(X\). Now suppose two barycenters are identified in \(X_1\), it is only possible when they are barycenters 
+for different \(k\)-simplices (\(k\leq n\)) because the gluing of faces in \(\Delta\)-complex requires homeomorphisms. But each of the barycenters in \([v_0,\ldots,v_n]\) is the barycenter of faces from last step subdivision, so any two of them cannot be identified in \(X_1\). 
+\par 
+Now we are going to show that \(X_2\) is a simplicial complex by showing that if two \(n\)-simplices in \(X_2\) have the same set of vertices, then they are the same \(n\)-simplex in \(X_2\). Given a set of distinct vertices \(\left\{ v_0,v_1,\ldots,v_n \right\}\), 
+if this is the vertices set of two distinct \(n\)-simplices, then suppose there are two vertices which are connected by two different \(1\)-simplices, meaning two barycenters get identified in \(X_1\). This only happens when they are barycenters of different faces in one simplex in \(X_1\), but 
+we have shown that in \(X_1\), the vertices for any simplex are distinct, so we cannot identify faces of one simplex in \(X_1\). Thus,this cannot happen and we proved that \(X_2\) is a simplicial complex.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.27(a)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.27(a)}
+Let \(f:(X,A)\rightarrow (Y.B)\) be a map such that both \(f:X\rightarrow Y\) and the restriction \(f:A\rightarrow B\) are homotopy equivalences. Show that \(f_*:H_n(X,A)\rightarrow H_n(Y,B)\) is 
+an isomorphism for all \(n\).
+\end{problem}
+\begin{solution}
+By naturality of the long exact sequence, the map \(f:(X,A)\rightarrow (Y,B)\) induces the following commutative diagram:
+\[\begin{tikzcd}
+	\cdots & {H_n(A)} & {H_n(X)} & {H_n(X,A)} & {H_{n-1}(A)} & \cdots \\
+	\cdots & {H_n(B)} & {H_n(Y)} & {H_n(Y,B)} & {H_{n-1}(B)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow["{f_*}", from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["{f_*}", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["{f_*}", from=1-4, to=2-4]
+	\arrow[from=1-5, to=1-6]
+	\arrow["{f_*}", from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-5, to=2-6]
+\end{tikzcd}\]
+Note that \(f:X\rightarrow Y\) is a homotopy equivalence, so \(f_*:H_n(X)\rightarrow H_n(Y)\) is an isomorphism for all \(n\). The map \(f_*:H_n(A)\rightarrow H_n(B)\)	is induced bu the restriction \(f:A\rightarrow B\), which 
+is also a homotopy equivalence, so \(f_*:H_n(A)\rightarrow H_n(B)\) is also an isomorphism for all \(n\). By the five lemma, the map \(f_*:H_n(X,A)\rightarrow H_n(Y,B)\) is an isomorphism for all \(n\).
+\end{solution}
+
+
+
+
+
+\end{document}

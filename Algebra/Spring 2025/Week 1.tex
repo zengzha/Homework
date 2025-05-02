@@ -1,0 +1,339 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\iif}{\ \ \text{if}\ \ }
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\coind}{\text{coind}}
+\newcommand{\res}{\text{res}}
+\newcommand{\li}{\leftindex}
+\newcommand{\GCD}{\text{GCD}}
+\newcommand{\irr}{\text{irr}}
+\newcommand{\Nm}{\text{Nm}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 1}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 649 - Abstract Algebra  \hfill Term: Spring 2025\\
+Instructor: Professor Sasha Polishchuk \hfill Due Date: $9^{th}$ April, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+\begin{problem}{9.1.5}
+An irreducible element in a UFD is prime.
+\end{problem}
+
+
+\noindent\rule{7in}{2.8pt}
+	
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.1.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{9.1.15}
+Express \(27+6i\) as a product of primes in \(\mathbb{Z}[i]\).
+\end{problem}
+\begin{solution}
+\(\mathbb{Z}[i]\) is an ED and thus also a UFD, so the primes and irreducibles are the same in \(\mathbb{Z}[i]\). Note that \(27+6i=3(9+2i)\). By Theorem 9.1.14 (i), we know \(3\) is a prime in \(\mathbb{Z}[i]\). Similarly, \(2+i\) and \(4-i\) are both primes in \(\mathbb{Z}[i]\) 
+and we can write 
+\[27+6i=3(2+i)(4-i).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.1.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2.10%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{9.1.16}
+Note that in \(R:=\mathbb{Z}[\sqrt{-3}]\), the element \(2\) and \(1+\sqrt{-3}\) are common divisors of \(4\) and \(2+2\sqrt{-3}\). Deduce that \(\GCD(4,2+2\sqrt{-3})\) does not exist in \(R\). 
+\end{problem}
+\begin{solution}
+Assume the greatest common divisor \(a=x+y\sqrt{-3}=\GCD(4,2+2\sqrt{-3})\) exists for some \(x,y\in \mathbb{Z}\). We know that \(2|a\) and \(1+\sqrt{-3}|a\). Note that 
+\[\Nm(2)=\Nm(1+\sqrt{-3})=4.\]
+So \(4\) must divides \(\Nm(a)\) in \(\mathbb{Z}\). If \(\Nm(a)=4\), then \(x^2+3y^2=4\). So \(a\) can only be \(2\) or \(1+\sqrt{-3}\), up to multiplication with a unit. But \(2\) and \(1+\sqrt{-3}\) are not associated. Indeed, suppose for some \(m,n\in \mathbb{Z}\), we have 
+\[2=(1+\sqrt{-3})(m+n\sqrt{-3})=m-3n+(m+n)\sqrt{-3}.\]
+There does not exist integer solutions for \(m,n\). Next, assume \(\Nm(a)=8\), then we have \(x^2+3y^2=8\). We do not have integer solutions for \(x,y\). So \(\Nm(a)=16\) and \(x^2+3y^2=16\). This means \(x=2\) or \(x=4\). When \(x=2\), we know \(a|2+2\sqrt{-3}\), so \(a=2+2\sqrt{-3}\) up to a unit, but \(2+2\sqrt{-3}\) does not divide \(4\) because \(2\) and 
+\(1+\sqrt{-3}\) are not associated. When \(x=4\), we know \(y=0\) and \(a=4\) up to a unit. Similarly, \(4\) does not divide \(2+2\sqrt{-3}\) as \(2\) and \(1+\sqrt{-3}\) are not associated. Thus, we have proved that such \(a\) does not exist.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.1.21
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{9.1.21}
+Find the greatest common divisor of \(f=2x^3+x^2-x-1\) and \(g=x^2+x+2\) in \(\mathbb{F}_3[x]\) and write it in the form \(xf+yg\).
+\end{problem}
+\begin{solution}
+Use Euclidean Algorithm, we have 
+\begin{align*}
+	2x^3+x^2-x-1&=(x^2+x+2)(2x-1)+2x+1\\
+	x^2+x+2&=(2x+1)(-x-2)+1\\ 
+    2x+1&=1\cdot (2x+1)
+\end{align*}
+So \(1\) is the greatest common divisor of \(f\) and \(g\). Moreover, we have 
+\[1=g-(2x+1)(-x-2)\]
+Substitute \(2x+1\) with \(f-(2x-1)g\), we have 
+\begin{align*}
+	1&=g-(2x+1)(-x-2)\\ 
+	 &=g-(f-(2x-1)g)(-x-2)\\ 
+	 &=(x+2)f+(1-(2x-1)(x+2))g\\ 
+	 &=(x+2)f+x^2g
+\end{align*}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.2.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{9.2.10}
+Check that the polynomials \(2x^5-6x^3+9x^2+15\), \(x^5-6x+3\), \(x^7-2\), \(3x^4+15x^2+10\) and \(x^3-4x+2\) are irreducible in \(\mathbb{Q}[x]\).
+\end{problem}
+\begin{solution}
+The polynomial ring \(\mathbb{Q}[x]\) is a UFD and \(\mathbb{Q}\) is a field. We can apply Eisenstein's criterion 
+\begin{itemize}
+\item \(p=3\) for \(2x^5-6x^3+9x^2+15\)
+\item \(p=3\) for \(x^5-6x+3\) 
+\item \(p=2\) for \(x^7-2\)
+\item \(p=5\) for \(3x^4+15x^2+10\)
+\item \(p=2\) for \(x^3-4x+2\)
+\end{itemize}
+Apply Eisenstein's criterion and we find out these polynomials are irreducible.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 9.2.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{9.2.11}
+Apply Eisenstein's criterion with \(p=x\) to check that the polynomial \(f=y^3+x^2y^2+x^3y+x\) is irreducible in \(\mathbb{Z}[x,y]=\mathbb{Z}[x][y]\).
+\end{problem}
+\begin{solution}
+Let \(R=\mathbb{Z}[x]\) and view \(f\) as an element in \(R[y]\). We know \(R\) is a UFD with the field of fraction \(\mathbb{Z}(x)\). Take \(p=x\in \mathbb{R}\) and note that 
+apply Eisenstein's criterion, we obtain that \(f\) is irreducible over \(\mathbb{Z}(x)[y]\). \(f\) is of degree 3 and by Gauss's lemma, we know \(f\) is irreducible over \(\mathbb{Z}[x][y]=\mathbb{Z}[x,y]\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 10.1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{10.1.5}
+Prove that the quotient ring \(R:=\mathbb{F}_3[x]/(x^2+1)\) is a field of order \(9\). Exhibit an explicit generator for \(R^\times\) as a cyclic group of order \(8\).
+\end{problem}
+\begin{solution}
+To prove \(R\) is a field, by Theorem 10.1.4, it is sufficient to prove that \(x^2+1\) is irreducible in \(\mathbb{F}_3[x]\). Let \(f(x)=x^2+1\), we have 
+\(f(x+1)=x^2+2x+2\), take \(2\in \mathbb{F}_3\) and by Eisenstein's criterion, we know \(f(x+1)\) is irreducible, so \(f(x)\) is also irreducible. Let \(i\) be a root of \(x^2+1\), then we know \(R\) has a 
+\(\mathbb{F}_3\) basis \(\left\{ 1,i \right\}\). So \(R\) has \(3\times 3=9\) elements in total. Now consider the nonzero element \(1+i\) in \(R\), we have 
+\begin{align*}
+	(1+i)^2&=2i\\ 
+	(1+i)^4&=(2i)^2=-1\\ 
+	(1+i)^8&=(-1)^2=1
+\end{align*}
+So \(1+i\) is a generator of the cyclic group \(R^\times \) of order \(8\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 10.1.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{10.1.12}
+Let \(\mathbb{F}\) be the field obtained from \(\mathbb{Q}\) by adjoining a root \(\alpha\) of \(x^3-2x+2\). In \(\mathbb{F}\), express the element \((\alpha-1)^{-1}\), \((\alpha+1)^{-1}\), \((\alpha^2+\alpha+1)^{-1}\) as 
+linear combinations of \(1,\alpha,\alpha^2\) with rational coefficients.
+\end{problem}
+\begin{solution}
+Let \(a+b\alpha+c\alpha^2\in \mathbb{F}\) for some \(a,b,c\in \mathbb{Q}\). 
+\begin{enumerate}[(1)]
+\item Suppose 
+\[(a+b\alpha+c\alpha^2)(\alpha-1)=1.\]
+Expand and use the relation \(\alpha^3=2\alpha-2\), we have 
+\begin{align*}
+	c\alpha^3+(b-c)\alpha^2+(a-b)\alpha-a&=1\\ 
+	(b-c)\alpha^2+(a-b+2c)\alpha-a-2c=1.
+\end{align*}
+We obtain a system of equations
+\[\begin{cases}
+	b-c&=0\\ 
+	a-b+2c&=0\\ 
+	-a-2c&=1
+\end{cases}\]
+The solution is \(a=1,b=-1,c=-1\). This tells us 
+\[1-\alpha-\alpha^2=(\alpha-1)^{-1}\]
+\item Suppose 
+\[(a+b\alpha+c\alpha^2)(\alpha+1)=1.\]
+Expand and use the relation \(\alpha^3=2\alpha-2\), we have 
+\begin{align*}
+	c\alpha^3+(b+c)\alpha^2+(a+b)\alpha+a&=1\\ 
+	(b+c)\alpha^2+(a+b+2c)\alpha+a-2c&=1
+\end{align*}
+We obtain a system of equations 
+\[\begin{cases}
+	b+c&=0\\ 
+	a+b+2c&=0\\ 
+	a-2c&=1
+\end{cases}\]
+The solution is \(a=\frac{1}{3},b=\frac{1}{3},c=-\frac{1}{3}\). This tells us 
+\[\frac{1}{3}+\frac{1}{3}\alpha-\frac{1}{3}\alpha^2=(\alpha+1)^{-1}\]
+\item Suppose 
+\[(a+b\alpha+c\alpha^2)(\alpha^2+\alpha+1)=1.\]
+Expand and use the relation \(\alpha^3=2\alpha-2\), we have
+\begin{align*}
+	c\alpha^4+(b+c)\alpha^3+(a+b+c)\alpha^2+(a+b)\alpha+a&=1\\ 
+	c\alpha(2\alpha-2)+(b+c)(2\alpha-2)+(a+b+c)\alpha^2+(a+b)\alpha+a&=1\\ 
+	(a+b+c+2c)\alpha^2+(b+a-2c+2c+2b)\alpha+a-2c-2b&=1
+\end{align*} 
+We obtain a system of equations 
+\[\begin{cases}
+	a+b+3c&=0\\ 
+	a+3b&=0\\ 
+	a-2b-2c&=1
+\end{cases}\]
+The solution is \(a=\frac{9}{19},b=-\frac{3}{19},c=-\frac{2}{19}\). This tells us 
+\[\frac{9}{19}-\frac{3}{19}\alpha-\frac{2}{19}\alpha^2=(\alpha^2+\alpha+1)^{-1}\]
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 10.1.14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{10.1.14}
+True or false?
+\begin{enumerate}[(a)]
+\item \(\mathbb{Q}(i)\) and \(\mathbb{Q}(\sqrt{2})\) are isomorphic fields. 
+\item \(\mathbb{Q}(i)\) and \(\mathbb{Q}(1+i)\) are isomorphic fields. 
+\item There is an isomorphism \(\mathbb{Q}(i)\xrightarrow{\sim} \mathbb{Q}(1+i)\) mapping \(i\) to \(1+i\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item This is false. Suppose there is a field isomorphism \(\phi:\mathbb{Q}(i)\rightarrow \mathbb{Q}(\sqrt{2})\). We know 
+\[\phi(i)=a+b\sqrt{2}\in \mathbb{Q}(\sqrt{2})\]
+for some \(a,b\in \mathbb{Q}\). Then we have 
+\[-1=-\phi(1)=\phi(-1)=\phi(i)^2=(a+b\sqrt{2})^2=a^2+2b^2+2ab\sqrt{2}.\]
+This means \(a^2+2b^2=-1\) and \(2ab=0\), which has no solutions in \(\mathbb{Q}\). Thus, \(\mathbb{Q}(i)\) is not isomorphic to \(\mathbb{Q}(\sqrt{2})\). 
+\item This is true. Note that \(1+i\in \mathbb{Q}(i)\) and \(i=-1+(1+i)\in \mathbb{Q}(1+i)\), so we have \(\mathbb{Q}(i)\subseteq \mathbb{Q}(1+i)\) and 
+\(\mathbb{Q}(1+i)\subseteq \mathbb{Q}(i)\). This means \(\mathbb{Q}(i)=\mathbb{Q}(1+i)\) and they are isomorphic fields.
+\item This is false. Suppose such an isomorphism exists, by Theorem 10.1.13, we have an field isomorphism \(\phi:\mathbb{Q}\rightarrow \mathbb{Q}\) such that \(\irr(1+i;\mathbb{Q})=\phi(\irr(i;\mathbb{Q}))\). We know that 
+\(\irr(i;\mathbb{Q})=x^2+1\) and \(\irr(1+i;\mathbb{Q})=(x-1)^2+1=x^2-2x+2\). A field homomorphism must send \(1\) to \(1\) therefore such \(\phi\) does not exist. 
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 10.1.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{10.1.18}
+The extension \(\mathbb{Q}(\sqrt{2},\sqrt{3},\sqrt{5},\ldots)/\mathbb{Q}\) is alegbraic but not finite.
+\end{problem}
+\begin{solution}
+Let \(\mathbb{F}:=\mathbb{Q}(\sqrt{2},\sqrt{3},\ldots)\). Given any element \(a\in \mathbb{F}\), \(a\) can be written as \(a=\sum_{i=1}^{n}k_ia_i\) where \(k_i\in \mathbb{Q}\) and \(a_i\) is a product of finitely many 
+distinct primes \(\sqrt{p_{ij}}\). More precisely, we have 
+\[a=\sum_{i=1}^{n}\prod_{j=1}^{m}k_i\sqrt{p_{ij}}.\]
+We can deduce that \(a\in \mathbb{Q}(\sqrt{p_{11}},\ldots,\sqrt{p_{1m}},\sqrt{p_{21}},\ldots,\sqrt{p_{nm}})\). Write \(\mathbb{L}:=\mathbb{Q}(\sqrt{p_{11}},\ldots,\sqrt{p_{1m}},\sqrt{p_{21}},\ldots,\sqrt{p_{nm}})\). By Theorem 10.1.15, the field 
+extension \(\mathbb{L}/\mathbb{Q}\) is algebraic since we are adjoining finitely many roots. So \(a\) is algebraic over \(\mathbb{Q}\). This proves \(\mathbb{F}/\mathbb{L}\) is algebraic. 
+
+Next, we show that \(\mathbb{F}/\mathbb{Q}\) is not a finite field extension. We first prove the following claim.
+\begin{claim}
+Given an integer \(n\), for any \(m\geq 1\), let \(p_1,\ldots,p_n,q_1,\ldots,q_m\) be distinct primes, then we have 
+\[\sqrt{q_1\cdots q_m}\notin \mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_n}).\]
+\end{claim}
+\begin{claimproof}
+We prove this by induction on \(n\). When \(n=0\), we need to show that for any \(m\geq 1\) and distinct primes \(q_1,\ldots, q_m\), we have 
+\[\sqrt{q_1\cdots q_m}\notin \mathbb{Q}.\]
+Assume the opposite. There exists coprime integers \(a,b\in \mathbb{Z}\) such that 
+\[\sqrt{q_1\cdots q_m}=\frac{a}{b}.\]
+This implies 
+\[q_1\cdots q_m b^2=a^2.\] 
+\(a,b\) coprime tells us that \(q_1|a^2\), since \(q_1\) is a prime, so \(q_1|a\). Thus, \(q_1^2|a^2=q_1\cdots q_m b^2\). Note that \(q_1,\ldots, q_m\) are distinct primes, so \(q_1|b^2\). This is impossible because \(a,b\) are coprime. A contradiction. 
+
+Now assume we have prove the case for \(n-1\) \((n\geq 1)\). Suppose there exists \(m\geq 1\) such that for distinct primes \(p_1,\ldots,p_n,q_1,\ldots,q_m\), we have 
+\[\sqrt{q_1\cdots q_m}\in \mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_n}).\]
+Note that \(\mathbb{Q}(\sqrt{p_1},\ldots, \sqrt{p_n})=\mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_{n-1}})(\sqrt{p_n})\). So there exist \(a,b\in \mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_{n-1}})\) such that 
+\[\sqrt{q_1\cdots q_m}=a+b\sqrt{p_n}.\]
+Here \(b\neq 0\) because of our induction hypothesis. Now we have  
+\begin{align*}
+	(\sqrt{q_1\cdots q_m}-b\sqrt{p_n})^2&=a^2\\ 
+	q_1\cdots q_m+b^2p_n-2b\sqrt{q_1\cdots q_mp_n}&=a^2\\ 
+	q_1\cdots q_m+b^2p_n-a^2&=2b\sqrt{q_1\cdots q_mp_n}
+\end{align*}
+The left hand side is nonzero and in \(\mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_{n-1}})\), so \(\sqrt{q_1\cdots q_mp_n}\in \mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_{n-1}})\). This contradicts our hypothesis.
+\end{claimproof}
+
+To see that \([\mathbb{F}:\mathbb{Q}]=\infty\), let \(p_n\) be the \(n\)th prime number. For any \(n\geq 1\), we have 
+\[\mathbb{Q}(\sqrt{p_1},\sqrt{p_2},\ldots)\supseteq \mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_n})=\mathbb{Q}(\sqrt{p_1})(\sqrt{p_2})\cdots (\sqrt{p_n}).\]
+Write \(\mathbb{L}_n:=\mathbb{Q}(\sqrt{p_1},\ldots,\sqrt{p_n})\). By the claim, we know that for any \(n\), \([\mathbb{L}_n:\mathbb{L}_{n-1}]=2\), so we have 
+\[[\mathbb{F}:\mathbb{Q}]\geq [\mathbb{L}_n:\mathbb{L}_{n-1}][\mathbb{L}_{n-1}:\mathbb{L}_{n-2}]\cdots [\mathbb{L}_1:\mathbb{Q}]=2^n.\]
+This is true for any \(n\geq 1\). So \([\mathbb{F}:\mathbb{Q}]=\infty\) is not finite.
+\end{solution}
+
+%\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 10.1.19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+\begin{problem}{10.1.19}
+Given a field extension \(\mathbb{K}/\Bbbk\), the set \(\mathbb{L}\) of all elements of \(\mathbb{K}\) which are algebraic over \(\Bbbk\) is a subfield of \(\mathbb{K}\) containing \(\Bbbk\).
+\end{problem}
+
+
+	
+\end{comment}
+\end{document}

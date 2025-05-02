@@ -1,0 +1,343 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 4}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $30^{th}$ October, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.4.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.4.2}
+For which \(n\in \mathbb{N}\) is the quotient ring \(\mathbb{Z}/n \mathbb{Z}\) an integral domain?
+\end{problem}
+\begin{solution}
+Let \(p\) be a prime number. We prove that \(\mathbb{Z}/p \mathbb{Z}\) is an integral domain. Suppose \(a,b\in \mathbb{Z}\) and \(ab\equiv 0\) mod \(p\). So 
+there exist \(n\in \mathbb{Z}\) such that \(ab=np\). Since \(p\) is a prime number, either \(p|a\) or \(p|b\), which is equivalent to \(a\equiv 0\) mod \(p\) or 
+\(b\equiv 0\) mod \(p\). 
+\par 
+Let \(q\) be a non prime number. Then there exist two positive integers \(2\leq m,n<q\) such that \(mn=q\). Consider the element \([m]=m+q\mathbb{Z}\) and \([n]=n+q \mathbb{Z}\) in the ring 
+\(\mathbb{Z}/ q \mathbb{Z}\). Both \([m]\) and \([n]\) are nonzero element in \(\mathbb{Z}/q \mathbb{Z}\) but \([m][n]=[mn]=0\in \mathbb{Z}/q \mathbb{Z}\). So \(\mathbb{Z}/q \mathbb{Z}\) is not 
+an integral domain.
+\par 
+Finally, \(\mathbb{Z}/0 \mathbb{Z}\cong \mathbb{Z}\) is an integral domain.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.4.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.4.6}
+Suppose that \(\text{char}\mathbb{F}=p>0\). Show that 
+$$(a+b)^p=a^p+b^p$$
+for any \(a,b\in \mathbb{F}\). Hence there is a field homomorphism \(Fr:\mathbb{F}\rightarrow \mathbb{F},a\mapsto a^p\). This is called the \textit{Frobenius homomorphism}.
+\end{problem}
+\begin{solution}
+Let \(a,b\in \mathbb{F}\). We have 
+\begin{align*}
+	(a+b)^p & =a^p+(\sum_{k=1}^{p-1}p^k a^{p-k}b^k)+b^p\\ 
+	        & =a^p+b^p
+\end{align*}
+since \(p^k=0\) for \(k=1,2,\ldots,p-1\) in \(\mathbb{F}\) where \(\text{char}\mathbb{F}=p>0\). Now we need to show that \(Fr\) is a field homomorphism. Indeed, for all \(a,b\in \mathbb{F}\), we have 
+\begin{align*}
+	Fr(a+b) & =(a+b)^p=a^p+b^p, \\ 
+	Fr(ab) & =(ab)^p=a^p\cdot b^p, \\ 
+	Fr(1) & =1^p=1, \\ 
+	Fr(0) & =0^p=0. 
+\end{align*}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.5.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.5.2}
+The category \(\mathbf{Ab}\) of abelian groups is a full subcategory of the category of commutative monoids. Let \(\mathcal{G}\) be the corresponding inclusion functor. Show that 
+the group completion \(A(M)\) defined in Exercise 3.3.3. is a reflection of the commutative monoid \(M\) in the functor \(\mathcal{G}\).
+\end{problem}
+\begin{solution}
+Let \((G,+)\in \mathbf{Ab}\) be an abelian group and \(f:M\rightarrow \mathcal{G}G\) is a morphism of monoids. We have a diagram as follows:
+$$\begin{tikzcd}
+	& M \\
+	{\mathcal{G}A(M)} && {\mathcal{G}G}
+	\arrow["{\eta_M}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{G}\bar{f}}"', dashed, from=2-1, to=2-3]
+\end{tikzcd}$$
+where \(\eta_M\) is the monoid homomorphism in Exercise 3.3.3. We need to prove that there exists\(\bar{f}:A(M)\rightarrow G\) such that \(\mathcal{G}\bar{f}\) makes the above diagram commutes. 
+In Exercise 3.3.3., we know that elements in \(A(M)\) can be written as \(p-m\) where \(p,m\in M\). We define \(\bar{f}(p-m):=f(p)-f(m)\in G\). By definition, we have 
+\begin{align*}
+	\bar{f}(p-m+p'-m') & =f((p+p')-(m+m'))\\ 
+	             & =f(p+p')-f(m+m')\\ 
+				 & =f(p)+f(p')-f(m)-f(m')\\ 
+				 & =f(p)-f(m)+f(p')-f(m')\\ 
+				 & =f(p-m)+f(p'-m')
+\end{align*}
+This is a well-defined unique group homomorphism. To see the diagram commutes, let \(m\in M\). It is easy to see that \(\mathcal{G}\bar{f}\circ \eta_M(m)=\mathcal{G}\bar{f}(m-0_M)=f(m)-f(0_M)=f(m)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.5.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.5.5}
+Show that \(G'\) is the smallest normal subgroup \(N\) of \(G\)	such that the quotient group \(G/N\) is abelian. Using the language from \S 3.5, deduce that the 
+\textit{abelianization} \(G^{ab}:=G/G'\) is a reflection of the group \(G\) in the natural inclusion functor \(\mathbf{Ab}\rightarrow \mathbf{Groups}\) with reflection morphism being 
+the quotient map \(G\rightarrow G^{ab}\).
+\end{problem}
+\begin{solution}
+Let \(N\) be a normal subgroup of \(G\). For every \(a,b\in N\), \(G/N\) being abelian implies that \((ab)N=(aN)(bN)=(bN)(aN)=(ba)N\), which is equivalent to \((ab)(ba)^{-1}=aba^{-1}b^{-1}=[a,b]\in N\). So 
+\(N\) contains the group \(G'\) generated by all the commutators. And \(G'\) is the smallest normal subgroup of\(G\) such that the quotient group is abelian. 
+\par 
+Write the natural inlcusion functor as \(\mathcal{G}:\mathbf{Ab}\rightarrow \mathbf{Groups}\). Fix a group \(G\in \text{Ob}\, \mathbf{Groups}\). Let \(H\in \mathbf{Ab}\) be an abelian group with a group 
+homomorphism \(f:G\rightarrow \mathcal{G}H\). We need to show that we have a unique group homomorphism \(\bar{f}:G^{ab}\rightarrow H\) in \(\mathbf{Ab}\) such that the following diagram commutes:
+$$\begin{tikzcd}
+	& G \\
+	{\mathcal{G}G^{ab}} && {\mathcal{G}H}
+	\arrow["q"', two heads, from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{G}\bar{f}}"', dashed, from=2-1, to=2-3]
+\end{tikzcd}$$
+where the reflection morphism is the quotient map \(q:G\rightarrow \mathcal{G}G^{ab}=G/G'\) in \(\mathbf{Groups}\). 
+Given \(g,h\in G\), \(f(ghg^{-1}h^{-1})=f(g)f(h)f(g^{-1})f(h^{-1})=1_H\) since \(H\) is an abelian group. By the universal property of quotient groups, there exists a unique group homomorphism 
+\(\bar{f}:G/G'\rightarrow H\) such that the following diagram commutes:
+$$\begin{tikzcd}
+	G & H \\
+	{G/G'}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["{\bar{f}}"', from=2-1, to=1-2]
+\end{tikzcd}$$
+This is exactly the commutative diagram we need. Thus, we can conclude that \(G/G"\) is a reflection of the group \(G\) in the natural inclusion functor \(\mathcal{G}:\mathbf{Ab}\rightarrow \mathbf{Groups}\) 
+with reflection morphism \(q:G\rightarrow G/G'\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.14}
+Prove that the free group \(\langle\langle X\rangle\rangle\) on a one element set \(X=\left\{ x \right\}\) is isomorphic to \(\mathbb{Z}\) (viewed as a group under addition), and that 
+\(\langle\langle X\rangle\rangle\) is non-abelian for \(|X|>1\).
+\end{problem}
+\begin{solution}
+By Lemma 3.6.13, Every equivalent class \([w]\in \langle\langle X\rangle\rangle\) has a unique reduced word. It must be of the form \(x^n=\underbrace{xx\ldots x}_{n}\) or \(x^{-m}=\underbrace{x^{-1}x^{-1}\ldots x^{-1}}_m\) 
+for some integer \(m,n\geq 1\) because the reduce word cannot contain any subword of the form \(xx^{-1}\) or \(x^{-1}x\). Define a map \(f:\langle\langle X\rangle\rangle\rightarrow \mathbb{Z}\) by sending 
+\(x^n\) to \(n\) and \(x^{-m}\) to \(-m\) and the identity elenment \(x^0=1\) to \(0\). This is a group homomorphism since for any integer \(k,l\in \mathbb{Z}\), 
+$$f(x^k x^l)=f(x^{k+l})=k+l=f(x^k)+f(x^l).$$
+It is surjective and \(\ker f=\left\{ x^0 \right\}=\left\{ 1 \right\}\), so \(f\) is an group isomorphism. 
+\par 
+Suppose \(|X|>1\) and \(x,y\in X\) are two different elements. Then \(x\),\(y\),\(x^{-1}\) and \(y^{-1}\) are unique reduced words and by Lemma 3.6.13, they represents different equivalence classes in 
+\(\langle \langle X\rangle \rangle\). Note that \(1=xx^{_1}y^{-1}\) and \(xyx^{-1}y^{-1}\) are both different reduced words, so \(xyx^{-1}y^{-1}\neq 1\). Thus, \(\langle\langle X\rangle\rangle\) is not abelian.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.15}
+For any set \(X\), show that every non-identity element \(g\) of the free group \(\langle\langle X\rangle\rangle\) has infinite order.
+\end{problem}
+\begin{solution}
+We prove by induction on the length \(m\) of the reduced word in \(\langle\langle X\rangle\rangle\). When \(m=1\), the reduced word of length 1 is either \(x\in X\) or \(x^{-1}\in X^{-1}\). For any 
+\(n\geq 1\), \(x^n\) or \(x^{-n}\) cannot be the identity because they are reduced. Now assume we have proved that every reduced word of length smaller than \(m\) has infinite order, we need to show that this is 
+also true for a reduced word of length \(m\geq 2\). Suppose we have a reduced word \(w=x_1^{\varepsilon 1}x_2^{\varepsilon 2}\ldots x_m^{\varepsilon_m}\) with \(\varepsilon_i=\pm 1\) for \(i=1,2,\ldots,m\) and \(w^n\) is the identity. Note \(w\) does not contain any 
+subword of the form \(xx^{-1}\) or \(x^{-1}x\). So \(x_m=x_1\) and \(\varepsilon_1\cdot \varepsilon_m=-1\). Consider a reduced word \(w'=x_2^{\varepsilon_2}\ldots x_{m-1}^{\varepsilon_{m-1}}\). It has length \(m-1\) and 
+\(w^n=x_1^{\varepsilon_1}(w')^n x_m^{\varepsilon_m}=1\). So \((w')^n=x_1^{-\varepsilon_1}x_m^{-\varepsilon_m}=1\). We have found a reduced word of length \(m-1\) with finite order. A contradiction. 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1.3}
+Let \(\mathcal{F}:\mathbf{A}\rightarrow \mathbf{B}\), \(\mathcal{G}:\mathbf{B}\rightarrow \mathbf{A}\) be quasi-inverse equivalence of categories. Then \(\mathcal{F}\) is both 
+left and right adjoint to \(\mathcal{G}\).
+\end{problem}
+\begin{solution}
+Because \(\mathcal{F}\) and \(\mathcal{G}\) are quasi-inverse equivalence of categories. We know that \(\mathcal{F}\mathcal{G}\cong id_{\mathbf{B}}\) and \(\mathcal{G}\mathcal{F}\cong id_{\mathbf{A}}\). There exist natural transformations 
+\(\varepsilon:\mathcal{F}\mathcal{G}\Rightarrow id_{\mathbf{B}}\) and \(\eta:id_{\mathbf{A}}\Rightarrow \mathcal{G}\mathcal{F}\) such that the following diagram commutes:
+\[\begin{tikzcd}
+	& {\mathcal{G}\mathcal{F}\mathcal{G}} &&& {\mathcal{F}\mathcal{G}\mathcal{F}} \\
+	{\mathcal{G}} && {\mathcal{G}} & {\mathcal{F}} && {\mathcal{F}}
+	\arrow["{\mathcal{G}\varepsilon}", from=1-2, to=2-3]
+	\arrow["{\varepsilon\mathcal{F}}", from=1-5, to=2-6]
+	\arrow["{\eta \mathcal{G}}", from=2-1, to=1-2]
+	\arrow["{id_{\mathcal{G}}}"', from=2-1, to=2-3]
+	\arrow["{\mathcal{F}\eta}", from=2-4, to=1-5]
+	\arrow["{id_{\mathcal{F}}}"', from=2-4, to=2-6]
+\end{tikzcd}\]
+This is true because both \(\varepsilon\) and \(\eta\) are isomorphism of functors. By Theorem 5.1.8., \(\mathcal{F}\) is left adjoint to \(\mathcal{G}\). Note that in the above proof we can switch the place of \(\mathcal{F}\) and \(\mathcal{G}\) since 
+the functors are isomorphic. Similarly we can prove that \(\mathcal{G}\) is left adjoint to \(\mathcal{F}\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1.4}
+Consider \(\mathbb{Z}\) and \(\mathbb{R}\) with their natural total orders. The embedding of partially ordered sets \(\mathbb{Z}\rightarrow \mathbb{R}\) induces a functor \(\underline{\mathbb{Z}}\rightarrow \underline{\mathbb{R}}\). 
+Describe a right adjoint and a left adjoint of this functor.
+\end{problem}
+\begin{solution}
+Define \(\mathcal{F}_1:\underline{\mathbb{R}}\rightarrow \underline{\mathbb{Z}}\) by sending any real number \(r\in \mathbb{R}\) to the largest integer \(\lfloor r \rfloor\leq r\) (floor function). This is indeed a funtor as the identity morphism \(r\leq r\) 
+is sent to \(\lfloor r\rfloor \leq \lfloor r\rfloor\), which is the identify morphism in \(\underline{\mathbb{Z}}\). Given a composition of morphism \(r_1\leq r_2\leq r_3\), we also have \(\lfloor r_1\rfloor \leq \lfloor r_2\rfloor \leq \lfloor r_3\rfloor\), which is the composition of 
+\(\lfloor r_1\rfloor \leq \lfloor r_2\rfloor\) and \(\lfloor r_2\rfloor\leq \lfloor r_3\rfloor\). \(\mathcal{F}_1\) is indeed a functor. Next we prove that the inclusion functor \(\mathcal{G}:\underline{\mathbb{Z}}\rightarrow \underline{\mathbb{R}}\) is left adjoin to \(\mathcal{F}_1\). Let \(n\in \mathbb{Z}\) 
+be an integer. Note that \(\mathcal{F}_1 \mathcal{G}n=\lfloor n\rfloor=n\). We define a morphism \(n\leq \lfloor n\rfloor=n\) in \(\underline{\mathbb{Z}}\). This gives us a natural transformation \(\eta: id_{\underline{\mathbb{Z}}}\Rightarrow \mathcal{F}_1 \mathcal{G}\) because for integers \(n_1\leq n_2\), we have \(\lfloor n_1\rfloor\leq \lfloor n_2\rfloor\). Given a real number \(r\in \mathbb{R}\) 
+and a morphism \(f:n\leq \mathcal{F}_1r=\lfloor r\rfloor\), we define a unique morphism \(\bar{f}:\mathcal{G}n\leq r\) since \(n\leq \lfloor r\rfloor \leq r\). We have a commutative diagram:
+\[\begin{tikzcd}
+	& n \\
+	{\mathcal{F}_1\mathcal{G}n} && {\mathcal{F}_1r}
+	\arrow["{\eta_n}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{F}_1\bar{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+This proves that the pair \((\mathcal{G}n,\eta_n)\) is the reflection of \(n\) along \(\mathcal{F}_1\). By Theorem 5.1.8., \(\mathcal{G}\) is left adjoint to \(\mathcal{F}_1\). 
+\par 
+Define \(\mathcal{F}_2:\underline{\mathbb{R}}\rightarrow \underline{\mathbb{Z}}\) by sending any real number \(r\in \mathbb{R}\) to the smallest integer \(\lceil  r \rceil\geq r\) (ceil function). This is indeed a funtor as the identity morphism \(r\leq r\) 
+is sent to \(\lceil r\rceil \leq \lceil r\rceil\), which is the identify morphism in \(\underline{\mathbb{Z}}\). Given a composition of morphism \(r_1\leq r_2\leq r_3\), we also have \(\lceil r_1\rceil \leq \lceil r_2\rceil \leq \lceil r_3\rceil\), which is the composition of 
+\(\lceil r_1\rceil \leq \lceil r_2\rceil\) and \(\lceil r_2\rceil\leq \lceil r_3\rceil\). \(\mathcal{F}_2\) is indeed a functor. Next we prove that the inclusion functor \(\mathcal{F}_2\) is left adjoin to \(\mathcal{G}:\underline{\mathbb{Z}}\rightarrow \underline{\mathbb{R}}\). 
+Let \(r\in \mathbb{R}\) be a real number. Then \(\mathcal{G}\mathcal{F}_2r=\lceil r\rceil\) is an integer viewed as a real number. This gives us a natural transformation \(\eta:id_{\underline{\mathbb{R}}}\Rightarrow \mathcal{G}\mathcal{F}_2\) because for real numbers \(r_1\leq r_2\), we have \(\lceil r_1\rceil\leq \lceil r_2\rceil\). 
+Given a morphism \(f:r\leq \mathcal{G}n\) where \(n\in \mathbb{Z}\) is an integer, we define a unique morphism \(\bar{f}:\mathcal{F}_2r=\lceil r\rceil\leq n \). We know that \(r\leq n\) if and only if \(\lceil r\rceil \leq n\), so we have a commutative diagram:
+\[\begin{tikzcd}
+	& r \\
+	{\mathcal{G}\mathcal{F}_2r} && {\mathcal{G}r}
+	\arrow["{\eta_r}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{G}\bar{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+This proves that the pair \((\mathcal{F}_2r,\eta_r)\) is the reflection of \(r\) along \(\mathcal{G}\). By Theorem 5.1.8., \(\mathcal{F}_2\) is left adjoint to \(\mathcal{G}\). 
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1.6}
+Let \(\mathbb{F}\) be a field. Assigning to each group its group algebra over \(\mathbb{F}\) yields a functor \(\mathbf{Groups}\rightarrow \mathbf{Alg}(\mathbb{F})\), left adjoint to the functor that assigns to a given 
+\(\mathbb{F}\)-algebra its group of units.
+\end{problem}
+\begin{solution}
+Write \(\mathcal{F}:\mathbf{Groups}\rightarrow \mathbf{Alg}(\mathbb{F})\) as the functor assigning each group its group algebra and \(\mathcal{G}:\mathbf{Alg}(\mathbb{F})\rightarrow \mathbf{Groups}\) as the functor assigning to a given 
+\(\mathbb{F}\)-algebra its group of units. Let \(G\) be a group. Given a group homomorphism \(f:G\rightarrow \mathcal{G}V\) where \(V\) is an \(\mathbb{F}\)-algebra. Fix a group \(G\). View \(g\in G\) as an element in the free algebra \(\mathcal{F}G=\mathbb{F}G\) and \(g\) is a 
+unit since \(g\cdot g^{-1}=1\). We define a group homomorphism \(\eta:G\rightarrow \mathcal{G}\mathcal{F}G\) by sending \(g\in G\) to \(g\in \mathcal{G}\mathcal{F}G\). This gives us a natural transformation as for any group homomorphism \(G\rightarrow H\), 
+the following diagram commutes:
+\[\begin{tikzcd}
+	G & H \\
+	{\mathcal{G}\mathcal{F}G} & {\mathcal{G}\mathcal{F}H}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\eta_G}"', from=1-1, to=2-1]
+	\arrow["{\eta_H}", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+because the vertical maps are just identities on the set. Moreover, consider a unique map \(\bar{f}:\mathbb{F}G\rightarrow V\) defined by \(\bar{f}(g)=f(g)\), then extending it by \(\mathbb{F}\)-linearity, we obtain a homomorphism \(\bar{f}:\mathcal{F}G\rightarrow V\) in \(\mathbf{Alg}(\mathbb{F})\). 
+We have the following diagram:
+\[\begin{tikzcd}
+	& G \\
+	{\mathcal{G}\mathcal{F}G} && {\mathcal{G}V}
+	\arrow["{\eta_G}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{G}\bar{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+This diagram commutes as on the set level, every \(g\in G\) is sent to \(f(g)\) in the group of units in \(V\). We have proved that \((\mathcal{F}G,\eta)\) is the reflection of \(G\) along \(\mathcal{G}\). By Theorem 5.1.8., \(\mathcal{F}\) is left adjoint to \(\mathcal{G}\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1.7}
+Let \(\mathcal{G}:\mathbf{Top}\rightarrow \mathbf{Sets}\) be the forgetful functor which assigns to every topological space its underlying set. Then \(\mathcal{G}\) has a left adjoint, creating the discrete topology on a 
+set, and a right adjoint creating the trivial topology on a set.	
+\end{problem}
+\begin{solution}
+Write \(\mathcal{F}_1:\mathbf{Sets}\rightarrow \mathbf{Top}\) as the functor creating the discrete topology on any given set. We are going to show that \(\mathcal{F}_1\) is left adjoint to \(\mathcal{G}\). Let \(A\in \text{Ob}\, \mathbf{Sets}\). We 
+define a function between sets \(\eta_A:A\rightarrow \mathcal{G}\mathcal{F}_1 A\) by sending each elements in set \(A\) to itself. This defines a natural transformation \(\eta:id_{\mathbf{Sets}}\Rightarrow \mathcal{G}\mathcal{F}_1\) as the following diagram commutes:
+\[\begin{tikzcd}
+	A & B \\
+	{\mathcal{G}\mathcal{F}_1 A} & {\mathcal{G}\mathcal{F}_1 B}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+for any function between sets \(A\rightarrow B\)(The vertical maps are just identity on sets). Given a topological space \(Y\) and a function \(f:A\rightarrow \mathcal{G}Y\) in \(\mathbf{Sets}\),  consider the unique map 
+\(\bar{f}:\mathcal{F}_1 A\rightarrow Y\) by sending \(\bar{f}(a)=f(a)\). This map is continous because every subset in \(\mathcal{F}_1 A\) is open. We have a commutative diagram:
+\[\begin{tikzcd}
+	& A \\
+	{\mathcal{G}\mathcal{F}_1A} && {\mathcal{G}Y}
+	\arrow["{\eta_A}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{G}\bar{f}}"', dashed, from=2-1, to=2-3]
+\end{tikzcd}\]
+This proves that \((\mathcal{F}_1 A,\eta_A)\) is the reflection of \(A\) along \(\mathcal{G}\). By Theorem 5.1.8., \(\mathcal{F}_1\) is left adjoint to \(\mathcal{G}\).
+\par 
+Write \(\mathcal{F}_2:\) as the functor creating the trivial topology on any given set. We are going to show that \(\mathcal{G}\) is left adjoint to \(\mathcal{F}_2\). Let \(X\) be any topological space. We define a function \(\varepsilon_X:X\rightarrow \mathcal{F}_2 \mathcal{G}X\) by 
+sending each elements to itself. This function is continous because \(\mathcal{F}_2 \mathcal{G}X\) has the trivial topology, and for any topological space, the entire space and the empty set are always open. So we defined a natural transformation 
+\(\varepsilon:id_{\mathbf{Top}}\Rightarrow \mathcal{F}_2 \mathcal{G}\) since the following diagram commutes:
+\[\begin{tikzcd}
+	X & Y \\
+	{\mathcal{F}_2\mathcal{G}X} & {\mathcal{F}_2\mathcal{G}Y}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+for any continous function \(X\rightarrow Y\). Given a set \(B\) and a continous function \(f:X\rightarrow \mathcal{F}_2 B\), consider the unique map \(\bar{f}:\mathcal{G}X\rightarrow B\) by just taking \(f\) as a function. We have a commutative diagram: 
+\[\begin{tikzcd}
+	& X \\
+	{\mathcal{F}_2\mathcal{G}X} && {\mathcal{F}_2B}
+	\arrow["{\varepsilon_X}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\mathcal{F}_2\bar{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+This proves that \((\mathcal{G}X,\varepsilon_X)\) is the reflection of \(X\) along \(\mathcal{F}_2\). By Theorem 5.1.8., \(\mathcal{G}\) is left adjoint to \(\mathcal{F}_2\).
+\end{solution}
+
+\end{document}

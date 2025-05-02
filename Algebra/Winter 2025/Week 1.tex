@@ -1,0 +1,479 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 1}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 648 - Abstract Algebra  \hfill Term: Winter 2025\\
+Instructor: Professor Arkady Berenstein \hfill Due Date: $15^{th}$ January, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.13}
+Let \(V\) be a left \(R\)-module and \(X\) be a subset of \(V\). Then \(\Ann(X)\) is a left ideal of \(R\), and if \(X\) is a submodule of \(V\) then \(\Ann(X)\) is a two-sided ideal of \(R\).
+\end{problem}
+\begin{solution}
+Assume \(X\) is a subset of \(V\). Let \(a,b\in \Ann(X)\). For any \(x\in X\), we have \((a+b)(x)=ax+bx=0\). Let \(r\in R\), we have 
+\[(ra)x=r(ax)=r0=0.\]
+This proves that \(\Ann(X)\) is a left ideal of \(R\). Now assume \(X\) is a submodule of \(V\), we only need to prove that \(\Ann(X)\) is a right ideal of \(R\). Note that 
+\[(ar)x=a(rx)=0\]
+since \(X\) being a submodule of \(V\) tells us that \(rx\) is still an element of \(X\) for any \(r\in R\). This shows that \(\Ann(X)\) is a two-sided ideal of \(R\).   
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.15}
+True or false?
+\begin{enumerate}[(1)]
+\item Let \(R\) be a commutative ring and \(I,J\lhd R\) be two ideals of \(R\). If the modules \(R/I\) and \(R/J\) are isomorphic then \(I=J\).
+\item Let \(R\) be a ring and \(I,J\) be two left ideals in \(R\). If the modules \(R/I\) and \(R/J\) are isomorphic then \(I=J\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item This is true. Let \(\phi:R/I\xrightarrow{\sim} R/J\) be an isomorphism of \(R\)-modules with \(\phi(1+I)=a+J\) for some \(a\in R\). For any \(j\in J\), we have 
+\[\phi(j+I)=\phi(j\cdot 1+I)=j\cdot\phi(1+I)=ja+J.\]
+Note that \(J\) is an ideal in \(R\), so \(ja+J=J\) as \(ja\in J\). Thus, \(j+I\in \ker\phi=\left\{ I \right\}\) because \(\phi\) is an isomorphism. This shows that \(j\in I\). We have proved \(J\subseteq I\). Use a 
+similar argument and an injective \(R\)-module homomorphism \(\phi^{-1}:R/J\rightarrow R/I\) we can show that \(I\subseteq J\). Now we can conclude that \(I=J\).
+\item This is false. Consider \(R=M_2(\mathbb{R})\) is the \(2\times 2\) matrix ring over \(\mathbb{R}\). We define 
+\begin{align*}
+I=&\left\{ \begin{pmatrix} 
+    p & 0\\ 
+    q & 0
+\end{pmatrix}\ \mid\ p,q\in \mathbb{R} \right\},\\ 
+J=&\left\{ \begin{pmatrix}
+0&p\\ 
+0&q
+\end{pmatrix}\ \mid\ p,q\in \mathbb{R} \right\}.
+\end{align*}
+\(I\) is a left ideal of \(R\) since for any matrix \(\begin{pmatrix}
+    a&b\\ 
+    c&d
+\end{pmatrix}\), we have 
+\[\begin{pmatrix}
+    a&b\\ 
+    c&d
+\end{pmatrix}\begin{pmatrix}
+    p&0\\ 
+    q&0
+\end{pmatrix}=\begin{pmatrix}
+    ap+bq&0\\ 
+    cp+dq&0
+\end{pmatrix}\in I.\]
+Similar for \(J\). Note that the quotient is a \(R\)-module 
+\[R/I=\left\{ \begin{pmatrix}
+a&b\\ 
+c&d
+\end{pmatrix}+I \right\}\]
+and \(\begin{pmatrix}
+    a_1&b_1\\ 
+    c_1&d_1
+\end{pmatrix}\) and \(\begin{pmatrix}
+    a_2&b_2\\ 
+    c_2&d_2
+\end{pmatrix}\) represent the same element in the quotient if \(b_1=b_2\) and \(d_1=d_2\). So the choice of \(b,d\) uniquely determines an element in \(R/I\). Similarly, 
+the choice of \(a,c\) uniquely determines an element in \(R/J\). Define a map 
+\begin{align*}
+    \phi:R/I&\rightarrow R/J,\\ 
+    \begin{pmatrix}
+        a&b\\ 
+        c&d
+    \end{pmatrix}&\mapsto \begin{pmatrix}
+        b&a\\ 
+        d&c
+    \end{pmatrix}.
+\end{align*}
+It is easy to see that \(\phi\) is both injective and surjective. Moreover, this is an \(R\)-module homomorphism since 
+\begin{align*}
+    \phi(\begin{pmatrix}
+        k&l\\ 
+        m&n
+    \end{pmatrix}\begin{pmatrix}
+        a&b\\ 
+        c&d
+    \end{pmatrix})&=\phi(\begin{pmatrix}
+        ka+lc&kb+ld\\ 
+        ma+nc&mb+nd
+    \end{pmatrix})\\ 
+    &=\begin{pmatrix}
+        kb+ld&ka+lc\\ 
+        mb+nd&ma+nc
+    \end{pmatrix}\\ 
+    &=\begin{pmatrix}
+        k&l\\ 
+        m&n
+    \end{pmatrix}\begin{pmatrix}
+        b&a\\ 
+        d&c
+    \end{pmatrix}\\ 
+    &=\begin{pmatrix}
+        k&l\\ 
+        m&n
+    \end{pmatrix}\phi(\begin{pmatrix}
+        a&b\\ 
+        c&d
+    \end{pmatrix}).
+\end{align*}
+Thus, \(R/I\) and \(R/J\) are isomorphic as \(R\)-modules but obviously \(I\) and \(J\) are different left ideals in \(R\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.16}
+Let \(V\) be an \(R\)-module. A family \((V_i)_{i\in I}\) of submodules of \(V\) is a directed system of submodules if for any \(i,j\in I\) there exists \(k\in I\) such that \
+\(V_i\subseteq V_k\) and \(V_j\subseteq V_k\). Prove that \(V\) is finitely generated if and only if the union \(\cup_{i\in I}V_i\) of any directed set of proper submodules is proper. Deduce that 
+a finitely generated module has a maximal proper submodule.
+\end{problem}
+\begin{solution}
+First we assume \(V\) is finitely generated. Suppose the set 
+\[S=\left\{ v_1,v_2,\ldots,v_n \right\}\]
+is the generating set for the module \(V\). Denote the generating set for \(V_i\) is \(S_i\) for every \(i\in I\). For any \(i\in I\), \(V_i\) being proper submodules implies that \(S_i\) is a proper 
+subset of \(S\).
+
+\begin{claim}
+There exists \(k\in I\) such that for any \(i\in I\), \(V_i\subseteq V_k\).
+\end{claim}
+\begin{claimproof}
+Note that every \(V_i\) is finitely generated, so we only need to show that there exists \(k\in I\), for any \(i\in I\), we have \(S_i\subseteq S_k\). We pick \(S_k\) as the set with the most elements. This can be done 
+because \((S_i)_{i\in I}\) are all subsets of a finite set \(S\) with \(n\) elements. Suppose there exists \(v\in S_i\) for some \(i\) such that \(v\notin S_k\). By the definition of the directed system, there must exists some \(k'\in I\) such 
+that \(V_i\subseteq V_{k'}\) and \(V_k\subseteq V_{k'}\). This implies \(v\in S_{k'}\) and \(S_k\subseteq S_{k'}\). \(S_{k'}\) is strictly larger than \(S_k\). This contradicts our choice of \(S_k\). 
+\end{claimproof}\\
+The above claim tells us that \(\cup_{i\in I}V_i=V_k\) is a proper submodule. 
+
+Now assume for any directed system of proper submodule \((V_i)_{i\in I}\), the union \(\cup_{i\in I}V_i\) is proper and \(V\) is not finitely generated. Consider a set of \((V_i)_{i\in I}\) where for each \(i\in I\), \(V_i\) is a finitely generated submodule of \(V\). This is a directed 
+system because for any \(i,j\in I\), the union \(V_i\cup V_j\) is also a finitely generated submodule. And since \(V\) is not finitely generated, each \(V_i\) must be proper. It is easy to see that \(\cup_{i\in I}V_i\subseteq V\). We claim that \(V=\cup_{i\in I}V_i\) because for every \(v\in V\), \(v\in \la v\ra\) which is a 
+finitely generated submodule. This shows that the union \(\cup_{i\in I}V_i=V\) is not proper. A contradiction.
+
+Given a finitely generated nontrivial module \(V\), consider the set \(S=\left\{ V_i \right\}_{i\in I}\) where each \(V_i\) is a proper submodule of \(V\).\(S\) is non-empty since the zero module \(0\) is always in \(S\). \(S\) has a partial order given by the inclusion of subodules. Consider a totally ordered subset \(X\) of \(S\). Note that 
+\(X\) is a directed system and we can take the union of all elements in \(X\) as an upper bound since previously we have shown that the union is still a proper submodule. By Zorn's lemma, \(S\) must has a maximal element, which is a maximal proper submodule of \(V\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.17}
+True or false? As a \(\mathbb{Z}\)-module, \(\mathbb{Q}\) has a maximal proper submodule.
+\end{problem}
+\begin{solution}
+This is false. Let \(M\) be a maximal proper \(\mathbb{Z}\)-submodule of \(\mathbb{Q}\). Then \(\mathbb{Q}/M\) is a simple \(\mathbb{Z}\)-module. By Example 14.1.21, a \(\mathbb{Z}\)-module \(\mathbb{Q}/M\) is simple if and only if \(\mathbb{Q}/M\cong C_p\) for some prime \(p\). So we have 
+a surjective homomorphism of \(\mathbb{Z}\)-modules \(\phi:\mathbb{Q}\rightarrow C_p\) with \(\ker \phi=M\). For any \(\frac{m}{n}\in \mathbb{Q}\), we have 
+\[\phi(\frac{m}{n})=\phi(\frac{m}{pn}+\frac{m}{pn}+\cdots+\frac{m}{pn})=p\phi(\frac{m}{pn})=0.\]
+So \(\phi\) is the zero morphism, which contradicts the surejctivity of \(\phi\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.23}
+An \(R\)-module \(V\) is irreducible if and only if \(V\cong R/I\) for a maximal left ideal \(I\) of \(R\).
+\end{problem}
+\begin{solution}
+First we assume that \(V\) is irreducible. For any \(v\in V\), by Exercise 14.1.13, the annihilator \(\Ann(v)\) is a left ideal of \(R\). Suppose \(\Ann(v)\subseteq J\subseteq R\) is contained in some other left ideal in \(R\). There exists \(a\in J\) such that \(a\notin \Ann(v)\). Note that 
+\(a\notin \Ann(v)\) implies \(av\neq 0\), so \(v\in \la av\ra =V\) since \(V\) is simple. This means that there exist \(r\in R\) such that \(v=rav\). So \(1-ra\in \Ann(v)\subseteq J\). Then \(1=(1-ra)+ra\in J\) and this shows that \(J=R\). We have proved that \(\Ann(v)\) is a maximal left ideal of 
+\(R\). We define a map 
+\begin{align*}
+    \phi:R/\Ann(v)&\rightarrow V;\\ 
+       r+\Ann(v)&\mapsto rv.
+\end{align*}
+It is obvious that \(\phi\) is a well-defined \(R\)-module homomorphism. Suppose \(r+\Ann(v)\in \ker \phi\). Then we have 
+\[\phi(r+\Ann(v))=rv=0.\]
+This implies \(r\in \Ann(v)\), so \(r+\Ann(v)=\Ann(v)\) in \(R/\Ann(v)\). This proves that \(\phi\) is injective. Moreover, we know that 
+\[V=\left\{ rv\ |\ r\in R \right\}.\]
+Suppose \(r+\Ann(v)\) and \(s+\Ann(v)\) are different representatives for the same element in \(R/\Ann(v)\), we know \(r-s\in \Ann(v)\) and \((r-s)v=0\). This means \(rv=sv\) is the same element in \(V\). This proves that 
+\(\phi\) is surjective. Thus, we have an \(R\)-module isomorphism \(V\cong R/\Ann(v)\). 
+
+Conversely, we assume \(V\cong R/I\) for some maximal left ideal \(I\) in \(R\). We need to prove that \(R/I\) as a \(R\)-module is simple. By Exercise 14.1.14, the correspondence theorem in modules tells us that the set of submodules in \(R/I\) corresponds to the set of left ideals containing \(I\), and 
+since \(I\) is maximal, \(R/I\) only has two submodules: \(0\) and itself. This proves that \(V\cong R/I\) is simple.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.1.24}
+Prove that for every ring \(R\) there exists an irreducible \(R\)-module.
+\end{problem}
+\begin{solution}
+By Exercise 14.1.23, we only need to show that every ring \(R\) has a maximal left ideal \(I\). Let \(S\) be the set of all proper left ideals in \(R\). \(S\) is not empty since the zero ideal \(0\) is always in \(S\). \(S\) has a partial order given by the inclusion. Given a totally orderer subset 
+\(\left\{ J_i \right\}_{i\in I}\), we claim that \(\cup_{i\in I}J_i\) is an upper bound. Indeed, for any \(a\in \cup_{i\in I}J_i\), there must exists \(k\in I\) such that \(a\in J_k\). Then \(ra\in J_k\subseteq \cup_{i\in I}J_i\) for any \(r\in R\) since \(J_k\) is a left ideal. Moreover, suppose \(\cup_{i\in I}J_i=R\). Then 
+\(1\in R=\cup_{i\in I}J_i\). This means there exists \(k\in I\) such that \(1\in J_k\), namely \(J_k=R\). This contradicts that \(J_k\) is a proper left ideal of \(R\). So \(\cup_{i\in I}J_i\) is still a proper left ideal of \(R\). By Zorn's lemma, \(S\) has a maximal element.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.1.25
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{problem}{14.1.25}
+Let \(R\) be a commutative ring. Show that the map \(V\mapsto \Ann_R(V)\) induces a bijection between the set of isomorphism classes of irreducible \(R\)-modules and 
+the set of maximal ideals of \(R\).
+\end{problem}
+\begin{solution}
+Let \(V\) be a simple \(R\)-module and \(v\in V\) is a nonzero element. 
+
+\begin{claim}
+\[\Ann(v)=\Ann(V).\]
+\end{claim}
+\begin{claimproof}
+It is obvious that \(\Ann(V)\subseteq \Ann(v)\) since \(v\in V\). On the other hand, given \(r\in \Ann(v)\) satisfying \(rv=0\). We know \(V\) is simple so \(\la v\ra =V\). For any \(w\in V\), there exists 
+\(r'\in R\) such that \(w=r'v\). Now using the fact that \(R\) is commutative, we have 
+\[rw=r(r'v)=(rr')v=(r'r)v=r'(rv)=0.\]
+so \(r\in \Ann(V)\).
+\end{claimproof}\\
+The claim tells us that the map \(\phi:V\mapsto \Ann(V)=\Ann(v)\) for some \(v\in V\). We have already seen in Exercise 14.1.23 that \(\Ann(v)\) is a maximal ideal of \(R\) and \(V\cong R/\Ann(v)\). Suppose \(V\cong W\) as \(R\)-modules, then we have 
+\(R/\Ann(v)\cong R/\Ann(w)\) for some \(v\in V\) and \(w\in W\). By Exercise 14.1.15 (1), \(\Ann(v)=\Ann(w)\) in \(R\). So the map \(\phi\) is well-defined. Moreover, we can define \(\phi^{-1}:I\rightarrow R/I\) where \(I\) is a maximal ideal of \(R\). Note that 
+\(I=\Ann(R/I)\) if we view \(R/I\) as an \(R\)-module. So this indeed defines an inverse of \(\phi\). This proves that \(\phi\) is an isomorphism.  
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.2.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.2.1}
+If \(R\) is commutative and \(V\) is an irreducible \(R\)-module, then \(V\oplus V\) is not cyclic. Give an example of a non-commutative ring \(R\) and an irreducible left \(R\)-module \(V\) such that 
+\(V\oplus V\) is cyclic.
+\end{problem}
+\begin{solution}
+First assume \(R\) is commutative. Let \(v,w\in V\) be two different nonzero elements. Since \(V\) is simple, we know that \(V=\la v\ra=\la w\ra\). We can write \(V\oplus V=\la v\ra\oplus \la w\ra\). Suppose that \(V\oplus V\) is cyclic. Then there exists \(a\in \la v\ra\oplus \la w\ra\) such 
+that for some \(r_1,r_2\in R\), \(a=r_1v+r_2w\) generates \(V\oplus V\). There exists \(r_3,r_4\in R\) such that 
+\begin{align*}
+    r_3(r_1v+r_2w)&=v\\ 
+    r_4(r_1v+r_2w)&=w
+\end{align*}
+which gives us 
+\begin{align*}
+    r_3r_1=1,&\ r_3r_2=0,\\
+    r_4r_1=0,&\ r_4r_2=1. 
+\end{align*}
+Note that \(R\) is commutative, so we have 
+\[1=(r_3r_1)(r_4r_2)=(r_3r_2)(r_4r_1)=0.\]
+A contradiction. So \(V\oplus V\) cannot be cyclic. 
+
+Now assume \(R\) is not commutative. Let \(R=M_2(\mathbb{F})\) be the \(2\times 2\) matrix ring over a field \(\mathbb{F}\). The column vectors 
+\[V=\left\{ \begin{pmatrix}
+a\\ 
+b
+\end{pmatrix}\mid a,b\in \mathbb{F} \right\}\]
+is a simple left \(R\)-module. Moreover, we have \(V\oplus V\cong M_2(\mathbb{F})\), which can be generated by \(\begin{pmatrix}
+    1&0\\
+    0&1
+\end{pmatrix}\) as a left \(M_2(\mathbb{F})\)-module.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.2.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.2.6}
+Let \(0\rightarrow K\xrightarrow{\iota} V\xrightarrow{\pi} Q\rightarrow 0\) be an exact sequence of left \(R\)-modules. If \(Q\) and \(K\) are finitely generated then so is \(V\).
+\end{problem}
+\begin{solution}
+Since \(K\) and \(Q\) are finitely generated, we can write 
+\[K=\la v_1,v_2,\ldots,v_m\ra,\ Q=\la w_1,w_2,\ldots,w_n\ra\]
+for some positive integer \(m,n\). There exists \(w_1',w_2',\ldots,w_n'\in V\) such that \(\pi(w_i')=w_i\) for any \(1\leq i\leq n\) because \(\pi\) is surjective. 
+
+\begin{claim}
+\(V\) is generated by the set 
+\[\left\{ \iota(v_1),\iota(v_2),\ldots,\iota(v_m),w_1',w_2',\ldots,w_n' \right\}.\]
+\end{claim}
+\begin{claimproof}
+Note that by exactness, we have \(V/\iota(K)\cong Q\). By our choice of generators, \(V/\iota(K)\) is generated by 
+\[w_1'+\iota(K),w_2'+\iota(K),\ldots,w_n'+\iota(K).\]
+So for every \(v\in V\), the coset \(v+\iota(K)\) can be written as 
+\begin{align*} 
+v+\iota(K)&=(a_1w_1'+\iota(K))+(a_2w_2'+\iota(K))+\cdots+(a_nw_n'+\iota(K))\\ 
+          &=(a_1w_1'+a_2w_2'+\cdots+a_nw_n')+\iota(K)
+\end{align*}
+where \(a_1,a_2,\ldots,a_n\in R\). This means that 
+\[v-a_1w_1'-a_2w_2'-\cdots-a_nw_n'\in \iota(K).\]
+Note that \(\iota\) is injective and \(K\) is generated by \(v_1,\ldots,v_m\), so we can write 
+\[v-a_1w_1'-a_2w_2'-\cdots-a_nw_n'=b_1\iota(v_1)+b_2\iota(v_2)+\cdots+b_m\iota(v_m).\]
+This proves the claim.
+\end{claimproof}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.2.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\begin{problem}{14.2.12}
+The sequence of \(R\)-modules and \(R\)-module homomorphisms 
+\[U\xrightarrow{f}V\xrightarrow{g}W\rightarrow 0\]
+is exact if and only if the corresponding sequence 
+\[0\rightarrow \hom_R(W,X)\xrightarrow{g^*}\hom_R(V,X)\xrightarrow{f^*}\hom_R(U,X)\]
+of abelian groups is exact for every \(R\)-module \(X\).
+\end{problem}
+\begin{solution}
+First we prove the sufficiency. Assume we have an exact sequence of \(R\)-modules
+\[U\xrightarrow{f}V\xrightarrow{g}W\rightarrow 0.\]
+Apply the functor \(\hom_R(-,X)\) where \(X\) is an \(R\)-module. We need to prove the following:
+\begin{enumerate}[(1)]
+\item \(g^*:\hom_R(W,X)\rightarrow \hom_R(V,X)\) is injective.\\ 
+Let \(p\in \hom_R(W,x)\) and \(p\in \ker g^*\). This is the same as for any \(v\in V\), we have \(g^*(p)(v)=(p\circ g)(v)=0\) in \(X\). For any \(w\in W\), by exactness we know that 
+\(g:V\rightarrow W\) is surjective, so there exists \(w'\in V\) such that \(g(w')=w\). Then we have 
+\[p(w)=p(g(w'))=(p\circ g)(w')=0.\]
+This proves that \(p:W\rightarrow X\) is the zero morphism, so \(\ker g^*=0\) and \(g^*\) is injective.
+\item We need to show that \(\ker f^*=\im g^*\).\\ 
+First we show that \(\im g^*\subseteq \ker f^*\). This is equivalent to \(f^*\circ g^*=0\). Note that \(\hom_R(-,X)\) is a functor, so 
+\[f^*\circ g^*=(g\circ f)^*=0^*=0\]
+by exactness of the original sequence. Next, consider a map \(q:V\rightarrow X\) satisfying \(f^*(q)=q\circ f=0\). For any \(w\in W\), since \(g\) is surjective, we can choose \(v\in V\) such that \(g(v)=w\). Define 
+a map \(q':W\rightarrow X\) as follows:
+\[q'(w)=q(v).\]
+This is well-defined (it does not depend on the choice of \(v\)). Suppose there exists another \(v'\in V\) such that \(g(v')=w\). Then \(v-v'\in \ker g=\im f \) by the exactness of the original sequence. This means 
+there exists \(u\in U\) such that \(f(u)=v-v'\). So we have 
+\[q(v)-q(v')=q(v-v')=q(f(u))=(q\circ f)(u)=0\]
+since \(q\in \ker f^*\). We have proved that \(\ker f^*\subseteq \im g^*\). Therefore, \(\ker f^*=\im g^*\).
+\end{enumerate} 
+\noindent\rule{7in}{1.5pt}
+Now assume for any \(R\)-module \(X\), we have an exact sequence
+\[0\rightarrow \hom_R(W,X)\xrightarrow{g^*}\hom_R(V,X)\xrightarrow{f^*}\hom_R(U,X).\]
+We need to show that the original sequence
+\[U\xrightarrow{f}V\xrightarrow{g}W\rightarrow 0\]
+is exact. We need to prove the following:
+\begin{enumerate}[(1)]
+\item \(g\) is surjective.\\ 
+Take \(X=\coker g\) and \(q:W\rightarrow \coker g\) is the canonical projection map. The composition \((q\circ g)=g^*(q)=0\) by definition of the cokernel and since \(g^*\) is injective by the exactness of the sequence, we know that \(q=0\) is the 
+zero map. This implies that \(\coker g=0\), so \(g\) is surjective.
+\item We need to prove that \(\im f=\ker g\).\\ 
+First we need to show that \(\im f\subseteq \ker g\), which is equivalent to \(g\circ f=0\). By exactness, we have 
+\[f^*\circ g^*=(g\circ f)^*:\hom _R(W,X)\rightarrow \hom_R(U,X)\]
+is the zero map. Take \(X=W\) and we have 
+\[0=(g\circ f)^*(id_W)=f\circ g\circ id_W=f\circ g.\]
+This proves \(\im f\subseteq \ker g\). On the other hand, consider \(p:V\rightarrow \coker f\) is the canonical projection. By definition, we know that \(f^*(p)=p\circ f=0\), so \(p\in \ker f^*=\im g^*\) by exactness of 
+the sequence. This means there exists \(\phi:W\rightarrow \coker f\) such that \(g^*(\phi)=\phi\circ g=p\). Now suppose \(v\in V\) satisfying \(g(v)=0\). We have 
+\[p(v)=(\phi\circ g)(v)=\phi(g(v))=0.\]
+So \(v\in \ker p=\ker(V\rightarrow \coker f)=\im f\). We have proved that \(\ker g\subseteq \im f\). Therefore, \(\ker g=\im f\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.2.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.2.16}
+Let \(G\) be a finite group, \(\mathbb{F}\) a field of characteristic \(p\) dividing \(|G|\). Then the 1-dimensional submodule of the left regualr module \(\mathbb{F}G\) spanned by 
+the element \(\sum_{g\in G}g\) is not a direct summand of the regular module.
+\end{problem}
+\begin{solution}
+Let \(x=\sum_{g\in G}g\). Assume \(\la x\ra \) is a direct summand of \(\mathbb{F}G\) as an \(\mathbb{F}G\)-module, then there exists a \(\mathbb{F}G\)-submodule \(C\) such that \(C\oplus \la x\ra=\mathbb{F}G\). Suppose an element \(\sum_{h\in G}a_h h\in C\) where \(a_h\in \mathbb{F}\). We have 
+\[x(\sum_{h\in G}a_h h)=(\sum_{g\in G}g)(\sum_{h\in G}a_h h)=\sum_{g\in G}\sum_{h\in G}a_h gh=\sum_{k\in G}b_k k.\]
+Note that for any \(k\in G\), there exists a unique \(g=kh^{-1}\in G\) for every \(h\in G\) such that \(gh=k\). So \(b_k=\sum_{h\in G}a_h\) for any \(k\in G\). And we can write  
+\[x(\sum_{h\in G}a_h h)=\sum_{g\in G}(\sum_{h\in G}a_h)g=(\sum_{h\in G}a_h)(\sum_{g\in G}g)=(\sum_{h\in G}a_h)x\in \la x\ra.\]
+Since \(\sum_{h\in G}a_h h\in C\), we can be see that \(x(\sum_{h\in G}a_h h)\in C\cap \la x\ra=0\). This implies \(0=\sum_{h\in G}a_h\in \mathbb{F}\). 
+On the other hand, suppose \(\sum_{h\in G}b_h h\in \mathbb{F}G\) and similarly we have 
+\[(\sum_{h\in G}b_h h)x=(\sum_{h\in G}b_h h)(\sum_{g\in G} g)=(\sum_{h\in G}b_h)x\in \la x\ra.\]
+Now consider \(e\in G\) which is the identity element, viewed as an element in \(\mathbb{F}G\). \(e\notin C\) since the coefficients need to sum to zero and also \(e\notin \la x \ra\). But \(\mathbb{F}G=\la x\ra \oplus C\). A contradiction.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.3.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.3.4}
+True or false? If \(K\) is a free \(R\)-module, then every short exact sequence of \(R\)-modules of the form \(0\rightarrow K\rightarrow V\rightarrow Q\rightarrow 0\) is split.
+\end{problem}
+\begin{solution}
+This is false. Consider the following short exact sequence of \(\mathbb{Z}\)-modules 
+\[0\rightarrow \mathbb{Z}\xrightarrow{\times 2}\mathbb{Z}\rightarrow \mathbb{Z}/(2)\rightarrow 0.\]
+Here \(K=\mathbb{Z}\) is a free \(\mathbb{Z}\)-module but this sequence does not split since \(\mathbb{Z}\) cannot be written as direct sum of \(\mathbb{Z}\) and \(\mathbb{Z}/(2)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.3.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.3.9}
+Suppose \(R\) is an integral domain with the property that any maximal \(R\)-linearly independent set of vectors in any free \(R\)-module is a basis. Prove that \(R\) is a field.
+\end{problem}
+\begin{solution}
+Consider \(R\) itself as a free \(R\)-module of rank 1. Take \(0=\neq x\in R\). Then the set \(\left\{ x \right\}\) is maximal and \(R\)-linearly independent, so it is a basis. This means for any \(r\in R\), there exists \(y\in R\) such that 
+\(yx=r\). Take \(r=1\) and this tells us that every element in \(R\) has a multiplicative inverse. Thus, \(R\) is a field.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.3.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.3.10}
+Give an example of an integral domain \(R\) and a submodule of a free \(R\)-module that is not free.
+\end{problem}
+\begin{solution}
+Let \(k\) be a field of characteristic \(0\) and \(R=k[x,y]\), which is an integral domain. \(R\) itself can be viewed as a free \(R\)-module of rank \(1\).  Consider the ideal \(I=(x,y)\subseteq R\), which is a submodule of \(R\), and \(I\) is not 
+a free \(R\)-module. Assume the opposite. Note that \(R\) as a free \(R\)-module is of rank \(1\), so \(I\) is free, then it must also be of rank 1. This means \(I\) can be generated by one element, namely \(I\) is a principal ideal in 
+\(R\). Note that \(x\) and \(y\) are relatively prime in \(R\), so \(I\) has be generated by \(\text{gcd}(x,y)=1\). This shows that \(I=R\), but \(I\) is proper since \(2\in k[x,y]\) is not in \(I\). A contradiction.  
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 14.3.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{14.3.11}
+If \(R\) is commutative and every submodule of a free \(R\)-module is free then \(R\) is a PID.
+\end{problem}
+\begin{solution}
+View \(R\) itself as a free \(R\)-module of rank 1, then any ideal \(I\subseteq R\) is a \(R\)-submodule of rank at most 1. This means there exist \(a\in I\) such that for any \(b\in I\), there exist \(r\in R\) such that 
+\(ra=b\). This shows that \(I\) is generated by \(a\), so \(I\) is a principal. Moreover, for any \(a\in R\), consider the principal ideal generated by \(a\), it is a free \(R\)-module with basis \(\left\{a\right\}\). If \(a\) is a zero divisor, then \(\left\{a\right\}\) is not \(R\)-linearly independent since there exists non zero \(r\in R\) such that \(ra=0\). A contradiction. This proves that \(R\) is a principal ideal domain. 
+\end{solution}
+
+\end{document}

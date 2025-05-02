@@ -1,0 +1,218 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+%\usepackage{enumitem}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+%\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 6}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 634 - Algebraic Topology  \hfill Term: Fall 2024\\
+Instructor: Dr.Patricia Hersh \hfill Due Date: $16^{th}$ November, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.24}
+Show that each \(n\)-simplex in the barycentric subdivision of \(\Delta^n\) is defined by \(n\) inequalities \(t_{i_0}\leq t_{i_1}\leq \cdots \leq t_{i_n}\) in its 
+barycentric coordinates, where \((i_0,\ldots,i_n)\) is a permutation of \((0,\ldots,n)\). 
+\end{problem}
+\begin{solution}
+Let \([v_0\ldots,v_n]\) be a standard \(n\)-simplex. We prove this using the induction on \(n\). 
+\par 
+When \(n=1\), under barycentric coordinates, the \(1\)-simplex is an interval \([v_0,v_1]\) with two vertices \(v_0=(1,0)\) and \(v_1=(0,1)\). The barycenter is \((\frac{1}{2},\frac{1}{2})\). After barycentric 
+subdivision, the 2 \(1\)-simplices are just \((t,1-t)\) given by \(0\leq t\leq \frac{1}{2}\) and \(\frac{1}{2}\leq t\leq 1\) respectively. So it satifies the assumption. 
+\par 
+Now assume \(n\geq 2\) and we have prove the case for \(n-1\). The barycenter for \([v_0,\ldots,v_n]\) has coordinates \(b=(\frac{1}{n+1},\ldots,\frac{1}{n+1})\). Consider one of its faces \([v_0,\ldots,\hat{v_k},\ldots,v_n]\), by our assumption we know that 
+each \((n-1)\)-simplex after the barycentric subdivision in this face is given by an equality \(0\leq t_{i_0}\leq \cdots\leq t_{i_{k-1}}\leq t_{i_{k+1}}\leq \cdots\leq t_{i_n}\) where \((i_0,i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n )\) is a permutation of \((0,1,\ldots,k-1,k+1,\ldots,n)\). Fix such a 
+\((n-1)\)-simplex \(\Delta^{n-1}\) (namely, an inequality as above), we will try to describe any point \(x=(t_0,t_1,\ldots,t_n)\) in the \(n\)-simplex formed using vertices from \(\Delta^{n-1}\) and \(b\). Consider the line passing through \(x\) and \(b\) and it intersects with \(\Delta^{n-1}\) at the point \(y\in \Delta^{n-1}\). 
+By colinearity we can write the coordinate 
+\[y=(\frac{t_0-t_k}{n+1},\frac{t_1-t_k}{n+1},\ldots,\frac{t_{k-1}-t_k}{n+1},0,\frac{t_{k+1}-t_k}{n+1},\ldots,\frac{t_n-t_k}{n+1}).\]
+The inequality implies that 
+\[0\leq \frac{t_{i_0}-t_k}{n+1}\leq \frac{t_{i_1}-t_k}{n+1}\leq\cdots \leq\frac{t_{i_{k-1}}-t_k}{n+1}\leq \frac{t_{i_{k+1}}-t_k}{n+1}\leq \cdots\leq \frac{t_{i_n}-t_k}{n+1}\leq 1.\]
+Combine this with the requirements that the coordinate \(\frac{t_{i_j}-t_k}{n+1}\geq 0\) for all \(j=0,1,\ldots,k-1,k+1,\ldots,n\) gives us a total order
+\[0\leq t_k\leq t_{i_0}\leq t_{i_1}\leq \cdots\leq t_{i_{k-1}}\leq t_{i_{k+1}}\leq \cdots\leq t_{i_n}\leq 1.\]
+Varying \(k=0,1,\ldots,n\) and repeat the same process for each face we run through all the \(n\)-simplex in the barycentric subdivision, giving us an inequality as above each time. We are done. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.26
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.26}
+Show that \(H_1(X,A)\) is not isomorphic to \(\tilde{H}_1(X/A)\) if \(X=[0,1]\) and \(A\) is the sequence \(1,\frac{1}{2},\frac{1}{3},\ldots\) together with its limit \(0\).
+\end{problem}
+\begin{solution}
+We first use the long exact sequence for relative homology to calculate \(H_1(X,A)\)
+\[\begin{tikzcd}
+	\cdots & {H_1(X)} & {H_1(X,A)} & {H_0(A)} & {H_0(X)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+\end{tikzcd}\]
+We know that \(X=[0,1]\) is contractible, so \(H_1(X)=0\). Note that \(A\) is countable many points \(\left\{ 0,1,\frac{1}{2},\frac{1}{3},\ldots \right\}\), so by Proposition 2.7, \(H_0(A)\cong \bigoplus_{i=1}^\infty \mathbb{Z}\). We have an injective map \(\partial:H_1(X,A)\rightarrow H_0(A)\cong \bigoplus_{i=1}^\infty \mathbb{Z}\). 
+On the other hand, the quotient space \(X/A\) is homeomorphic to the shrinking wedge of circles, each interval \([\frac{1}{n+1},\frac{1}{n}]\) in \(X/A\) is a small circle, the radius of which is shrinking as \(n\) gets larger. Denote this circle as \(C_n\). Consider the 
+retraction \(r_n:X/A\rightarrow C_n\) collapsing all circles except \(C_n\) to the point represented by \(A\). The induced map in homology \(r_{n,*}:H_1(X/A)\rightarrow H_1(C_n)\cong \mathbb{Z}\) is surjective. Moreover, by the universal property of products, we have a surjective map \(r_*:H_1(X/A)\rightarrow \prod_{i=1}^\infty \mathbb{Z}\). Note that for 
+any topological space, \(H_1(X/A)\cong \tilde{H}_1(X/A)\). And \(\prod_{i=1}^\infty \mathbb{Z}\) is not isomorphic to \(\bigoplus_{i=1}^\infty \mathbb{Z}\), so \(H_1(X,A)\) cannot be isomorphic to \(\tilde{H}_1(X/A)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.30
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.30}
+In each of the following commutative diagrams assume that all maps but one are isomorphisms. Show that the remaining map must be isomorphism as well. 
+\[\begin{tikzcd}
+	A && B && A & B && A & B \\
+	& C &&& C & D && C & D
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=1-6, to=2-6]
+	\arrow[from=1-8, to=1-9]
+	\arrow[from=1-8, to=2-8]
+	\arrow[from=2-2, to=1-3]
+	\arrow[from=2-5, to=2-6]
+	\arrow[from=2-8, to=2-9]
+	\arrow[from=2-9, to=1-9]
+\end{tikzcd}\]
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item \[\begin{tikzcd}
+	A && B \\
+	& C
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["g"', from=1-1, to=2-2]
+	\arrow["h"', from=2-2, to=1-3]
+\end{tikzcd}\]
+(a) Assume \(g,h\) are isomorphisms, then \(f=h\circ g\) is also an isomorphism since it is the composition of two isomorphisms. 
+\par 
+(b) Assume \(f,g\) are isomorphisms. \(g\) is an isomorphism implies that there exist a map \(g^{-1}:C\rightarrow A\) such that \(g\circ g^{-1}=id_C\), then 
+\[h=h\circ id_C=h\circ (g\circ g^{-1})=(h\circ g)\circ g^{-1}=f\circ g^{-1}\]
+where both \(f\) and \(g^{-1}\) are isomorphisms, so is \(h\).
+\par 
+(c) Assume \(f,h\) are isomorphisms. \(h\) is an isomorphism implies that there exists a map \(h^{-1}:B\rightarrow C\) such that \(h^{-1}\circ h=id_C\)., then 
+\[g=id_C\circ g=(h^{-1}\circ h)\circ g=h^{-1}\circ (h\circ g)=h^{-1}\circ f\]
+where both \(f\) and \(h^{-1}\) are isomorphisms, so is \(g\).
+\item \[\begin{tikzcd}
+	A & B \\
+	C & D
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}\]
+Assume \(i,g,h\) are isomorphisms. Then view the composition \(h\circ i\) as one isomorphism, and we are back to the situation (c) in (1).\\ 
+Assume \(i,f,g\) are isomorphisms. Then view the composition \(g\circ f\) as one isomorphism, and we are back to the situation (b) in (1).\\
+Assume \(f,i,h\) are isomorphisms. Then view the composition \(h\circ i\) as one isomorphism, and we are back to the situation (b) in (1).\\ 
+Assume \(f,g,h\) are isomorphisms. Then view the composition \(g\circ f\) as one isomorphism, and we are back to the situation (c) in (1).
+\item \[\begin{tikzcd}
+	A & B \\
+	C & D
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["h"', from=2-1, to=2-2]
+	\arrow["g"', from=2-2, to=1-2]
+\end{tikzcd}\]
+Assume \(i,g,h\) are isomorphisms, then \(f=g\circ h\circ i\) is also an isomorphism since it is the composition of isomorphisms.\\ 
+Assume \(i,f,h\) are isomorphisms, then view the composition \(h\circ i\) as one isomorphism, and we are back to the situation (b) in (1).\\ 
+Assume \(i,f,g\) are isomorphisms. \(i,g\) are isomorphisms implies that there exist \(g^{-1}:B\rightarrow D\) and \(i^{-1}:C\rightarrow A\) such that \(g^{-1}\circ g=id_D\) and 
+\(i\circ i^{-1}=id_C\). Now we have 
+\[h=id_D\circ h\circ id_C=g^{-1}\circ g\circ h\circ i\circ i^{-1}=g^{-1}\circ (g\circ h\circ i)\circ i^{-1}=g^{-1}\circ f\circ i^{-1} \]
+where \(i^{-1},f,g^{-1}\) are isomorphisms, so is \(h\).\\ 
+Assume \(f,g,h\) are isomorphisms, then view the composition \(g\circ h\) as one isomorphism, and we are back to the situation (c) in (1).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.31
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.31}
+Using the notation of the five lemma, give an example where the maps \(\alpha,\beta,\delta\) and \(\varepsilon\) are zero but \(\gamma\) is nonzero. 
+This can be done with short exact sequencs in which all the groups are either \(\mathbb{Z}\) or \(0\).
+\end{problem}
+\begin{solution}
+Consider the following diagrams:
+\[\begin{tikzcd}
+	{\mathbb{Z}} & {\mathbb{Z}} & {\mathbb{Z}} & {\mathbb{Z}} & 0 \\
+	0 & {\mathbb{Z}} & {\mathbb{Z}} & {\mathbb{Z}} & {\mathbb{Z}}
+	\arrow["\sim", from=1-1, to=1-2]
+	\arrow["0"', from=1-1, to=2-1]
+	\arrow["0", from=1-2, to=1-3]
+	\arrow["0"', from=1-2, to=2-2]
+	\arrow["\sim", from=1-3, to=1-4]
+	\arrow["\sim", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["0", from=1-4, to=2-4]
+	\arrow["0", from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\sim"', from=2-2, to=2-3]
+	\arrow["0"', from=2-3, to=2-4]
+	\arrow["\sim"', from=2-4, to=2-5]
+\end{tikzcd}\]
+The top row and the bottom row are exact. And we have \(\alpha=\beta=\delta=\varepsilon=0\), and \(\gamma:\mathbb{Z}\xrightarrow{\sim} \mathbb{Z}\) is an isomorphism and nonzero.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.2.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.2.1}
+Prove the Brouwer fixed point theorem for maps \(f:D^n\rightarrow D^n\) by applying degree theory to the map \(S^n\rightarrow S^n\) that sends both the northern and southern hemispheres 
+of \(S^n\) to the southern hemisphere via \(f\). 	
+\end{problem}
+\begin{solution}
+Denote the descirbed map by \(\bar{f}:S^n\rightarrow S^n\). Since \(\bar{f}\) is not surjective, so we know \(\deg \bar{f}=0\). Moreover, \(\bar{f}\) has no fix point unless \(\deg \bar{f}=(-1)^{n+1}\). There 
+exist \(x\in S^n\) such that \(\bar{f}(x)=x\). Note that \(x\) cannot be in the northern hemisphere because the northern hemisphere is not in the image of \(\bar{f}\). And we know that when \(\bar{f}\) restricts to the southern hemisphere, 
+it is just the map \(f:D^n\rightarrow D^n\), so we can conclude that \(f\) has a fixed point. 
+\end{solution}
+
+
+\end{document}

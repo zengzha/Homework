@@ -1,0 +1,113 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+%\usepackage{enumitem}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[numbered]{mcode}
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 4}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 634 - Algebraic Topology  \hfill Term: Fall 2024\\
+Instructor: Dr.Patricia Hersh \hfill Due Date: $29^{nd}$ October, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.15}
+For an exact sequence \(A\rightarrow B\rightarrow C\rightarrow D\rightarrow E\) show that \(C=0\) iff the map \(A\rightarrow B\) is surjective and 
+\(D\rightarrow E\) is injective. Hence for a pair of spaces \((X,A)\), the inclusion \(A\hookrightarrow X\) induces isomorphisms on all homology groups iff 
+\(H_n(X,A)=0\) for all \(n\).
+\end{problem}   
+\begin{solution}
+Assume \(C=0\). Then \(0\rightarrow D\rightarrow E\) implies that \(\ker (D\rightarrow E)=\text{im}(0\rightarrow D)=0\). So\(D\rightarrow E\) is injective. Similarly, 
+\(\text{im}(A\rightarrow B)=\ker (B\rightarrow 0)=B\) implies  that \(A\rightarrow B\) is surjective. Conversely, \(A\rightarrow B\) is surjective implies that \(B=\text{im}(A\rightarrow B)=\ker (B\rightarrow C)\). 
+So \(B\rightarrow C\) is the zero map. And \(\text{im}(B\rightarrow C)=\ker (C\rightarrow D)\) while \(C\rightarrow D\) is also the zero map because \(\text{im}(C\rightarrow D)=\ker (D\rightarrow E)=0\) as \(D\rightarrow E\) 
+is injective. So \(\text{im}(B\\rightarrow C)=0\). Thus, we have \(C=0\). 
+\par 
+Let \((A,X)\) be a pair of spaces. Consider the short exact sequence of chain complexes:
+$$0\rightarrow C_\bullet(A)\rightarrow C_\bullet(X)\rightarrow C_\bullet(X,A)\rightarrow 0.$$
+We have a long exact sequence:
+$$\begin{tikzcd}
+	\cdots & {H_n(A)} & {H_n(X)} & {H_n(X,A)} \\
+	& {H_{n-1}(A)} & {H_{n-1}(X)} & {H_{n-1}(X,A)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}$$
+where \(H_n(A,X)=0\) for all \(n\) if and only if \(H_n(A)\xrightarrow{\sim} H_n(X)\) for all \(n\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.16 (a)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.16}
+Show that \(H_0(X,A)=0\) iff \(A\) meets each path-component of \(X\).
+\end{problem}
+\begin{solution}
+As the Exercise above shows that we have a long exact sequence:
+$$\begin{tikzcd}
+	\cdots & {H_0(A)} & {H_0(X)} & {H_0(X,A)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}$$
+So \(H_0(X,A)=0\) if and only if \(H_0(A)\rightarrow H_0(X)\) is surjective. This map is induced by the inclusion \(A\hookrightarrow X\). 
+For a topological space \(X\), we have proved in class that \(H_0(X)\cong \bigoplus \mathbb{Z}^d\) where each copy of \(\mathbb{Z}\) represents a path-component 
+of \(X\). So \(H_0(A)\rightarrow H_0(X)\cong \bigoplus \mathbb{Z}^d\) is surjective if and only if for each path-component of \(X\), there exist a 0-chain \(a\in C_0(A)\) such that 
+\(a\) is generated by points in that path-component. This is the same as saying \(A\) meets each path-component of \(X\).
+\end{solution}
+\\ 
+
+
+
+
+
+
+\end{document}

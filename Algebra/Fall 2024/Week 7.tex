@@ -1,0 +1,268 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 7}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $20^{th}$ November, 2024 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.1.4}
+An element \(g\) of a finite group \(G\) is called \(p\)-\textit{regualr} if its order is prime to \(p\). Prove that if \(x\) and \(y\) are \(p\)-regular elements of \(G\) such that 
+\(x^{p^i}\) and \(y^{p^i}\) are conjugate for some \(i\), then \(x\) and \(y\) are conjugate.
+\end{problem}
+\begin{solution}
+\begin{claim}
+\(x\) and \(y\) have the same order.
+\end{claim}	
+\begin{claimproof}
+For any positive integer \(q\), assume \(x^q=1\). Since \(x^{p^i}\) is conjugate to \(y^{p^i}\), there exists \(g\in G\) such that 
+\[1=(x^{q})^{p^i}=(x^{p^i})^q=(g y^{p^i}g^{-1})^q=g y^{p^i q}g^{-1}.\]
+This implies \(y^{p^i q}=1\), thus we have \(ord(y)|p^i q\). Because \(ord(y)\) is copirme with \(p\), so \(ord(y)|q\) and we have \(y^q=1\).
+\end{claimproof}
+
+Now assume \(x\) and \(y\) has order \(q\) in \(G\). \(q\) and \(p^i\) coprime implies that there exist \(a,b\in \mathbb{Z}\) such that \(ap^i+bq=1\). We have 
+\begin{align*}
+	x & =x^{ap^i+bq}=(x^{p^i})^a\cdot (x^q)^b=(x^{p^i})^a,\\
+	y & =y^{ap^i+bq}=(y^{p^i})^a\cdot (y^q)^b=(y^{p^i})^a.
+\end{align*}
+There exist \(g\in G\) such that 
+\[x=(x^{p^i})^a=(g y^{p^i}g^{-1})^a=g (y^{p^i})^a g^{-1}=g y g^{-1}.\]
+This shows that \(x\) is conjugate to \(y\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.1.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.1.7}
+Every finite group has a Jordan-H\"{o}lder series.
+\end{problem}
+\begin{solution}
+Let \(G\) be a finite group. If \(G\) is simple, then \(G=G_0>G_1=\left\{ 1 \right\}\) is a Jordan-H\"{o}lder series for \(G\). If \(G\) is not simple, then there exists a normal subgroup \(N_1\unlhd G\). Note that 
+\(|N_1|<|G|\). If \(N_1\) is simple, then \(G=G_0>N_1>\left\{ 1 \right\}\) is a Jordan-H\"{o}lder series for \(G\). If \(N_1\) is not simple, then repeat the same process and we have a chain of normal subgroups \(G>N_1>N_2>\cdots>N_n>\cdots\) with 
+\(|G|>|N_1|>|N_2|>\cdots>|N_n|>\cdots\). It is easy to see that this chain must terminate since \(G\) is finite, so there exists \(n\in \mathbb{N}\) such that \(N_n\) is simple, and \(G=G_0>N_1>\cdots>N_n>\left\{ 1 \right\}\) is a Jordan-H\"{o}lder series for \(G\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.1.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.1.8}
+If \(H\unlhd G\) and \(G\) has finite length, then so does \(H\).
+\end{problem}
+\begin{solution}
+The finite length of \(G\) implies that we have a chain of subgroups:
+\[G=G_0>G_1>\cdots>G_m=\left\{ 1 \right\}\]
+where for any \(i=0,1,\ldots,m-1\), \(G_{i+1}\) is normal in \(G_i\) and the quotient group \(G_i/G_{i+1}\) is simple. Consider the chain given by the intersection with \(H\): 
+\[H=H\cap G_0>H\cap G_1>\cdots>H\cap G_m=\left\{ 1 \right\}.\]
+Each \(H\cap G_i\) is a subgroup of \(H\). For any \(i=0,1,\ldots,m-1\), let \(h\in H\cap G_i\), we have 
+\[h^{-1}(H\cap G_{i+1})h=(h^{-1}H h)\cap(h^{-1}G_{i+1} h)=H\cap G_{i+1}\]
+as \(H\) is normal in \(G\) and \(G_{i+1}\) is normal in \(G_i\). So \(H\cap G_{i+1}\) is normal in \(H\cap G_i\). Moreover, note the \(H\cap G_{i+1}=(H\cap G_i)\cap G_{i+1}\) since \(G_{i+1}\subseteq G_i\), using the second isomorphism theorem for groups, we have 
+\begin{align*}
+	(H\cap G_i)/(H\cap G_{i+1}) & =(H\cap G_i)/(H\cap G_i)\cap G_{i+1}\\ 
+	                            & =G_{i+1}\cdot (H\cap G_i)/G_{i+1}\\ 
+								& =((G_{i+1}\cdot H)\cap (G_{i+1}\cdot G_i))/G_{i+1}\\ 
+								& =(H/(H\cap G_{i+1}))\cap (G_i/G_{i+1})
+\end{align*}
+Note that \(H\) is normal in \(G\), so \((H/(H\cap G_{i+1}))\cap (G_i/G_{i+1})\) is a normal subgroup of the simple group \(G_i/G_{i+1}\). Thus, \((H\cap G_i)/(H\cap G_{i+1})\) is also simple or equal to \(\left\{ 1 \right\}\). Therefore, after deleting the entries for the trivial quotient group, we 
+get a Jordan-H\"{o}lder series for \(H\) from the chain 
+\[H=H\cap G_0>H\cap G_1>\cdots>H\cap G_m=\left\{ 1 \right\}.\]
+This proves that \(H\) has finite length.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.4}
+True of false? Every infinite group has infinitely many subgroups.
+\end{problem}
+\begin{solution}
+This is true. Let \(G\) be a infinite group. If there exist \(g\in G\) such that the order of \(g\) is not finite, then conisder the following cyclic groups \(C_n=\langle g^n\rangle\) for 
+\(n=1,2,\ldots\). They are different subgroups of \(G\) and we have countable many of them. 
+
+Now assume every element in \(G\) has finite order. Let \(S=\left\{ \text{ord}(g)\,|\, g\in G \right\}\). If \(S\) 
+is an infinite set, consider the following cyclic groups \(C_n=\langle g_{i_n}\rangle\) for \(n=1,2\ldots\) where each \(g_{i_n}\) is an element of order \(i_n\) in \(G\). Because \(S\) is infinite, we can choose 
+\(i_1,i_2,\ldots,i_,\ldots\) to be different from each other, thus we have infinitely many different cyclic subgroups of \(G\). 
+
+Finally we suppose that \(S\) is a finite set. Write \(G=\bigcup_{s\in S} H_s\) where each 
+\(H_s\) is a subset of \(G\) and for any \(g_s\in H_s\), we have \(\text{ord}(g_s)=s\). Since \(S\) is finite, then at least one \(H_s\) must be infinite. We have infinite many elements of \(G\) with order \(s\). Each of these elements generate a 
+cyclic subgroup of \(G\). Note that every cyclic subgroup is finite since the order \(s\) is finite. So we must have infinitely many cyclic groups.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.5}
+Let \(C_n=\langle g\rangle\) be a finite cyclic group. For each positive integer divisor \(d\) of \(n\), we have that \(\langle g^{n/d}\rangle =\left\{ h\in C_n\,|\,h^d=1 \right\}\cong C_d\) is 
+the only subgroup of \(C_n\) of order \(d\).
+\end{problem}
+\begin{solution}
+We have \((g^{n/d})^d=g^n=1\), so \(\langle g^{n/d}\rangle\subseteq \left\{ h\in C_n\,|\, h^d=1 \right\}\cong C_d\). On the 
+other hand, let \(h\in C_n\) with \(h^d=1\). Because \(C_n\) is generated by one element \(g\), so \(h\) can be written as \(g^k\) for some \(0\leq k\leq n-1\). \(h^d=1\) implies that \(g^{kd}=1\). So we know 
+\(n|kd\). Thus, \(k=\frac{mn}{d}\) for some positive integer \(m\). This shows that \(\left\{ h\in C_n\,|\, h^d=1 \right\}\subseteq \langle g^{n/d}\rangle\).
+
+To see that \(\left\{ h\in C_n\,|\, h^d=1 \right\}\) is the only subgroup of \(C_n\) of order \(d\), we need the following claim.
+\begin{claim}
+A subgroup of a cyclic group is cyclic.
+\end{claim}
+\begin{claimproof}
+Let \(G\) be a cyclic group generated by \(g\) and \(H\subseteq G\) be a subgroup. If \(H=\left\{ 1 \right\}\) is trivial, then of course \(H\) is cyclic. Now assume \(H\) contains elements other than \(1\). Let \(m\in \mathbb{Z}_+\) be 
+the smallest integer such that \(g^m\in H\). We are going to show that \(\langle g^m\rangle =H\). Given an element \(1\neq g^n\in H\), we have \(n\geq m\), use the euclidean division and we have 
+\[n=mq+r\]
+where \(0\leq r<m\). And \(g^r=g^n\cdot (g^m)^{-q}\in H\), so if \(r\neq 0\), then \(g^r\in H\) and \(0<r<m\), which contradicts our assumption that \(m\) is the smallest positive integer. This shows that for every \(1\neq g^n\in H\), it can be written as 
+\((g^m)^q\) for some positive integer \(q\). So \(H\subseteq \langle g^m\rangle\). On the other hand, \(H\) is a subgroup implies that \(\langle g^m\rangle \subseteq H\). We have proved \(H=\langle g^m\rangle\) is cyclic.
+\end{claimproof}
+
+Given a subgroup \(H\) of \(C_n\) of order \(d\), \(H=\langle h\rangle\) must be cyclic. \(|H|=d\) implies that \(h^d=1\). From the previous discussion, we know that \(H=\langle g^{n/d}\rangle\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.7}
+A cyclic group is simple if and only if it has a prime order.
+\end{problem}
+\begin{solution}
+Let \(C_n\) be a cyclic group generated by \(g\). Note that \(C_n\) is abelian so every subgroup is normal. If \(C_n\) is simple, assume \(n\) is not prime, then there exist \(2\leq d<n\) such that \(d|n\). By Exercise 6.2.6, there is a 
+subgroup \(C_d\) and \(C_n/C_d\cong C_{n/d}\) is nontrivial. This contradicts that \(C_n\) is simple.
+
+Conversely, \(C_n=\langle g\rangle\) is a cyclic group with the order of \(g\) is prime. Use the proof of Exercise 6.2.5, we know that any subgroup \(H\) of \(C_n\) must be cyclic. Assume \(H=\langle g^m\rangle\). Write \(n=mq+r\), if \(r\neq 0\), then 
+\(g^r=(g^m)^{-q}\cdot g^n=(g^m)^{-q}\in H\). Note that \(r<m\) so this contradicts that \(H\) is generated by \(g^m\). So \(m|n\). But \(n\) is prime so \(m=1\) or \(m=n\). Thus, \(C_n\) has only two subgroups \(\left\{ 1 \right\}\) and \(C_n\). This implies that 
+\(C_n\) is simple. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.11}
+\(C_m\times C_n\) is cyclic if and only if \((m,n)=1\).
+\end{problem}
+\begin{solution}
+Write \(C_m=\langle g\rangle\) and \(C_n=\langle h\rangle\) with \(g^m=h^n=1\). Assume \(C_m\times C_n\) is cyclic. Note that \(k=\text{LCM}(m,n)=\frac{mn}{(m,n)}\). For every \(0\leq i\leq m-1\) and \(0\leq j\leq n-1\), we have \(m|ik\) and \(n|jk\), so 
+\((g^i,h^j)^k =(g^{ik},h^{jk})=(1,1)\). This means every element in \(C_m\times C_n\) has order smaller or equal to \(k\). Since \(C_m\times C_n\) is cyclic and \(|C_m\times C_n|=mn\). The order of the generator must be \(mn=\frac{mn}{(m,n)}\). So \((m,n)=1\). 
+
+Assume \((m,n)=1\). Consider two elements \((g,1)\) and \((1,h)\) in \(C_m\times C_n\), by Lemma 6.2.10, there exists an element \(p\in C_m\times C_n\) of order LCM\((m,n)=\frac{mn}{(m,n)}=mn\). We also know that \(|C_m\times C_n|=mn\). So the cyclic group 
+\(\langle p\rangle=C_m\times C_n\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.13}
+Let \(C_n=\langle g\rangle\). Every automorphism \(\alpha\) of \(C_n\) has form \(\alpha(g^i)=g^{ki}\) for a fixed \(k\) with \((k,n)=1\). Conclude that \(\text{Aut}(C_n)\cong \mathbb{Z}/n \mathbb{Z}^\times\), 
+cf. Exercise 3.3.23. In particular, \(|\text{Aut}(C_n)|=\phi(n)\). 
+\end{problem}
+\begin{solution}
+Let \(\phi:C_n\rightarrow C_n\) be a group automorphism. Since \(C_n\) is cyclic, the group homomorphism \(\phi\) is determined by where the generator \(g\) is sent. Suppose \(\phi(g)=g^k\) for \(k=0,1,\ldots,n-1\), then for any \(g^i\in C_n\), \(\phi(g^i)=\phi(g)^i=g^{ki}\). Moreover, \(\phi\) is a group isomorphism so \(k\) 
+must be invertible in \(\mathbb{Z}/ n \mathbb{Z}\). By Exercise 3.3.23, this happens if \((k,n)=1\). Conversely, consider a group homomorphism \(\phi:C_n\rightarrow C_n\) sending \(g^i\) to \(g^{ki}\) with \((k,n)=1\). By Exercise 3.3.23, \(k\) is invertible in \(\mathbb{Z}/n \mathbb{Z}\), so \(\phi^{-1}:C_n\rightarrow C_n\) 
+sending \(g^i\) to \(g^{-ki}\) is well-defined. \(\phi\) is indeed a group automorphism. Using Exercise 3.3.23 again, we can see that \(\text{Aut}(C_n)\cong \mathbb{Z}/ n \mathbb{Z}^\times\), the group of units in the ring \(\mathbb{Z}/ n \mathbb{Z}\), and 
+\(|\text{Aut}(C_n)|=|\mathbb{Z}/ n \mathbb{Z}^\times|=\varphi(n)\), where \(\varphi\) is the \textit{Euler \(\varphi\)-function}.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.15}
+If \(p\) is prime then \(\text{Aut}(C_p)\cong C_{p-1}\), but \(\text{Aut}(C_8)=C_2\times C_2\).
+\end{problem}
+\begin{solution}
+By Exercise 6.2.15, \(\text{Aut}(C_p)\) is isomorphic to the group of units in the ring \(\mathbb{Z}/ p \mathbb{Z}\), and by Exercise 3.3.23, \(\bar{m}\in \mathbb{Z}/ p \mathbb{Z}\) 
+is a unit if and only if \((m,p)=1\). Since \(p\) is prime, so the group of units is \(G=\left\{ 1,2,\ldots,p-1 \right\}\subseteq \mathbb{Z}/ p \mathbb{Z}\) with multiplication as group operation. 
+Moreover, we know that \(\mathbb{Z}/p \mathbb{Z}=\mathbb{F}_p\) is a finite field, by Lemma 6.2.12, the multiplicative group \(G=\mathbb{F}_q^\times\) must be cyclic. And we know that \(|G|=p-1\), so 
+\(G\cong C_{p-1}\).
+
+By Exercise 6.2.13, we know that \(\text{Aut}(C_8)\cong \mathbb{Z}/ 8 \mathbb{Z}^\times\), and by Exercise 3.3.23, \(m=0,1,2,\ldots,7\) in the ring \(\mathbb{Z}/ 8 \mathbb{Z}\) is a unit if and only if 
+\((m,8)=1\). So \(\text{Aut}(C_8)=\left\{ 1,3,5,7 \right\}\) with multiplication as group operation. Note that \(3^2\equiv 1\)(mod \(8\)), \(5^2\equiv 1\)(mod \(8\)), \(7^2\equiv 1\)(mod \(8\)), and \(3\cdot 5\equiv 7\)(mod \(8\)). So 
+\(\text{Aut}(C_8)\) can be written as an abelian group \(\langle \langle a,b\,|\, a^2=b^2=(ab)^2=1\rangle \rangle\). This is exactly the presentation of \(C_2\times C_2\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2.16}
+Let \(G=C_{p^n}\) and \(H\leq G\) be (the only)	subgroup isomorphic to \(C_p\). Let 
+\[A=\left\{ \phi\in \text{Aut}(G)\,|\, \phi(h)=h\ \text{for all}\ h\in H\right\}.\]
+Then \(|A|=p^{n-1}\), and \(\text{Aut}(G)=A\times B\) for a subgroup \(B\cong C_{p-1}\) which acts faithfully on \(H\).
+\end{problem}
+\begin{solution}
+Suppose \(G=C_{p^n}\) is generated by \(g\). \(H\) is also cyclic, so it must be generated by an element of order \(p\) in \(G\). There is only one such element \(g^{p^{n-1}}\). So \(H\cong \langle g^{p^{n-1}}\rangle\). Let 
+\(\phi:G\rightarrow G\) be a group automorphism in \(A\), by Exercise 6.2.13, \(\phi(g^{p^{n-1}})=g^{kp^{n-1}}\equiv g^{p^{n-1}}\) for some \(0\leq k\leq p^{n}-1\). Write 
+\begin{align*}
+	kp^{n-1}&=p^{n-1}+mp^n\\ 
+	k       &=1+mp
+\end{align*}
+for some integer \(m\). \(k<p^n\) implies that \(m=0,1,\ldots, p^{n-1}-1\), and for each \(m\), \((k,p^n)=1\) because \(p\nmid k\). So \(|A|=p^{n-1}\).
+
+We want to define a map \(f:\text{Aut}(C_{p^n})\rightarrow \text{Aut}(C_p)\) by sending \(g\mapsto g^k\) to \(h\mapsto h^k\) where \(g\) is the generator of \(C_{p^n}\) and \(h\) is the generator of \(C_p\). This is equivalent to defining 
+a group homomorphism \(f:(\mathbb{Z}/p^n \mathbb{Z})^\times \rightarrow (\mathbb{Z}/ p \mathbb{Z})^\times\). We check that \(f\) is well-defined. Let \(1\leq k_1,k_2\leq p^n-1\) and \((k_1,p^n)=1\), \((k_2,p^n)=1\). Suppose we have 
+\(k_1\equiv r_1\)(mod \(p\)) and \(k_2\equiv r_2\)(mod \(p\)) for some \(1\leq r_1,r_2\leq p-1\). We can write \(k_1=r_1+m_1p\) and \(k_2=r_2+m_2p\) for some integer \(m_1,m_2\). Then 
+\(k_1k_2=r_1r_2+p(m_1+m_2+pm_1m_2)\). This implies that \(k_1k_2\equiv r_1r_2\)(mod \(p\)). From the previous discussion we know that the \(\ker f\cong A\) and we have a group homomorphism \(s:\text{Aut}(C_p)\rightarrow \text{Aut}(C_{p^n})\) by sending \(h\mapsto h^k\) to 
+\(g\mapsto g^{k p^{n-1}}\). We know that \(s\circ f=id\). Thus, since the automorphism group is abelian, we have \(\text{Aut}(C_{p^n})\cong \ker f\times \text{im}(f)\cong A\times \text{Aut}(C_p)\cong A\times C_{p-1}\). We take \(B=s(\text{Aut}(C_p))\). 
+
+Finally, we check that \(B\) acts on \(H\) faithfully.
+\begin{claim}
+If a group automorphism \(\phi:G\rightarrow G\) does not fix every element in \(H\), then \(\phi\) acts faithfully on \(H\).
+\end{claim}
+\begin{claimproof}
+We prove if \(\phi\) fix an non-identity element in \(H\), then it must be the identity homomorphism of \(H\). We know that \(H\) is cyclic generated by \(h\) of order \(p\). By Exercise 6.2.13, suppose \(\phi\) is determined by \(\phi(h)=h^k\) for some \(1\leq k\leq p-1\). Then for every \(1\leq i\leq p-1\), we have 
+\(\phi(h^i)=h^{ki}\). If \(ki\equiv i\)(mod \(p\)), then \(ki=i+mp\) for some integer \(m\). So \((k-1)i=mp\). If \(2\leq i\leq p-1\), then \(i\nmid p\), so \((k-1)|p\). This is only possible if \(k=1\). In this case 
+\(\phi\) is the identity homomorphism. If \(i=1\), then \((k-1)|p\), similar as before so \(\phi\) can only be the identity map, which fixes every element in \(H\).
+\end{claimproof}
+\end{solution}
+\end{document}

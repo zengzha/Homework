@@ -1,0 +1,470 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 5}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $6^{th}$ November, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.7.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7.6}
+Let \(X\) and \(Y\) be pointed topological spaces and \(Z\) be the one point space. Let \(p:Z\rightarrow X\) and \(q:Z\rightarrow Y\) be the inclusions of the 
+basepoints. Show that a pushout is given by the wedge sum \(X\vee  Y\).
+\end{problem}
+\begin{solution}
+Suppose \(X\) is pointed at \(x_0\in X\) and \(Y\) is pointed at \(y_0\in Y\). Assume \(Z=\left\{ z \right\}\) is the one-point space. We are going to prove the universal property of the 
+wedge sum \(X\vee Y:=X\sqcup Y/x_0\sim y_0\). Given a topological space \(W\) along the following commutative diagram:
+\[\begin{tikzcd}
+	Z & X \\
+	Y & W
+	\arrow["p", from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We write \(f(p(z))=f(x_0)=g(q(z))=g(y_0)=w\in W\). We define a unique map \(h:X\sqcup Y\rightarrow W\) in the obvious way as follows: for any \(x\in X\), \(h(x)=f(x)\), and for any \(y\in Y\), \(h(y)=g(y)\). This map is continous since 
+\(f\) and \(g\) are continous. Note that \(h(x_0)=f(x_0)=w=g(y_0)=h(y_0)\), so by the universal property of quotient maps, we have a commutative diagram:
+\[\begin{tikzcd}
+	{X\sqcup Y} & W \\
+	{X\vee Y}
+	\arrow["h", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\bar{h}}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+where \(X\sqcup Y\rightarrow X\vee Y\) is the quotient map. Here the unique map \(\bar{h}:X\vee Y\rightarrow W\) is also continous. Denote by \(p'\) the inclusion map \(p':X\rightarrow X\vee Y\) and by \(q'\) 
+the inclusion map \(q':Y\rightarrow X\vee Y\). We know that for any \(x\in X\), \(\bar{h}(p'(x))=h(x)=f(x)\) and for any \(y\in Y\), \(\bar{h}(q'(y))=h(y)=g(y)\). We have a commutative diagram:
+\[\begin{tikzcd}
+	Z & X \\
+	Y & {X\vee Y} \\
+	&& W
+	\arrow["p", from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["{p'}", from=1-2, to=2-2]
+	\arrow["f", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["{q'}"', from=2-1, to=2-2]
+	\arrow["g"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow["{\exists! \bar{h}}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+This proves the universal property of \(X\vee Y\), thus, \(X\vee Y\) is the pushout of the diagram:
+\[\begin{tikzcd}
+	Z & X \\
+	Y
+	\arrow["p", from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=2-1]
+\end{tikzcd}\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.7.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7.8}
+Supoose the directed set \(I\) has a greatest element \(n\) (there can be more than one such element since \(I\) is merely preordered not partially ordered). Prove that 
+\((X_n,(f_{i,n})_{i\in I})\) is an inverse limit of \((X_i)_{i\in I}\) for any inverse system \((X_i)_{i\in I}\) in any category \(\mathbb{C}\).
+\end{problem}
+\begin{solution}
+That \(n\) is a greatest element in \(I\) implies that for every \(i\in I\), we have \(i\leq n\). We have a collection of morphism \(f_{i,n}:X_n\rightarrow X_i\) since \((X_i)_{i\in I}\) is an 
+inverse system. To show that \((X_n,(f_{i,n})_{i\in I})\) is the limit, we prove its universal property. Suppose \((Y,g)\) is a cone in \(\mathbf{C}\) and for the index category \(\mathbf{I}\). For every \(i\in I\), we have a commutative diagram:
+\[\begin{tikzcd}
+	& Y \\
+	{X_n} && {X_i}
+	\arrow["{g_n}"', from=1-2, to=2-1]
+	\arrow["{g_i}", from=1-2, to=2-3]
+	\arrow["{f_{i,n}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+Given any \(i\leq j\) in \(\mathbf{I}\), we have \(i\leq j\leq n\) because \(n\) is a greast element. That \((X_i)_{i\in I}\) is an inverse system gives us a commutative diagram:
+\[\begin{tikzcd}
+	& {X_n} \\
+	{X_j} && {X_i}
+	\arrow["{f_{j,n}}"', from=1-2, to=2-1]
+	\arrow["{f_{i,n}}", from=1-2, to=2-3]
+	\arrow["{f_{i,j}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+Combine the above two commutative diagrams together, and we have:
+\[\begin{tikzcd}
+	& Y \\
+	& {X_n} \\
+	{X_j} && {X_i}
+	\arrow["{g_n}", from=1-2, to=2-2]
+	\arrow["{g_j}"', curve={height=12pt}, from=1-2, to=3-1]
+	\arrow["{g_i}", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["{f_{j,n}}"', from=2-2, to=3-1]
+	\arrow["{f_{i,n}}", from=2-2, to=3-3]
+	\arrow["{f_{i,j}}"', from=3-1, to=3-3]
+\end{tikzcd}\]
+Here \(g_n\) is unique because to make the following diagram commutes:
+\[\begin{tikzcd}
+	& Y \\
+	{X_n} && {X_n}
+	\arrow["{g_n}"', from=1-2, to=2-1]
+	\arrow["{g_n}", from=1-2, to=2-3]
+	\arrow["id"', from=2-1, to=2-3]
+\end{tikzcd}\]
+We only have one choice for \(g_n\), this proves the universal property of \(X_n\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.7.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7.9}
+Given an inverse system of sets, if all the functions \(f_{i,j}:X_j\rightarrow X_i\) are injective (resp. bijective), show that all the functions \(\pi_i:\varprojlim X_i\rightarrow X_i\) are 
+injective (resp. bijective) too.
+\end{problem}
+\begin{solution}
+First note that if \(\varprojlim X_i=\varnothing\), then all the maps are automatically injective. Now assume the inverse limit is not empty and there exist \(j\in I\) such that \(\pi_j:\varprojlim X_i\rightarrow X_j\) is not injective. More specifically, there exists \(a,b\in \varprojlim X_i\) with \(a\neq b\) such that 
+\(\pi_j(a)=\pi_j(b)\in X_j\). Consider the following set \(Y:=\varprojlim X_i\setminus \left\{ b \right\}\). For each \(i\in I\), we define \(\pi_i':Y\rightarrow X_i\) by just restricting \(\pi_i\) to \(Y\). For each \(X_i\) with a morphism 
+\(X_j\rightarrow X_i\) and \(X_k\) with a morphism \(X_k\rightarrow X_j\), the following diagrams still commutes:
+\[\begin{tikzcd}
+	& Y &&& Y \\
+	{X_j} && {X_i} & {X_k} && {X_j}
+	\arrow["{\pi_j'}"', from=1-2, to=2-1]
+	\arrow["{\pi_i'}", from=1-2, to=2-3]
+	\arrow["{\pi_k'}"', from=1-5, to=2-4]
+	\arrow["{\pi_j'}", from=1-5, to=2-6]
+	\arrow["{f_{i,j}}"', from=2-1, to=2-3]
+	\arrow["{f_{j,k}}"', from=2-4, to=2-6]
+\end{tikzcd}\]
+because \(f_{i,j}\) and \(f_{j,k}\) are injective. So \(\pi_i':Y\rightarrow X_i\) are well-defined morphisms of sets for all \(i\). We have th following two diagrams:
+\[\begin{tikzcd}
+	& Y &&& Y \\
+	& {\varprojlim X_i} &&& {\varprojlim X_i} \\
+	{X_j} && {X_j} & {X_j} && {X_j}
+	\arrow["{f_1}"', from=1-2, to=2-2]
+	\arrow["{\pi_j'}"', curve={height=12pt}, from=1-2, to=3-1]
+	\arrow["{\pi_j'}", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["{f_2}"', from=1-5, to=2-5]
+	\arrow["{\pi_j'}"', curve={height=12pt}, from=1-5, to=3-4]
+	\arrow["{\pi_j'}", curve={height=-12pt}, from=1-5, to=3-6]
+	\arrow["{\pi_j}"', from=2-2, to=3-1]
+	\arrow["{\pi_j}", from=2-2, to=3-3]
+	\arrow["{\pi_j}"', from=2-5, to=3-4]
+	\arrow["{\pi_j}", from=2-5, to=3-6]
+	\arrow["id"', from=3-1, to=3-3]
+	\arrow["id"', from=3-4, to=3-6]
+\end{tikzcd}\]
+where \(f_1:Y\rightarrow \varprojlim X_i\) sending \(a\) to \(a\) and \(f_2:Y\rightarrow \varprojlim X_i\) sending \(a\) to \(b\). Since \(\pi_j(a)=\pi_j(b)\), both two above diagrams commutes. This contradicts the universal 
+property of \(\varprojlim X_i\) as we only have one unique morphism from \(Y\) to \(\varprojlim X_i\).
+\par 
+Now assume in addition each \(X_j\rightarrow X_i\) is a bijective map of sets. Suppose there exist \(j\in I\) such that \(\pi_j:\varprojlim X_i\rightarrow X_j\) is injective but not surjective. Since every morphism in the inverse system is 
+bijective, therefore every \(\pi_i:\varprojlim X_i\rightarrow X_i \) is not surjective. Consider the set \(Y\) which is bijective to every \(X_i\) and the inclusion map \(f:\varprojlim X_i\rightarrow Y\). For 
+any \(i,j\in I\), we have a commutative triangle:
+\[\begin{tikzcd}
+	& Y \\
+	{X_j} && {X_i}
+	\arrow[from=1-2, to=2-1]
+	\arrow[from=1-2, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}\]
+because every map here is bijective. This shows that \(Y\) is also a cone along with the commutative diagrams:
+\[\begin{tikzcd}
+	& {\varprojlim X_i} \\
+	& Y \\
+	{X_j} && {X_i}
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["{\pi_j}"', curve={height=12pt}, from=1-2, to=3-1]
+	\arrow["{\pi_i}", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["\sim"', from=2-2, to=3-1]
+	\arrow["\sim", from=2-2, to=3-3]
+	\arrow["\sim"', from=3-1, to=3-3]
+\end{tikzcd}\]
+By the universal property of inverse limit and uniqueness we know that \(Y\) must be bijective to \(\varprojlim X_i\) but \(f\) is a strict inclusion since \(\pi_i\) is not surjective. A contradiction.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.7.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.7.10}
+Give an example to demonstrate that the inverse limit \(\varprojlim X_i\) may be empty even if all \(X_i\) are non empty.	
+\end{problem}
+\begin{solution}
+Let \((\mathbb{N},\leq)\) be a set with preorder and \(\underline{\mathbb{N}}\) be the associated category. Consider an inverse system \((X_i)_{i\in \underline{\mathbb{N}}}\) where each \(X_i\:=\mathbb{N}\) is 
+a sequence of natrual numbers together with morphisms \(f_{i,i+1}:X_{i+1}\rightarrow X_i\) where \(f_{i,i+1}\) maps every number \(n\) in the sequence \(X_j\) to \(n+1\), still a sequence in natural numbers. And for any \(i\leq j\), 
+\(f_{i,j}:=f_{i,i+1}\circ f_{i+1,i+2}\circ \cdots f_{j-1,j}\). This is an inverse system and by construction, the inverse limit 
+\[\varprojlim X_i:=\left\{ (x_i)_{i\in \underline{\mathbb{N}}}\in \prod_{i\in \underline{\mathbb{N}}}X_i|f_{i,j}(x_j)=x_i \, \text{for all}\, i\leq j\right\}.\]
+So by definition \(x_0=f_{0,1}(x_1)=x_1+1\), similar for any \(n\in \underline{\mathbb{N}}\), \(x_n=f_{n,n+1}(x_{n+1})=x_{n+1}+1\). So \((x_n)_{n\in \mathbb{N}}\) is a infinite strictly decreasing sequence but you cannnot have a infinite strictly decreasing sequence 
+in natural numbers because \(\mathbb{N}\) is bounded below by \(0\). So the inverse limit for this inverse system is empty. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.5}
+For any vector space \(U\) and \(V\), show that there is a natural isomorphism \(R_{U,V}:U\otimes V\xrightarrow{\sim} V\otimes U\) such that \(u\otimes v\mapsto v\otimes u\) 
+for all \(u\in U\), \(v\in V\).
+\end{problem}
+\begin{solution}
+For any pure tensors, \(R_{U,V}\) is an isomorphism and extend by \(\mathbb{F}\)-linearity, we know that \(R_{U,V}\) is an isomorphism between \(U\otimes V\) and \(V\otimes U\). Now consider two linear maps 
+\(f:U\rightarrow X\) and \(g:V\rightarrow Y\). We claim the following diagram commutes:
+\[\begin{tikzcd}
+	{U\otimes V} & {V\otimes U} \\
+	{X\otimes Y} & {Y\otimes X}
+	\arrow["{R_{U,V}}", from=1-1, to=1-2]
+	\arrow["{f\otimes g}"', from=1-1, to=2-1]
+	\arrow["{g\otimes f}", from=1-2, to=2-2]
+	\arrow["{R_{X,Y}}", from=2-1, to=2-2]
+\end{tikzcd}\]
+We only need to check on pure tensores. Given \(u\otimes v\in U\otimes V\), we have 
+\begin{align*}
+	(g\otimes f)(R_{U,V}(u\otimes v)) & =(g\otimes f)(v\otimes u)\\ 
+	                                  & =g(v)\otimes f(u)\\ 
+									  & =R_{X,Y}(f(u)\otimes g(v))\\ 
+									  & =R_{X,Y}(f\otimes g)(u\otimes v)
+\end{align*}
+This proves that \(R_{U,V}\) is natural with respect to \(U\) and with respect to \(V\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.7}
+For any vector spaces \(U\) and \(V\) with \(U\) finite dimensional, show that there is a natural isomorphism of vector spaces
+\[\alpha_{U,V}:U\otimes V\xrightarrow{\sim} \hom_{\mathbb{F}}(U^*,V) \]
+sending \(u\otimes v\in U\otimes V\) to the linear map \(U^*\rightarrow V,\, f\mapsto f(u)v\). The naturality here means formally that \(\alpha:=(\alpha_{U,v})\) is a 
+natural transformation
+\[\alpha:-\otimes -\Rightarrow \hom_{\mathbb{F}}(\mathcal{D}(-),-)\]
+of bifunctors from \(\mathbf{FVec}(\mathbb{F})\times \mathbf{Vec}(\mathbb{F})\) to \(\mathbf{Vec}(\mathbb{F})\).	
+\end{problem}
+\begin{solution}
+Suppose the finite dimensional vector space \(U\) has a basis \(e_1,\ldots,e_n\), then \(e_1^*,\ldots,e_n^*\) is the dual basis for \(U^*\). We define a linear map 
+\(\beta_{U,V}: \hom_{\mathbb{F}}(U^*,V) \rightarrow U\otimes V\). Given a linear map \(T:U^*\rightarrow V\), let \(\beta_{U,V}(T)= \sum_{i=1}^n e_i\otimes T(e_i^*)\). This is obviously an \(\mathbb{F}\)-linear map. 
+For any pure tensor \(u\otimes v\in U\otimes V\), write \(u=\sum_{i=1}^{n}u_ie_i\) where \(u_i\in \mathbb{F}\) for \(i=1,2,\ldots,n\), then 
+\begin{align*}
+	(\beta_{U,V}\circ \alpha_{U,V})(u\otimes v) & = \beta_{U,V}(f\mapsto f(u)v)\\ 
+	                                            & =\sum_{i=1}^{n} e_i\otimes e_i^*(u)v\\ 
+												& =\sum_{i=1}^{n} e_i\otimes u_i v\\ 
+												& =(\sum_{i=1}^{n} u_i e_i)\otimes v\\ 
+												& =u\otimes v.
+\end{align*} 
+On the other hand, for any fixed \(i=1,2,\ldots,n\), given a linear map \(T:U^*\rightarrow V\), we have  
+\begin{align*}
+(\alpha_{U,V}\circ \beta_{U,V})(T)(e_i^*) & = \alpha_{U,V}(\sum_{j=1}^{n}e_j\otimes T(e_j^*))(e_i^*)\\ 
+                                          & =\sum_{j=1}^{n} e_i^*(e_j)\otimes T(e_j^*)\\ 
+										  & =1\otimes T(e_i^*)\\ 
+										  & =T(e_i^*)
+\end{align*}
+This proves that \(\alpha\) and \(\beta\) are inverse to each other, so it is an isomorphism of vector space. To show that this isomorphism is natural, 
+Given two linear maps \(p:U\rightarrow X\) and \(q:V\rightarrow Y\) where \(U,X\) are finite dimensional vector spaces, the following diagram commutes:
+\[\begin{tikzcd}
+	{U\otimes V} & {\hom_{\mathbb{F}}(U^*,V)} \\
+	{X\otimes Y} & {\hom_\mathbb{F}(X^*,Y)}
+	\arrow["{\alpha_{U,V}}", from=1-1, to=1-2]
+	\arrow["{p\otimes q}"', from=1-1, to=2-1]
+	\arrow["{T\mapsto q\circ T\circ p^*}", from=1-2, to=2-2]
+	\arrow["{\alpha_{X,Y}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+Given a pure tensor \(u\otimes v\) and \(f\in X^*\), first apply \(\alpha_{U,V}\) we will finally get \(q((p^*f)(u)v)\). Note that \((p^*f)(u)=(f\circ p)(u)\in \mathbb{F}\) by definition of pullback, so this equals to \(f(p(u))\otimes q(v)\). On the 
+other hand, \((\alpha_{X,Y}\circ (p\otimes q))(u\otimes v)(f)=\alpha_{X,Y}(p(u)\otimes q(v))(f)=(f(p(u)))\otimes q(v)\). Thus, this diagram does commute.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.8}
+Is it true that \(\hom_{\mathbb{F}}(U^*,V)\cong \hom_{\mathbb{F}}(V^*,U)\) for infinite dimensional \(U\) and \(V\)? Instead, prove for \textit{any} vector spaces \(U\) and \(V\) that 
+the map 
+\begin{align*}
+	\hom_{\mathbb{F}}(U,V^*) & \rightarrow \hom_{\mathbb{F}}(V,U^*)\\ 
+	              	      f  & \mapsto f^*\circ \iota_V
+\end{align*}
+is an isomorphism where \(\iota_V:V\rightarrow V^{**}\) is the canonical map.
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item In general it is not true that \(\hom_\mathbb{F}(U^*,V)\cong \hom_\mathbb{F}(V^*,U)\). Consider \(\mathbb{F}=\mathbb{F}_2\), \(U\) is infinite dimensional with \(|U|=\dim U=\aleph_0\) and 
+      \(V\) is 2 dimensional. Then \(|U^*|=\dim U^*=|\mathbb{F}_2|^{\aleph_0}=2^{\aleph_0}\) and \(|V|=|V^*|=|\mathbb{F}_2|^{\dim V^*}=4\). So 
+	  \begin{align*}
+		|\hom_\mathbb{F}(U^*,V)|&=|V|^{\dim U^*}=4^{2^{\aleph_0}}\\ 
+		|\hom_\mathbb{F}(V^*,U)|&=|U|^{\dim V^*}=\aleph_0^4=\aleph_0
+	  \end{align*}
+	  Note that \(4^{2^{\aleph_0}}>2^{\aleph_0}>\aleph_0\), so the two hom sets cannot be bijective.
+\item We write 
+\begin{align*}
+	\alpha: \hom_\mathbb{F}(U,V^*) &\rightarrow \hom_\mathbb{F}(V,U^*),\\
+	                             f &\mapsto f^*\circ \iota_V.
+\end{align*}
+Now we define an inverse map 
+\begin{align*}
+	\beta:\hom_\mathbb{F}(V,U^*) &\rightarrow \hom_\mathbb{F}(U,V^*),\\ 
+	                                 g &\mapsto g^*\circ \iota_U.
+\end{align*}
+We check that this is indeed inverse to each other. Given a linear map \(f:U\rightarrow V^* \) and \(u\in U\), we have 
+\begin{align*}
+	(\beta\circ \alpha)(f)(u) & =\beta(f^*\circ \iota_V)(u)\\ 
+	                          & =((f^*\circ \iota_V)^*\circ \iota_U)(u)\\ 
+							  & =(\iota_V^*\circ f^{**}\circ \iota_U)(u)\\ 
+							  & =(\iota_V^*\circ f^{**})(ev_u)\\ 
+							  & =(ev_u)\circ f^*\circ \iota_V\\ 
+							  & =f(u)
+\end{align*}
+Similarly, we can show that \((\alpha\circ \beta)(g)(v)=g(v)\) for any \(g:V\rightarrow U^*\) and \(v\in V\). This proves that \(\alpha\) and \(\beta\) are inverse to each other so we get an 
+isomorphism \(\hom_\mathbb{F}(U,V^*)\cong \hom_\mathbb{F}(V,U^*)\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.10}
+(Tensor products of matrices) Let \(V\) and \(W\) be finite dimensional vector spaces with basis \(v_1,\ldots,v_m\) and \(w_1,\ldots,w_n\), respectively. Let \(f:V\rightarrow V\) and 
+\(g:W\rightarrow W\) be linear transformations. Let \(A\) be the matrix of \(f\) with respect to the basis \(v_1,\ldots, v_m\), \(B\) be the matrix of \(g\) with respect to the basis 
+\(w_1,\ldots,w_n\), and \(A\otimes B\) be the matrix of \(f\otimes g:V\otimes W\rightarrow V\otimes W\) with respect to the basis 
+\[v_1\otimes w_1,\ldots,v_1\otimes w_n,v_2\otimes w_1,\ldots,v_2\otimes w_n,\ldots, v_m\otimes w_1,\ldots,v_m\otimes w_n.\]
+\begin{enumerate}[(1)]
+	\item Describe the entries of the matrix \(A\otimes B\) explicitly in terms of the entries of the matrices \(A\) and \(B\).
+	\item Show that \(\text{tr}(A\otimes B)=\text{tr}(A)\text{tr}(B)\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item  We know the for \(1\leq i,j\leq m\),the \((i,j)\)-entry of \(A\) is given by \(v_i^*(f(v_j))\) where \(v_i^*\) is the dual of \(v_i\). Similarly, for \(1\leq k,l\leq n\), the \((k,l)\)-entry 
+       of the matrix \(B\) is given by \(w_k^*(g(w_l))\). The matrix \(A\otimes B\) is a \(mn\times mn\) matrix, for \(1\leq p,q\leq mn\), the \((p,q)\)-entry of \(A\otimes B\) 
+	   is given by \((v_i\otimes w_k)^*((f\otimes g)(v_j\otimes w_l))\) where \(ik=p\) and \(jl=q\). The order of \((i,k)\) is given by 
+	   \[(1,1),(1,2),\ldots,(1,n),(2,1),\ldots,(2,n),\ldots,(m,1)\ldots,(m,n)\]
+	   similar for the order of \((k,l)\). Note that the \((p,q)\)-entry
+	   \[(v_i\otimes w_k)^*((f\otimes g)(v_j\otimes w_l))=(v_i\otimes w_k)^*(f(v_j)\otimes g(w_l))=A_{ij}\cdot B_{kl}.\]
+       So the entries of \(A\otimes B\) are given by the multiplication of entries from \(A\) and \(B\)
+\item By definition, the trace 
+\begin{align*}
+	tr(A\otimes B) & = \sum_{i=1}^{m}\sum_{k=1}^{n} (v_i\otimes w_k)^*(f(v_i)\otimes g(w_k))\\ 
+	               & =\sum_{i=1}^{m}\sum_{k=1}^{n} v_i^*(f(v_i))\cdot w_k^*(g(w_k))\\ 
+				   & =(\sum_{i=1}^{m}v_i^*(f(v_i)))(\sum_{k=1}^{n}w_k^*(g(w_k)))\\ 
+				   & =tr(A)\cdot tr(B)
+\end{align*}
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.11}
+Let \(U\) and \(V\) be finite dimensional vector spaces with bases \(u_1,\ldots, u_m\) and \(v_1,\ldots, v_n\), respectively. Let \(t=\sum_{i=1}^{m}\sum_{j=1}^{n}a_{i,j}u_i\otimes v_j\in U\otimes V\) be a tensor 
+and set \(A:=[a_{i,j}]_{1\leq i\leq m,1\leq j\leq n}\).
+\begin{enumerate}[(1)]
+	\item Let \(\tau:V^*\rightarrow U\) be the image of \(t\) under the canonical isomorphism \(U\otimes V\cong \hom_{\mathbb{F}}(V^*,U)\). Let \(f_1,\ldots, f_n\) be the basis for \(V^*\) that is dual to the given basis 
+	      for \(V\). Show that the matrix of \(\tau\) with respect to \(f_1,\ldots,f_n\) and \(u_1,\ldots, u_m\) is equal to \(A\).
+    \item Let \(r\) be the rank of the tensor \(t\). Suppose we are given an expansion \(t=\sum_{i=1}^{r}x_i\otimes y_j\) for vectors \(x_i\in U\) and \(y_j\in V\). Show that the vectors \(x_1,\ldots, x_r\) are linearly independent, 
+          as are the vectors \(y_1,\ldots,y_r\). Deduce that \(x_1,\ldots, x_r\) is a basis for \(\text{im}\tau\).
+    \item Hence prove that the rank of \(t\) is equal to the rank of the matrix \(A\). In particular, \(t\) is a pure tensor if and only if \(\text{rank}(A)\leq 1 \).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item The \((i,j)\)-entry of \(\tau\) is given by \(u_i^*(\tau(f_j))\). We know that \(\tau\) is the image of \(t\) under the canonical isomorphism 
+      \(U\otimes V\cong \hom_\mathbb{F}(V^*,U)\), so 
+	  \[\tau(f_j)=\sum_{k=1}^{n}\sum_{l=1}^{m} a_{l,k} f_j(v_k)u_l=f_j(v_j)\sum_{l=1}^{m}a_{l,j}u_l=\sum_{l=1}^{m}a_{l,j}u_l.\]
+	  Now we know that the \((i,j)\)-entry of \(\tau\) is equal to \(u_i^*(\sum_{l=1}^{m}a_{l,j}u_l)=a_{i,j}u_i^*(u_i)=a_{i,j}\). Thus, the matrix of \(\tau\) is equal to \(A\) under this basis.
+\item Suppose \(x_1,\ldots,x_r\) are not linearly independent. Without loss of generality, we can write \(x_1=\sum_{i=2}^{r}a_ix_i\) for \(a_2,\ldots,a_r\in \mathbb{F}\). We define 
+     \begin{align*}
+		y_2'&:=a_2y_1+y_2,\\ 
+        y_3'&:=a_3y_1+y_3,\\ 
+		&\ldots\\ 
+        y_r'&:=a_ry_1+y_r.
+	 \end{align*}
+	 We have 
+	 \begin{align*}
+		\sum_{i=2}^{r}x_i\otimes y_i' & =\sum_{i=2}^{r} x_i\otimes (a_iy_1+y_i)\\ 
+		                              & =(\sum_{i=2}^{r}a_ix_i\otimes y_1)+(\sum_{i=2}^{r}x_i\otimes y_i)\\ 
+									  & =(\sum_{i=2}^{r}a_ix_i)\otimes y_1+\sum_{i=2}^{r}x_i\otimes y_i\\ 
+									  & =x_1\otimes y_1+\sum_{i=2}^{r}x_i\otimes y_i\\ 
+									  & =t
+	 \end{align*}
+	 This contradicts that the rank of \(t\) is \(r\). Thus, \(x_1,\ldots,x_r\) are linearly independent. Now use the natural isomorphism \(R_{U,V}:U\otimes V\xrightarrow{\sim} V\otimes U\), the same 
+	 method gives us that \(y_1,\ldots,y_r\) are also linearly independent. 
+	 \par 
+	 To show that \(x_1,\ldots,x_r\) span \(\text{im}\tau\), we need to show that \(\tau(f_1),\ldots,\tau(f_m)\) can be written as the linear combination of \(x_1,\ldots,x_r\). For each \(i=1,2,\ldots,m\), 
+	 \(\tau(f_i)=\sum_{j=1}^{r}f_i(y_j)\cdot x_j=f_i(y_i)x_i\). So we are done.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1.16}
+For \(A,B\in \mathbf{CAlg}(\mathbb{F})\), prove that \(A\otimes B\) together with the maps \(A\rightarrow A\otimes B,\, a\mapsto a\otimes 1_B\) and \(B\rightarrow A\otimes B,\, b\mapsto 1_A\otimes b\) 
+is a coproduct of \(A\) and \(B\) in \(\mathbf{CAlg}(\mathbb{F})\).
+\end{problem}
+\begin{solution}
+Write the canonical maps \(p:A\rightarrow A\otimes B,\, p(a)=a\otimes 1_B\) and \(q:B\rightarrow A\otimes B,\, q(b)=1_A\otimes B\). Suppose \(C\in \mathbf{CAlg}(\mathbb{F})\) is a commutative algebra with two morphisms \(f:A\rightarrow C\) and \(g:B\rightarrow C\). We have a commutative diagram:
+\[\begin{tikzcd}
+	{\mathbb{F}} & B \\
+	A & C
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We define a unqiue \(\mathbb{F}\)-algebra homomorphism \(h:A\otimes B\rightarrow C,\, h(a\otimes b)=f(a)g(b)\). We know that \((h\circ p)(a)=h(a\otimes 1_B)=f(a)g(1_B)=f(a)\) and 
+\((h\circ g)(b)=h(1_A\otimes b)=f(1_A)g(b)=g(b)\), thus we have the following commutative diagram:
+
+\[\begin{tikzcd}
+	{\mathbb{F}} & B \\
+	A & {A\otimes B} \\
+	&& C
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["q", from=1-2, to=2-2]
+	\arrow["g", curve={height=-12pt}, from=1-2, to=3-3]
+	\arrow["p"', from=2-1, to=2-2]
+	\arrow["f"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow["{\exist! h}"', dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+
+This proves the universal property of \(A\otimes B\). So \(A\otimes B\) is the pushout of \(A\) and \(B\) in \(\mathbf{CAlg}(\mathbb{F})\).
+\end{solution}
+
+
+
+\end{document}

@@ -1,0 +1,292 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{leftindex}
+\usepackage{multicol}
+\usepackage{quiver}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage[backend=biber,bibencoding=utf8,style=numeric,sorting=ynt]{biblatex}
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\ord}{\text{ord}\,}
+\newcommand{\Ann}{\text{Ann}\,}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\coker}{\text{coker}\,}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\End}{\text{End}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\iif}{\ \ \text{if}\ \ }
+\newcommand{\rank}{\text{rank}\,}
+\newcommand{\Rad}{\text{Rad}}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\coind}{\text{coind}}
+\newcommand{\res}{\text{res}}
+\newcommand{\li}{\leftindex}
+\newcommand{\GCD}{\text{GCD}}
+\newcommand{\irr}{\text{irr}}
+\newcommand{\Nm}{\text{Nm}}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\Vect}{\text{Vect}}
+\newcommand{\cRe}{\text{Re}}
+\newcommand{\cIm}{\text{Im}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 2}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 649 - Abstract Algebra  \hfill Term: Spring 2025\\
+Instructor: Professor Sasha Polishchuk \hfill Due Date: $16^{th}$ April, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.1.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.1.2}
+True or false? \(\Gal(\Bbbk(x)/\Bbbk)=\left\{ 1 \right\}\), where \(\Bbbk(x)\) is the field of rational functions.
+\end{problem}
+\begin{solution}
+This is false. Suppose \(\Bbbk\) has characteristic not 2 and consider the field homomorphism \(\phi:k(x)\rightarrow k(x)\) by sending \(x\) to \(2x\). \(\phi\) has an inverse \(\phi^{-1}\) sending \(x\) to \(\frac{1}{2}x\). So \(\phi\) is a field automorphism of \(\mathbb{K}\) and
+fixes the base field \(\Bbbk\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.1.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.1.9}
+Let \(\mathbb{K}/\Bbbk\) be a finite field extension. Then \(|\Gal(\mathbb{K}/\Bbbk)|\leq [\mathbb{K}:\Bbbk]\), and if \(|\Gal(\mathbb{K}/\Bbbk)|<[\mathbb{K}:\Bbbk]\), then 
+the fixed subfield \(\Gal(\mathbb{K}/\Bbbk)^*\) properly contains \(\Bbbk\).
+\end{problem}
+\begin{solution}
+Let \(G=\Gal(\mathbb{K}/\Bbbk)\) and \([\mathbb{K}:\Bbbk]=n\). We know \(G\) is a finite group and assume \(|G|=m<\infty\). For ang \(g\in G\), we could define a \(\mathbb{K}\)-linear map 
+\begin{align*}
+	\mathbb{K}\otimes_\Bbbk \mathbb{K}&\rightarrow \mathbb{K},\\ 
+	x\otimes y&\mapsto g(x)y
+\end{align*}
+Consider the direct sum of all these distinct \(\mathbb{K}\)-linear maps \(\phi=g_1\oplus \cdots \oplus g_m:\mathbb{K}\otimes_\Bbbk \mathbb{K}\rightarrow \mathbb{K}^m\). 
+We need to show that this map \(\phi\) is surjective. Consider the \(\mathbb{K}\)-linear dual map
+\[\phi^*:\hom_\mathbb{K}(\mathbb{K}^m,\mathbb{K})\rightarrow \hom_\mathbb{K}(\mathbb{K}\otimes_\Bbbk \mathbb{K},\mathbb{K})\]
+Identify \(\hom_\mathbb{K}(\mathbb{K}^m,\mathbb{K})\cong \mathbb{K}^m\) and by \(\hom-\otimes\) adjunction, 
+\begin{align*}
+    \hom_\mathbb{K}(\mathbb{K}\otimes_\Bbbk \mathbb{K},\mathbb{K})&\cong \hom_\Bbbk(\mathbb{K},\hom_\mathbb{K}(\mathbb{K},\mathbb{K}))\\ 
+                              &\cong \hom_\Bbbk(\mathbb{K},\mathbb{K})
+\end{align*} 
+Given a \(m\)-tuple \((z_1,\ldots,z_m)\in \mathbb{K}^m\), by definition \(\phi^*(z_1,\ldots,z_m)\in \hom_\Bbbk(\mathbb{K},\mathbb{K})\) and it sends \(x\in \mathbb{K}\) to 
+\(z_1g_1(x)+\cdots+z_mg_m(x)\in \mathbb{K}\). Suppose \((z_1,\ldots,z_m)\in \ker\phi^*\), then \(z_1g_1+\cdots+z_mg_m\) is the zero map and by Dedekind's Lemma, \(z_1=\cdots=z_m=0\) since \(g_1,\ldots,g_m\) are 
+\(\mathbb{K}\)-linearly independent. This proves \(\phi^*\) is injective. Thus, \(\phi\) is surjective. 
+so we have 
+\[\dim_\mathbb{K}\mathbb{K}\otimes_\Bbbk \mathbb{K}\geq m\]
+Since \([\mathbb{K}:\Bbbk]=n\), so \(\mathbb{K}\otimes_\Bbbk \mathbb{K}\) is a \(n\)-dimensional \(\mathbb{K}\)-vector space, therefore, \(|\Gal(\mathbb{K}/\Bbbk)|\leq [\mathbb{K}:\Bbbk]\).
+\par 
+Now suppose \(|G|=|\Gal(\mathbb{K}/\Bbbk)|=m<n=[\mathbb{K}:\Bbbk]\). Write \(\mathbb{F}=\Gal(\mathbb{K}/\Bbbk)^*\) as the fixed subfield under the automorphism group \(\Gal(\mathbb{K}/\Bbbk)\). By Theorem 11.1.6, we have 
+\[[\mathbb{K}:\mathbb{F}]=|G|=m<n=[\mathbb{K}:\Bbbk]\]
+This implies that \(\mathbb{F}\) strictly contains \(\Bbbk\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.2.8}
+Construct subfields of \(\mathbb{C}\) which are splitting fields over \(\mathbb{Q}\) for the polynomials 
+\begin{enumerate}[(a)]
+\item \(x^3-1\)
+\item \(x^4-5x^2+6\)
+\item \(x^6-8\)
+\end{enumerate}
+Find the degrees of thoses fields as extensions over \(\mathbb{Q}\).
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item Let \(\xi\) be the 3rd primitive root of unit. Note that \(x^3-1\) splits into 
+\[x^3-1=(x-1)(x-\xi)(x-\xi^2)\]
+over \(Q(\xi)\). So \(Q(\xi)\) is the splitting field and \([\mathbb{Q}(\xi):\mathbb{Q}]=2\) as \(x^2+x+1\) is the irreducible minimal polynomial of \(\xi\) over \(\mathbb{Q}\). 
+\item Note that 
+\[x^4-5x^2+6=(x^2-2)(x^2-3).\]
+Both \(x^2-2\) and \(x^2-3\) are irreducible over \(\mathbb{Q}\). The splitting field is \(\mathbb{Q}(\sqrt{2},\sqrt{3})\) and we have 
+\[[\mathbb{Q}(\sqrt{2},\sqrt{3}):\mathbb{Q}]=[\mathbb{Q}(\sqrt{2},\sqrt{3}):\mathbb{Q}(\sqrt{2})][\mathbb{Q}(\sqrt{2}):\mathbb{Q}]=2\cdot 2=4.\]
+\item Note that 
+\[x^6-8=(x^2-2)(x^4+2x^2+4)\]
+Let \(\xi=e^{(\pi/3)i}=\frac{1}{2}+\frac{\sqrt{3}}{2}i\) satisfying \(\xi^3+1=0\). By calculation, over the complex number \(\mathbb{C}\), we have 
+\[x^4+2x^2+4=(x-\sqrt{2}\xi)(x+\sqrt{2}\xi)(x-\sqrt{2}\xi^2)(x+\sqrt{2}\xi^2).\]
+The minimal polynomial of \(\xi\) over \(\mathbb{Q}\) is \(x^2-x+1\). So the splitting field is \(\mathbb{Q}(\sqrt{2},\xi)\), and we have 
+\[[\mathbb{Q}(\sqrt{2},\xi):\mathbb{Q}]=[\mathbb{Q}(\sqrt{2},\xi):\mathbb{Q}(\sqrt{2})][\mathbb{Q}(\sqrt{2}):\mathbb{Q}]=2\cdot 2=4.\]
+\end{enumerate}	
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.3.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.3.2}
+True or false? If \([\mathbb{K}:\Bbbk]=2\), then \(\mathbb{K}/\Bbbk\) is normal. 
+\end{problem}
+\begin{solution}
+This is true. Let \(\alpha\in \mathbb{K}\) and \(\alpha\notin \Bbbk\). Denote the minial polynomial of \(\alpha\) over \(\Bbbk\) by \(f\). We have \(\deg f=2\) because \([\mathbb{K}:\Bbbk]=2\). Suppose \(f\) has two roots \(\alpha\) and \(\beta\). We need to 
+show that \(\beta\in \Bbbk(\alpha)\). Note that \(f\) can be written as 
+\[f(x)=(x-\alpha)(x-\beta)=x^2-(\alpha+\beta)x+\alpha\beta.\]
+We know \(\alpha+\beta\in \Bbbk\) and \(\alpha\in \Bbbk(\alpha)\), so \(\beta\in \Bbbk(\alpha)\). This means \(\mathbb{K}\) is the splitting field of \(f\) over \(\Bbbk\), and by Theorem 11.3.3, \(\mathbb{K}/\Bbbk\) is normal.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 11.3.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{11.3.6}
+Which of the following extensions are normal?
+\begin{enumerate}[(a)]
+\item \(\mathbb{Q}(x)/\mathbb{Q}\)
+\item \(\mathbb{Q}(\sqrt{-5})/\mathbb{Q}\)
+\item \(\mathbb{Q}(\sqrt[7]{5})/\mathbb{Q}\)
+\item \(\mathbb{Q}(\sqrt{5},\sqrt[7]{5})/\mathbb{Q}(\sqrt[7]{5})\)
+\item \(\mathbb{R}(\sqrt{-7})/\mathbb{R}\)
+\end{enumerate}	
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item This is not an algebraic extension so it is not normal. 
+\item We know that \(\sqrt{-5}\) has minimal polynomial \(x^2+5\) over \(\mathbb{Q}\). Note that both of the two roots \(\sqrt{-5}\) and \(-\sqrt{-5}\) are in the field \(\mathbb{Q}(\sqrt{-5})\), so 
+\(\mathbb{Q}(\sqrt{-5})\) is the splitting field of the polynomial \(x^2+5\). The field extension \(\mathbb{Q}(\sqrt{-2})/\mathbb{Q}\) is normal. 
+\item \(\sqrt[7]{5}\) has minimal polynomial \(x^7-5\) over \(\mathbb{Q}\). Let \(\xi\) be the 7th primitive root of unity and \(\sqrt[7]{5}\xi\) is a root of \(x^7+5\) but \(\xi\notin \mathbb{Q}(\sqrt[7]{5})\). So the field extension 
+\(\mathbb{Q}(\sqrt[7]{5})/\mathbb{Q}\) is not normal. 
+\item Write \(\mathbb{Q}(\sqrt{5},\sqrt[7]{5})=\mathbb{Q}(\sqrt[7]{5})(\sqrt{5})\). The minimal polynomial of \(\sqrt{5}\) over \(\mathbb{Q}(\sqrt[7]{5})\) is \(x^2-5\), so 
+\[[\mathbb{Q}(\sqrt[7]{5})(\sqrt{5}):\mathbb{Q}(\sqrt[7]{5})]=2.\]
+According to what we have proved in Exercise 11.3.2, this is a normal extension. 
+\item The minimal polynomial of \(\sqrt{-7}\) over \(\mathbb{R}\) is \(x^2+7\). So the field extension \(\mathbb{R}(\sqrt{-7})/\mathbb{R}\) has degree 2 and by Exercise 11.3.2, we know that this is a normal extension. 
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise complexification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{(complexification/realification functors)}
+\begin{enumerate}[(a)]
+\item Construct an isomorphism of rings \(\mathbb{C}\otimes_\mathbb{R}\mathbb{C}\cong \mathbb{C}\oplus \mathbb{C}\).
+\item Let \(\Vect_\mathbb{R}\) (resp. \(\Vect_\mathbb{C}\)) denote the category of vector spaces over \(\mathbb{R}\) (resp. over \(\mathbb{C}\)). Consider the \textit{realification} and 
+\textit{complexification} functors 
+\[R:\Vect_\mathbb{C}\rightarrow \Vect_\mathbb{R},\ \ \ C:\Vect_\mathbb{R}\rightarrow \Vect_\mathbb{C}\]
+where \(R\) sends \(V\in \Vect_\mathbb{C}\) to itself viewed as a real vector space (forgetting part of the structure), while \(C\) sends \(V\in \Vect_\mathbb{R}\) to \(V\otimes_\mathbb{R}\mathbb{C}\) with the 
+complex structure \(z\cdot (v\otimes x)=v\otimes zx\), for \(x,z\in \mathbb{C}\), \(v\in V\). Construct an isomorphism of functors 
+\[CR(V)\cong V\oplus \overline{V}\]
+for \(V\in \Vect_\mathbb{C}\), where \(\overline{V}\) denote the same space \(V\) with the conjugate complex structure, i.e., the multiplication by \(z\in \mathbb{C}\) in \(\overline{V}\) is given by \(z*v:=\bar{z}\cdot v\), where 
+\(z\mapsto \bar{z}\) is the complex conjugation.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item We know that \(\mathbb{C}\cong \mathbb{R}[x]/(x^2+1)\) as \(\mathbb{R}\)-algebras. By Chinese Remainder Theorem, we have
+\begin{align*}
+\mathbb{C}\otimes_\mathbb{R}\mathbb{C}&\cong \mathbb{R}[x]/(x^2+1)\otimes_\mathbb{R}\mathbb{C}\\ 
+                                      &\cong \mathbb{C}[x]/(x^2+1)\\ 
+                                      &\cong (\mathbb{C}[x]/(x+i)\oplus \mathbb{C}[x]/(x-i))\\ 
+                                      &\cong \mathbb{C}\oplus \mathbb{C}.
+\end{align*}
+We still need to prove that 
+\begin{claim}
+\(\mathbb{R}[x]/(x^2+1)\otimes_\mathbb{R}\mathbb{C}\cong \mathbb{C}[x]/(x^2+1)\) is a ring isomorphism. 
+\end{claim}
+\begin{claimproof}
+We know every element in \(\mathbb{R}[x]/(x^2+1)\) can be written as \(a+bx\) for some \(a,b\in \mathbb{R}\). Consider the map 
+\begin{align*}
+    \phi:\mathbb{R}[x]/(x^2+1)\otimes_\mathbb{R}\mathbb{C}&\rightarrow \mathbb{C}[x]/(x^2+1),\\ 
+    (a+bx)\otimes z&\mapsto az+bzx
+\end{align*}
+This is a well-defined ring map because 
+\begin{align*}
+\phi((a+bx)\otimes z)\phi((c+dx)\otimes w)&=(az+bzx)(cw+dwx)\\ 
+                                          &=aczw+(bzcw+azdw)x+bzdwx^2\\ 
+                                          &=(aczw-bzdw)+(bzcw+azdw)x\\ 
+                                          &=(ac-bd)zw+(bc+ad)zwx\\ 
+                                          &=\phi(((ac-bd)+(bc+ad)x)\otimes zw)\\ 
+                                          &=\phi(((a+bx)\otimes z)((c+dx)\otimes w))
+\end{align*}
+It is easy to see \(\phi\) is injective and as an \(\mathbb{R}\)-vector space, we have 
+\[\dim_\mathbb{R}(\mathbb{R}[x]/(x^2+1)\otimes_\mathbb{R}\mathbb{C})=\dim_\mathbb{R}\mathbb{C}[x]/(x^2+1)=4.\]
+So \(\phi\) is an isomorphism.
+\end{claimproof}
+
+\item For \(\mathbb{C}\)-vector spaces \(V,W\), we can check by definition that \(\overline{V\oplus W}\cong \overline{V}\oplus \overline{W}\). We know that a \(\mathbb{C}\)-vector space \(V\) can be written as 
+\[V=\bigoplus_{i\in I}V_i\]
+for some index set \(I\) where \(V_i\) is a one dimensional complex vector space. We only need to prove this result for one dimensional complex vector space. Indeed, we have 
+\begin{align*}
+    CR(V)&= V\otimes_\mathbb{R}\mathbb{C}\\ 
+         &\cong (\bigoplus_{i\in I}V_i)\otimes_\mathbb{R}\mathbb{C}\\ 
+         &\cong\bigoplus_{i\in I}(V_i\otimes_\mathbb{R}\mathbb{C})\\ 
+         &\cong\bigoplus_{i\in I}(\overline{V_i}\oplus V_i)\\ 
+         &\cong(\bigoplus_{i\in I}\overline{V_i})\oplus (\bigoplus_{i\in I}V_i)\\ 
+         &=\overline{V}\oplus V.
+\end{align*}
+Suppose \(V\) is generated by \(v\) as a \(\mathbb{C}\)-vector space. Define the following map 
+\begin{align*}
+    \phi:R(V)\otimes_\mathbb{R}\mathbb{C}&\rightarrow \overline{V}\oplus V,\\ 
+         u\otimes z&\mapsto (z*u,zu)=(\bar{z}u,zu).
+\end{align*}
+This is a well-defined map because for any \(w\in \mathbb{C}\), we have 
+\begin{align*}
+    \phi(w\cdot (u\otimes z))&=\phi(u\otimes wz)\\ 
+                             &=(\overline{wz}u,wzu)\\ 
+                             &=((wz)*u,wzu)\\ 
+                             &=w\cdot (z*u,zu)\\ 
+                             &=w\cdot \phi(u\otimes z).
+\end{align*}
+We know \(R(V)\) is a 2-dimensional \(\mathbb{R}\)-vector space generated by \(v\) and \(iv\). Every \(u\in R(V)\otimes_\mathbb{R}\mathbb{C}\) can be written as 
+\[u=v\otimes x+iv\otimes y\]
+for some \(x,y\in \mathbb{C}\). Suppose \(u\in \ker \phi\), then we have 
+\[0=\phi(u)=\phi(v\otimes x+iv\otimes y)=\phi(v\otimes x)+\phi(iv\otimes y)=(\bar{x}v+\bar{y}iv,xv+yiv)\]
+This implies 
+\[\begin{cases}
+    \bar{x}+i\bar{y}=0\\ 
+    x+iy=0
+\end{cases}\]
+Note that \(x+\bar{x}=2\cRe(x)\) and \(x-\bar{x}=2\cIm(x)\), so we have 
+\[\begin{cases}
+    0=2\cRe(x)=2\cRe(y)\\ 
+    0=2\cIm(x)=2\cIm(y)
+\end{cases}\]
+This implies \(x=y=0\), namely \(u=0\). We have proved \(\ker \phi=0\), thus, \(\phi\) is injective. Moreover, 
+\[2=\dim_\mathbb{C}CR(V)=\dim_\mathbb{C}(\overline{V}\oplus V).\]
+This implies \(\phi\) is an isomorphism. 
+\end{enumerate}
+\end{solution}
+
+\end{document}

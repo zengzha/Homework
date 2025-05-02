@@ -1,0 +1,407 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+\usepackage{tikz-cd}
+
+
+    
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+%\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+%Define the claim environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 1}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 647 - Abstract Algebra  \hfill Term: Fall 2024\\
+Instructor: Dr.Victor Ostrik \hfill Due Date: $16^{th}$ October, 2024 \\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.1}
+Show that the identity morphism \(\text{id}_X\) is unique in the following sense: if \(i:X\rightarrow X\) is a morphism satisfying either \(f\circ i=f\) for all \(f:X\rightarrow Y\) or \(i\circ g=g\) for all \(g:Y\rightarrow X\), then \(i=\text{id}_X\).
+\end{problem}
+\begin{solution}
+\textcolor{red}{Assume the latter}, we have \(i=i\circ \text{id}_X=\text{id}_X\). The first equality is because of the property of \(i\) and the second equality is because of the property of \(\text{id}_X\). \textcolor{red}{Assume the former, we have \(id_X=id_X\circ i=i\).}
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.1.2.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.1.2}
+Let \(f:X\rightarrow Y\) be a morphism in a category \(\mathbf{C}\). Let \(g,h:Y\rightarrow X\) be morphisms such that \(f\circ g=\text{id}_Y\) and \(h\circ f=\text{id}_X\). Show that \(f\) is an isomorphism with \(f^{-1}=g=h\). In particular, the inverse \(f^{-1}\) of an isomorphism \(f\) is unique.
+\end{problem}
+\begin{solution}
+We only need to show that \(g=h\). By associativity of composition in \(\mathbf{C}\), we haveIt is easy to see that 
+$$g=\text{id}_X\circ g=(h\circ f)\circ g=h\circ (f\circ g)=h\circ \text{id}_Y=h.$$
+\end{solution}
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.2.2.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.2.2}
+Show that a monoid homomorphism \(f:M\rightarrow N\) is an isomorphism if and only if it is bijective as a function.
+\end{problem}
+\begin{solution}
+Suppose \(f:M\rightarrow N\) is a monoid isomorphism. There exist a homomorphism \(g:N\rightarrow M\) such that \(g\circ f=\text{id}_M\) and 
+\(f\circ g=\text{id}_N\). This shows that \(f\) is surjective. Let \(a\in \text{ker}f\). We have that \(a=\text{id}_M(a)=(g\circ f)(a)=g(f(a))=0\). This shows that 
+\(f\) is injective. So we conclude that \(f\) is bijective.
+\par  
+Conversely, suppose \(f\) is bijective as a function. We define a function \(g:N\rightarrow M\) sending each \(n\in N\) to the preimage \(f^{-1}(n)\). This is well defined as a function 
+since \(f\) is bijective. And we have \(g\circ f=\text{id}_M\) and \(f\circ g=\text{id}_N\). We only need to show that \(g\) is a monoid homomorphism. Obviously \(g(1_N)=f^{-1}(1_N)=1_M\). Moreover, 
+for any \(n_1,n_2\in N\), 
+\begin{align*}
+g(n_1n_2) & =f^{-1}(n_1n_2)\\ 
+          & \textcolor{red}{=f^{-1}(f(f^{-1}(n_1n_2))}\\ 
+          & \textcolor{red}{=f^{-1}(f(f^{-1}(n_1)f(f^{-1}(n_2))}\\
+          & =f^{-1}(n_1)f^{-1}(n_2)\\ 
+          & =g(n_1)g(n_2)   
+\end{align*}
+
+because \(f\) is bijective.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.3.1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.3.1}
+If \(\mathcal{F}:\mathbf{A}\rightarrow \mathbf{B}\) is a contravariant functor and \(f\) is an isomorphism in \(\mathbf{A}\) then \(\mathcal{F}f\) is an isomorphism in \(\mathbf{B}\).
+\end{problem}
+\begin{solution}
+Suppose \(f:X\rightarrow Y\) is a isomorphism from \(X\) to \(Y\) in \(\mathbf{A}\). There exists a morphism \(g:Y\rightarrow X\) in \(\mathbf{A}\) such that \(f\circ g=\text{id}_Y\) and \(g\circ f=\text{id}_X\). Since 
+\(\mathcal{F}:\mathbf{A}\rightarrow \mathbf{B}\) is a functor, we have the following diagram: \textcolor{red}{the following diagram is not right, there does not exist maps from \(Y\rightarrow \mathca{F}Y\). They are in different categories.}
+$$\begin{tikzcd}
+	Y & {\mathcal{F}Y} \\
+	X & {\mathcal{F}X} \\
+	Y & {\mathcal{F}Y}
+	\arrow[from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-1]
+	\arrow["{\mathcal{F}g}", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["f"', from=2-1, to=3-1]
+	\arrow["{\mathcal{F}f}", from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+\end{tikzcd}$$
+The upper diagram and the lower diagram commute because \(\mathcal{F}\) is a functor, thus the combined diagram commutes. Note that the left hand side \(f\circ g=\text{id}_Y\), so 
+the right hand side \(\mathcal{F}f\circ \mathcal{F}g=\text{id}_{\mathcal{F}Y}\). Similarly we can prove that \(\mathcal{F}g\circ \mathcal{F}f=\text{id}_{\mathcal{F}X}\). This shows that 
+\(\mathcal{F}f\) is an isomorphism in \(\mathbf{B}\).
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.3.3.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.3.3}
+Let \(X\) be a partially ordered set and \(Y:=X^{op}\) be the opposite poset, i.e. the same set but with the opposite partial ordering. Recall that 
+the category \(\underline{X}\) from Exercise 2.1.4. Find a contravariant isomorphism of the category \(\mathcal{D}:\underline{X}\rightarrow \underline{Y}\).
+\end{problem}
+\begin{solution}
+Consider the identity functor \(\text{Id}_{X^{op}}:\underline{X}^{op}\rightarrow \underline{X}^{op}\). This can be viewed as a contravariant functor from \(\underline{X}\) to \(\underline{X}^{op}\) since by 
+definition, \(\underline{X}^{op}\) has the reverse partial ordering as morphisms. This is an isomorphism of categories. 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.3.5.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.3.5}
+Let \(I\) be a set and \((\mathbf{C}_i)_{i\in I}\) be a family of categories. Check that there is a category \(\prod_{i\in I}\mathbf{C}_i \) whose 
+objects are families \((X_i)_{i\in I}\) with \(X_i\in \text{Ob}\, \mathbf{C}_i\) for each \(i\in I\), and morphisms are given by 
+$$\text{Hom}_{\prod_{i\in I}\mathbf{C}_i}((X_i)_{i\in I}, (Y_i)_{i\in I}):=\prod_{i\in I}\text{Hom}_{\mathbf{C}_i}(X_i,Y_i)$$
+with pointwise composition. Show moreover for each \(i\in I\) that there is a projection functor \(\pi_i:\prod_{i\in I}\mathbf{C}_i\rightarrow \mathbf{C}_i\) 
+sending an object \((X_i)_{i \in I}\) to \(X_i\) and a morphism \((f_i)_{i\in I}\) to \(f_i\).
+\end{problem}
+\begin{solution}
+The identity morphisms for objects \((X_i)_{i\in I}\) is \((\text{id}_{X_i})_{i\in I}\). Now we need to Check that the morphisms can be composed and the composition is 
+associative. We have 
+$$\begin{tikzcd}
+	{\text{Hom}_{\prod_{i\in I}\mathbf{C}_i}((X_i)_{i\in I},(Y_i)_{i\in I})\times\text{Hom}_{\prod_{i\in I}\mathbf{C}_i}((Y_i)_{i\in I},(Z_i)_{i\in I})} && {\text{Hom}_{\prod_{i\in I}\mathbf{C}_i}((X_i)_{i\in I},(Z_i)_{i\in I})} \\
+	{\prod_{i\in I}\text{Hom}_{\mathbf{C}_i}(X_i,Y_i)\times\prod_{i\in I}\text{Hom}_{\mathbf{C}_i}(Y_i,Z_i)} && {\prod_{i\in I}\text{Hom}_{\mathbf{C}_i}(X_i,Z_i)} \\
+	{\prod_{i\in I}(\text{Hom}_{\mathbf{C}_i}(X_i,Y_i)\times\text{Hom}_{\mathbf{C}_i}(Y_i,Z_i))}
+	\arrow[from=1-1, to=1-3]
+	\arrow[shift right, no head, from=1-1, to=2-1]
+	\arrow[shift left, no head, from=1-1, to=2-1]
+	\arrow[shift left, no head, from=1-3, to=2-3]
+	\arrow[shift right, no head, from=1-3, to=2-3]
+	\arrow[shift left, no head, from=2-1, to=3-1]
+	\arrow[shift right, no head, from=2-1, to=3-1]
+\end{tikzcd}$$
+The compostion is associative because the pointwise composition is associative. Now we check that the projection functor is indeed a functor. By definition, for each \(i\in I\), 
+\(\pi_i((\text{id}_{X_i})_{i\in I})=\text{id}_{X_i}\). Let \((f_i)_{i\in I}:(X_i)_{i\in I}\rightarrow (Y_i)_{i\in I}\) and \((g_i)_{i\in I}:(Y_i)_{i\in I}\rightarrow (Z_i)_{i\in I}\) be two morphisms in 
+\(\prod_{i\in I}\mathbf{C}_i\). We know that 
+$$\pi_i((g_i)_{i\in I}\circ (f_i)_{i\in I})=\pi_i((g_i\circ f_i)_{i\in I})=g_i\circ f_i=\pi_i((g_i)_{i\in I})\circ \pi_i((f_i)_{i\in I}).$$
+This proves that the projection \(\pi_i\) is a functor.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.2}
+Show that a natural transformation \(\alpha:\mathcal{F}\Rightarrow \mathcal{G}\) is an isomorphism if and only if \(\alpha_X:\mathcal{F}X\rightarrow \mathcal{G}X\) is 
+an isomorphism in \(\mathbf{B}\) for each \(X\in \text{Ob}\, \mathbf{A}\).
+\end{problem}
+\begin{solution}
+Suppose \(\alpha:\mathcal{F}\Rightarrow \mathcal{G}\) is an isomorphism of functors. There exists a natural transformation \(\alpha^{-1}:\mathcal{G}\Rightarrow \mathcal{F}\) such that 
+\(\alpha\circ \alpha^{-1}=\text{id}_{\mathcal{G}}\) and \(\alpha^{-1}\circ \alpha=\text{id}_{\mathcal{F}}\). For each object \(X\in \text{Ob}\, \mathbf{A}\), \(\alpha_X\circ \alpha^{-1}_X=(\alpha\circ \alpha^{-1})_X=\text{id}_{\mathcal{G}X}\) is the 
+identity morphism in \(\mathbf{B}\). Similar for \(\alpha^{-1}_X\circ \alpha_X=\text{id}_{\mathcal{F}X}\). This proves that \(\alpha_X\) is an isomorphism in \(\mathbf{B}\) for each object \(X\in \text{Ob}\, \mathbf{A}\). 
+\par 
+Conversely, assume that for each object \(X\in \text{Ob}\, \mathbf{A}\), \(\alpha_X:\mathcal{F}X\rightarrow \mathcal{G}X\) is an isomorphism. There exists a morphism \(\alpha^{-1}_X:\mathcal{G}X\rightarrow \mathcal{F}X\) such that 
+\(\alpha^{-1}_X\circ \alpha_X=\text{id}_{\mathcal{F}X}\) and \(\alpha_X\circ \alpha^{-1}_X=\text{id}_{\mathcal{G}X}\). We define a natural transformation as a collection 
+\(\alpha^{-1}=(\alpha^{-1}_X)_{X\in \text{Ob}\, \mathbf{A}}\). Given a morphism \(f:X\rightarrow Y\) in \(\mathbf{A}\), we have a commutative diagram: 
+$$\begin{tikzcd}
+	{\mathcal{F}X} & {\mathcal{G}X} \\
+	{\mathcal{F}Y} & {\mathcal{G}Y}
+	\arrow["{\alpha_X}", from=1-1, to=1-2]
+	\arrow["{\mathcal{F}f}"', from=1-1, to=2-1]
+	\arrow["{\mathcal{G}f}", from=1-2, to=2-2]
+	\arrow["{\alpha_Y}"', from=2-1, to=2-2]
+\end{tikzcd}$$
+since \(\alpha\) is a natural transformation. Note that both \(\alpha_X\) and \(\alpha_Y\) are isomorphism with inverse \(\alpha^{-1}_X\) and \(\alpha_Y^{-1}\), the following diagram also commutes: 
+$$\begin{tikzcd}
+	{\mathcal{F}X} & {\mathcal{G}X} \\
+	{\mathcal{F}Y} & {\mathcal{G}Y}
+	\arrow["{\mathcal{F}f}"', from=1-1, to=2-1]
+	\arrow["{\alpha^{-1}_X}"', from=1-2, to=1-1]
+	\arrow["{\mathcal{G}f}", from=1-2, to=2-2]
+	\arrow["{\alpha_Y^{-1}}", from=2-2, to=2-1]
+\end{tikzcd}$$
+This shows that \(\alpha^{-1}\) is also a natural transformation. Therefore, \(\mathcal{F}\) is a isomorphism of functors.
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.3}
+Let \(\mathcal{F},\mathcal{G}:\mathbf{A}\rightarrow \mathbf{B}\) be functors such that \(\mathcal{F}\cong \mathcal{G}\), and suppose that 
+\(f,g\in \text{Hom}_{\mathbf{A}}(X,Y)\). True or false:
+\begin{enumerate}[label=(\emph{\alph*})]
+    \item \(\mathcal{F}X=\mathcal{F}Y\) if and only if \(\mathcal{G}X=\mathcal{G}Y\).
+    \item \(\mathcal{F}f=\mathcal{F}g\) if and only if \(\mathcal{G}f=\mathcal{G}g\).
+    \item \(\mathcal{F}X\cong \mathcal{F}Y\) if and only if \(\mathcal{G}X\cong \mathcal{G}Y\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\((a)\),\((b)\) are false and \((c)\) is true. 
+\par  
+Let \(\mathbf{A}\) be a category with two isomorphic objects \(X,Y\). The morphisms are two identities \(\text{id}_X,\text{id}_Y\) and an isomorphism 
+\(f:X\rightarrow Y\) and its inverse \(f^{-1}:Y\rightarrow X\). Consider the two functors \(\mathcal{F},\text{id}_{\mathbf{A}}:\mathbf{A}\rightarrow \mathbf{A}\) satisfying 
+\(\mathcal{F}X=\mathcal{Y}=X\) and \(\mathcal{F}\) sends every morphism to \(\text{id}_X\). Note that \(\mathcal{F}X=X\xrightarrow{\text{id}_X} X\) and \(\mathcal{F}Y=X\xrightarrow{f} Y\) are both 
+isomorphisms in \(\mathbf{A}\). By Exercise 2.4.2., \(\mathcal{F}\) is isomorphic to \(\mathcal{\text{id}_{\mathbf{A}}}\) but \(\mathcal{F}Y\neq \mathcal{\text{id}_{\mathbf{A}}}Y\). Moreover, 
+\(\mathcal{F}f=\mathcal{F}\text{id}_X=\text{id}_X\) but \(\text{id}_{\mathbf{A}}f=f\) and \(\text{id}_{\mathbf{A}}\text{id}_X=\text{id}_X\).
+\par 
+To prove \((c)\) is correct, given \(X,Y\in \text{Ob}\, \mathbf{A}\), by Exercise 2.4.1., \(\mathcal{F}\cong \mathcal{G}\) implies \(\mathcal{F}X\cong \mathcal{G}X\) and \(\mathcal{F}Y\cong \mathcal{G}Y\). Because 
+\(\cong\) is transitive, we know that \(\mathcal{F}X\cong \mathcal{F}Y\) if and only if \(\mathcal{G}X\cong \mathcal{G}Y\). 
+\end{solution}
+\\ 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.7}
+Suppose that \(\mathcal{E},\mathcal{F}:\mathbf{A}\rightarrow \mathbf{B}\) and \(\mathcal{G},\mathcal{H}:\mathbf{B}\rightarrow \mathbf{C}\) are 
+functors, and \(\alpha:\mathcal{E}\Rightarrow \mathcal{F}\) and \(\beta:\mathcal{G}\Rightarrow \mathcal{H}\) are natural transformations.
+\begin{enumerate}
+    \item Check that there is a natural transformation \(\beta\star \alpha:\mathcal{G}\circ \mathcal{E}\Rightarrow \mathcal{H}\circ \mathcal{F}\) such 
+          that \((\beta \star \alpha)_X=\beta_{\mathcal{F}X}\circ \mathcal{G}_{{\alpha}_X}\) for all \(X\in \text{Ob}\, \mathbf{A}\). This is called horizontal 
+          compostion of natural transformatios in view of the following pictures:
+$$\begin{tikzcd}
+	{\mathbf{C}} && {\mathbf{A}} & {\mathbf{C}} & {\mathbf{B}} & {\mathbf{A}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathcal{H}\circ \mathcal{F}}"', curve={height=18pt}, from=1-3, to=1-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathcal{G}\circ\mathcal{E}}", curve={height=-18pt}, from=1-3, to=1-1]
+	\arrow[shift right, no head, from=1-3, to=1-4]
+	\arrow[shift left, no head, from=1-3, to=1-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\mathcal{H}}"', curve={height=18pt}, from=1-5, to=1-4]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\mathcal{G}}", curve={height=-18pt}, from=1-5, to=1-4]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\mathcal{F}}"', curve={height=18pt}, from=1-6, to=1-5]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\mathcal{E}}", curve={height=-18pt}, from=1-6, to=1-5]
+	\arrow["{\beta\star\alpha}"', shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+	\arrow["\beta"', shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=2]
+	\arrow["\alpha"', shorten <=5pt, shorten >=5pt, Rightarrow, from=5, to=4]
+\end{tikzcd}$$
+   \item Show moreover that \(\star\) defines an associative operation on natural transformations.
+   \item Important special cases of the above construction are as follows. If \(\mathcal{G}=\mathcal{H}\) and \(\beta=\text{id}_{\mathcal{G}}\) we write 
+         \(\mathcal{G}_{\alpha}\) instead of \(\text{id}_{\alpha}\star \alpha\). Thus \(\mathcal{G}_\alpha:\mathcal{G}\circ \mathcal{E}\Rightarrow \mathcal{G}\circ \mathcal{F}\) is 
+         the natural transformation with \((\mathcal{G}_\alpha)_X=\mathcal{G}_{\alpha_X}\). On the other hand, if \(\mathcal{E}=\mathcal{F}\) and \(\alpha=\text{id}_{\mathcal{F}}\) we write 
+         \(\beta \mathcal{F}\) instead of \(\beta \star \text{id}_{\mathcal{F}}\). Thus \(\beta \mathcal{F}:\mathcal{G}\circ \mathcal{F}\Rightarrow \mathcal{H}\circ \mathcal{F}\) is the 
+         natural transformation with \((\beta \mathcal{F})_X=\beta_{\mathcal{F}(X)}\).
+\end{enumerate}
+\end{problem}
+\begin{solution}(1)\\ 
+We first check that \(\beta\star \alpha:\mathcal{G}\circ \mathcal{E}\Rightarrow \mathcal{H}\circ \mathcal{F}\) is a natural transformation. For each object \(X\in \text{Ob}\, \mathbf{A}\), 
+\((\beta\star \alpha)_X\) is defined as 
+$$\begin{tikzcd}
+	{(\mathcal{G}\circ \mathcal{E})X} && {(\mathcal{G}\circ \mathcal{F})X} && {(\mathcal{H}\circ \mathcal{F})X}.
+	\arrow["{\mathcal{G}(\alpha_X)}", from=1-1, to=1-3]
+	\arrow["{\beta_{\mathcal{F}X}}", from=1-3, to=1-5]
+\end{tikzcd}$$
+Given a morphism \(f:X\rightarrow Y\) in \(\mathbf{A}\), the natural transformation \(\alpha:\mathcal{E}\Rightarrow \mathcal{F}\) gives us a commutative square:
+$$\begin{tikzcd}
+	{\mathcal{E}X} & {\mathcal{F}X} \\
+	{\mathcal{E}Y} & {\mathcal{F}Y}
+	\arrow["{\alpha_X}", from=1-1, to=1-2]
+	\arrow["{\mathcal{E}f}"', from=1-1, to=2-1]
+	\arrow["{\mathcal{F}f}", from=1-2, to=2-2]
+	\arrow["{\alpha_Y}"', from=2-1, to=2-2]
+\end{tikzcd}$$
+Apply the functor \(\mathcal{G}\) to the above diagram and it is still commutative:
+\begin{equation}
+\begin{tikzcd}
+	{(\mathcal{G}\circ\mathcal{E})X} & {(\mathcal{G}\circ\mathcal{F})X} \\
+	{(\mathcal{G}\circ\mathcal{E})Y} & {(\mathcal{G}\circ\mathcal{F})Y}
+	\arrow["{\mathcal{G}(\alpha_X)}", from=1-1, to=1-2]
+	\arrow["{(\mathcal{G}\circ\mathcal{E})f}"', from=1-1, to=2-1]
+	\arrow["{(\mathcal{G}\circ\mathcal{F})f}", from=1-2, to=2-2]
+	\arrow["{\mathcal{G}(\alpha_Y)}"', from=2-1, to=2-2]
+\end{tikzcd}
+\end{equation}
+On the other hand, consider the morphism \(\mathcal{F}f:\mathcal{F}X\rightarrow \mathcal{F}Y\) in \(\mathbf{B}\) and first apply the functor \(\mathcal{G}:\mathbf{B}\rightarrow \mathbf{C}\) to get a 
+morphism \((\mathcal{G}\circ \mathcal{F})f:(\mathcal{G}\circ \mathcal{F})X\rightarrow (\mathcal{G}\circ \mathcal{F})Y\) in \(\mathbf{C}\) and then apply the natural transformation \(\beta:\mathcal{G}\Rightarrow \mathcal{H}\), we get a 
+commutative square: 
+\begin{equation}
+\begin{tikzcd}
+	{(\mathcal{G}\circ\mathcal{F})X} & {(\mathcal{H}\circ\mathcal{F})X} \\
+	{(\mathcal{G}\circ\mathcal{F})Y} & {(\mathcal{H}\circ\mathcal{F})Y}
+	\arrow["{\beta_{\mathcal{F}X}}", from=1-1, to=1-2]
+	\arrow["{(\mathcal{G}\circ\mathcal{F})f}"', from=1-1, to=2-1]
+	\arrow["{(\mathcal{H}\circ\mathcal{F})f}", from=1-2, to=2-2]
+	\arrow["{\beta_{\mathcal{F}Y}}"', from=2-1, to=2-2]
+\end{tikzcd}
+\end{equation}
+Combine the two commutative square (1) and (2) together, we have the following commutative diagram: 
+$$\begin{tikzcd}
+	{(\mathcal{G}\circ\mathcal{E})X} & {(\mathcal{H}\circ\mathcal{F})X} \\
+	{(\mathcal{G}\circ\mathcal{E})Y} & {(\mathcal{H}\circ\mathcal{F})Y}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}$$
+This proves that \(\beta\star \alpha\) is a natural transformation.
+\end{solution}
+\\ 
+\begin{solution}(2)\\ 
+Consider the following diagram: 
+$$\begin{tikzcd}
+	{\mathbf{A}} & {\mathbf{B}} & {\mathbf{C}} & {\mathbf{D}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathcal{E}}"', curve={height=18pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathcal{F}}", curve={height=-18pt}, from=1-1, to=1-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\mathcal{G}}"', curve={height=18pt}, from=1-2, to=1-3]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\mathcal{H}}", curve={height=-18pt}, from=1-2, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\mathcal{I}}"', curve={height=18pt}, from=1-3, to=1-4]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\mathcal{J}}", curve={height=-18pt}, from=1-3, to=1-4]
+	\arrow["\alpha"', shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+	\arrow["\beta"', shorten <=5pt, shorten >=5pt, Rightarrow, from=2, to=3]
+	\arrow["\gamma"', shorten <=5pt, shorten >=5pt, Rightarrow, from=4, to=5]
+\end{tikzcd}$$
+We need to show that 
+$$\gamma\star(\beta\star \alpha)=(\gamma\star\beta)\star \alpha.$$
+Let \(X\) be an object in \(\mathbf{A}\). Use the previous exercise, we have a formula:
+\begin{align*}
+    (\gamma\star(\beta\star\alpha))_X & = \gamma_{(\mathcal{H}\circ \mathcal{F})X}\circ \mathcal{I}((\beta\star\alpha)_X) \\ 
+                                      & = \gamma_{(\mathcal{H}\circ \mathcal{F})X}\circ \mathcal{I}(\beta_{\mathcal{F}X}\circ \mathcal{G}(\alpha_X)) \\ 
+                                      & = \gamma_{(\mathcal{H}\circ \mathcal{F})X}\circ \mathcal{I}(\beta_{\mathcal{F}X})\circ (\mathcal{I}\circ \mathcal{G})(\alpha_X).
+\end{align*}
+On the other hand, we have: 
+\begin{align*}
+    ((\gamma\star \beta)\star \alpha)_X & = (\gamma\star \beta)_{\mathcal{F}X}\circ (\mathcal{I}\circ \mathcal{G})(\alpha_X)\\ 
+                                        & = \gamma_{(\mathcal{H}\circ \mathcal{F})X}\circ \mathcal{I}(\beta_{\mathcal{F}X})\circ (\mathcal{I}\circ \mathcal{G})(\alpha_X).
+\end{align*}
+Compare the above two, and we have that \(\star\) is associative.
+    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.8}
+Let \(\mathcal{E},\mathcal{F},\mathcal{G}:\mathbf{A}\rightarrow \mathbf{B}\) and \(\mathcal{H},\mathcal{I},\mathcal{J}:\mathbf{B}\rightarrow \mathbf{C}\) be 
+functors, and \(\alpha:\mathcal{E}\Rightarrow \mathcal{F}\), \(\beta:\mathcal{F}\Rightarrow \mathcal{G}\), \(\gamma:\mathcal{H}\Rightarrow \mathcal{I}\) and 
+\(\delta:\mathcal{I}\Rightarrow \mathcal{J}\) be natural transformations. Show that 
+$$(\delta\star \beta )\circ (\gamma \star \alpha)=(\delta \circ \gamma)\star (\beta \circ \alpha).$$
+In other words, the two possible ways of interpreting the following picture (compose horizontally then vertically or compose vertically then horizontally) produce 
+the same natural transformation \(\mathcal{H}\circ \mathcal{E}\Rightarrow \mathcal{J}\circ \mathcal{G}\):
+$$\begin{tikzcd}
+	{\mathbf{C}} && {\mathbf{B}} && {\mathbf{A}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathcal{J}}"', curve={height=30pt}, from=1-3, to=1-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathcal{H}}", curve={height=-30pt}, from=1-3, to=1-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\mathcal{I}}"{description}, from=1-3, to=1-1]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\mathcal{G}}"', curve={height=30pt}, from=1-5, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\mathcal{E}}", curve={height=-30pt}, from=1-5, to=1-3]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\mathcal{F}}"{description}, from=1-5, to=1-3]
+	\arrow["\delta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=0]
+	\arrow["\gamma"', shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=2]
+	\arrow["\beta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=5, to=3]
+	\arrow["\alpha"', shorten <=4pt, shorten >=4pt, Rightarrow, from=4, to=5]
+\end{tikzcd}$$
+ 
+\end{problem}
+\begin{solution}
+Let \(X\in \text{Ob}\, \mathbf{A}\). Use the previous Exercise 2.4.7. (1), we have 
+\begin{align*}
+    ((\delta\star\beta)\circ(\gamma\star\alpha))_X 
+    & =(\delta\star\beta)_X\circ(\gamma\star\alpha)_X \\ 
+    & =\delta_{\mathcal{G}X}\circ \mathcal{I}(\beta_X)\circ \gamma_{\mathcal{F}X}\circ \mathcal{H}(\alpha_X).
+\end{align*}
+On the other hand, 
+\begin{align*}
+    ((\delta\circ \gamma)\star(\beta\circ\alpha))_X & = (\delta\circ\gamma)_{\mathcal{G}X}\circ \mathcal{H}((\beta\circ\alpha)_X)\\ 
+                                                    & = \delta_{\mathcal{G}X}\circ \gamma_{\mathcal{G}X}\circ \mathcal{H}(\beta_X\circ\alpha_X)\\ 
+                                                    & = \delta_{\mathcal{G}X}\circ \gamma_{\mathcal{G}X}\circ \mathcal{H}(\beta_X)\circ \mathcal{H}(\alpha_X). 
+\end{align*}  
+Compare the two, we need to show that 
+$$\gamma_{\mathcal{G}X}\circ \mathcal{H}(\beta_X)=\mathcal{I}(\beta_X)\circ \gamma_{\mathcal{F}X}.$$
+This is the same as proving the following diagram commutes: 
+$$\begin{tikzcd}
+	{(\mathcal{H}\circ\mathcal{F})X} && {(\mathcal{I}\circ\mathcal{F})X} \\
+	\\
+	{(\mathcal{H}\circ\mathcal{G})X} && {(\mathcal{I}\circ\mathcal{G})X}
+	\arrow["{\gamma_{\mathcal{F}X}}", from=1-1, to=1-3]
+	\arrow["{\mathcal{H}(\beta_X)}"', from=1-1, to=3-1]
+	\arrow["{\mathcal{I}(\beta_X)}", from=1-3, to=3-3]
+	\arrow["{\gamma_{\mathcal{G}X}}"', from=3-1, to=3-3]
+\end{tikzcd}$$
+Apply thr naturality of \(\gamma\) to the morphism \(\beta_X:\mathcal{F}X\rightarrow \mathcal{G}X\) in \(\mathbf{B}\), we get exactly the above square. 
+\end{solution}
+\\ 
+\end{document}
