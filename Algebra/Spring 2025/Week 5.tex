@@ -19,7 +19,12 @@ Instructor: Professor Sasha Polishchuk \hfill Due Date: $7^{th}$ May 2025 \\
 The 5th cyclotomic field \(\mathbb{Q}(\zeta_5)\) contains \(\sqrt{5}\). 
 \end{problem}
 \begin{solution}
-Let \(\zeta_5\) be a 5th primitive root of \(x^5-1\). The cyclotomic field \(\mathbb{Q}(\zeta_5)\) contains all \(5\) roots: \(1,\zeta^5,\zeta_5^2\) 
+Let \(\zeta_5\) be a 5th primitive root of \(x^5-1\). The cyclotomic field \(\mathbb{Q}(\zeta_5)\) contains all \(5\) roots: \(1,\zeta^5,\zeta_5^2,\zeta_5^3,\zeta_5^4\). Write \(\zeta_5+\zeta_5^4=e^{2\pi i/5}+e^{8\pi i/5}\in \mathbb{Q}(\zeta_5)\). On the other hand, we can calculate that 
+\[\zeta_5+\zeta_5^4=e^{2\pi i/5}+e^{-2\pi i/5}=2\cos (\frac{2\pi }{5}).\]
+By calculation, we know that 
+\[\cos \frac{2\pi}{5}=\frac{\sqrt{5}-1}{4}.\]
+This implies 
+\[\sqrt{5}=2(\zeta_5+\zeta_5^4)+1\in \mathbb{Q}(\zeta_5).\]
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -31,7 +36,17 @@ If \(p\) is a prime then
 \[\Phi_{p^n}(x)=1+x^{p^{n-1}}+x^{2p^{n-1}}+\cdots+x^{(p-1)p^{n-1}}.\]
 \end{problem}
 \begin{solution}
-
+We know by definition of the cyclotomic polynomial that 
+\begin{align*}
+    x^{p^n}-1&=\prod_{d|p^n}\Phi_d(x),\\
+    x^{p^{n-1}}-1&=\prod_{d|p^{n-1}}\Phi_d(x).
+\end{align*}
+The only number that divides \(p^n\) but does not divide \(p^{n-1}\) is \(p^n\). Thus, we can write 
+\[\Phi_{p^n}(x)=\frac{x^{p^n}-1}{x^{p^{n-1}}-1}.\]
+It is easy to check that 
+\[(1+x^{p^{n-1}}+x^{2p^{n-1}}+\cdots+x^{(p-1)p^{n-1}})(x^{p^{n-1}}-1)=x^{p^n}-1.\]
+Since \(\mathbb{Q}[x]\) is a UFD, we can conclude that 
+\[\Phi_{p^n}(x)=1+x^{p^{n-1}}+x^{2p^{n-1}}+\cdots+x^{(p-1)p^{n-1}}.\]
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -42,7 +57,7 @@ If \(p\) is a prime then
 \(\mathbb{Q}(\sqrt[3]{2})\) is not a subfield of any cyclotomic extension of \(\mathbb{Q}\).
 \end{problem}
 \begin{solution}
-
+The minimal polynomial of \(\sqrt[3]{2}\) over \(\mathbb{Q}\) is \(x^3-2\). Let \(\mathbb{F}\) be the splitting field of \(x^3-2\), then \(\mathbb{F}\) is the smallest Galois extension containing a subextension \(\mathbb{Q}(\sqrt[3]{2})/\mathbb{Q}\). We have calculated in a previous exercise that the Galois group \(\Gal(\mathbb{F}/\mathbb{Q})\cong S_3\), which is not Abelian. But the Galois group of any cyclotomic extension is Abelian, and \(S_3\) cannot be realized as a quotient group of an Abelian group. This implies that \(\mathbb{Q}(\sqrt[3]{2})\) is not a subfield of any cyclotomic extension of \(\mathbb{Q}\).
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -53,7 +68,9 @@ If \(p\) is a prime then
 Let \(\mathbb{K}/\Bbbk\) be a field extension. If \(\alpha_1,\ldots,\alpha_n\in \mathbb{K}\) is algebraically independent over \(\Bbbk\), and \(\alpha\notin \Bbbk\) is the element of \(k(\alpha_1,\ldots,\alpha_n)\), then \(\alpha\) is transcendental over \(\Bbbk\). 
 \end{problem}
 \begin{solution}
-
+By Theorem 13.5.1, \(\alpha\in \Bbbk(\alpha_1,\ldots,\alpha_n)\cong \Bbbk(x_1,\ldots,x_n)\). So \(\alpha\) can be written as a ratio of two polynomials \(p,q\in \Bbbk[x_1,\ldots,x_n]\) where \(\deg p+\deg q\geq 1\). Suppose \(\alpha\) is algebraic over \(\Bbbk\), then there exists \(f\in \Bbbk[x]\) such that \(f(\alpha)=0\). This implies that \(f(\frac{p}{q})=0\). Note that \(f(\frac{p}{q})\) is still in \(\Bbbk(x_1,\ldots,x_n)\), so it can be written as 
+\[0=f(\frac{p}{q})=\frac{p'}{q'}\]
+where \(p',q'\in \Bbbk[x_1,\ldots,x_n]\). Now we know that \(p'=0\). This is the same as saying \(p'(\alpha_1,\ldots,\alpha_n)=0\). This shows that \(\alpha_1,\ldots,\alpha_n\) are algebraically dependent over \(\Bbbk\). A contradiction. Thus, \(\alpha\) is transcendental over \(\Bbbk\).
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -64,7 +81,7 @@ Let \(\mathbb{K}/\Bbbk\) be a field extension. If \(\alpha_1,\ldots,\alpha_n\in 
 If \(\beta\) is algebraic over \(\Bbbk(\alpha)\) and \(\beta\) is transcendental over \(\Bbbk\) then \(\alpha\) is algebraic over \(\Bbbk(\beta)\).
 \end{problem}
 \begin{solution}
-
+Suppose \(\alpha\) is transcendental over \(\Bbbk(\beta)\). Since \(\Bbbk(\beta)/\Bbbk\) is a transcendental field extension, by the Main Criterion, we know that the set \(\left\{ \alpha,\beta \right\}\) is algebraically independent. Use the Main Criterion again, and we have shown that \(\beta\) is transcendental over \(\Bbbk(\alpha)\). This is a contradiction.
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -75,6 +92,9 @@ If \(\beta\) is algebraic over \(\Bbbk(\alpha)\) and \(\beta\) is transcendental
 Let \(\Bbbk \subsetneq\mathbb{F}\subseteq\Bbbk(x)\) be field extensions, with \(x\) transcendental over \(\Bbbk\). Then \(\Bbbk(x)/\mathbb{F}\) is finite. 
 \end{problem}
 \begin{solution}
+Suppose \(\mathbb{F}/\Bbbk\) is algebraic. Choose an element \(\alpha\in \mathbb{F}\subseteq \Bbbk(x)\) but \(\alpha\notin \Bbbk\), then \(\alpha=\frac{p(x)}{q(x)}\) where \(p(x),q(x)\in \Bbbk[x]\). \(\alpha\) being algebraic over \(\Bbbk\) implies that there exists a polynomial \(F(x)\in \Bbbk[x]\) such that \(F(\alpha)=0\). This can be written as \(F(\frac{p(x)}{q(x)})=0\). Note that \(F(\frac{p(x)}{q(x)})\) is still in \(\Bbbk(x)\), so it can be written as 
+\[0=F(\frac{p(x)}{q(x)})=\frac{p'(x)}{q'(x)}\]
+where \(p'(x),q'(x)\in \Bbbk[x]\). This implies that \(p'(x)=0\) for some polynomial \(p'\) and \(x\) is algebraic over \(\Bbbk\). A contradiction. So \(\mathbb{F}/\Bbbk\) is a transcendental field extension. By the Tower Law for transcendental degree, \(\Bbbk(x)/\mathbb{F}\) is algebraic. \(x\) being algebraic over \(\mathbb{F}\) implies there exists \(g(y)\in \mathbb{F}[y]\) such that \(g(x)=0\). This tells us that \([\Bbbk(x):\mathbb{F}]\leq\deg g<\infty\) is finite. So \(\Bbbk(x)/\mathbb{F}\) is a finite field extension.
 
 \end{solution}
 
@@ -136,7 +156,7 @@ Remove the parentheses, and we obtain
                        &+\cdots+((-1)^l e_l+\sum_{m=1}^{l} (-1)^{l+m}e_{l-m}x_j^{m})x^{n-l-1}+\cdots\\
                        &+(-1)^{n-1}e_{n-1}+\sum_{m=1}^{n-1} (-1)^{m+n-1}e_{n-m-1}x_j^{m}.
 \end{align*}
-Add \(j=1\) to \(j=n\) together and we have 
+Add \(j=1\) to \(j=n\) together, and we have 
 \[f'(x)=nx^{n-1}+\sum_{l=1}^{n-1}[(-1)^l n e_l+(\sum_{m=1}^{l}(-1)^{l+m}e_{l-m}p_m)]x^{n-l-1}\]
 Comparing coefficients, and we have, for \(1\leq l\leq n-1\), 
 \[(-1)^l (n-l)e_l=(-1)^l n e_l+\sum_{m=1}^{l} (-1)^{l+m} e_{l-m}p_m.\]
