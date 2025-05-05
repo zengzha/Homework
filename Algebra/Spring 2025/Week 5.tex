@@ -19,7 +19,7 @@ Instructor: Professor Sasha Polishchuk \hfill Due Date: $7^{th}$ May 2025 \\
 The 5th cyclotomic field \(\mathbb{Q}(\zeta_5)\) contains \(\sqrt{5}\). 
 \end{problem}
 \begin{solution}
-
+Let \(\zeta_5\) be a 5th primitive root of \(x^5-1\). The cyclotomic field \(\mathbb{Q}(\zeta_5)\) contains all \(5\) roots: \(1,\zeta^5,\zeta_5^2\) 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -90,7 +90,69 @@ Prove the \textit{Newton identities}:
 where \(e_k\) are the elementary symmetric functions interpreted \(1\) if \(k=0\) and as \(0\) if \(k>n\). Deduce that every elementary symmetric function \(e_k\) can be written down as a polynomial in \(p_1,\ldots, p_k\) with rational coefficients. Deduce that every symmetric polynomial can be written down as a polynomial in the power sum symmetric functions.
 \end{problem}
 \begin{solution}
+Let \(x_1,\ldots,x_n\) be variables, define the following polynomial 
+\[f(x)=(x-x_1)(x-x_2)\cdots (x-x_n).\]
+Remove the parentheses, and we can rewrite \(f(x)\) as 
+\[f(x)=x^n-e_1x^{n-1}+\cdots+(-1)^{n-1}e_{n-1}x+(-1)^n e_n.\]
+We prove Newton's identities in different cases.
+\begin{enumerate}[(a)]
+\item Suppose \(k=n\).\\ 
+We know that for \(1\leq i\leq n\), \(x_i\) is the root of \(f\), so it satisfies the following equation. 
+\begin{equation}
+    x_i^n-e_1x_i^{n-1}+\cdots+(-1)^{n-1}e_{n-1}x+(-1)^ne_n=0.
+\end{equation}
+Add all these equations from \(i=1\) to \(i=n\), we obtain 
+\[p_n-e_1p_{n-1}+\cdots+(-1)^{n-1}e_{n-1}p_1+(-1)^n n e_n=0.\]
+This is the same as 
+\begin{align*}
+    (-1)^{n-1}n e_n&=\sum_{i=1}^n (-1)^{n-i} e_{n-i}p_i\\ 
+              n e_n&=\sum_{i=1}^{n} (-1)^{i-1} e_{n-i}p_i.
+\end{align*}
+\item Suppose \(k>n\).\\ 
+Let \(\alpha_1,\alpha_2,\ldots, \alpha_{k-n}\) be a variable. Consider the polynomial 
+\[g(x)=f(x)(x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_{k-n}).\]
+In this case, the generic polynomial is \(e'_j\) and the power sum function is \(p'_j\) for \(1\leq j\leq k\). From the result in (a), we have an equation
+\[ke'_k=\sum_{i=1}^{k}(-1)^{i-1}e'_{k-i}p'_i.\]
+Let \(\alpha_1=\alpha_2=\cdots=\alpha_{k-n}=0\). Then we have 
+\begin{align}
+    e'_j&=e_j,&&\iif 1\leq j\leq n,\\
+    e'_j&=0,&&\iif n+1\leq j\leq k,\\
+    p'_j&=p_j,&&\iif 1\leq j\leq k.
+\end{align}
+Then the equation can be rewritten as 
+\[0=ke_k=\sum_{i=1}^{k}(-1)^{i-1}e_{k-i}p_i.\]
+\item Suppose \(k<n\).\\ 
+Consider the formal derivative \(f'(x)\) of \(f(x)\), which can be written in two forms:
+\begin{align*}
+    f'(x)&=\sum_{j=1}^{n}\frac{f(x)}{x-x_j},\\
+    f'(x)&=nx^{n-1}-(n-1)e_1x^{n-2}+\cdots+(-1)^{n-1}e_{n-1}.
+\end{align*}
+For \(0\leq l\leq n-1\), the coefficient in front of \(x^{n-1-l}\) is \((-1)^l (n-l)e_l\). 
+For \(1\leq j\leq n\), \(\frac{f(x)}{x-x_j}\) can be written as 
+\[\frac{f(x)}{x-x_j}=(x-x_1)\cdots (x-x_{j-1})(x-x_{j+1})\cdots(x-x_n).\]
+Remove the parentheses, and we obtain 
+\begin{align*}
+    \frac{f(x)}{x-x_j}=&x^{n-1}+(-e_1+x_j)x^{n-2}+(e_2-e_1x_j+x_j^2)x^{n-3}\\
+                       &+\cdots+((-1)^l e_l+\sum_{m=1}^{l} (-1)^{l+m}e_{l-m}x_j^{m})x^{n-l-1}+\cdots\\
+                       &+(-1)^{n-1}e_{n-1}+\sum_{m=1}^{n-1} (-1)^{m+n-1}e_{n-m-1}x_j^{m}.
+\end{align*}
+Add \(j=1\) to \(j=n\) together and we have 
+\[f'(x)=nx^{n-1}+\sum_{l=1}^{n-1}[(-1)^l n e_l+(\sum_{m=1}^{l}(-1)^{l+m}e_{l-m}p_m)]x^{n-l-1}\]
+Comparing coefficients, and we have, for \(1\leq l\leq n-1\), 
+\[(-1)^l (n-l)e_l=(-1)^l n e_l+\sum_{m=1}^{l} (-1)^{l+m} e_{l-m}p_m.\]
+This is equivalent to 
+\[l e_l=\sum_{m=1}^{l}(-1)^{m-1} e_{l-m}p_m\]
+for all \(1\leq l\leq n-1\).
+\end{enumerate}
 
+We have proved Newton's identities for \(k>0\). We have 
+\begin{align*}
+    e_1&=p_1,\\
+    2e_2&=e_1p_1-p_2,\\
+    3e_3&=e_2p_1-e_1p_2+p_3,\\ 
+    &\cdots 
+\end{align*}
+for all \(k>0\). From this, we can inductively write \(e_k\) as a polynomial of \(p_1,\ldots,p_k\) with rational coefficients. By Theorem 13.6.1, since every symmetric polynomial can be written down as a polynomial in symmetric functions, then it can also be written as a polynomial in power sum functions. 
 \end{solution}
 
 

@@ -1,4 +1,8 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[letterpaper, 12pt]{article}
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+\begin{comment}
+
+	
 \usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
 \usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
 \usepackage{fullpage} % changes the margin
@@ -75,6 +79,8 @@
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\ti}{\tilde}
 \newcommand{\Stab}{\text{Stab}}
+	
+\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %Header-Make sure you update this information!!!!
@@ -178,7 +184,7 @@ where the bottom horizontal map is the one obtained by applying the functor \(\h
 the maps that send a cohomology class \([\alpha]\) to the homomorphism \([v]\mapsto \alpha(v)\). Verify that the above diagram commutes. 
 \end{problem}
 \begin{solution}
-Let \(\alpha:C_k(Y)\rightarrow R\) be a cocycle in \(Y\) and \([\alpha]\) be the cohomology class represented by \(\alpha\) in \(H^k(Y;R)\). By defintiion, we know that \(f^*([\alpha])=[\alpha\circ f_\#]\), where 
+Let \(\alpha:C_k(Y)\rightarrow R\) be a cocycle in \(Y\) and \([\alpha]\) be the cohomology class represented by \(\alpha\) in \(H^k(Y;R)\). By definition, we know that \(f^*([\alpha])=[\alpha\circ f_\#]\), where 
 \(f_\#:C_k(X)\rightarrow C_k(Y)\) is the map on the chain complex induced by \(f\). By definition, \(\phi\) sends \([\alpha\circ f_\#]\) to the homomorphism \([v]\mapsto (\alpha\circ f_\#)(v)\) for any \(k\)-cycle \(v\in C_k(X)\). On the other hand, 
 \(\phi\) sends \([\alpha]\) to the homomorphism \([w]\mapsto \alpha(w)\) for any \(k\)-cycle \(w\in C_k(Y)\). Applying \(\hom(f_*,R)\) to this homomorphism, we obtain a homomorphism sending any \([v]\in H_k(X)\) to 
 \(\alpha(f_*([v]))\). Note that by definition, for any \(k\)-cycle \(v\in C_k(X)\), we have 
