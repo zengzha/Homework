@@ -1,0 +1,199 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 6} \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 649 - Abstract Algebra \hfill Term: Spring 2025 \\
+Instructor: Professor Sasha Polishchuk \hfill Due Date: $14^{th}$ May, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.2.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.2.7}
+Let \(S\) be a multiplicative subset of \(R\) and \(T\) be a multiplicative subset of \(S^{-1}R\). Let 
+\[S_*=\left\{ r\in R\mid [\frac{r}{s}]\in T\ \ \text{for some}\ \ s\in S \right\}.\]
+Then \(S_*\) is a multiplicative subset of \(R\) and there is a ring isomorphism \(S_*^{-1}R\cong T^{-1}(S^{-1}R)\).
+\end{problem}
+\begin{solution}
+We first prove that \(S_*\) is a multiplicative subset of \(R\). Suppose \(r_1,r_2\in S_*\), then there exist \(s_1,s_2\in S\) such that \(\frac{r_1}{s_1},\frac{r_2}{s_2}\in T\). We have \(\frac{r_1r_2}{s_1s_2}\in T\) since \(T\) is a multiplicative subset of \(S^{-1}R\). This proves that \(r_1r_2\in S_*\). So \(S_*\) is a multiplicative subset of \(R\).
+
+The elements in \(T^{-1}(S^{-1}R)\) can be written as \(\dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}}\) where \(\frac{r_2}{s_2}\in T\) and \(\frac{r_1}{s_1}\in S^{-1}R\). We define a map 
+\begin{align*}
+    f: T^{-1}(S^{-1}R)&\rightarrow S_*^{-1}R,\\
+       \dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}}&\mapsto \dfrac{r_1s_2}{r_2s_1}.
+\end{align*}
+This map is well-defined. Indeed, we know that \(\frac{r_2}{s_2}\in T\), so \(r_2\in S_*\). Moreover, since \(S\) is a multiplicative subset of \(R\), we know that \(s_1s_2\in S\), so \(\frac{r_2}{s_2}\sim \frac{r_2s_1}{s_2s_1}\in T\) in \(S^{-1}R\). This proves \(r_2s_1\in S_*\) and \(\frac{r_1s_2}{r_2s_1}\in S_*^{-1}R\). Suppose \(\dfrac{\frac{r'_1}{s'_1}}{\frac{r'_2}{s'_2}}\) is another equivalent representative of \(\dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}}\) in \(T^{-1}(S^{-1}R)\). Then there exists \(\frac{p}{q}\in T\) in \(S^{-1}R\) such that  
+\[\frac{p}{q}(\frac{r'_1}{s'_1}\cdot \frac{r_2}{s_2}-\frac{r_1}{s_1}\cdot\frac{r'_2}{s'_2})=0\]
+Namely, in \(S^{-1}R\), we have 
+\[\frac{p}{q}\cdot\frac{r'_1}{s'_1}\cdot \frac{r_2}{s_2}\sim \frac{p}{q}\cdot\frac{r_1}{s_1}\cdot\frac{r'_2}{s'_2}\]
+There exists \(u\in S\) such that \(upq(r'_1s_1r_2s'_2-r_1s'_1r'_2s_2)=0\) in \(R\). Note that \(uq^2\in S\) since \(S\) is a multiplicative subset, and \(\frac{upq}{uq^2}=\frac{p}{q}\in T\), so \(upq\in S_*\). This implies that 
+\[\frac{r_1s_2}{r_2s_1}\sim \frac{r'_1s'_2}{r'_2s'_1}\]
+in \(S_*^{-1}R\). Thus, the map \(f\) is well-defined. It is easy to check that 
+\[f(\dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}})f(\dfrac{\frac{r_3}{s_3}}{\frac{r_4}{s_4}})=\frac{r_1s_2}{r_2s_1}\cdot \frac{r_3s_4}{r_4s_3}=\frac{r_1s_2r_3s_4}{r_2s_1r_4s_3}=f(\dfrac{\frac{r_1r_3}{s_1s_3}}{\frac{r_2r_4}{s_2s_4}}).\]
+This proves that \(f\) is a ring homomorphism.
+
+Next, we want to show that \(f\) is injective and surjective. Suppose \(f(\dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}})=0\) in \(S_*^{-1}R\). This implies there exists \(u\in S_*\) such that \(ur_1s_2=0\). By definition, there exists \(s\in S\) such that \(\frac{u}{s}\in T\). Since \(S\) is multiplicative, we have \(\frac{u}{s}\sim \frac{us_2}{ss_2}\in T\) and 
+\[\frac{us_2}{ss_2}\cdot \frac{r_1}{s_1}=\frac{us_2r_1}{ss_1s_2}=0.\]
+This proves that \(\dfrac{\frac{r_1}{s_1}}{\frac{r_2}{s_2}}=0\) in \(T^{-1}(S^{-1}R)\). So \(f\) is injective. For any \(p\in S_*\), there exists \(s'\in S\) such that \(\frac{p}{s'}\in T\). So we have 
+\[f(\dfrac{\frac{r}{s'}}{\frac{p}{s'}})=\frac{rs'}{ps'}=\frac{r}{p}\]
+for all \(r\in R\) and \(p\in S_*\). This proves \(f\) is surjective. Therefore, we can conclude that \(f\) is a ring isomorphism between \(S_*^{-1}R\) and \(T^{-1}(S^{-1}R)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.2.8}
+Let \(V\) be an \(R\)-module and \(S\) be a multiplicative subset of \(R\). Then the map \(j_S:V\rightarrow S^{-1}V\), \(v\mapsto [\frac{v}{1}]\) is a homomorphism of \(R\)-modules and for every \(R\)-homomorphism from \(V\) to an \(S^{-1}R\)-module, there exists a unique \(S^{-1}R\)-module homomorphism \(\hat{f}:S^{-1}V\rightarrow V'\) such that the following diagram commutes:
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJWIl0sWzAsMSwiU157LTF9ViJdLFsyLDEsIlYnIl0sWzAsMSwial9TIiwyXSxbMSwyLCJcXGhhdHtmfSIsMl0sWzAsMiwiZiJdXQ==
+\[\begin{tikzcd}
+	& V \\
+	{S^{-1}V} && {V'}
+	\arrow["{j_S}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\hat{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+Moreover, this property characterizes \(S^{-1}V\) uniquely up to a (unique) isomorphism of \(S^{-1}R\)-modules.
+\end{problem}
+\begin{solution}
+We check that \(j_S\) is an \(R\)-module homomorphism. For any \(r\in R\) and \(v\in V\), we have 
+\[r j_S(v)=r\cdot \frac{v}{1}=\frac{rv}{1}=j_S(rv).\]
+Now given an \(R\)-module homomorphism \(f:V\rightarrow V'\) where \(V'\) is an \(S^{-1}R\)-module, we define the following map 
+\begin{align*}
+    \hat{f}: S^{-1}V&\rightarrow V',\\ 
+             \frac{v}{s}&\mapsto \frac{1}{s}\cdot f(v).
+\end{align*} 
+This map \(\hat{f}\) is a well-defined \(S^{-1}R\)-module homomorphism. Indeed, for any \(\frac{r'}{s'}\in S^{-1}R\), we have 
+\[\frac{r'}{s'}\cdot \hat{f}(\frac{v}{s})=\frac{r'}{s'}\frac{1}{s}f(v)=\frac{r'}{ss'}f(v)=\hat{f}(\frac{r'v}{s's}).\]
+Moreover, for any \(v\in V\), we have 
+\[(\hat{f}\circ j_S)(v)=\hat{f}(\frac{v}{1})=f(v).\]
+This implies we have a commutative diagram 
+\[\begin{tikzcd}
+	& V \\
+	{S^{-1}V} && {V'}
+	\arrow["{j_S}"', from=1-2, to=2-1]
+	\arrow["f", from=1-2, to=2-3]
+	\arrow["{\hat{f}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+The uniqueness can be seen from the commutativity of the diagram.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.2.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.2.13}
+Let \(f:V\rightarrow W\) be an \(R\)-module homomorphism. 
+\begin{enumerate}[(1)]
+\item \(S^{-1}(\im f)=\im(S^{-1}f)\) for any multiplicative subset \(S\subset R\). 
+\item \(f\) is surjective if and only if \(f_M:V_M\rightarrow W_M\) is surjective for every maximal ideal \(M\) of \(R\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+\item Consider a short exact sequence of \(R\)-modules 
+\[0\rightarrow \ker f\rightarrow V\xrightarrow{f}\im f\rightarrow 0.\]
+The localization is an exact functor, so we have 
+\[0\rightarrow S^{-1}\ker f\rightarrow S^{-1}V\rightarrow S^{-1}\im f\rightarrow 0.\]
+By Lemma 19.2.12, we know that \(S^{-1}\ker f=\ker (S^{-1}f)\) and the cokernel of the map \(\ker(S^{-1}f)\rightarrow S^{-1}V\) is \(\im (S^{-1}f)\). By exactness, we have 
+\[S^{-1}\im f\cong \im (S^{-1}f).\]
+\item The "only if" part follows from the fact that the localization functor is exact. Conversely, suppose \(f_M:V_M\rightarrow W_M\) is surjective for every maximal ideal \(M\) of \(R\). Consider the short exact sequence 
+\[0\rightarrow \im f\rightarrow W\rightarrow W/\im f\rightarrow 0.\]
+Localize at \(M\), and we obtain a short exact sequence
+\[0\rightarrow (\im f)_M\rightarrow W_M\rightarrow (W/\im f)_M\rightarrow 0\]
+This tells us that \((W/\im f)_M\cong W_M/(\im f)_M\). By surjectivity of \(f_M\) and what we have proved in (1), we have 
+\begin{align*}
+    0&=\coker f_M\\ 
+     &=W_M/\im f_M\\
+     &=W_M/(\im f)_M\\ 
+     &=(W/\im f)_M\\
+     &=(\coker f)_M.
+\end{align*}
+This implies that for every maximal ideal \(M\) of \(R\), \((\coker f)_M=0\). By Exercise 19.2.11, we have \(\coker f=0\), so the map \(f:V\rightarrow W\) is surjective.
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.2.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.2.15}
+Let \(S\) be a proper multiplicative subset of \(R\), and \(V, W\) be \(R\)-modules. Then 
+\[S^{-1}V\otimes_{S^{-1}R}S^{-1}W\cong S^{-1}(V\otimes_R W).\]
+\end{problem}
+\begin{solution}
+We define the following map 
+\begin{align*}
+    f:S^{-1}V\otimes_{S^{-1}R}S^{-1}W&\rightarrow S^{-1}(V\otimes_R W),\\ 
+      \frac{v}{s_1}\otimes \frac{w}{s_2}&\mapsto \frac{v\otimes w}{s_1s_2}.
+\end{align*}
+We check that this is an \(S^{-1}R\)-module homomorphism. For any \(\frac{r}{s}\in S^{-1}R\), we have 
+\[\frac{r}{s}f(\frac{v}{s_1}\otimes \frac{w}{s_2})=\frac{r}{s}\frac{v\otimes w}{s_1s_2}=\frac{rv\otimes w}{ss_1s_2}=f(\frac{rv}{ss_1}\otimes \frac{w}{s_2}).\]
+Next, we show that \(f\) is both injective and surjective. Suppose \(f(\frac{v}{s_1}\otimes \frac{w}{s_2})=0\) for some \(\frac{v}{s_1}\in V\) and \(\frac{w}{s_2}\in W\). This implies that \(\frac{v\otimes w}{s_1s_2}=0\) in \(S^{-1}(V\otimes_R W)\). There exists \(s\in S\) such that \(s(v\otimes w)=0\). This implies that 
+\[s(\frac{v}{s_1}\otimes\frac{w}{s_2})=\frac{1}{s_1s_2}(sv\otimes w)=0.\]
+This proves injectivity. On the other hand, for any \(\frac{v\otimes w}{s}\) in \(S^{-1}(V\otimes_R W)\), there exists \(\frac{v}{s}\in S^{-1}V\) and \(\frac{w}{1}\in S^{-1}W\) such that 
+\[f(\frac{v}{s}\otimes \frac{w}{1})=\frac{v\otimes w}{s}.\]
+This proves that \(f\) is surjective. Therefore, we can conclude that \(f\) is an \(S^{-1}R\)-module isomorphism between \(S^{-1}V\otimes_{S^{-1}R}S^{-1}W\) and \(S^{-1}(V\otimes_R W)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.2.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.2.16}
+Let \(V\) be an \(R\)-module. Then \(V\) is flat if and only if \(V_M\) is flat for every maximal ideal \(M\) of \(R\).
+\end{problem}
+\begin{solution}
+Assume \(V\) is flat. Given an injective map \(f:A\rightarrow B\), by Proposition 19.2.9, for any maximal ideal \(M\) of \(R\), we have 
+\[A\otimes_R V_M=A\otimes_R (R_M\otimes_R V)=(A\otimes_R R_M)\otimes_R V=A_M\otimes V.\]
+The isomorphism is functorial, so we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBXFxvdGltZXNfUlZfTSJdLFsyLDAsIkJcXG90aW1lc19SVl9NIl0sWzAsMSwiQV9NXFxvdGltZXNfUiBWIl0sWzIsMSwiQl9NXFxvdGltZXNfUlYiXSxbMCwxLCJmXFxvdGltZXMgaWRfe1ZfTX0iXSxbMCwyLCJcXGNvbmciLDJdLFsxLDMsIlxcY29uZyJdLFsyLDMsImZfTVxcb3RpbWVzIGlkX1YiLDJdXQ==
+\[\begin{tikzcd}
+	{A\otimes_RV_M} && {B\otimes_RV_M} \\
+	{A_M\otimes_R V} && {B_M\otimes_RV}
+	\arrow["{f\otimes id_{V_M}}", from=1-1, to=1-3]
+	\arrow["\cong"', from=1-1, to=2-1]
+	\arrow["\cong", from=1-3, to=2-3]
+	\arrow["{f_M\otimes id_V}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+Since \(V\) is flat, by Lemma 19.2.12, the map \(f_M\otimes id_V\) is still injective, and thus the map \(f\otimes id_{V_M}\) is injective. This proves that \(V_M\) is flat for every maximal ideal \(M\) of \(R\).
+
+Conversely, assume \(V_M\) is flat for every maximal ideal \(M\). Given an injective map \(f:A\rightarrow B\), consider the map 
+\[f_M:A_M\rightarrow B_M\]
+where \(M\) is a maximal ideal \(M\) of \(R\). By Lemma 19.2.12, \(f_M\) is injective as \(f\) is injective. We know that \(V_M\) is flat, so the map 
+\[f_M\otimes id_{V_M}:A_M\otimes_{R_M} V_M\rightarrow B_M\otimes_{R_M}V_M\]
+is still injective. Note that by Exercise 19.2.15, \(A_M\otimes_{R_M}V_M=(A\otimes_R V)_M\). So the map 
+\[(f\otimes id_V)_M:(A\otimes_R V)_M\rightarrow (B\otimes_R V)_M\]
+is injective. Use Lemma 19.2.12 again, and we know that the map 
+\[f\otimes id_V:A\otimes_R V\rightarrow B\otimes_R V\]
+is injective. This proves that \(V\) is flat.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 19.3.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{19.3.3}
+Let \(\alpha \in \mathbb{C}\) be algebraic over \(\mathbb{Q}\). Then \(\alpha\) is integral over \(\mathbb{Z}\) if and only if \(\irr(\alpha;\mathbb{Q})\in \mathbb{Z}[x]\).
+\end{problem}
+\begin{solution}
+Let \(f\) be the irreducible polynomial of \(\alpha\) over \(\mathbb{Q}\). Suppose \(f\in \mathbb{Z}[x]\). Then \(f\) can be written as 
+\[f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0\]
+where \(a_i\in \mathbb{Z}\) for all \(i\) and \(a_n\neq 0\). Define 
+\[g(x)=x^n+p_{n-1}x^{n-1}+\cdots+p_0\]
+where \(p_i=\frac{a_i}{a_n}\in \mathbb{Q}\) for all \(i\). Then \(\alpha\) is a root of \(g\) since it is a root of \(f\) and \(f(x)=a_n g(x)\). This proves that \(\alpha\) is integral over \(\mathbb{Q}\). 
+
+Conversely, suppose \(\alpha\) is integral over \(\mathbb{Q}\). Then there exists a monic polynomial 
+such that \(\alpha\) is a root. Let 
+\[f(x)=x^n+a_1x^{n-1}+\cdots+a_n\] 
+be the irreducible factor of this polynomial with \(f(\alpha)=0\). Let \(p\in \mathbb{Z}\) be the least common denominator of \(a_1,\ldots,a_n\). Then 
+\[p\cdot f(x)=px^n+pa_1x^{n-1}+\cdots+pa_n\]
+is a polynomial with \(\mathbb{Z}\) coefficients since \(p,pa_1,\ldots,pa_n\) are integers. We still have \(p\cdot f(\alpha)=0\). So the minimal polynomial \(\irr(\alpha;\mathbb{Q})=p\cdot f(x)\) because \(p\cdot f(x)\) is still irreducible in \(\mathbb{Q}\), and \(p\cdot f(x)\in \mathbb{Z}[x]\).
+\end{solution}
+
+\end{document}
