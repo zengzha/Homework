@@ -1,0 +1,127 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 5}  \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294  \\
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $16^{th}$ May,2025  \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+The space \(S^2\times S^3\) and \(S^2\vee S^3\vee S^5\) have isomorphic homology groups. Use the cup product to prove that they are not homotopy equivalent.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+\begin{enumerate}[(a)]
+\item Let \(M\) be an \(n\)-dimensional manifold-with-boundary (boundary points have neighborhoods that look like \(\left\{ \underline{x}\in \mathbb{R}^n\mid x_n\geq 0 \right\}\)). If \(x\) is on the boundary of \(M\), prove that \(H_n(M,M-x)=0\).
+\item Let \(M\) be a compact, connected, orientable \(n\)-manifold. If \(U\) is a Euclidean open disk in \(M\), prove that \(H_i(M-U)\rightarrow H_i(M)\) is an isomorphism when \(i<n\)  and prove that \(H_n(M-U)=0\). Also, if \(A=\partial (M-U)\) prove that the connecting homomorphism \(\partial:H_n(M-U,A)\rightarrow H_{n-1}(A)\) is an isomorphism. 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Let \(M\) and \(N\) be compact, connected \(n\)-manifolds, \(n\geq 2\). Prove the following:
+\begin{enumerate}[(a)]
+\item If \(M\) and \(N\) are orientable, then so is \(M\#N\). 
+\item If \(M\) and \(N\) are non-orientable, then so is \(M\#N\).
+\item What happens when \(M\) is orientable and \(N\) is not? Justify your answer.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Suppose \(X=Y=S^n\). \(H^*(X)\) has no torsion then the Künneth Theorem gives an isomorphism of rings 
+\[H^*(X)\otimes H^*(Y)\rightarrow H^*(X\times Y).\]
+For \(a\in H^*(X)\) and \(b\in H^*(Y)\), the map sends \(a\otimes b\) to \(\pi_1^*(a)\cup \pi_2^*(b)\). The latter expression is sometimes denoted \(a\times b\). 
+
+Suppose that \(S^n\) has a continuous unital multiplication \(\mu:S^n\times S^n\rightarrow S^n\). So there is a unit element \(e\in S^n\) with property that \(\mu(e,x)=x=\mu(x,e)\) for all \(x\in S^n\). Said differently, the following diagram is commutative:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTXm5cXHRpbWVzIFxcbGVmdFxceypcXHJpZ2h0XFx9Il0sWzEsMSwiU15uXFx0aW1lcyBTXm4iXSxbMiwxLCJTXm4iXSxbMCwyLCJcXGxlZnRcXHsqXFxyaWdodFxcfVxcdGltZXMgU15uIl0sWzAsMSwiaWRcXHRpbWVzIGoiLDJdLFszLDEsImpcXHRpbWVzIGlkIl0sWzAsMiwiaWQiLDAseyJjdXJ2ZSI6LTJ9XSxbMywyLCJpZCIsMix7ImN1cnZlIjoyfV0sWzEsMiwiXFxtdSJdXQ==
+\[\begin{tikzcd}
+	{S^n\times \left\{*\right\}} \\
+	& {S^n\times S^n} & {S^n} \\
+	{\left\{*\right\}\times S^n}
+	\arrow["{id\times j}"', from=1-1, to=2-2]
+	\arrow["id", curve={height=-12pt}, from=1-1, to=2-3]
+	\arrow["\mu", from=2-2, to=2-3]
+	\arrow["{j\times id}", from=3-1, to=2-2]
+	\arrow["id"', curve={height=12pt}, from=3-1, to=2-3]
+\end{tikzcd}\]
+where \(j:*\hookrightarrow S^n\) sends the point to \(e\).
+\begin{enumerate}[(a)]
+\item Let \(z\) be a generator for \(H^n(S^n)\). Use the above diagram to prove that \(\mu^*(z)=z\otimes 1+1\otimes z\).
+\item Use the fact that \(\mu^*\) is a ring homomorphism, together with your knowledge of the ring structure on \(H^*(S^n\times S^n)\), to conclude that \(n\) must be odd. 
+\item Consider a multiplication \(\mathbb{R}^3\times \mathbb{R}^3\rightarrow \mathbb{R}^3\) which was unital and had no zero-divisors (that is, \(xy=0\Rightarrow (x=0\ \text{or}\ y=0)\)). Use (b) to prove that no such multiplication exists, assuming that the identity element is nonzero. 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+The relative form of the Künneth Theorem is that there is a natural short exact sequence 
+\begin{multline*}
+    0\rightarrow \bigoplus_{p+q=n}H_p(X,A)\otimes H_q(Y,B)\rightarrow H_n(X\times Y, X\times B\cup A\times Y)\\
+    \rightarrow \bigoplus_{p+q=n-1}\Tor_1(H_p(X,A),H_q(Y,B))\rightarrow 0.
+\end{multline*}
+
+\begin{enumerate}[(a)]
+\item Suppose that \(M\) is an \(n\)-manifold and \(N\) is a \(k\)-manifold, and that we are given local orientations \(\mu_M\in H_n(M,M-x)\) and \(\mu_N\in H_k(N,N-y)\), for some \(x\in M\) and \(y\in N\). Explain how to get an induced local orientation for \(M\times N\) at \((x,y)\).
+\item Explain how to get an interesting continuous map \(\tilde{M}\times \tilde{N}\rightarrow \tilde{M\times N}\), where \(\tilde{M}\) is the space of pairs \((m,\mu_m)\) such that \(m\in M\) and \(\mu_m\in H_n(M,M-m)\) is a generator (and similarly for N, etc.). How many points are in each fiber?
+\item Prove that if \(M\) and \(N\) are orientable then so is \(M\times N\) (we are not assuming compactness here). 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Consider the space \(X=\mathbb{R}P^2\#\mathbb{R}P^2\#\mathbb{R}P^2\), made into a \(\Delta\)-complex as follows.
+
+Recall that \(H^0(X;\mathbb{Z}/2)=H^2(X;\mathbb{Z}/2)=\mathbb{Z}/2\) and \(H^1(X;\mathbb{Z}/2)=(\mathbb{Z}/2)^3\). The Universal Coefficients Theorem implies that the standard maps
+\[\phi_i:H^i(X;\mathbb{Z}/2)\rightarrow \hom(H_i(X;\mathbb{Z}/2),\mathbb{Z}/2)\]
+are isomorphisms.
+\begin{enumerate}[(a)]
+\item Write down explicit \(1\)-cocycles \(\alpha\), \(\beta\) and \(\gamma\) (with \(\mathbb{Z}/2\) coefficients) that map to \(\hat{a}\), \(\hat{b}\) and \(\hat{c}\) under \(\phi\). 
+\item Given a \(2\)-cochain \(\Theta\) (with \(\mathbb{Z}/2\) coefficients), how can one easily determine if \(\Theta\) is a generator for \(H^2(X;\mathbb{Z}/2)\)?
+\item Determine a class \(u\in H^1(X;\mathbb{Z}/2)\) such that \(\alpha\cup u\) is a generator for \(H^2(X;\mathbb{Z}/2)\). Then do the same for \(\beta\) and \(\gamma\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+
+\end{document}
