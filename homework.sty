@@ -12,6 +12,12 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+
 \usepackage{array}
 \usepackage{capt-of}
 \usepackage{leftindex}
@@ -66,6 +72,11 @@
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./Pictures/}{#1.pdf_tex}
+}
 %\let\mathbb\oldmathbb
 
 \renewcommand{\qed}{\quad\qedsymbol}

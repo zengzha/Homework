@@ -17,7 +17,11 @@ Instructor: Dr.Daniel Dugger \hfill Due Date: $16^{th}$ May,2025  \\
 The space \(S^2\times S^3\) and \(S^2\vee S^3\vee S^5\) have isomorphic homology groups. Use the cup product to prove that they are not homotopy equivalent.
 \end{problem}
 \begin{solution}
-
+By Künneth Theorem, \(H^i(S^2\times S^3)=\mathbb{Z}\) for \(i=0,2,3,5\). The space \(Y=S^2\vee S^3\vee S^5\) has a cellular structure with one cell in dimension \(0,2,3,5\). So its cohomology groups are the same. Suppose \(e^i\) (\(i=0,2,3,5\)) are corresponding cells in \(i\)th dimension. Then \([e^2]\cup[e^3]=0\) because they come from different parts of the wedge product. On the other hand, because the cohomology groups of spheres are free Abelian groups, so we have an isomorphism of rings 
+\[H^*(S^2\times S^3)\cong \bigoplus_{i+j=*}H^i(S^2)\otimes H^j(S^3).\]
+Let \(x\in H^0(S^2)=\mathbb{Z}\) and \(y\in H^0(S^3)=\mathbb{Z}\) be the generators. They are multiplicative unit in the cohomology rings. Let \(a\in H^2(S^2)=\mathbb{Z}\) and \(b\in H^3(S^3)=\mathbb{Z}\) be generators. In the tensor product, we have 
+\[(a\otimes y)\cup (x\otimes b)=(a\cup x)\otimes (y\cup b)=a\otimes b\]
+where \(a\otimes b\) is the generator of \(\mathbb{Z}=H^2(S^2)\otimes H_3(S^3)\cong H^5(S^2\times S^3)\). This shows that \(S^2\times S^3\) and \(Y\) have different cohomology rings, so they are not homotopy equivalent. 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -31,7 +35,107 @@ The space \(S^2\times S^3\) and \(S^2\vee S^3\vee S^5\) have isomorphic homology
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+\item Suppose \(x\in M\) is a boundary point and \(U\subseteq M\) is a neighborhood isomorphic to 
+\[\left\{ \underline{x}\in \mathbb{R}^n\mid x_n\geq 0 \right\}.\] 
+Consider \(M-\bar{U}\subset M-x\subset M\) and use excision, we have 
+\[H_n(M,M-x)\cong H_n(\bar{U},\bar{U}-x).\]
+Without loss of generality, we can assume \(n=2\) and 
+\[\bar{U}=\left\{ z=re^{i\alpha}\in \mathbb{C}=\mathbb{R}^2\mid 0\leq r\leq 1, 0\leq \alpha\leq \pi \right\}\]
+and \(x=(0,0)\in \bar{U} \). Consider the homotopy defined via 
+\begin{align*}
+    H:(\bar{U}-x)\times I&\rightarrow \bar{U}-x,\\ 
+      z&\mapsto \frac{z}{|z|}
+\end{align*}
+This is a deformation retract to the half circle 
+\[\left\{ z=e^{i\alpha}\mid 0\leq \alpha\leq \pi \right\}.\]
+The half circle is contractible, so \(\bar{U}-x\) is also contractible. For higher \(n\), we can prove \(\bar{U}-x\) is still contractible in a similar way. Now consider the long exact sequence for the pair \((\bar{U}-x,\bar{U})\)
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiSF9uKFUteCkiXSxbMiwwLCJIX24oVSkiXSxbMywwLCJIX24oVSxVLXgpIl0sWzEsMSwiSF97bi0xfShVLXgpIl0sWzIsMSwiSF97bi0xfShVKSJdLFszLDEsIlxcY2RvdHMiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbNCw1XSxbNSw2XV0=
+\[\begin{tikzcd}
+	\cdots & {H_n(\bar{U}-x)} & {H_n(\bar{U})} & {H_n(\bar{U},\bar{U}-x)} \\
+	& {H_{n-1}(\bar{U}-x)} & {H_{n-1}(\bar{U})} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}\]
+If \(n\geq 2\), note that both \(\bar{U}\) and \(\bar{U}-x\) are contractible, so \(H_n(\bar{U})=H_{n-1}(\bar{U}-x)=0\), this implies that \(H_n(\bar{U},\bar{U}-x)=0\). If \(n=1\), then \(H_0(\bar{U}-x)\rightarrow H_0(\bar{U})\) is an isomorphism and \(H_1(\bar{U})=0\), so \(H_1(\bar{U},\bar{U}-x)=0\). This proves that 
+\[H_n(M,M-x)\cong H_n(\bar{U},\bar{U}-x)=0\]
+for all \(n\geq 1\). 
+\item Consider the quotient space 
+\[M/M-U\cong U/\partial U\cong S^n\]
+because \(U\) is the Euclidean open disk. We have an isomorphism for all \(*\)  
+\[H_*(M,M-U)\cong \tilde{H}_*(M/M-U)\cong \tilde{H}_*(S^n).\]
+Consider the long exact sequence of the pair 
+% https://q.uiver.app/#q=WzAsOSxbMCwxLCJIX24oTS1VKSJdLFsxLDEsIkhfbihNKSJdLFsyLDEsIlxcdGlsZGV7SH1fbihTXm4pIl0sWzAsMiwiSF97bi0xfShNLXgpIl0sWzEsMiwiSF97bi0xfShNKSJdLFsyLDIsIlxcdGlsZGV7SH1fe24tMX0oU15uKSJdLFsyLDAsIlxcdGlsZGV7SH1fe24rMX0oU15uKSJdLFsxLDAsIlxcY2RvdHMiXSxbMCwzLCJcXGNkb3RzIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzQsNV0sWzcsNl0sWzYsMF0sWzUsOF1d
+\[\begin{tikzcd}
+	& \cdots & {\tilde{H}_{n+1}(S^n)} \\
+	{H_n(M-U)} & {H_n(M)} & {\tilde{H}_n(S^n)} \\
+	{H_{n-1}(M-x)} & {H_{n-1}(M)} & {\tilde{H}_{n-1}(S^n)} \\
+	\cdots
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=3-1]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=4-1]
+\end{tikzcd}\]
+\(\tilde{H}_i(S^n)=0\) for all \(i\leq n-1\) and \(i\geq n+1\), to prove that \(H_n(M-U)=0\) and \(H_i(M-U)\rightarrow H_i(M)\) is an isomorphism for all \(i\leq n-1\), we only need to show that 
+\[H_n(M)\rightarrow H_n(M,M-U)\cong \tilde{H}_n(S^n)\]
+is an isomorphism. Let \(x\in U\) be a point. Consider the following square 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNLVUiXSxbMSwwLCJNIl0sWzAsMSwiTS14Il0sWzEsMSwiTSJdLFswLDFdLFswLDJdLFsyLDNdLFsxLDMsImlkIl1d
+\[\begin{tikzcd}
+	{M-U} & M \\
+	{M-x} & M
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["id", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+All three maps are inclusions. This induces a commutative diagram in homology groups 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIX24oTSkiXSxbMSwwLCJIX24oTSxNLVUpIl0sWzAsMSwiSF9uKE0pIl0sWzEsMSwiSF9uKE0sTS14KSJdLFsyLDNdLFswLDIsImlkIiwyXSxbMCwxXSxbMSwzXV0=
+\[\begin{tikzcd}
+	{H_n(M)} & {H_n(M,M-U)} \\
+	{H_n(M)} & {H_n(M,M-x)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["id"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+Note that \(M\) is orientable, so the map \(H_n(M)\rightarrow H_n(M,M-x)\) is an isomorphism for all \(x\in M\). This implies that the composition 
+\[H_n(M)\rightarrow H_n(M,M-U)\rightarrow H_n(M,M-x)\]
+is an isomorphism. Moreover, \(U\) is a Euclidean open disk, so \(U\) is homotopy equivalent to a point. This implies that \(M-U\) is homotopy equivalent to \(M-x\), so \(H_n(M,M-U)\rightarrow H_n(M,M-x)\) is also an isomorphism. Thus, we have proved that \(H_n(M)\rightarrow H_n(M,M-U)\) is an isomorphism. 
 
+Now consider \(A=\partial (M-U)\). Consider the long exact sequence in homology groups coming from the pair \((A,M-U)\)
+\[H_n(M-U)\rightarrow H_n(M-U,A)\xrightarrow{\partial}H_{n-1}(A)\rightarrow H_{n-1}(M-U)\rightarrow \cdots\]
+We have already proved \(H_n(M-U)=0\), to show that \(\partial \) is an isomorphism, we only need to show that the map 
+\[i_*:H_{n-1}(A)\rightarrow H_{n-1}(M-U)\] 
+is the zero map where \(i:A\rightarrow M-U\) is the inclusion. Consider the following commutative diagram of spaces 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiTS1VIl0sWzEsMSwiTSJdLFswLDEsIk0iXSxbMCwzXSxbMywyLCJpZCIsMl0sWzAsMV0sWzEsMl1d
+\[\begin{tikzcd}
+	A & {M-U} \\
+	M & M
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow["id"', from=2-1, to=2-2]
+\end{tikzcd}\]
+All three maps are inclusions. This induces a commutative diagram in homology groups 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIX3tuLTF9KEEpIl0sWzEsMCwiSF97bi0xfShNLVUpIl0sWzEsMSwiSF97bi0xfShNKSJdLFswLDEsIkhfe24tMX0oTSkiXSxbMCwzXSxbMywyLCJpZCIsMl0sWzAsMV0sWzEsMiwiXFxjb25nIl1d
+\[\begin{tikzcd}
+	{H_{n-1}(A)} & {H_{n-1}(M-U)} \\
+	{H_{n-1}(M)} & {H_{n-1}(M)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\cong", from=1-2, to=2-2]
+	\arrow["id"', from=2-1, to=2-2]
+\end{tikzcd}\]
+We have proved that the right vertical map is an isomorphism. Note that in \(M\), the boundary of \(M-U\) is the same as the boundary of the closed disk \(\bar{U}\), and \(\bar{U}\) is contractible, so the map \(H_{n-1}(A)\rightarrow H_{n-1}(M)\) is the zero map. This implies that \(H_{n-1}(A)\rightarrow H_{n-1}(M-U)\) is also the zero map. 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -47,7 +151,21 @@ Let \(M\) and \(N\) be compact, connected \(n\)-manifolds, \(n\geq 2\). Prove th
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item If \(M\), \(N\) are orientable, let \(U\) be the disk they glued together, whose boundary is isomorphic to \(S^{n-1}\). We have a cofiber sequence 
+\[S^{n-1}\rightarrow M\#N\rightarrow M\vee N.\]
+This induces a long exact sequence in homology groups 
+\[H_n(S^{n-1})\rightarrow H_n(M\#N)\rightarrow H_n(M\vee N)\rightarrow H_{n-1}(S^{n-1})\rightarrow \cdots\]
+We know that \(H_n(S^{n-1})=0\) and \(H_n(M\vee N)=H_n(M)\oplus H_n(N)\) for \(n\geq 2\). Because both \(M\) and \(N\) are orientable, \(H_n(M\vee N)=\mathbb{Z}^2\). If \(H_n(M\#N)=0\), then the map \(H_n(M\vee N)\rightarrow H_{n-1}(S^{n-1})\) is injective, namely we have an injective map \(\mathbb{Z}^2\rightarrow \mathbb{Z}\). This is impossible. So \(H_n(M\#N)=\mathbb{Z}\). This implies \(M\#N\) is orientable. 
+\item Use the same long exact sequence as (a), and now because \(M\), \(N\) are both non-orientable, we have 
+\[H_n(M\vee N)=H_n(M)\oplus H_n(N)=0.\]
+This implies that \(H_n(M\#N)=0\) and thus \(M\#N\) is also non-orientable.
+\item Let \(U\) be the Euclidean disk \(M\) and \(N\) glued together, then we have a cofiber sequence
+\[M-U\rightarrow M\# N\rightarrow N.\]
+This induces a long exact sequence in homology groups 
+\[\cdots\rightarrow H_n(M-U)\rightarrow H_n(M\# N)\rightarrow H_n(N)\rightarrow \cdots\]
+We have proved in the previous problem that if \(M\) is orientable, then \(H_n(M-U)=0\) for an open Euclidean disk \(U\subseteq M\). And \(H_n(N)=0\) because \(N\) is non-orientable. This implies that \(H_n(M\#N)=0\), and thus we can conclude that \(M\#N\) is non-orientable. 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -79,7 +197,44 @@ where \(j:*\hookrightarrow S^n\) sends the point to \(e\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item Let \(1\in H^0(S^n)\) be the generator and the identity element in the cohomology ring \(H^*(S^n)\). Then by Künneth Theorem, the cohomology group 
+\[H^n(S^n\times S^n)=H^0\otimes H^n(S^n)\oplus H^n(S^n)\otimes H^0(S^n)\]
+has two generators \(z\otimes 1\) and \(1\otimes z\). So \(\mu^*(z)=k_1(z\otimes 1)+k_2(1\otimes z)\) for some integer \(k_1,k_2\). Consider the map \(id:S^n\times \left\{ * \right\}\rightarrow S^n\), the induced map in cohomology \(id:H^n(S^n)\rightarrow H^n(S^n\times \left\{ * \right\})\) maps \(z\) to \(z\otimes 1\). On the other hand, the map 
+\[id\times j:S^n\times \left\{ * \right\}\rightarrow S^n\times S^n\]
+induceds a map 
+\[id\times j^*:H^n(S^n\times S^n)\rightarrow H^n(S^n\times \left\{ * \right\})\]
+sending \(z\otimes 1\) to \(z\otimes 1\) and \(1\otimes z\) to \(0\) because the induced map \(j^*:H^n(S^n)\rightarrow H^n(\left\{ * \right\})=0\) is the trivial map. Since we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXm5cXHRpbWVzIFxcbGVmdFxceypcXHJpZ2h0XFx9Il0sWzAsMSwiU15uXFx0aW1lcyBTXm4iXSxbMSwwLCJTXm4iXSxbMCwyLCJpZCJdLFswLDEsImlkXFx0aW1lcyBqIiwyXSxbMSwyLCJcXG11IiwyXV0=
+\[\begin{tikzcd}
+	{S^n\times \left\{*\right\}} & {S^n} \\
+	{S^n\times S^n}
+	\arrow["id", from=1-1, to=1-2]
+	\arrow["{id\times j}"', from=1-1, to=2-1]
+	\arrow["\mu"', from=2-1, to=1-2]
+\end{tikzcd}\]
+which induces a commutative diagram in cohomology groups 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJIXm4oU15uXFx0aW1lcyBcXGxlZnRcXHsqXFxyaWdodFxcfSkiXSxbMCwxLCJIXm4oU15uXFx0aW1lcyBTXm4pIl0sWzEsMCwiSF5uKFNebikiXSxbMiwwLCJpZCIsMl0sWzIsMSwiXFxtdV4qIl0sWzEsMCwiaWRcXHRpbWVzIGpeKiJdXQ==
+\[\begin{tikzcd}
+	{H^n(S^n\times \left\{*\right\})} & {H^n(S^n)} \\
+	{H^n(S^n\times S^n)}
+	\arrow["id"', from=1-2, to=1-1]
+	\arrow["{\mu^*}", from=1-2, to=2-1]
+	\arrow["{id\times j^*}", from=2-1, to=1-1]
+\end{tikzcd}\]
+This proves that \(k_1=1\). Similarly, we can prove \(k_2=1\). Thus, \(\mu^*(z)=z\otimes 1+1\otimes z\). 
+\item We know that in the cohomology ring \(H^*(S^n)\), \(z\cup z=0\) for the generator \(z\in h^n(S^n)\). The map \(\mu^*\) is a homomorphism of rings, so 
+\begin{align*}
+0&=\mu^*(z\cup z)\\
+ &=\mu^*(z)\cup\mu^*(z)\\ 
+ &=(z\otimes 1+1\otimes z)\cup (z\otimes 1+1\otimes z)\\ 
+ &=(z\cup z)\otimes 1+1\otimes (z\cup z)+ (z\otimes 1)\cup (1\otimes z)+(1\otimes z)\cup (z\otimes 1)\\
+ &=(z\otimes 1)\cup (1\otimes z)+(1\otimes z)\cup (z\otimes 1).
+\end{align*}
+Because the cohomology ring \(H^*(S^n\times S^n)\) is graded commutative, so 
+\[(1\otimes z)\cup (z\otimes 1)=(-1)^{n^2}(z\otimes 1)\cup (1\otimes z).\]
+This implies that \((-1)^{n^2}=-1\), so \(n\) must be odd. 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -95,24 +250,64 @@ The relative form of the Künneth Theorem is that there is a natural short exact
 
 \begin{enumerate}[(a)]
 \item Suppose that \(M\) is an \(n\)-manifold and \(N\) is a \(k\)-manifold, and that we are given local orientations \(\mu_M\in H_n(M,M-x)\) and \(\mu_N\in H_k(N,N-y)\), for some \(x\in M\) and \(y\in N\). Explain how to get an induced local orientation for \(M\times N\) at \((x,y)\).
-\item Explain how to get an interesting continuous map \(\tilde{M}\times \tilde{N}\rightarrow \tilde{M\times N}\), where \(\tilde{M}\) is the space of pairs \((m,\mu_m)\) such that \(m\in M\) and \(\mu_m\in H_n(M,M-m)\) is a generator (and similarly for N, etc.). How many points are in each fiber?
+\item Explain how to get an interesting continuous map \(\tilde{M}\times \tilde{N}\rightarrow \widetilde{M\times N}\), where \(\tilde{M}\) is the space of pairs \((m,\mu_m)\) such that \(m\in M\) and \(\mu_m\in H_n(M,M-m)\) is a generator (and similarly for N, etc.). How many points are in each fiber?
 \item Prove that if \(M\) and \(N\) are orientable then so is \(M\times N\) (we are not assuming compactness here). 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item Consider the tensor product \(\mu_M\otimes \mu_N\in H_n(M,M-x)\otimes H_k(N,N-y)\). Let 
+\[f:H_n(M,M-x)\otimes H_k(N,N-y)\rightarrow H_{n+k}(M\times N, M\times (N-y)\cup (M-x)\times N)\]
+ be the map coming from the natural short exact sequence. We need to show that 
+ \[M\times N-(x,y) =M\times (N-y)\cup (M-x)\times N.\]
+Indeed, it is easy to see that \(M\times (N-y)\subseteq M\times N\), and for any point \((m,n)\in M\times (N-y)\), we know that \(n\neq y\), so \((m,n)\neq (x,y)\), this means \((m,n)\in M\times N-(x,y)\). This proves that 
+\[M\times (N-y)\subseteq M\times N-(x,y).\]
+Similarly, we can prove that 
+\[(M-x)\times N\subseteq M\times N-(x,y).\]
+So we have 
+\[M\times (N-y)\cup (M-x)\times N\subseteq M\times N-(x,y).\]
+On the other hand, given a point \((m,n)\in M\times N-(x,y)\), if \(m\neq x\), then \((m,n)\in (M-x)\times N\). If \(m=x\), then we know that \(n\neq y\), otherwise \((m,n)=(x,y)\), so in this case \((m,n)\in M\times (N-y)\). This proves that 
+\[M\times N-(x,y)\subseteq M\times (N-y)\cup (M-x)\times N.\]
+Therefore, we can conclude that 
+\[M\times N-(x,y)=M\times (N-y)\cup (M-x)\times N\]
+and \(f(\mu_M\otimes \mu_N)\) is a generator of \(H_{n+k}(M\times N,M\times N-(x,y))\), which is the same as a local orientation of \(M\times N\) at the point \((x,y)\).
+\item We define a map 
+\begin{align*}
+    g:\tilde{M}\times\tilde{N}&\rightarrow \widetilde{M\times N},\\ 
+      ((m,\mu_m),(n,\mu_n))&\mapsto ((m,n),f(\mu_m\otimes \mu_n)). 
+\end{align*}
+We have proved in (a) that \(f(\mu_m\otimes \mu_n)\) is a local orientation of \(M\times N\) at the point \((m,n)\), so this map is well-defined. 
+\item Consider the covering map \(p_M:\tilde{M}\rightarrow M\), if \(M\) is orientable, then there exists a continuous map \(s_M:M\rightarrow \tilde{M}\) such that \(p_M\circ s_M=id_M\). Similar for \(N\). Now consider the map 
+\[s_M\times s_N:M\times N\rightarrow \tilde{M}\times \tilde{N}.\]
+The composition \(g\circ (s_M\times s_N): M\times N\rightarrow \tilde{M\times N}\) is a section of the covering map 
+\[p_M\times p_N:\widetilde{M\times N}\rightarrow M\times N.\]
+Indeed, we can check that 
+\begin{align*}
+    (p_M\times p_N)\circ (g\circ (s_M\times s_N))&=(p_M\times p_N)\circ g\circ (s_M\times s_N)\\ 
+                                                 &=(p_M\circ s_M)\times (p_N\circ s_N)\\ 
+                                                 &=id_M\times id_N\\ 
+                                                 &=id_{M\times N}
+\end{align*}
+So the covering map 
+\[p_{M\times N}:\widetilde{M\times N}\rightarrow M\times N\]
+has a section, thus the manifold \(M\times N\) is orientable. 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 6
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{6}
-Consider the space \(X=\mathbb{R}P^2\#\mathbb{R}P^2\#\mathbb{R}P^2\), made into a \(\Delta\)-complex as follows.
 
+Consider the space \(X=\mathbb{R}P^2\#\mathbb{R}P^2\#\mathbb{R}P^2\), made into a \(\Delta\)-complex as follows.
+\begin{figure}[ht]
+    \incfig{HW5-6-1}
+\end{figure}
 Recall that \(H^0(X;\mathbb{Z}/2)=H^2(X;\mathbb{Z}/2)=\mathbb{Z}/2\) and \(H^1(X;\mathbb{Z}/2)=(\mathbb{Z}/2)^3\). The Universal Coefficients Theorem implies that the standard maps
 \[\phi_i:H^i(X;\mathbb{Z}/2)\rightarrow \hom(H_i(X;\mathbb{Z}/2),\mathbb{Z}/2)\]
 are isomorphisms.
+
+\begin{problem}{6}
 \begin{enumerate}[(a)]
 \item Write down explicit \(1\)-cocycles \(\alpha\), \(\beta\) and \(\gamma\) (with \(\mathbb{Z}/2\) coefficients) that map to \(\hat{a}\), \(\hat{b}\) and \(\hat{c}\) under \(\phi\). 
 \item Given a \(2\)-cochain \(\Theta\) (with \(\mathbb{Z}/2\) coefficients), how can one easily determine if \(\Theta\) is a generator for \(H^2(X;\mathbb{Z}/2)\)?
@@ -120,7 +315,27 @@ are isomorphisms.
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item Let \(\alpha=\hat{a}+\hat{e_2}\). We check that \(\alpha\) is a cocycle and not a coboundary. For \(3\leq i\leq 6\), we know that \((\delta\alpha)(T_i)=0\) because their boundary does not contain \(a\) or \(e_2\). And we have 
+\begin{align*}
+    (\delta\alpha)(T_1)&=(\hat{a}+\hat{e_2})(e_1+a-e_2)=1-1=0\\ 
+    (\delta\alpha)(T_2)&=(\hat{a}+\hat{e_2})(e_2+a-e_3)=1+1=2=0.
+\end{align*}
+So \(\alpha\) is a cocycle with \(\mathbb{Z}/2\)-coefficients. On the other hand, suppose there exists \(m\hat{x}+n\hat{y}\) for some \(m,n\in \mathbb{Z}\) such that \(\delta(m\hat{x}+n\hat{y})=\hat{a}+\hat{e_2}\), then we have 
+\begin{align*}
+   1&=(\hat{a}+\hat{e_2})(a)=(\delta(m\hat{x}+n\hat{y}))(a)=(m\hat{x}+n\hat{y})(x-x)=0
+\end{align*}
+A contradiction. So \(\hat{a}+\hat{x}\) is a \(1\)-cocycle but not a coboundary. And we know 
+\begin{align*}
+    (\hat{a}+\hat{e_2})(a)&=1,\\
+    (\hat{a}+\hat{e_2})(b)&=0,\\
+    (\hat{a}+\hat{e_2})(c)&=0. 
+\end{align*}
+This implies that \(\phi(\alpha)=\hat{a}\) in \(\hom(H_1(X;\mathbb{Z}/2),\mathbb{Z}/2)\). By symmetry, we can see that 
+\(\beta=\hat{b}+\hat{e_4}\) maps to \(\hat{b}\) and \(\gamma=\hat{c}+\hat{e_6}\) maps to \(\hat{c}\) under \(\phi\).
+\item We know that \(\phi\) is an isomorphism, so we can check whether \(\Theta\) is a generator of \(H^2(X;\mathbb{Z}/2)\) by checking whether the image \(\phi(\Theta)\) is the generator of \(\hom(H_2(X;\mathbb{Z}/2),\mathbb{Z}/2)\). We know that the sum \(\sum_{i=1}^{6}T_i\) is the generator of the homology group \(H_2(X;\mathbb{Z}/2)\), so we can check that whether \(\Theta(\sum_{i=1}^{6}T_i)=1\). If it equals to \(1\), then \(\Theta\) is a generator of \(H^2(X;\mathbb{Z}/2)\), and if \(\theta(\sum_{i=1}^{6}T_i)=0\), then \(\Theta\) is not a generator.
+\item  
+\end{enumerate}
 \end{solution}
 
 

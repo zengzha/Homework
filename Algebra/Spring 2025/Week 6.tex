@@ -183,17 +183,13 @@ Let \(\alpha \in \mathbb{C}\) be algebraic over \(\mathbb{Q}\). Then \(\alpha\) 
 \end{problem}
 \begin{solution}
 Let \(f\) be the irreducible polynomial of \(\alpha\) over \(\mathbb{Q}\). Suppose \(f\in \mathbb{Z}[x]\). Then \(f\) can be written as 
-\[f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0\]
-where \(a_i\in \mathbb{Z}\) for all \(i\) and \(a_n\neq 0\). Define 
-\[g(x)=x^n+p_{n-1}x^{n-1}+\cdots+p_0\]
-where \(p_i=\frac{a_i}{a_n}\in \mathbb{Q}\) for all \(i\). Then \(\alpha\) is a root of \(g\) since it is a root of \(f\) and \(f(x)=a_n g(x)\). This proves that \(\alpha\) is integral over \(\mathbb{Q}\). 
+\[f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0\]
+where \(a_i\in \mathbb{Z}\) for all \(i\). This proves that \(\alpha\) is integral over \(\mathbb{Z}\). 
 
-Conversely, suppose \(\alpha\) is integral over \(\mathbb{Q}\). Then there exists a monic polynomial 
+Conversely, suppose \(\alpha\) is integral over \(\mathbb{Z}\). Then there exists a monic polynomial 
 such that \(\alpha\) is a root. Let 
 \[f(x)=x^n+a_1x^{n-1}+\cdots+a_n\] 
-be the irreducible factor of this polynomial with \(f(\alpha)=0\). Let \(p\in \mathbb{Z}\) be the least common denominator of \(a_1,\ldots,a_n\). Then 
-\[p\cdot f(x)=px^n+pa_1x^{n-1}+\cdots+pa_n\]
-is a polynomial with \(\mathbb{Z}\) coefficients since \(p,pa_1,\ldots,pa_n\) are integers. We still have \(p\cdot f(\alpha)=0\). So the minimal polynomial \(\irr(\alpha;\mathbb{Q})=p\cdot f(x)\) because \(p\cdot f(x)\) is still irreducible in \(\mathbb{Q}\), and \(p\cdot f(x)\in \mathbb{Z}[x]\).
+be the irreducible factor of this polynomial with \(f(\alpha)=0\). Let \(g\) be the minimal polynomial of \(\alpha\) over \(\mathbb{Q}\). We know that \(f\in \mathbb{Z}[x]\subseteq \mathbb{Q}[x]\) and \(f(\alpha)=0\), so \(g|f\) over \(\mathbb{Q}\). This implies \(\deg g\leq \deg f\). On the other hand, there exists \(m\in \mathbb{Z}\) such that \(mg\in \mathbb{Z}[x]\) and since \(f\) is irreducible over \(\mathbb{Z}\), we have \(f|mg\) over \(\mathbb{Z}\). This implies \(\deg f\leq \deg mg=\deg g\). So we have \(\deg f=\deg g\) and this tells us that \(f=g\in \mathbb{Z}[x]\).
 \end{solution}
 
 \end{document}
