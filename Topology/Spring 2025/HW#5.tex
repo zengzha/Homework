@@ -203,8 +203,8 @@ where \(j:*\hookrightarrow S^n\) sends the point to \(e\).
 has two generators \(z\otimes 1\) and \(1\otimes z\). So \(\mu^*(z)=k_1(z\otimes 1)+k_2(1\otimes z)\) for some integer \(k_1,k_2\). Consider the map \(id:S^n\times \left\{ * \right\}\rightarrow S^n\), the induced map in cohomology \(id:H^n(S^n)\rightarrow H^n(S^n\times \left\{ * \right\})\) maps \(z\) to \(z\otimes 1\). On the other hand, the map 
 \[id\times j:S^n\times \left\{ * \right\}\rightarrow S^n\times S^n\]
 induceds a map 
-\[id\times j^*:H^n(S^n\times S^n)\rightarrow H^n(S^n\times \left\{ * \right\})\]
-sending \(z\otimes 1\) to \(z\otimes 1\) and \(1\otimes z\) to \(0\) because the induced map \(j^*:H^n(S^n)\rightarrow H^n(\left\{ * \right\})=0\) is the trivial map. Since we have a commutative diagram 
+\[id\otimes j^*:H^n(S^n\times S^n)\rightarrow H^n(S^n\times \left\{ * \right\})\]
+sending \(z\otimes 1\) to \(z\otimes 1\) and \(1\otimes z\) to \(0\) because the cohomology group of \(H^n(S^n\times \left\{ * \right\})\) is isomorphic to \(H^n(S^n)\otimes H^0(\left\{ * \right\})\), having no \((0,n)\) part.  Since we have a commutative diagram 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXm5cXHRpbWVzIFxcbGVmdFxceypcXHJpZ2h0XFx9Il0sWzAsMSwiU15uXFx0aW1lcyBTXm4iXSxbMSwwLCJTXm4iXSxbMCwyLCJpZCJdLFswLDEsImlkXFx0aW1lcyBqIiwyXSxbMSwyLCJcXG11IiwyXV0=
 \[\begin{tikzcd}
 	{S^n\times \left\{*\right\}} & {S^n} \\
@@ -234,7 +234,9 @@ This proves that \(k_1=1\). Similarly, we can prove \(k_2=1\). Thus, \(\mu^*(z)=
 Because the cohomology ring \(H^*(S^n\times S^n)\) is graded commutative, so 
 \[(1\otimes z)\cup (z\otimes 1)=(-1)^{n^2}(z\otimes 1)\cup (1\otimes z).\]
 This implies that \((-1)^{n^2}=-1\), so \(n\) must be odd. 
-\item The multiplication \(m:\mathbb{R}^3\times \mathbb{R}^3\rightarrow \mathbb{R}^3\) is \(\mathbb{R}\)-linear, so we can restrict \(m\) on the unit sphere \(S^2\subseteq \mathbb{R}^3\). This gives an unital multiplication \(m:S^2\times S^2\rightarrow S^2\), but we have proved in (b) that such a multiplication cannot exist in even dimensions. 
+\item The multiplication \(m:\mathbb{R}^3\times \mathbb{R}^3\rightarrow \mathbb{R}^3\) has no zero divisors, so \(m\) can be restricted to a multiplication
+\[m:\mathbb{R}^3-0\times \mathbb{R}^3-0\rightarrow \mathbb{R}^3-0.\]
+Since \(m\) is \(\mathbb{R}\)-linear, the map \(m\) can be restricted to the unit sphere \(S^2\subseteq \mathbb{R}^3\) by normalizing (divided by the norm). This gives an unital multiplication \(m:S^2\times S^2\rightarrow S^2\), but we have proved in (b) that such a multiplication cannot exist in even dimensions. 
 \end{enumerate}
 \end{solution}
 
