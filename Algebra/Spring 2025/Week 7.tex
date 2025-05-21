@@ -18,7 +18,9 @@ Instructor: Professor Sasha Polishchuk \hfill Due Date: $21^{st}$ May, 2025 \\
 If \(R\) is an integrally closed domain with quotient field \(\mathbb{F}\), and \(f,g\in \mathbb{F}[x]\) are monic with \(fg\in \mathbb{R}[x]\), then \(f,g\in R[x]\).
 \end{problem}
 \begin{solution}
-
+Let \(\overline{\mathbb{F}}\) be the algebraic closure of \(\mathbb{F}\). Suppose \(f\) and \(g\) can be written as 
+\[f(x)=\prod_{i=1}^n(x-\alpha_i),\ \ g(x)=\prod_{j=1}^{m}(x-\beta_j)\]
+in \(\overline{\mathbb{F}}\). The roots \(\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_m\) satisfies the monic polynomial \(fg\in R[x]\), so they are integral over \(R\) in \(\overline{F}\). Moreover, the coefficients of \(f\) and \(g\) can be written as symmetric polynomials of these roots, and the integral elements over \(R\) in \(\overline{F}\) form a subring, so all the coefficients of \(f\) and \(g\) are integral over \(R\). Both \(f,g\in \mathbb{F}[x]\), so \(f,g\) have coefficients in \(\mathbb{F}\) and are integral over \(R\), since \(R\) is integrally closed in \(\mathbb{F}\), this implies \(f,g\in R[x]\).
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -29,7 +31,9 @@ If \(R\) is an integrally closed domain with quotient field \(\mathbb{F}\), and 
 Show that the conclusion of the Incomparability  theorem fails for the ring extension \(\mathbb{F}[x]\subseteq \mathbb{F}[x,y]\).
 \end{problem}
 \begin{solution}
-
+Consider the ideal \((x)\) and \((x,y)\) in \(\mathbb{F}[x,y]\). Note that \(\mathbb{F}[x,y]/(x)=\mathbb{F}[y]\) and \(\mathbb{F}[x,y]/(x,y)=\mathbb{F}\) are domains, so \((x,y)\) and \((x)\) are prime ideals. We know that 
+\[(x)=(x)\cap \mathbb{F}[x]=(x,y)\cap \mathbb{F}[x]\]
+and \((x)\subseteq (x,y)\). But \(y\in (x,y)\) and \(y\notin (x,y)\). So \((x)\) and \((x,y)\) are different prime ideals.
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -37,10 +41,10 @@ Show that the conclusion of the Incomparability  theorem fails for the ring exte
 % Problem 19.4.13
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{19.4.13}
-True or false? Let \(A\supseteq R\) be an integral ring extension, with \(A\) being a domain. If every non-zero prime ideal of \(R\) is a maximal ideal, then every non-zero prime ideal of \(A\) is also maximal.
+True or false? Let \(A\supseteq R\) be an integral ring extension. If every non-zero prime ideal of \(R\) is a maximal ideal, then every non-zero prime ideal of \(A\) is also maximal.
 \end{problem}
 \begin{solution}
-
+This is false. Let \(R=\mathbb{Z}\) and \(A=\mathbb{Z}[x]/(x^2)\). Note that \(\mathbb{Z}[x]/(x^2)=\mathbb{Z}\oplus \mathbb{Z}x\) with \(x\cdot x=0\). This implies that \(A\) is finitely generated as an \(R\)-module, so \(R\hookrightarrow A\) is an integral extension. We know \(R=\mathbb{Z}\) is a PID, so every non-zero prime ideal in \(R\) is maximal. On the other hand, consider two ideals \((x)\) and \((x,2)\) in \(A\), we have \(A/(x)=\mathbb{Z}\) is a domain and \(A/(x,2)=\mathbb{Z}/2\) is a field. So \((x)\) is a prime ideal and \((x,2)\) is a maximal ideal with \((x)\subseteq (x,2)\). 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -56,7 +60,19 @@ Consider the ring extension \(\mathbb{Z}\subset \mathbb{Z}[\sqrt{5}]\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+Let \(R=\mathbb{Z}[\sqrt{5}]\) and \(p\subseteq R\) is a prime ideal.
+\begin{enumerate}[(1)]
+\item Suppose \(p\cap \mathbb{Z}=(5)\). This means \(5\in p\). We know that the radical \(\sqrt{(5)}=(\sqrt{5})\) is a prime ideal in \(R\) containing \(5\). Note that \(R/(5)=\mathbb{Z}/5\) is a field. This implies that \((\sqrt{5})\subseteq R\) is the only prime ideal lying over \((5)\subseteq \mathbb{Z}\).
+\item Suppose \(p\cap \mathbb{Z}=(3)\). This means \(3\in p\). Note that 
+\begin{align*}
+    R/(3)&\cong \mathbb{Z}[\sqrt{5}]/(3)\\ 
+         &\cong \mathbb{F}_3[\sqrt{5}]\\ 
+         &\cong \mathbb{F}_3[x]/(x^2-5)\\ 
+         &\cong \mathbb{F}_3[x]/(x^2+1)
+\end{align*}
+It is easy to check that none of \(0,1,2\) are not roots of \(x^2+1\) in \(\mathbb{F}_3\). So \(x^2+1\) is irreducible in \(\mathbb{F}_3\) and \(R/(3)\) is isomorphic to the degree 2 extension of \(\mathbb{F}_3\), which is still a field. This proves that \((3)\subseteq R\) is a maximal ideal and the only prime ideal over \((3)\subseteq \mathbb{Z}\). 
+\item Suppose \(p\cap \mathbb{Z}=(2)\). This means \(2\in p\) and \((\sqrt{5}+1)(\sqrt{5}-1)=4\in p\). Because \(p\) is prime, so \(\sqrt{5}+1\in p\). Note that \(R/(2,\sqrt{5}+1)=\mathbb{Z}/2\) is a field, so \((2,\sqrt{5}+1)\subseteq R\) is maximal and the only prime ideal lying over \((2)\subseteq \mathbb{Z}\).
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -67,7 +83,25 @@ Consider the ring extension \(\mathbb{Z}\subset \mathbb{Z}[\sqrt{5}]\).
 If the ring \(R\) is noetherian, then so is the ring \(R[[x_1,\ldots,x_n]]\) of formal power series.
 \end{problem}
 \begin{solution}
+Note that \(R[[x_1,\ldots,x_n]]=R[[x_1,\ldots,x_{n-1}]][[x_n]]\). We only need to prove the case \(n=1\), the rest can be done by repeating the same proof. 
 
+Suppose the ring \(R\) is noetherian and \(I\subset R[[x]]\) is a proper ideal. Let \(f\in R[[x]]\) have non-zero constant term, then \(f\) is invertible in \(R\), so such \(f\) cannot in \(I\). For any \(i\geq 1\), we define the following subsets in \(R\). \(a\in J_i\) if and only if there exists an element \(f=ax^i+a_{i+1}x^{i+1}+\cdots\in I\). 
+\[J_i=\left\{ a_i\in R\mid \exists f_{a_i}=a_ix^i+a_{i+1}x^{i+1}+\cdots\in I \right\}\]
+Here \(i\) is the order of the element \(f\). \(J_i\) is an ideal in \(R\). Indeed, if \(a_i,b_i\in J_i\), then the coefficient of the lowest term of \(f_{a_i}+f_{b_i}\) is \(a_i+b_i\) and has degree \(i\), so \(a_i+b_i\in J_i\). For any \(r\in R\), if \(f_{a_i}\in I\), then \(rf_{a_i}\in I\) because \(I\) is an ideal, so \(ra_i\in J_i\). This proves that \(J_i\subseteq R\) is an ideal. Moreover, \(J_i\subseteq J_{i+1}\) because if \(a\in J_i\), then \(f_{a}\in I\) and \(xf_{a}\in I\). This proves that \(a\in J_{i+1}\). We obtain an ascending chain of ideals 
+\[J_1\subseteq J_2\subseteq J_3\subseteq \cdots J_n\subseteq \cdots R\]
+This chain must stabilize as \(R\) is noetherian. Suppose \(J_n=J_{n+1}=\cdots\). Let \(S_i=\left\{ a_{i,k} \right\}_{1\leq k\leq s_i}\) be the generating set of \(J_i\). This set is finite for every \(i\) because \(R\) is noetherian. We need to show that the set 
+\[K=\left\{ f_{a_{i,k}}\in R[[x]]\mid a_{i,k}\in S_i, 1\leq k\leq s_i,1\leq i\leq n \right\}\]
+generates \(I\). It is easy to see that \(K\subseteq I\). 
+
+Conversely, let \(f\in I\) and the coefficients of degree \(i\)th term is \(a_i\), we need to show that \(f\) can be generated from elements in \(K\). Without loss of generality, we may assume \(\ord(f)=1\). Define \(f_1=f\) and we have \(\ord f_1=1\). There exists \(\left\{ r_{1,k}\right\}_{1\leq k\leq s_1}\) such that \(a_1=\sum_{k=1}^{s_1}r_{1,k}a_{1,k}\), thus we know that 
+\[\ord(f-\sum_{k=1}^{s_1}r_{1,k}f_{a_{1,k}})\geq 2.\]
+Define \(f_2:=f_1-\sum_{k=1}^{s_1}r_{1,k}f_{a_{1,k}}\) and we have \(\ord f_2=2\). We can define this continuously
+\[f_i=f_{i-1}-\sum_{k=1}^{s_{i-1}}r_{i-1,k}f_{a_{i,k}}\]
+for all \(i\leq n+1\). For \(i\geq n+2\), suppose we have already defined \(f_{i-1}\) with \(\ord(f_{i-1})\geq i-1\), suppose the coefficient of \((i-1)\)th term in \(f_{i-1}\) is \(a_{i-1}\in J_{i-1}\), we know that \(J_{i-1}=J_n\), there exists \(\left\{ r_{i-1,k} \right\}_{1\leq k\leq s_n} \) such that \(a_{i-1}=\sum_{k=1}^{s_n}r_{i-1,k}a_{n,k}\), this implies that 
+\[f_{i-1}-\sum_{k=1}^{s_n}r_{i-1,k}x^{i-1-n}f_{a_{n,k}}\]
+has order \(\geq i\). Define an element 
+\[p_k=\sum_{i=n+2}^{\infty}r_{i,k}x^{i-1-n}\in R[[x]].\]
+Then by definition, \(f_{n+1}-\sum_{k=1}^{s_n}p_kf_{a_{n,k}}\) has no degree \(\geq n+2\) term, thus equal to \(0\). This proves that \(f\) can be written as a finite sum of elements from \(K\) with coefficients in \(R[[x]]\), since at every step, we only remove finite sum of elements. This proves that \(I\) is finitely generated, so \(R[[x]]\) is noetherian. 
 \end{solution}
 
 

@@ -1,0 +1,309 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 6}  \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294  \\
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $23^{th}$ May, 2025  \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Write down a complete description of the homology groups of \(\Gr_3(\mathbb{C}^5)\). Determine as many intersection products between the Schubert classes \([\underline{a}]\) as you can. At least do all cases of complementary dimensions, and compute \([1,2,2]^2\) (here \(\underline{a}=(1,2,2)\) is a Schubert symbol, not a jump sequence). Try to do some others.
+\end{problem} 
+\begin{solution}
+Let \(0\leq a_1\leq a_2\leq a_3\leq 2=5-3\) be the Schubert symbol of \(\Gr_3(\mathbb{C}^5)\). We have ten different choices and the homology groups can be summarized as follows
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[ht]
+    \centering
+    \resizebox{0.4\columnwidth}{!}{%
+    \(\begin{array}{|c|c|}
+    \hline
+    \text{degree} & \text{generators of}\ H_*(\Gr_3(\mathbb{C}^5) \\ \hline
+    0             & [0,0,0]                                       \\ \hline
+    2             & [0,0,1]                                       \\ \hline
+    4             & [0,1,1],[0,0,2]                               \\ \hline
+    6             & [0,1,2],[1,1,1]                               \\ \hline
+    8             & [0,2,2],[1,1,2]                               \\ \hline
+    10            & [1,2,2]                                       \\ \hline
+    12            & [2,2,2]                                       \\ \hline
+    \end{array}\)%
+    }
+    \end{table}
+
+Next, we are going to determine the intersection product in complementary dimension. Note the cohomology ring is Abelian because we only have cohomology in even dimensions. For simplicity, I will only write the representative matrices. 
+\begin{enumerate}[(1)]
+\item \([0,0,1]\cdot [1,2,2]\)\\ 
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&0&0&0\\
+   *&*&*&*&0
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&*&*\\
+   0&*&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=\begin{pmatrix}
+   1&0&0&0&0\\ 
+   0&1&0&0&0\\ 
+   0&0&0&1&0
+\end{pmatrix}\]
+So the intersection has only one point and \([0,0,1]\cdot [1,2,2]=[0,0,0]\).
+\item \([1,1,1]\cdot [1,1,1]\)
+\[\begin{pmatrix}
+   *&*&0&0&0\\ 
+   *&*&*&0&0\\
+   *&*&*&*&0
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&*&*\\
+   0&0&*&*&*\\ 
+   0&*&*&*&*
+\end{pmatrix}=\begin{pmatrix}
+   0&1&0&0&0\\ 
+   0&0&0&1&0\\ 
+   0&0&1&0&0
+\end{pmatrix}\]
+So the intersection has only one point and \([1,1,1]\cdot [1,1,1]=[0,0,0]\).
+\item \([0,1,2]\cdot [0,1,2]\)
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&*&0&0\\
+   *&*&*&*&*
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&0&*\\
+   0&0&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=\begin{pmatrix}
+   1&0&0&0&0\\ 
+   0&0&0&0&1\\ 
+   0&0&1&0&0
+\end{pmatrix}\]
+So the intersection has only one point and \([0,1,2]\cdot [0,1,2]=[0,0,0]\).
+\item \([1,1,1]\cdot [0,1,2]\)
+\[\begin{pmatrix}
+   *&*&0&0&0\\ 
+   *&*&*&0&0\\
+   *&*&*&*&0
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&0&*\\
+   0&0&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}\]
+There does not exist a matrix satisfying the given two conditions. So the intersection has only no point and \([1,1,1]\cdot [0,1,2]=0\).
+\item \([0,0,2]\cdot [0,2,2]\)
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&0&0&0\\
+   *&*&*&*&*
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&0&*\\
+   0&*&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=\begin{pmatrix}
+   1&0&0&0&0\\ 
+   0&0&0&0&1\\ 
+   0&1&0&0&0
+\end{pmatrix}\]
+So the intersection has only one point and \([0,0,2]\cdot [0,2,2]=[0,0,0]\).
+\item \([0,1,1]\cdot [0,2,2]\)
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&*&0&0\\
+   *&*&*&*&0
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&0&*\\
+   0&*&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=0\]
+So the intersection has no point and \([0,1,1]\cdot [0,2,2]=0\).
+\item \([0,1,1]\cdot [1,1,2]\)
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&*&0&0\\
+   *&*&*&*&0
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&*&*\\
+   0&0&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=\begin{pmatrix}
+   1&0&0&0&0\\ 
+   0&0&0&1&0\\ 
+   0&0&1&0&0
+\end{pmatrix}\]
+So the intersection has only one point and \([0,1,1]\cdot [1,1,2]=[0,0,0]\).
+\item \([0,0,2]\cdot [1,1,2]\)
+\[\begin{pmatrix}
+   *&0&0&0&0\\ 
+   *&*&0&0&0\\
+   *&*&*&*&*
+\end{pmatrix}\cap \begin{pmatrix}
+   0&0&0&*&*\\
+   0&0&*&*&*\\ 
+   *&*&*&*&*
+\end{pmatrix}=0\]
+So the intersection has no point and \([0,1,1]\cdot [1,1,2]=0\).
+\item In this part we will determine the intersection product \([1,2,2]^2\). Note that \([1,2,2]\in H_{10}\), so \([1,2,2]^2\in H_{10+10-12}=H_8\). Suppose 
+\[[1,2,2]^2=A[0,2,2]+B[1,1,2]\]
+for some \(A,B\in \mathbb{Z}\). We have 
+\begin{align*}
+    [1,2,2]^2[0,1,1]&=A[0,2,2][0,1,1]+B[1,1,2][0,1,1]=B,\\ 
+    [1,2,2]^2[0,0,2]&=A[0,2,2][0,0,2]+B[1,1,2][0,0,2]=A.
+\end{align*}
+Suppose \(W\) is a \(3\)-plane in the intersection \([1,2,2]^2[0,1,1]\), note that for all the \(2\)'s in the Schubert symbol, the condition is automatically satisfied. \(W\) needs to satisfy the following condition:
+\begin{enumerate}[(i)]
+\item \(\dim W\cap F_2\geq 1\) for some \(2\)-plane \(F_2\). 
+\item \(\dim W\cap F'_2\geq 1\) for some \(2\)-plane \(F'_2\).
+\item \(\dim W\cap F'_1\geq 1\) for some \(1\)-line \(F''_1\).
+\item \(\dim W\cap F'_3\geq 2\) for some \(3\)-plane \(F''_3\).
+\item \(\dim W\cap F'_4\geq 3\) for some \(4\)-plane \(F''_4\).
+\end{enumerate}
+Here \(F''_1\subseteq F''_3\subseteq F''_4\). The condition (iii) implies \(W\) contains a vector \(e_1\) where \(\la e_1\ra=F''_1\).  The condition (v) implies that \(W\) is contained in a \(4\)-plane \(F''_4\). For any generic \(3\)-plane \(F''_3\subseteq F''_4\), we have 
+\[\dim W\cap F''_3=\dim W+\dim F''_3-\dim F''_4=3+3-4=2.\]
+This implies that the condition (iv) is automatically satisfied. 
+\end{enumerate}
+We can see that \(W\) is uniquely determined by three lines: \(F''_1\), \(W\cap F_2\), \(W\cap F'_2\). Thus, \(B=1\). 
+
+On the other hand, suppose \(W\) is a \(3\)-plane in the intersection \([1,2,2]^2[0,0,2]\). \(W\) needs to satisfy the following conditions:
+\begin{enumerate}[(i)]
+\item \(\dim W\cap F_2\geq 1\) for some \(2\)-plane \(F_2\). 
+\item \(\dim W\cap F'_2\geq 1\) for some \(2\)-plane \(F'_2\).
+\item \(\dim W\cap F''_1\geq 1\) for some \(1\)-line \(F''_1\).
+\item \(\dim W\cap F''_2\geq 2\) for some \(2\)-plane \(F''_2\). 
+\end{enumerate}
+The condition (iv) implies that \(W\) contains a \(2\)-plane \(F''_2\), and the condition (iii) is automatically true because \(F''_1\subseteq F''_2\). If \(F_2\) intersects with \(F'_2\), then \(W\) is uniquely determined by \(F_2\cap F'_2\) and \(F''_2\). If \(F_2\) has no intersection with \(F'_2\), in this case one of them must intersect \(F''_2\) because we are in \(\mathbb{C}^5\), suppose it is \(F_2\), then \(\dim W\cap F_2\geq 1\) is automatically satisfied, this means \(W\) is uniquely determined by \(F''_2\) and \(W\cap F'_2\). In both cases, \(W\) is unique. Thus, \(A=1\).
+
+We can conclude that \([1,2,2]^2=[0,2,2]+[1,1,2]\).
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+Compute \(H_*(\Omega_{\underline{a}})\) where \(\underline{a}\) is the Schubert symbol \(012\), and \(\Omega_{\underline{a}}\hookrightarrow \Gr_3(\mathbb{C}^5)\). Observe that \(\Omega_{\underline{a}}\) cannot be a manifold, as this would violate Poincaré Duality.
+\end{problem}
+\begin{solution}
+From the cellular structure of \(\Gr_3(\mathbb{C}^5)\), we know that \(\Omega_{\underline{a}}\)is of dimension \(6\), and has \(2\) 4-dimensional cells \([0,1,1]\) and \([0,0,2]\), but only \(1\) 2-dimensional cell \([0,0,1]\). If \(\Omega_{\overline{a}}\) is a manifold, then this will violate Poincaré duality as \(H_2\) and \(H_4\) have different ranks.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Fix \(n\geq 1\) and \(k\leq n\). Let \(\eta_k\subseteq \Gr_k(\mathbb{R}^n)\times \mathbb{R}^n\) be the subspace of pairs \((W,v)\) where \(v\in W\). Let \(p:\eta_K\rightarrow \Gr_k(\mathbb{R}^n)\) be the map sending \((W,v)\) to \(W\). Prove that \(p\) is a fiber bundle with fiber \(\mathbb{R}^k\). 
+\end{problem}
+\begin{solution}
+Consider the following subset of \(\Gr_k(\mathbb{R}^n)\):
+\[U=\left\{  \right\}\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Let \(q:X\rightarrow Q\) be a surjection. Say that a map of spaces \(f:X\rightarrow Z\) is "q-compatible" if whenever \(q(x)=q(y)\) we have \(f(x)=f(y)\) (this says that the identifications made by \(q\) are also made by \(f\)). The map \(q\) is a quotient map if and only if for every space \(Z\) and every map \(f:X\rightarrow Z\) that is \(q\)-compatible, there is a map \(\tilde{f}:Q\rightarrow Z\) such that \(\tilde{f}\circ q=f\). 
+
+Prove that if \(q:X\rightarrow Q\) is a quotient map and \(A\) is locally compact and Hausdoff, then 
+\[q\times id:X\times A\rightarrow Q\times A\]
+ is also a quotient map.
+\end{problem}
+\begin{solution}
+Let \(Z\) be any space and \(f:X\times A\rightarrow Z\) be a \((q\times id)\)-compatible map, namely for all \(a\in A\), if \((q\times id)(x,a)=(q\times id)(y,a)\) for some \(x,y\in X\), then \(f(x,a)=f(y,a)\in Z\). Note that \(A\) is locally compact and Hausdoff, we have a bijection
+\[\mathcal{Top}(X\times A,Z)\cong \mathcal{Top}(X,Z^A).\]
+The map \(f\) is equivalent to a continuous map \(g:X\rightarrow Z^A\) sending \(x\in X\) to the map \(a\mapsto f(x,a)\). We claim that the map \(g\) is \(q\)-compatible. Indeed, suppose \(q(x)=q(y)\) for some \(x,y\in X\), then \((q\times id)(x,a)=(q\times id)(y,a)\) for all \(a\in A\). Since the map \(f\) is \((q\times id)\)-compatible, we have \(f(x,a)=f(y,a)\) for all \(a\in A\). This implies the two maps \(a\mapsto f(x,a)\) and \(a\mapsto f(y,a)\) are the same map. So \(g\) is \(q\)-compatible. We know that \(q:X\rightarrow Q\) is a quotient map, so there exists \(\tilde{g}:Q\rightarrow Z^A\) such that \(\tilde{g}\circ q=g\).
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWl5BIl0sWzAsMSwiUSJdLFswLDIsInEiLDJdLFswLDEsImciXSxbMiwxLCJcXHRpbGRle2d9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	X & {Z^A} \\
+	Q
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["{\tilde{g}}"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+The map \(\tilde{g}:Q\rightarrow Z^A\) is equivalent to a continuous map \(\tilde{f}:Q\times A\rightarrow Z\) sending \((p,a)\in Q\times A\) to \(\tilde{g}(p)(a)\). We check that \(\tilde{f}\circ (q\times id)=f\), namely the following diagram commutes. 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXFx0aW1lcyBBIl0sWzEsMCwiWiJdLFswLDEsIlFcXHRpbWVzIEEiXSxbMCwyLCJxXFx0aW1lcyBpZCIsMl0sWzAsMSwiZiJdLFsyLDEsIlxcdGlsZGV7Zn0iLDJdXQ==
+\[\begin{tikzcd}
+	{X\times A} & Z \\
+	{Q\times A}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{q\times id}"', from=1-1, to=2-1]
+	\arrow["{\tilde{f}}"', from=2-1, to=1-2]
+\end{tikzcd}\] 
+For any \((x,a)\in X\times A\), we have 
+\[(\tilde{f}\circ (q\times id))(x,a)=\tilde{f}(q(x),a)=\tilde{g}(q(x))(a)=(\tilde{g}\circ q)(x)(a)=g(x)(a).\]
+Note that \(g(x)\) is an element in \(Z^A\), and \(g(x)(a)=f(x,a)\in Z\) because \(f\) and \(g\) is equivalent under the bijection 
+\[\mathcal{Top}(X\times A,Z)\cong \mathcal{Top}(X,Z^A).\]
+This proves that the diagram commutes and \(q\times id\) is a quotient map.    
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{5}
+Let \((X,x)\) be a pointed space. Recall that \(PX\subseteq X'\) is the subspace of paths that end at \(x\). Said differently, \(PX\) is defined by the pullback diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJQWCJdLFsxLDAsIlheSSJdLFsxLDEsIlgiXSxbMCwxLCIqIl0sWzAsM10sWzAsMV0sWzEsMiwiZXZfMSJdLFszLDIsIngiLDJdXQ==
+\[\begin{tikzcd}
+	PX & {X^I} \\
+	{*} & X
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{ev_1}", from=1-2, to=2-2]
+	\arrow["x"', from=2-1, to=2-2]
+\end{tikzcd}\]
+Convince yourself that maps \(W\rightarrow PX\) are in bijective correspondence with maps \(CW\rightarrow X\) sending the cone point to \(x\) (here \(CW\) is the cone on W). 
+
+If \(A\) is a CW-complex, prove that \(ev_0:PX\rightarrow X\) has the homotopy lifting property with respect to \(A\). In particular, the fact that this holds whenever \(A\) is \(I^n\) (any \(n\geq 0\)) implies that \(PX\rightarrow X\) is a Serre fibration.
+\end{problem}
+\begin{solution}
+Suppose we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBXFx0aW1lcyBcXGxlZnRcXHswXFxyaWdodFxcfSJdLFsxLDAsIlBYIl0sWzAsMSwiQVxcdGltZXMgSSJdLFsxLDEsIlgiXSxbMSwzLCJldl8wIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsyLDMsImciLDJdLFswLDEsImYiXV0=
+\[\begin{tikzcd}
+	{A\times \left\{0\right\}} & PX \\
+	{A\times I} & X
+	\arrow["f", from=1-1, to=1-2]
+	\arrow[tail, from=1-1, to=2-1]
+	\arrow["{ev_0}", from=1-2, to=2-2]
+	\arrow["g"', from=2-1, to=2-2]
+\end{tikzcd}\]
+For all \(a\in A\), the map \(f:A\times \left\{ 0 \right\}\rightarrow PX\) sends \(a\) to a path \(f(a):I\rightarrow X\). This is equivalent to a map \(\tilde{f}:CA\times \left\{ 0 \right\}\rightarrow X\) sending \((a,t)\) to \(f(a)(t)\). This is well-defined because all different paths ends at the same point \(x\in X\). We know that \(A\) is a CW complex, so \(CA\) has a CW structure with \(A\) being a subcomplex. Note that 
+\[C(A\times I)=A\times I\times I/A\times I\times \left\{ 1 \right\}\cong CA\times I.\]
+Consider the solid-arrow diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJDQVxcdGltZXMgXFxsZWZ0XFx7MFxccmlnaHRcXH1cXGN1cCBBXFx0aW1lcyBJIl0sWzIsMCwiWCJdLFswLDEsIkNBXFx0aW1lcyBJIl0sWzAsMl0sWzAsMSwiXFx0aWxkZXtmfVxcY3VwIGciXSxbMiwxLCJGIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{CA\times \left\{0\right\}\cup A\times I} && X \\
+	{CA\times I}
+	\arrow["{\tilde{f}\cup g}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["F"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+\(f\) restricting to \(A\times \left\{ 0 \right\}\) can be viewed as the composition of the map 
+\[A\times \left\{ 0 \right\}\xrightarrow{f}PX\xrightarrow{ev_0}X.\]
+By commutativity of the original diagram, this is equal to the map 
+\[g|_{A\times \left\{ 0 \right\}}:A\times \left\{ 0 \right\}\rightarrow X.\]
+By HEP, we have a lifting \(F:CA\times I\rightarrow X\) such that \(F|_{CA\times \left\{ 0 \right\}}=\tilde{f}\) and \(F|_{A\times I}=g\). We know that \(F\) is equivalent to a map \(\tilde{F}:A\times I\rightarrow PX\) satisfying the following two diagrams
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJBXFx0aW1lcyBcXGxlZnRcXHswXFxyaWdodFxcfSJdLFswLDEsIkFcXHRpbWVzIEkiXSxbMSwwLCJQWCJdLFsyLDEsIkFcXHRpbWVzIEkiXSxbMywxLCJYIl0sWzMsMCwiUFgiXSxbMSwyLCJcXHRpbGRle0Z9IiwyXSxbMCwxXSxbMCwyLCJmIl0sWzUsNCwiZXZfMCJdLFszLDQsImciLDJdLFszLDUsIlxcdGlsZGV7Rn0iXV0=
+\[\begin{tikzcd}
+	{A\times \left\{0\right\}} & PX && PX \\
+	{A\times I} && {A\times I} & X
+	\arrow["f", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{ev_0}", from=1-4, to=2-4]
+	\arrow["{\tilde{F}}"', from=2-1, to=1-2]
+	\arrow["{\tilde{F}}", from=2-3, to=1-4]
+	\arrow["g"', from=2-3, to=2-4]
+\end{tikzcd}\]
+This proves that original diagram has a lifting. Thus, we can conclude that \(ev_0:PX\rightarrow X\) has the homotopy lifting property with respect to any CW complex A. 
+\end{solution}
+
+
+\end{document}
