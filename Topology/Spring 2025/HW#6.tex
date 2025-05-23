@@ -235,11 +235,11 @@ This gives an inverse map \(f^{-1}:U\times \mathbb{R}^k\rightarrow p^{-1}(U)\). 
 	{\text{Gr}_k(\mathbb{R}^n)\times \mathbb{R}^n}
 	\arrow["f", from=1-1, to=1-2]
 	\arrow[tail, from=1-1, to=2-1]
-	\arrow["{\tilde{f}}"', from=2-1, to=1-2]
+	\arrow["{\tilde{f}}"', from=1-2, to=2-1]
 \end{tikzcd}\]
 The map 
-\[\tilde{f}:\Gr_k(\mathbb{R}^n)\times \mathbb{R}^n\rightarrow U\times \mathbb{R}^k\] 
-is sending \(V\) to \(V\) and \(v\in V\subseteq \mathbb{R}^n\) to \((a_1,\ldots, a_k)\). Under the basis we choose previously, we can write 
+\[\tilde{f}:U\times \mathbb{R}^n\rightarrow \Gr_k(\mathbb{R}^n)\times \mathbb{R}^k\] 
+is sending \(V\) to \(V\) and \((a_1,\ldots, a_k)\) to \(v\in V\subseteq \mathbb{R}^n\). Under the basis we choose previously, we can write 
 \begin{align*}
    v=&\quad a_1v_1+\cdots+a_kv_k\\ 
     =&\quad a_1(1,0,\ldots,0,*,\ldots,*)\\ 
@@ -248,7 +248,9 @@ is sending \(V\) to \(V\) and \(v\in V\subseteq \mathbb{R}^n\) to \((a_1,\ldots,
      &+a_k(0,0,\ldots,1,*,\ldots,*)\\ 
     =&(a_1,\ldots,a_k,*,\ldots,*) 
 \end{align*}
-So the map \(\tilde{f}\) is just a projection map on \(\mathbb{R}^n\) and thus continuous. The map \(f\) is the composition of an inclusion and a projection, therefore also continuous. Similarly, consider the commutative diagram 
+So the map \(\tilde{f}\) is just a inclusion map from \(\mathbb{R}^k\) to \(\mathbb{R}^n\) and thus is an open map and continuous. The composition 
+\[\tilde{f}\circ f:p^{-1}(U)\rightarrow \Gr_k(\mathbb{R}^n)\times \mathbb{R}^n\]
+is also an inclusion map and continous, so \(f\) is continuous. Similarly, consider the commutative diagram 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJVXFx0aW1lcyBcXG1hdGhiYntSfV5rIl0sWzEsMCwicF57LTF9KFUpIl0sWzEsMSwiXFx0ZXh0e0dyfV9rKFxcbWF0aGJie1J9Xm4pXFx0aW1lcyBcXG1hdGhiYntSfV5uIl0sWzEsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFswLDIsIlxcd2lkZXRpbGRle2Zeey0xfX0iLDJdLFswLDEsImZeey0xfSJdXQ==
 \[\begin{tikzcd}
 	{U\times \mathbb{R}^k} & {p^{-1}(U)} \\

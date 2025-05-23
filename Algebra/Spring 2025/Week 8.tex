@@ -1,0 +1,114 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 8} \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 649 - Abstract Algebra \hfill Term: Spring 2025 \\
+Instructor: Professor Sasha Polishchuk \hfill Due Date: $28^{th}$ May, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.2.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.2.7}
+If \(R\) is a PID then an ideal \(Q\) in \(R\) is primary if and only if \(\sqrt{Q}\) is prime. 
+\end{problem}
+\begin{solution}
+From Lemma 20.2.3, we know that if \(Q\) in \(R\) is primary, then \(\sqrt{Q}\) is prime. Conversely, assume \(\sqrt{Q}\) is a prime ideal, then \(\sqrt{Q}=(p)\) for some prime element \(p\in R\) since \(R\) is a PID. \(p\in \sqrt{Q}\) implies that there exists some \(n>0\) such that \(p^n\in Q\). Let \(k\in \mathbb{Z}_+\) be the smallest positive integer such that \(p^k\in Q\). We claim that \(Q=(p^k)\). Suppose \(Q=(a)\) for some \(a\in R\). We know that \(p^k\in Q\), so \(a|p^k\). Since \(p\) is prime in \(R\), \(a=p^{k'}\) for \(1\leq k'\leq k\). The way we choose \(k\) implies that \(k'=k\). So \(Q=(p^k)\). Suppose \(rs\in Q=(p^k)\), then there exists \(b\in R\) such that \(p^k b=rs\). If \(r\notin (p)=\sqrt{Q}\), this means \(p^k\nmid r\). Since \(p\) is prime, \(p^k|s\) and this implies \(s\in Q\). We have proved that \(Q\) is primary. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.2.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.2.9}
+If \(\sqrt{I}\) is a maximal ideal, then \(I\) is \(\sqrt{I}\)-primary. 
+\end{problem}
+\begin{solution}
+Proving \(I\) is \(\sqrt{I}\)-primary is the same as proving that every zero divisor in \(R/I\) is nilpotent. \(\sqrt{I}\) is a maximal ideal containing \(I\) in \(R\), so \(\sqrt{I}/I\) is a maximal ideal in \(R/I\). Moreover, it is the unique maximal ideal in \(R/I\). Suppose \(m\) is another maximal ideal in \(R/I\), then \(m\) corresponds to a prime ideal \(p\subseteq R\) containing \(I\). We know that \(\sqrt{I}\) is the intersection of all prime ideals containing \(I\), so \(p\supseteq \sqrt{I}\). This contradicts that \(\sqrt{I}\) is maximal. So such \(m\) does not exists. Thus, \(R/I\) is a local ring with the unique maximal ideal \(\sqrt{I}/I\). 
+
+Suppose \(a,b\in R-I\) and \(ab\in I\), in this case \(a+I\) and \(b+I\) are zero divisors in \(R/I\). Assume \(b+I\) is not nilpotent in \(R/I\), this implies that \(b\notin \sqrt{I}\), so \(b+I\notin \sqrt{I}/I\). In this case, \(b+I\) must be a unit in \(R/I\) because \((R/I)/(\sqrt{I}/I)\) is a field. This contradicts that \(b+I\) is a zero divisor in \(R/I\). So \(b+I\) must be nilpotent and thus \(I\) is \(\sqrt{I}\)-primary. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.2.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.2.16}
+The ideal \((4,2x,x^2)\) in the ring \(\mathbb{Z}[x]\) is primary but not irreducible.
+\end{problem}
+\begin{solution}
+We first prove the following claim.
+\begin{claim}
+\[(4,2x,x^2)=(4,x)\cap (2,x^2).\]
+\end{claim}
+\begin{claimproof}
+Note that \((2x,x^2)\subseteq (x)\), so \((4,2x,x^2)\subseteq (4,x)\). Similarly, \((4,2x)\subseteq (2)\), so \((4,2x,x^2)\subseteq (2,x^2)\). This proves that \((4,2x,x^2)\subseteq (4,x)\cap (2,x^2)\). Conversely, suppose \(r\in (4,x)\cap (2,x^2)\). \(r\in (2,x^2)\) implies there exists \(f,g\in \mathbb{Z}[x]\) such that \(r=2f+x^2g\in (4,x)\). This means that \(2f\in (4,x)\). Either \(2|f\) or \(x|f\). In both cases, \(2f\in (4,2x)\subseteq (4,2x,x^2)\). This implies that \(r=2f+x^2g\in (4,2x,x^2)\). So \((4,2x,x^2)\supseteq (4,x)\cap (2,x^2)\).
+\end{claimproof}
+
+Next, note that \(\sqrt{(4,x)}=\sqrt{(2,x^2)}=(x,2)\). And \(\mathbb{Z}[x]/(2,x)\cong \mathbb{Z}/2\) is a field, so \((x,2)\) is maximal. By Exercise 20.2.9, \((4,x)\) and \((2,x^2)\) are both \((2,x)\)-primary ideals. By Lemma 20.2.10, the intersection 
+\[(4,2x,x^2)=(4,x)\cap (2,x^2)\]
+is also a \((2,x)\)-primary ideal, but it is not irreducible as \((4,2x,x^2)\) is properly contained in two ideals \((4,x)\) and \((2,x^2)\). 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.2.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.2.18}
+Represent the ideal \((9,3x+3)\) in \(\mathbb{Z}[x]\) as the intersection of primary ideals.
+\end{problem}
+\begin{solution}
+We claim that \((9,3x+3)=(3)\cap (x+1)\). Both \((3)\) 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.3.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.3.6}
+Let \(P\) be a prime ideal. Then \(P^{(n)}\) is the smallest \(P\)-primary ideal containing \(P^n\).
+\end{problem}
+\begin{solution}
+By definition, \(P^{(n)}\supseteq P^n\), and by Lemma 20.3.5, \(P^{(n)}\) is a \(P\)-primary ideal. Suppose \(Q\) is a \(P\)-primary ideal containing \(P^n\). We need to prove that \(Q\supseteq P^{(n)}\). For any \(r\in P^{(n)}\), there exists \(s\in R-P\) such that \(rs\in P^n\subseteq Q\). We know \(s\notin P=\sqrt{Q}\), and since \(Q\) is \(P\)-primary, this implies \(r\in Q\). Thus, we have proved every \(P\)-primary ideal containing \(P^n\) will contain \(P^{(n)}\), namely, \(P^{(n)}\) is the smallest \(P\)-primary ideal containing \(P^n\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 20.3.18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{20.3.18}
+If \(R\subseteq A\) is an integral extension of noetherian rings then \(\dim R=\dim A\). 
+\end{problem}
+\begin{solution}
+Given a chain of strict inclusions of prime ideals 
+\[p_0\subsetneq p_1\subsetneq \cdots\subsetneq p_n\subsetneq R.\] 
+We claim that there exists a chain of strict inclusion of prime ideals of the same length in \(A\). We start with \(p_0\subsetneq R\), by Lying Over Theorem, there exists a prime ideal \(q_0\subsetneq A\) such that \(q_0\cap R=p_0\). Next, consider the inclusion \(p_0\subsetneq p_1\), by Going Up Theorem, there exists a prime ideal \(q_1\supseteq q_0\) in \(A\) such that \(q_1\cap R=p_1\). Note that here \(p_0\neq p_1\), so \(q_0\subsetneq q_1\) is a strict inclusion of prime ideals as they are pulled back to different ideals in \(R\). Repeat this step, and we can construct a chain of strict inclusions of prime ideals in \(A\):
+\[q_0\subsetneq q_1\subsetneq \cdots\subsetneq q_n\subsetneq A.\]
+This proves that \(\dim A\geq \dim R\). On the other hand, consider a chain of strict inclusions of prime ideals in \(A\):
+\[q_0\subsetneq q_1\subsetneq \cdots\subsetneq q_n\subsetneq A.\]
+We know that the pullback of prime ideals are still prime ideals, so we have a chain of prime ideals in \(R\):
+\[q_0\cap R\subseteq q_1\cap R\subseteq \cdots\subseteq q_n\cap R\subseteq R.\]
+Write \(p_i:=q_i\cap R\) for \(1\leq i\leq n\). We are going to show that \(p_i\subseteq p_{i+1}\) are strict inclusions for all \(i\). Suppose \(p_i=p_{i+1}\) for some \(i\). This means \(q_i\cap R=q_{i+1}\cap R\), by Incomparability Theorem, \(q_i=q_{i+1}\). This contradicts the assumption that \(q_i\subsetneq q_{i+1}\) is a strict inclusion. So \(p_i\subsetneq p_{i+1}\) for all \(i\). We have a chain of strict inclusions of prime ideals in \(R\):
+\[p_0\subsetneq p_1\subsetneq \cdots\subsetneq p_n\subsetneq R.\] 
+This implies \(\dim R\geq \dim A\). Thus, we can conclude that \(\dim R=\dim A\). 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 21.1.14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{21.1.14}
+Let \(I\) and \(J\) be ideals of \(A=\mathbb{C}[x,y]\) and \(\mathcal{V}(I)\cap \mathcal{V}(J)=\varnothing\). Show that \(A/(I\cap J)=A/I\times A/J\). 
+\end{problem}
+\begin{solution}
+By Proposition 21.2.1, we know that 
+\[\varnothing=\mathcal{V}(1)=\mathcal{V}(I)\cap \mathcal{V}(J)=\mathcal{V}(I+J).\]
+By Corollary 21.1.10, this means \(\sqrt{I+J}=\sqrt{(1)}=\sqrt{A}=A\). Note that \(1\in A=\sqrt{I+J}\), so \(1=1^n\in I+J\) for some \(n>0\). This implies that \(I+J=A\). By the Chinese Remainder Theorem, we have 
+\[A/(I\cap J)\cong A/I\times A/J.\]
+\end{solution}
+
+\end{document}
