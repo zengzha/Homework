@@ -1,0 +1,110 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 7}  \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294  \\
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $30^{th}$ May , 2025  \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+If \(M\) and \(N\) are compact, oriented \(d\)-manifold, then the \textbf{degree} of a map \(f:M\rightarrow N\) is defined to be the integer \(\deg(f)\) such that \(f_*([M])=\deg f\cdot [N]\).
+\begin{enumerate}[(a)]
+\item Suppose that \(f\) is not surjective--i.e., there is a point \(x\in N\) such that \(x\) is not in the image of \(f\). Prove that the degree of \(f\) is zero. 
+\item Explain how \(\deg(f)\) relates to the map \(f^*:H^d(N)\rightarrow H^d(M)\). 
+\item Prove that any map \(S^4\rightarrow \mathbb{C}P^2\) must have degree 0.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+A topological space is said to be of \textbf{finite type} if \(H_i(X)=0\) for all but finitely many values of \(i\), and each nonzero \(H_i(X)\) is a finitely-generated abelian group. Recall that the Euler characteristic is then defined to be 
+\[\chi(X)=\sum_{i=1}^{\infty}(-1)^i\rank H_i(X).\]
+Prove that if \(X\) and \(Y\) are CW-complexes of finite type then so is \(X\times Y\), and \(\chi(X\times Y)=\chi(X)\cdot \chi(Y)\).
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Prove that \(\mathbb{C}P^{n-1}\) is not a retract of \(\mathbb{C}P^n\).
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem  4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Prove that there is no self-homeomorphism \(\mathbb{C}P^{2n}\rightarrow \mathbb{C}P^{2n}\) that reverses the orientation. 
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+There is an algebraic formula 
+\begin{equation}\label{eq1}
+    (x_1^2+x_2^2)\cdot (y_1^2+y_2^2)=(x_1y_1-x_2y_2)^2+(x_1y_2+x_2y_1)^2
+\end{equation}
+which is true for indeterminates \(x_1,x_2,y_1,y_2\) over \(\mathbb{R}\). By a \textbf{sumsof-squares formula} of type \([r,s,n]\) we mean an identity of the form 
+\[(x_1^2+x_2^2+\cdots+x_r^2)\cdot (y_1^2+y_2^2+\cdots+y_s^2)=z_1^2+\cdots+z_n^2.\]
+where each \(z_i\) is a bilinear expression in the \(x\)'s and \(y\)'s. The identity (\ref{eq1}) was a formula of type \([2,2,2]\). Here is a formula of type \([4,4,4]\):
+\begin{align*}
+    (x_1^2+x_2^2+x_3^2+x_4^2)\cdot (y_1^2+y_2^2+y_3^2+y_4^2)=&\quad (x_1y_1-x_2y_2-x_3y_3-x_4y_4)^2\\ 
+                                                            =&+(x_1y_2+x_2y_1-x_3y_4+x_4y_3)^2\\ 
+                                                            =&+(x_1y_3-x_2y_4+x_3y_1+x_4y_2)^2\\ 
+                                                            =&+(-x_1y_4+x_2y_3+x_3y_2+x_4y_1)^2.
+\end{align*}
+If you try to generalize these examples you will find a formula of type \([8,8,8]\), but not one of type \([16,16,16]\).
+
+\begin{problem}{5}
+If we have a sums-of-squares formula of type \([r,s,n]\) then we get a bilinear map \(\phi:\mathbb{R}^r\times \mathbb{R}^s\rightarrow \mathbb{R}^n\) such that \(\| \phi(x,y)\|^2=\|x\|^2\cdot \|y\|^2\) by defining 
+\[\phi(x_1,\ldots,x_r,y_1,\ldots,y_s)=(z_1,\ldots,z_n)\]
+using the bilinear expression \(z_i\).
+\begin{enumerate}[(a)]
+\item Explain why \(\phi\) restricts to a map \(S^{r-1}\times S^{s-1}\rightarrow S^{n-1}\), and then induces a map 
+\[F:\mathbb{R}P^{r-1}\times \mathbb{R}P^{s-1}\rightarrow \mathbb{R}P^{n-1}.\]
+\item Use singular cohomology to prove that if an \([r,s,n]\) formula exists then \(n \choose i\) must be even for \(n-r<i<s\). 
+\item With some trouble one can discover a sums-of-squares formula of type \([10,10,16]\). Does there exist a better formula of type \([10,10,15]\)>
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Suppose \(p(x)\) is an irreducible polynomial over \(\mathbb{C}\) of degree \(n\), where \(n>1\). Let \(E=\mathbb{C}[x]/(p(x))\), which is an algebraic field extension of \(\mathbb{C}\) of degree \(n\). Choose a vector space isomorphism \(\mathbb{C}^n\cong E\), so that the multiplication on \(E\) becomes a bilinear map \(\mathbb{C}^n\times \mathbb{C}^n\rightarrow \mathbb{C}^n\).
+
+Using singular cohomology rings of appropriate topological spaces, derive a contradiction. 
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\end{document}
