@@ -22,7 +22,49 @@ If \(M\) and \(N\) are compact, oriented \(d\)-manifold, then the \textbf{degree
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+\item \(f\) being not surjective means that there exists a point \(y\in N\) such that \(f(M)\subseteq N-y\). This implies we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMCwiTi15Il0sWzEsMSwiTiJdLFswLDEsImYiXSxbMCwyLCJmIiwyXSxbMSwyLCJJIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dXQ==
+\[\begin{tikzcd}
+	M & {N-y} \\
+	& N
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-2]
+	\arrow["i", tail, from=1-2, to=2-2]
+\end{tikzcd}\]
+where \(i:N-y\hookrightarrow N\) is the inclusion map. This induces a commutative diagram in homology groups 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIX2QoTSkiXSxbMSwwLCJIX2QoTi15KSJdLFsxLDEsIkhfZChOKSJdLFsxLDIsIkhfZChOLE4teSkiXSxbMCwxLCJmXyoiXSxbMCwyLCJmXyoiLDJdLFsxLDIsImlfKiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbMiwzLCJqXyoiXV0=
+\[\begin{tikzcd}
+	{H_d(M)} & {H_d(N-y)} \\
+	& {H_d(N)} \\
+	& {H_d(N,N-y)}
+	\arrow["{f_*}", from=1-1, to=1-2]
+	\arrow["{f_*}"', from=1-1, to=2-2]
+	\arrow["{i_*}", tail, from=1-2, to=2-2]
+	\arrow["{j_*}", from=2-2, to=3-2]
+\end{tikzcd}\]
+The map \(j_*:H_d(N)\rightarrow H_d(N,N-y)\) is an isomorphism because \(N\) is compact and oriented. We know that \(j_*\circ i_*\) is the zero map because of the exactness on the vertical map. This implies that \(f_*\) is the zero map, so \(\deg f=0\).
+\item By UCT, we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIXmQoTikiXSxbMSwwLCJcXGhvbShIX2QoTiksXFxtYXRoYmJ7Wn0pIl0sWzEsMSwiXFxob20oSF9kKE0pLFxcbWF0aGJie1p9KSJdLFswLDEsIkheZChNKSJdLFswLDMsImZeKiIsMl0sWzAsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiXFxkZWcgZiJdXQ==
+\[\begin{tikzcd}
+	{H^d(N)} & {\hom(H_d(N),\mathbb{Z})} \\
+	{H^d(M)} & {\hom(H_d(M),\mathbb{Z})}
+	\arrow[two heads, from=1-1, to=1-2]
+	\arrow["{f^*}"', from=1-1, to=2-1]
+	\arrow["{\deg f}", from=1-2, to=2-2]
+	\arrow[two heads, from=2-1, to=2-2]
+\end{tikzcd}\]
+Both \(M\) and \(N\) are compact and oriented, so \(H_d(M)\cong H_d(N)\cong \mathbb{Z}\). The right vertical map is induced by the map \(f_*:H_d(M)\rightarrow H_d(N)\), so it is also the multiplication by \(\deg f\). By Poincaré duality, we know that 
+\[H^d(M)\cong H_0(M)\cong \mathbb{Z},\ \ \ H^d(N)\cong H_0(N)\cong \mathbb{Z}.\]
+This implies the top and bottom horizontal maps in the commutative diagram is isomorphisms. Therefore, if we choose \(\widehat{[M]}\) to be the generator of \(H^d(M)\cong \mathbb{Z}\) and \(\widehat{[N]}\) to be the generator of \(H^d(N)\cong \mathbb{Z}\), then the map \(f^*:H^d(N)\rightarrow H^d(M)\) is sending \(\widehat{[N]}\) to \(\deg f\cdot \widehat{[M]}\).
+\item Consider a map \(f:S^4\rightarrow \mathbb{C}P^2\), which induces a map between cohomology rings 
+\[f^*:H^*(\mathbb{C}P^2)\rightarrow H^*(S^4).\]
+We know that \(H^*(\mathbb{C}P^2)\cong \mathbb{Z}[x]/(x^3)\) where \(x\) is a degree 2 element, then when \(*=4\), we have 
+\[f^*(x^2)=f^*(x)\cup f^*(x)=0.\]
+because \(H^*(S^4)\) has no degree 2 element. This means that 
+\[f^*:H^4(\mathbb{C}P^2)\rightarrow H^4(S^4)\]
+is the zero map. We know that both \(\mathbb{C}P^2\) and \(S^4\) are compact and orientable. From the discussion in (b), any map \(f:S^4\rightarrow \mathbb{C}P^4\) has degree \(0\). 
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -35,7 +77,22 @@ A topological space is said to be of \textbf{finite type} if \(H_i(X)=0\) for al
 Prove that if \(X\) and \(Y\) are CW-complexes of finite type then so is \(X\times Y\), and \(\chi(X\times Y)=\chi(X)\cdot \chi(Y)\).
 \end{problem}
 \begin{solution}
+By Künneth Theorem, for all \(i\), we have 
+\[H_i(X\times Y)\cong \sum_{p+q=i} H_p(X)\otimes H_q(Y)\oplus \sum_{p+q=i-1} \Tor_1(H_p(X),H_q(Y)).\]
+Since both \(X\) and \(Y\) are CW-complexes of finite type, only finitely many \(H_p(X)\) and \(H_q(X)\) are non-zero, this implies \(H_i(X\times Y)=0\) except for finitely many \(i\). Moreover, if Abelian groups \(A\) and \(B\) are finitely generated, then we know that \(A\otimes B\) and \(\Tor_1(A,B)\) are also finitely generated. This means for all \(i\), \(H_i(X\times Y)\) is finitely generated Abelian group. 
 
+We know that for any Abelian group \(A\), 
+\[\rank A=\dim_\mathbb{Q} (A\otimes \mathbb{Q}).\]
+Suppose \(H_i(X)=0\) for \(i\geq n+1\) and \(H_j(Y)=0\) for \(j\geq m+1\). Because \(\mathbb{Q}\) is a field, for the space \(X\times Y\), by Künneth Theorem, we have 
+\begin{align*}
+    \chi(X\times Y)=&\sum_{i=1}^{m+n}(-1)^i\rank H_i(X\times Y)\\ 
+            =&\sum_{i=1}^{m+n}(-1)^i\dim_\mathbb{Q} H_i(X\times Y;\mathbb{Q})\\ 
+            =&\sum_{i=1}^{m+n}(-1)^i\sum_{p+q=i}\dim_\mathbb{Q} H_p(X;\mathbb{Q})\otimes H_q(Y;\mathbb{Q})\\ 
+            =&\sum_{i=1}^{m+n}(-1)^i\sum_{p+q=i}(\dim_\mathbb{Q} H_p(X;\mathbb{Q})\cdot \dim_\mathbb{Q} H_q(Y;\mathbb{Q}))\\ 
+            =&\sum_{i=1}^{m+n}\sum_{p+q=i}(-1)^p\dim_\mathbb{Q} H_p(X;\mathbb{Q})\cdot (-1)^q\dim_\mathbb{Q} H_q(Y;\mathbb{Q})\\ 
+            =&(\sum_{p=1}^{n}(-1)^p\dim_\mathbb{Q} H_p(X;\mathbb{Q}))\cdot (\sum_{q=1}^{m}(-1)^q \dim_\mathbb{Q} H_q(Y;\mathbb{Q}))\\ 
+            =&\chi(X)\cdot \chi(Y)
+\end{align*}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -46,7 +103,13 @@ Prove that if \(X\) and \(Y\) are CW-complexes of finite type then so is \(X\tim
 Prove that \(\mathbb{C}P^{n-1}\) is not a retract of \(\mathbb{C}P^n\).
 \end{problem}
 \begin{solution}
-
+Suppose there exists a retract \(r:\mathbb{C}P^n\rightarrow \mathbb{C}P^{n-1}\) such that the composition 
+\[\mathbb{C}P^{n-1}\xrightarrow{i} \mathbb{C}P^n\xrightarrow{r}\mathbb{C}P^{n-1}\]
+is the identity map, where \(i:\mathbb{C}P^{n-1}\hookrightarrow \mathbb{C}P^{n-1}\) is the inclusion map. This induces maps between cohomology rings 
+\[H^*(\mathbb{C}P^{n-1})\xrightarrow{r^*}H^*(\mathbb{C}P^n)\xrightarrow{i^*}H^*(\mathbb{C}P^{n-1})\]
+where \(i^*\circ r^*=id\). Note that \(H^*(\mathbb{C}P^{n-1})\cong \mathbb{Z}[x]/(x^n)\) and \(H^*(\mathbb{C}P^n)\cong \mathbb{Z}[y]/(y^{n+1})\). Suppose \(r^*(x)=ky\in H^2(\mathbb{C}P^n)\) for some \(k\in \mathbb{Z}\). We have 
+\[0=r^*(x^n)=r^*(x)^n=(ky)^n=k^ny^n.\]
+We know that \(0\neq y^n\) is the generator of \(H^{2n}(\mathbb{C}P^n)\cong \mathbb{Z}\). Thus, \(k=0\). This means \(r^*\) is the zero map, which contradicts the assumption that \(i^*\circ r^*=id\). Such retract \(r\) does not exist. 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -57,7 +120,11 @@ Prove that \(\mathbb{C}P^{n-1}\) is not a retract of \(\mathbb{C}P^n\).
 Prove that there is no self-homeomorphism \(\mathbb{C}P^{2n}\rightarrow \mathbb{C}P^{2n}\) that reverses the orientation. 
 \end{problem}
 \begin{solution}
-
+Suppose \(f:\mathbb{C}P^{2n}\rightarrow \mathbb{C}P^{2n}\) is a homeomorphism and \(f\) induces a map between cohomology rings 
+\[f^*:H^*(\mathbb{C}P^{2n})\rightarrow H^*(\mathbb{C}P^{2n})\]
+which reverses the orientation. We know that \(H^(\mathbb{C}P^{2n})\cong \mathbb{Z}[x]/(x^{2n+1})\), and \(x^{2n}\) generates the group \(H^{4n}(\mathbb{C}P^{2n})\). \(f\) reversing the orientation means \(f^*(x^{2n})=-x^{2n}\). Assume \(f^*(x)=kx\in H^2(\mathbb{C}P^{2n})\) for some \(k\in \mathbb{Z}\). Then 
+\[-x^{2n}=f^*(x^{2n})=f^*(x)^{2n}=(kx)^{2n}=k^{2n}x^{2n}.\]
+This implies \(k^2n=-1\). No such \(k\) exists in \(\mathbb{Z}\). Thus, such homeomorphism \(f\) does not exist. 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -91,7 +158,48 @@ using the bilinear expression \(z_i\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+\item Suppose \(x\in S^{r-1}\subseteq \mathbb{R}^r\) and \(y\in S^{s-1}\subseteq \mathbb{R}^s\). This implies that \(\|x\|=\|y\|=1\). Then 
+\[\|\phi(x,y)\|=\|x\|\cdot \|y\|=1\cdot 1=1.\]
+So \(\phi(x,y)\in S^{n-1}\). This means the map \(\phi\) can be restricted to a map 
+\[\phi:S^{r-1}\times S^{s-1}\rightarrow S^{n-1}.\]
+Moreover, for any point \((x,y)\in S^{r-1}\times S^{s-1}\), we have 
+\[\phi(-x,y)=\phi(x,-y)=-\phi(x,y)\]
+because \(\phi\) is bilinear. This means we can identify the antipodal points in each sphere, and obtain a map 
+\[F:\mathbb{R}P^{r-1}\times \mathbb{R}P^{s-1}\rightarrow \mathbb{R}P^{n-1}.\]
+The map \(F\) is continuous because the bilinear map \(\phi\) is continuous and \(F\) is induced by the quotient map from sphere to the real projective space. 
+\item The map \(F\) induces a map between cohomology rings with \(\mathbb{Z}_2\)-coefficients. Using Künneth Theorem, we have a map 
+\[F^*:H^*(\mathbb{R}P^{n-1};\mathbb{Z}_2)\rightarrow H^*(\mathbb{R}P^{r-1};\mathbb{Z}_2)\otimes H^*(\mathbb{R}P^{s-1};\mathbb{Z}_2).\]
+This is a map between \(\mathbb{Z}/2\)-algebras 
+\[F^*:\mathbb{Z}_2[x]/(x^n)\rightarrow \mathbb{Z}_2[y]/(y^r)\otimes \mathbb{Z}_2[z]/(z^s)\]
+sending the generator \(x\) to \(k(y\otimes 1)+l(1\otimes z)\) for some \(k,l\in \mathbb{Z}_2\). 
+\begin{claim}
+\(k\neq 0\) and \(l\neq 0\), namely \(k=l=1\).
+\end{claim}
+\begin{claimproof}
+Choose a point \(a\in S^{s-1}\) and consider the inclusion map \(i:\mathbb{R}^r\hookrightarrow \mathbb{R}^r\times \left\{ a \right\}\subseteq \mathbb{R}^r\times \mathbb{R}^s\). The composition 
+\[\mathbb{R}^r\xrightarrow{i}\mathbb{R}^r\times \mathbb{R}^s\xrightarrow{\phi}\mathbb{R}^n\]
+is an \(\mathbb{R}\)-linear map and for all \(x\in \mathbb{R}^r\), we have 
+\[\|(\phi\circ i)(x)\|=\|\phi(x,a)\|=\|x\|^2\cdot \|a\|^2=\|x\|^2.\]
+meaning that it preserves the norm. This implies \(r\leq n\), otherwise the kernel of the map \(\phi\circ i\) must be non-zero, and a non-zero element will be mapped to \(0\), which contradicts the fact that \(\phi\circ i\) preserves the norm. Write \(g:=\phi\circ i\). \(g\) can be restrected to a map 
+\(S^{r-1}\rightarrow S^{n-1}\) and since \(g\) is \(\mathbb{R}\)-linear, it induces a map \(G:\mathbb{R}P^{r-1}\rightarrow \mathbb{R}P^{n-1}\). To prove \(k\neq 0\), it is the same as proving the map induced by \(g\) between cohomology rings is not the zero map. 
 
+We know \(g:\mathbb{R}^r\rightarrow \mathbb{R}^n\) with \(r\leq n\) is a injective \(\mathbb{R}\)-linear map since \(\ker g=0\). There exists an invertible matrix \(T\in GL_n(\mathbb{R})\) such that the composition
+\[\mathbb{R}^r\xrightarrow{g}\mathbb{R}^n\xrightarrow{T}\mathbb{R}^n\]
+is an inclusion map, namely \(\mathbb{R}^r\) is mapped into the first \(r\) coordinates in \(\mathbb{R}^n\). Note that every map here is \(\mathbb{R}\)-linear and injective, this induces a map between real projective spaces 
+\[\mathbb{R}P^{r-1}\xrightarrow{G}\mathbb{R}P^{n-1}\xrightarrow{t}\mathbb{R}P^{n-1}\]
+where \(t\) is a homeomorphism as it is induced from an invertible matrix. The composition \(t\circ G\) is the inclusion of \((r-1)\)-skeleton inside \(\mathbb{R}P^{n-1}\) because it is induced from the embedding \(T\circ g:\mathbb{R}^r\hookrightarrow \mathbb{R}^n\). Now we have maps between cohomology rings 
+\[H^*(\mathbb{R}P^{n-1};\mathbb{Z}_2)\xrightarrow{t^*}H^*(\mathbb{R}P^{n-1};\mathbb{Z}_2)\xrightarrow{G^*}H^*(\mathbb{R}P^{r-1};\mathbb{Z}_2).\]
+We know here \(t^*\) is the identity map between cohomology rings as \(t\) is a homeomorphism, and \(G^*\circ t^*\) is surjective because \(t\circ G:\mathbb{R}P^{r-1}\hookrightarrow \mathbb{R}P^{n-1}\) is the inclusion of \((r-1)\)-skeleton. This implies \(k\neq 0\) and \(k=1\) since we are working \(\mathbb{Z}_2\)-coefficients. A similar argument implies \(l=1\).
+\end{claimproof}
+
+Going back to the map 
+\[F^*:\mathbb{Z}_2[x]/(x^n)\rightarrow \mathbb{Z}_2[y]/(y^r)\otimes \mathbb{Z}_2[z]/(z^s)\]
+sending \(x\) to \(y\otimes 1+1\otimes z\). We have a relation 
+\[0=F^*(x^n)=F^*(x)^n=(y\otimes 1+1\otimes z)^n=\sum_{i=0}^{n}\binom{n}{i} y^{n-i}\otimes z^i.\]
+in the field \(\mathbb{Z}_2\). If \(n-r<i<s\), we have \(1\leq i<s\) and \(1\leq n-i<r\), this means \(y^{n-i}\otimes z^i\neq 0\) and \(\binom{n}{i}=0\) in \(\mathbb{Z}_2\). So if such a formula \([r,s,n]\) exists, then \(n \choose i\) must be even for \(n-r<i<s\). 
+\item If a formula of type \([10,10,15]\) exists, then for \(15-10<6<10\), we have that \(15 \choose 6\) equals to \(5005\), which is an odd number, so such a formula does not exist.
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -104,7 +212,17 @@ Suppose \(p(x)\) is an irreducible polynomial over \(\mathbb{C}\) of degree \(n\
 Using singular cohomology rings of appropriate topological spaces, derive a contradiction. 
 \end{problem}
 \begin{solution}
-
+The multiplication \(\mu:\mathbb{C}^n\times \mathbb{C}^n\rightarrow \mathbb{C}^n\) is non-degenerate because it is coming from a multiplication in a field \(E\). Since the map \(\mu\) is \(\mathbb{C}\)-bilinear, for any \(\lambda\in \mathbb{C}^*\) and \((x,y)\in \mathbb{C}^n\times \mathbb{C}^n\), we have 
+\[\mu(\lambda x,y)=\mu(x,\lambda y)=\lambda \mu(x,y).\]
+This means for any two complex lines \(l_1,l_2\subseteq \mathbb{C}^n\) passing through the origin, they are sent to another line passing through the origin under the map \(\mu\). So \(\mu\) induces a map between complex projective spaces 
+\[f:\mathbb{C}P^{n-1}\times \mathbb{C}P^{n-1}\rightarrow \mathbb{C}P^{n-1}.\]
+By Künneth Theorem, this further induces a map between cohomology rings 
+\[f^*:H^*(\mathbb{C}P^{n-1})\rightarrow H^*(\mathbb{C}P^{n-1})\otimes H^*(\mathbb{C}P^{n-1}).\]
+We know that \(H^*(\mathbb{C}P^{n-1})\cong \mathbb{Z}[x]/(x^n)\), so \(f^*\) is a map between \(\mathbb{Z}\)-algebras 
+\[f^*:\mathbb{Z}[x]/(x^n)\rightarrow \mathbb{Z}[y]/(y^n)\otimes \mathbb{Z}[z]/(z^n)\]
+sending \(x\) to \(k(y\otimes 1)+l(1\otimes z)\) for some \(k,l\in \mathbb{Z}\). A similar argument with Problem 5(b) implies that \(k\) and \(l\) are not zero. So we have 
+\[0=f^*(x^n)=f^*(x)^n=(k(y\otimes 1)+l(1\otimes z))^n=\sum_{i=0}^{n}\binom{n}{i} k^i l^{n-i} y^i\otimes z^{n-i}.\]
+Since \(k,l\) is non-zero, this implies \(n\choose i\) needs to be \(0\) for \(1\leq i\leq n-1\), so \(n=1\). This contradicts the assumption that the degree of \(p(x)\) is larger than 1. 
 \end{solution}
 
 \end{document}
