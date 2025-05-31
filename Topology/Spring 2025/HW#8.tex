@@ -1,0 +1,113 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+\begin{document}
+\noindent
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 8}  \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294  \\
+\normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $6^{th}$ June, 2025  \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Suppose that \(M\) is a compact 3-manifold with \(\pi_1(M)\cong \mathbb{Z}/5\). 
+\begin{enumerate}[(a)]
+\item Prove that \(M\) is orientable, and then calculate all of the homology and cohomology groups of \(M\). 
+\item Prove that every map \(M\rightarrow \mathbb{R}P^3\) has even degree.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+\begin{enumerate}[(a)]
+\item Explain why the Euler characteristic of an odd-dimensional compact manifold must be zero. 
+\item Suppose that \(M\) is a \((2d+1)\)-dimensional compact manifold, and let \(W=\partial M\). Let \(X\) be the manifold obtained by gluing two copies of \(M\) together along their boundary. Using Mayer-Vietoris (or otherwise) prove that \(\chi(W)\equiv \chi(X)\) mod \(2\), and so deduce that \(\chi(W)\) must be even.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Suppose that there is a fiber bundle \(p:X\rightarrow S^8\) with fiber \(S^3\). 
+\begin{enumerate}[(a)]
+\item Prove that \(X\) is an orientable manifold.
+\item Prove that \(H_*(X)\) is isomorphic to \(H_*(S^3\times S^8)\). 
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Compute the cohomology ring of \(\mathbb{R}P^4\vee S^5\) with \(\mathbb{Z}/2\)-coefficients. Then use this to prove that \(\mathbb{R}P^4\vee S^5\) is not homotopy equivalent to a compact manifold. 
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+Suppose that \(X\) is a compact, orientable \(n\)-manifold and that \(S^n\rightarrow X\) is a map of positive degree. Prove that \(H_*(X;\mathbb{Q})\cong H_*(S^n;\mathbb{Q})\).
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+Find the mistake in the following "proof" that \(0=1\):
+
+Let \(A:S^2\rightarrow S^2\) be the antipodal map, and \(p:S^2\rightarrow \mathbb{R}P^2\) the projection. Consider the diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpXzIoU14yKSJdLFsxLDAsIlxccGlfMihTXjIpIl0sWzAsMSwiSF8yKFNeMikiXSxbMSwxLCJIXzIoU14yKSJdLFswLDEsIkFfKiJdLFsyLDMsIkFfKiJdLFswLDIsImhfMiIsMl0sWzEsMywiaF8yIiwyXV0=
+\[\begin{tikzcd}
+	{\pi_2(S^2)} & {\pi_2(S^2)} \\
+	{H_2(S^2)} & {H_2(S^2)}
+	\arrow["{A_*}", from=1-1, to=1-2]
+	\arrow["{h_2}"', from=1-1, to=2-1]
+	\arrow["{h_2}"', from=1-2, to=2-2]
+	\arrow["{A_*}", from=2-1, to=2-2]
+\end{tikzcd}\]
+where \(h_2\) is the Hurewicz map. We know that \(h_2\) is an isomorphism, and we know that the lower map \(A_*\) is multiplication by \((-1)^3\). So it follows that the upper \(A_*\) is also multiplication by \((-1)\). \\ 
+Next consider the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXzIoU14yKSJdLFsyLDAsIlxccGlfMihTXjIpIl0sWzEsMSwiXFxwaV8yKFxcbWF0aGJie1J9UF4yKSJdLFswLDEsIkFfKiJdLFswLDIsInBfKiIsMl0sWzEsMiwicF8qIl1d
+\[\begin{tikzcd}
+	{\pi_2(S^2)} && {\pi_2(S^2)} \\
+	& {\pi_2(\mathbb{R}P^2)}
+	\arrow["{A_*}", from=1-1, to=1-3]
+	\arrow["{p_*}"', from=1-1, to=2-2]
+	\arrow["{p_*}", from=1-3, to=2-2]
+\end{tikzcd}\]
+This commutes because of functoriality, since \(p\circ A=p\). We know from the long exact sequence for the fibration \(p:S^2\rightarrow \mathbb{R}P^2\) that \(p_*\) is an isomorphism. Let \(g\in \pi_2(S^2)\) be a generator. Then we have 
+\[p_*(g)=p_*(A_*(g))=p_*(-g)=-p_*(g).\]
+But \(\pi_2(\mathbb{R}P^2)\cong \pi_2(S^2)\cong \mathbb{Z}\), and so the above equation implies \(p_*(g)=0\). Therefore \(p_*\) is the zero map. But we have already said that \(p_*\) is an isomorphism, therefore \(\pi_2(\mathbb{R}P^2)=0\). Since we have also said that \(\pi_2(\mathbb{R}P^2)\cong \mathbb{Z}\), it must be that \(\mathbb{Z}\cong 0\). So \(\mathbb{Z}\) has only one element and, in particular, \(0=1\). 
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\end{document}
