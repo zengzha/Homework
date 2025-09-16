@@ -1,15 +1,15 @@
-\documentclass[letterpaper, 12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %Header-Make sure you update this information!!!!
 \noindent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 2}   \\
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 1}   \\
 Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
 \normalsize Course: MATH 636 - Algebraic Topology III \hfill Term: Spring 2025\\
-Instructor: Dr.Daniel Dugger \hfill Due Date: $18^{th}$ April, 2025 \\
+Instructor: Dr.Daniel Dugger \hfill Due Date: $11^{th}$ April, 2025 \\
 \noindent\rule{7in}{2.8pt}
 \setstretch{1.1}
 
@@ -17,72 +17,122 @@ Instructor: Dr.Daniel Dugger \hfill Due Date: $18^{th}$ April, 2025 \\
 %Probelm 1 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{1}
-Determine all the cohomology groups \(H^*(\mathbb{R}P^4\#\mathbb{C}P^2)\). 
+Compute the cohomology groups of the following spaces \(X\) by writing down the explicit cochain complexes (e.g. cellular cochain complexes) and computing the cohomology directly. 
+In each case, compute both \(H^*(X)\) and \(H^*(X;\mathbb{Z}/2)\).
+\begin{enumerate}[(a)]
+\item \(S^n\)
+\item The genus \(g\) torus
+\item \(\mathbb{R}P^n\) and \(\mathbb{C}P^n\)
+\item The space \(\mathbb{R}P^n\#\cdots \mathbb{R}P^n\) (\(g\) copies)
+\end{enumerate}
 \end{problem}
 \begin{solution}
-We first use the Mayer-Vietoris sequences in cohomology as follows:
-\[\includegraphics[scale=0.1]{Pictures/HW2-1-1.jpg}\]
-Let \(X=\mathbb{R}P^4\#\mathbb{C}P^2\). We have the following long exact sequence in cohomology 
-% https://q.uiver.app/#q=WzAsMjMsWzEsMCwiSF4qKFgpIl0sWzIsMCwiSF4qKFxcbWF0aGJie1J9UF4zKVxcb3BsdXMgSF4qKFxcbWF0aGJie0N9UF4xKSJdLFszLDAsIkheKihTXjMpIl0sWzAsMSwiMCJdLFswLDIsIjEiXSxbMCwzLCIyIl0sWzAsNCwiMyJdLFswLDUsIjQiXSxbMSwxLCI/Il0sWzIsMSwiXFxtYXRoYmJ7Wn1cXG9wbHVzIFxcbWF0aGJie1p9Il0sWzMsMSwiXFxtYXRoYmJ7Wn0iXSxbMSwyLCI/Il0sWzEsMywiPyJdLFsxLDQsIj8iXSxbMSw1LCI/Il0sWzIsMiwiMFxcb3BsdXMwIl0sWzMsMiwiMCJdLFszLDQsIlxcbWF0aGJie1p9Il0sWzIsMywiXFxtYXRoYmJ7Wn0vMlxcb3BsdXNcXG1hdGhiYntafSJdLFszLDMsIjAiXSxbMyw1LCIwIl0sWzIsNSwiMCJdLFsyLDQsIlxcbWF0aGJie1p9XFxvcGx1czAiXSxbOCw5XSxbOSwxMF0sWzEwLDExXSxbMTEsMTVdLFsxNSwxNl0sWzE2LDEyXSxbMTIsMThdLFsxOCwxOV0sWzE5LDEzXSxbMTMsMjJdLFsyMiwxN10sWzE3LDE0XSxbMTQsMjFdLFsyMSwyMF1d
-\[\begin{tikzcd}
-	& {H^*(X)} & {H^*(\mathbb{R}P^3)\oplus H^*(\mathbb{C}P^1)} & {H^*(S^3)} \\
-	0 & {?} & {\mathbb{Z}\oplus \mathbb{Z}} & {\mathbb{Z}} \\
-	1 & {?} & {0\oplus0} & 0 \\
-	2 & {?} & {\mathbb{Z}/2\oplus\mathbb{Z}} & 0 \\
-	3 & {?} & {\mathbb{Z}\oplus0} & {\mathbb{Z}} \\
-	4 & {?} & 0 & 0
-	\arrow[from=2-2, to=2-3]
-	\arrow[from=2-3, to=2-4]
-	\arrow[from=2-4, to=3-2]
-	\arrow[from=3-2, to=3-3]
-	\arrow[from=3-3, to=3-4]
-	\arrow[from=3-4, to=4-2]
-	\arrow[from=4-2, to=4-3]
-	\arrow[from=4-3, to=4-4]
-	\arrow[from=4-4, to=5-2]
-	\arrow[from=5-2, to=5-3]
-	\arrow[from=5-3, to=5-4]
-	\arrow[from=5-4, to=6-2]
-	\arrow[from=6-2, to=6-3]
-	\arrow[from=6-3, to=6-4]
-\end{tikzcd}\]
-Note that \(X\) is connected, so \(H^0(X)=\mathbb{Z}\). By exactness of the above sequence, we have 
-\[H^2(X)\cong \mathbb{Z}\oplus \mathbb{Z}/2.\]
-Now consider collapsing the \(\mathbb{C}P^1\subseteq \mathbb{C}P^2\) in \(X\) as shown 
-\[\includegraphics[scale=0.1]{Pictures/HW2-1-2.jpg}\]
-we have a cofiber sequence 
-\[\mathbb{C}P^1\rightarrow X\rightarrow \mathbb{R}P^4\]
-This gives us a long exactness sequence in reduced cohomology
-% https://q.uiver.app/#q=WzAsMjMsWzEsMCwiXFx0aWxkZXtIfV4qKFxcbWF0aGJie1J9UF40KSJdLFsyLDAsIlxcdGlsZGV7SH1eKihYKSJdLFszLDAsIlxcdGlsZGV7SH1eKihcXG1hdGhiYntDfVBeMSkiXSxbMCwxLCIwIl0sWzAsMiwiMSJdLFswLDMsIjIiXSxbMCw0LCIzIl0sWzAsNSwiNCJdLFsyLDEsIjAiXSxbMSwxLCIwIl0sWzMsMSwiMCJdLFsxLDIsIjAiXSxbMSwzLCJcXG1hdGhiYntafS8yIl0sWzEsNCwiMCJdLFsxLDUsIlxcbWF0aGJie1p9LzIiXSxbMywzLCJcXG1hdGhiYntafSJdLFszLDIsIjAiXSxbMyw0LCIwIl0sWzMsNSwiMCJdLFsyLDIsIj8iXSxbMiwzLCJcXG1hdGhiYntafVxcb3BsdXNcXG1hdGhiYntafS8yIl0sWzIsNCwiPyJdLFsyLDUsIj8iXSxbOSw4XSxbOCwxMF0sWzEwLDExXSxbMTEsMTldLFsxOSwxNl0sWzE2LDEyXSxbMTIsMjBdLFsyMCwxNV0sWzE1LDEzXSxbMTMsMjFdLFsyMSwxN10sWzE3LDE0XSxbMTQsMjJdLFsyMiwxOF1d
-\[\begin{tikzcd}
-	& {\tilde{H}^*(\mathbb{R}P^4)} & {\tilde{H}^*(X)} & {\tilde{H}^*(\mathbb{C}P^1)} \\
-	0 & 0 & 0 & 0 \\
-	1 & 0 & {?} & 0 \\
-	2 & {\mathbb{Z}/2} & {\mathbb{Z}\oplus\mathbb{Z}/2} & {\mathbb{Z}} \\
-	3 & 0 & {?} & 0 \\
-	4 & {\mathbb{Z}/2} & {?} & 0
-	\arrow[from=2-2, to=2-3]
-	\arrow[from=2-3, to=2-4]
-	\arrow[from=2-4, to=3-2]
-	\arrow[from=3-2, to=3-3]
-	\arrow[from=3-3, to=3-4]
-	\arrow[from=3-4, to=4-2]
-	\arrow[from=4-2, to=4-3]
-	\arrow[from=4-3, to=4-4]
-	\arrow[from=4-4, to=5-2]
-	\arrow[from=5-2, to=5-3]
-	\arrow[from=5-3, to=5-4]
-	\arrow[from=5-4, to=6-2]
-	\arrow[from=6-2, to=6-3]
-	\arrow[from=6-3, to=6-4]
-\end{tikzcd}\]
-By exactness, we know \(H^1(X)=H^3(X)=0\) and \(H^4(X)=\mathbb{Z}/2\). We can summarize the cohomology groups as follows.
-\[H^i(\mathbb{R}P^4\#\mathbb{C}P^2)=\begin{cases}
-    \mathbb{Z},&\iif i=0;\\ 
-    \mathbb{Z}/2,&\iif i=4;\\ 
-    \mathbb{Z}\oplus \mathbb{Z}/2,&\iif i=2;\\
-    0,&\otherwise.
+\begin{enumerate}[(a)]
+\item When \(n=0\), \(S^0\) is the disjoint union of two points. So the cochain complex \(C^*(S^0;\mathbb{Z})\) is given by 
+\[0\rightarrow \hom(\mathbb{Z}^2,\mathbb{Z})\rightarrow 0\]
+Note that \(\hom(\mathbb{Z}^2,\mathbb{Z})\cong \mathbb{Z}^2\), so we have \(H^0(S^0)=\mathbb{Z}^2\) and all other cohomology groups vanishes. Similarly, we have \(H^0(S^0;\mathbb{Z}/2)=(\mathbb{Z}/2)^2\) and all other cohomology groups of coefficient \(\mathbb{Z}/2\) are zero. 
+For \(n\geq 1\), consider the cellular chain complex of \(S^n\) with only one \(0\)-cell and one \(n\)-cell.
+\[0\rightarrow \mathbb{Z}\rightarrow\cdots\rightarrow \mathbb{Z}\rightarrow 0\]
+All boundary maps are zero. Apply the functor \(\hom(-,\mathbb{Z})\) and we get the cochain complex 
+\[0\rightarrow \mathbb{Z}\rightarrow\cdots\rightarrow \mathbb{Z}\rightarrow 0\]
+Similarly, apply \(\hom(-,\mathbb{Z}/2)\) and we get the cochain complex with coefficient \(\mathbb{Z}/2\)
+\[0\rightarrow \mathbb{Z}/2\rightarrow\cdots\rightarrow \mathbb{Z}/2\rightarrow 0\]
+So the cohomology groups for \(S^n\) \((n\geq 1)\) can be summarized as follows 
+\begin{multicols}{2}
+\noindent
+\[H^i(S^n)=\begin{cases}
+	\mathbb{Z},&\iif i=0,n;\\ 
+	0,&\otherwise.
 \end{cases}\]
+\noindent
+\[H^i(S^n;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0,n;\\ 
+	0,&\otherwise.
+\end{cases}\]
+\end{multicols}
+\item Let \(X\) be the genus \(g\) torus. Consider the standard cellular structure on \(X\) with one \(0\)-cell, \(2g\) \(1\)-cells and one \(2\)-cells. The chain complex is given by 
+\[0\rightarrow \mathbb{Z}\xrightarrow{0}\mathbb{Z}^{2g}\xrightarrow{0}\mathbb{Z}\rightarrow 0\]
+Apply \(\hom(-,\mathbb{Z})\) and \(\hom(-,\mathbb{Z}/2)\) respectively and we have the following cochain complexes 
+\[0\rightarrow \mathbb{Z}\xrightarrow{0}\mathbb{Z}^{2g}\xrightarrow{0}\mathbb{Z}\rightarrow 0\]
+\[0\rightarrow \mathbb{Z}/2\xrightarrow{0}(\mathbb{Z}/2)^{2g}\xrightarrow{0}\mathbb{Z}/2\rightarrow 0\]
+So the cohomology groups of \(X\) can be summarized as follows 
+\begin{multicols}{2}
+\noindent
+\[H^i(X)=\begin{cases}
+	\mathbb{Z},&\iif i=0,2;\\ 
+	\mathbb{Z}^{2g},&\iif i=1;\\ 
+	0,&\otherwise.
+\end{cases}\]
+\noindent
+\[H^i(X;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0,2;\\ 
+	(\mathbb{Z}/2)^{2g}&\iif i=1;\\ 
+	0,&\otherwise.
+\end{cases}\]
+\end{multicols}
+\item Consider the standard cellular structure on \(\mathbb{C}P^n\) with one cell in each even dimension from \(0\) to \(2n\). The chain complex is given by 
+\[0\rightarrow \mathbb{Z}\rightarrow 0\rightarrow \mathbb{Z}\rightarrow \cdots\rightarrow \mathbb{Z}\rightarrow 0\]
+All boundary maps are zero. Apply \(\hom(-,\mathbb{Z})\) and \(\hom(-,\mathbb{Z}/2)\) respectively, we have cochain complexes 
+\[0\rightarrow \mathbb{Z}\rightarrow 0\rightarrow \mathbb{Z}\rightarrow \cdots\rightarrow \mathbb{Z}\rightarrow 0\]
+\[0\rightarrow \mathbb{Z}/2\rightarrow 0\rightarrow \mathbb{Z}/2\rightarrow \cdots\rightarrow \mathbb{Z}/2\rightarrow 0\]
+So the cohomology groups of \(\mathbb{C}P^n\) can be summarized as follows 
+\[H^i(\mathbb{C}P^n)=\begin{cases}
+	\mathbb{Z},&\iif 0\leq i\leq 2n\ \ \text{and}\ \ i\ \ \text{even};\\ 
+	0,&\otherwise.
+\end{cases}\]
+\[H^i(\mathbb{C}P^n;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif 0\leq i\leq 2n\ \ \text{and}\ \ i\ \ \text{even};\\ 
+	0,&\otherwise.
+\end{cases}\]
+
+Consider the standard cellular structure on \(\mathbb{R}P^n\) with one cell in each dimension from \(0\) to \(n\). The chain complex is given by 
+\[0\rightarrow \mathbb{Z}\xrightarrow{2}\mathbb{Z}\xrightarrow{0}\cdots\xrightarrow{2}\mathbb{Z}\xrightarrow{0}\mathbb{Z}\rightarrow 0,\ \ n\ \ \text{even}\]
+\[0\rightarrow \mathbb{Z}\xrightarrow{0}\mathbb{Z}\xrightarrow{2}\cdots\xrightarrow{2}\mathbb{Z}\xrightarrow{0}\mathbb{Z}\rightarrow 0,\ \ n\ \ \text{odd}\]
+Apply \(\hom(-,\mathbb{Z}/2)\), and all boundary maps become \(0\). Both odd and even cases give us the same cochain complex 
+\[0\rightarrow \mathbb{Z}/2\xrightarrow{0}\cdots\xrightarrow{0}\mathbb{Z}/2\rightarrow 0\]
+So the cohomology groups with coefficient \(\mathbb{Z}/2\) are given by 
+\[H^i(\mathbb{R}P^n;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0,1,\ldots,n;\\ 
+	0,&\otherwise.
+\end{cases}\]
+Next, apply \(\hom(-,\mathbb{Z})\) to the chain complexes and we get 
+\[0\leftarrow \mathbb{Z}\xleftarrow{2}\mathbb{Z}\xleftarrow{0}\cdots\xleftarrow{2}\mathbb{Z}\xleftarrow{0}\mathbb{Z}\leftarrow 0,\ \ n\ \ \text{even}\]
+\[0\leftarrow \mathbb{Z}\xleftarrow{0}\mathbb{Z}\xleftarrow{2}\cdots\xleftarrow{2}\mathbb{Z}\xleftarrow{0}\mathbb{Z}\leftarrow 0,\ \ n\ \ \text{odd}\]
+So the cohomology groups of \(\mathbb{R}P^n\) can be summarized as follows 
+\[H^i(\mathbb{R}P^n)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\ 
+	\mathbb{Z}/2,&\iif 1\leq i\leq n-1\ \ \text{and}\ \ i\ \ \text{even};\\ 
+	0,&\iif 1\leq i\leq n-1\ \ \text{and}\ \ i\ \ \text{odd};\\
+	\mathbb{Z}/2,&\iif i=n\ \ \text{even};\\ 
+	\mathbb{Z},& \iif i=n\ \ \text{odd};\\ 
+	0,&\otherwise.
+\end{cases}\]
+\item Let \(X\) be the connected sum of \(g\) copies of \(\mathbb{R}P^2\). Consider the standard cellular structure on \(X\) with one \(0\)-cell, \(g\) \(1\)-cells and one \(2\)-cell. The chain complex is given by 
+\[0\rightarrow \mathbb{Z}\xrightarrow{d_2}\mathbb{Z}^g\xrightarrow{0}\mathbb{Z}\rightarrow 0\]
+The boundary map \(d_2\) is given by a matrix \(\begin{pmatrix}
+	2\\ 
+	\vdots\\ 
+	2
+\end{pmatrix}\). Apply \(\hom(-,\mathbb{Z}/2)\) and the coboundary map becomes \(0\), so the cochain complex with coefficient \(\mathbb{Z}/2\) is given by 
+\[0\leftarrow \mathbb{Z}/2\xleftarrow{0}(\mathbb{Z}/2)^g\xleftarrow{0}\mathbb{Z}/2\leftarrow 0\]
+The cohomology groups of \(X\) with coefficient \(\mathbb{Z}/2\) are 
+\[H^i(X;\mathbb{Z}/2)=\begin{cases}
+	\mathbb{Z}/2,&\iif i=0,2;\\ 
+	(\mathbb{Z}/2)^g,&\iif i=1;\\ 
+	0,&\otherwise.
+\end{cases}\]
+Next, apply the functor \(\hom(-,\mathbb{Z})\) and we get the cochain complex 
+\[0\leftarrow \mathbb{Z}\xleftarrow{\delta_1}\mathbb{Z}^g\xleftarrow{0}\mathbb{Z}\leftarrow 0\]
+where \(\delta_1\) is given by the row matrix \(\begin{pmatrix}
+	2&\cdots &2
+\end{pmatrix}\). So the image of \(\delta_1\) in \(\mathbb{Z}\) is \(2 \mathbb{Z}\) and \(\ker \delta_1=\mathbb{Z}^{g-1}\). The cohomology groups 
+\[H^i(X)=\begin{cases}
+	\mathbb{Z},&\iif i=0;\\ 
+    \mathbb{Z}^{g-1},&\iif i=1;\\
+	\mathbb{Z}/2,&\iif i=2;\\ 
+	0,&\otherwise.
+\end{cases}\]
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -90,26 +140,100 @@ By exactness, we know \(H^1(X)=H^3(X)=0\) and \(H^4(X)=\mathbb{Z}/2\). We can su
 %Probelm 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{2}
-Let \(f:X\rightarrow Y\) be a map, and consider the diagram 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIXmsoWTtSKSJdLFsyLDAsIkheayhYO1IpIl0sWzAsMSwiXFxob20oSF9rKFkpLFIpIl0sWzIsMSwiXFxob20oSF9rKFgpLFIpIl0sWzIsMywiXFxob20oZl8qLFIpIl0sWzAsMiwiXFxwaGkiXSxbMSwzLCJcXHBoaSIsMl0sWzAsMSwiZl4qIl1d
-\[\begin{tikzcd}
-	{H^k(Y;R)} && {H^k(X;R)} \\
-	{\hom(H_k(Y),R)} && {\hom(H_k(X),R)}
-	\arrow["{f^*}", from=1-1, to=1-3]
-	\arrow["\phi", from=1-1, to=2-1]
-	\arrow["\phi"', from=1-3, to=2-3]
-	\arrow["{\hom(f_*,R)}", from=2-1, to=2-3]
-\end{tikzcd}\]
-where the bottom horizontal map is the one obtained by applying the functor \(\hom(-,R)\) to \(f_*:H_k(X)\rightarrow H_k(Y)\). Here the vertical maps \(\phi\) are the adjoints to the Kronecker pairings, namely 
-the maps that send a cohomology class \([\alpha]\) to the homomorphism \([v]\mapsto \alpha(v)\). Verify that the above diagram commutes. 
+The picture below shows a \(\Delta\)-complex \(X\) (note that \(X\cong \mathbb{R}P^2\)). Note that there are two 0-simplices \(X\) and \(Y\), three \(1\)-simplices \(a,b\) and \(c\) and two \(2\)-simplices \(P\) and \(Q\). 
+\[\includegraphics[scale=0.5]{Pictures/HW1-2.png}\]
+Write \(\hat{X},\hat{Y}\) for the basis of \(C^0(X;\mathbb{Z})\) that is dual to \(X,Y\), and similarly for \(\hat{a},\hat{b},\hat{c}\in C^1(X;\mathbb{Z})\) and \(\hat{P},\hat{Q}\in C^2(X;\mathbb{Z})\). In this problem we will 
+also work with \(C^*(X;\mathbb{Z}/2)\), and \(\hat{P}\) could denote either the cochain in \(C^2(X;\mathbb{Z})\) or in \(C^2(X;\mathbb{Z}/2)\).
+\begin{enumerate}[(a)]
+\item Is \(\hat{a}+\hat{b}+\hat{c}\) a cocyle? What about \(\hat{a}+\hat{c}\) and \(\hat{a}+\hat{b}\)?
+\item Are the answers to (a) different in \(C^*(X; \mathbb{Z}/2)\)?
+\item Cellular cohomology readily shows that \(H^1(\mathbb{R}P^2)=0\), so \(H^1(X)=0\). This means that the cocyle you found in (a) is a coboundary. Find a \(0\)-cochain \(\sigma\) such that \(\delta(\sigma)\) is your cocycle. 
+\item Is \(\hat{P}\) a coboundary? What about \(\hat{P}+\hat{Q}\) and \(\hat{P}+3\hat{Q}\)?
+\item Is it true that \([\hat{P}]=[\hat{Q}]\) in \(H^2(X)\)?
+\item Find a \(1\)-cocycle that generates \(H^1(X;\mathbb{Z}/2)\). 
+\item We have the subspace \(S^1\subseteq X\) consisting of the \(1\)-cells \(a\) and \(b\). We can restrict \(\hat{a}\) and \(\hat{b}\) to this \(S^1\), and we will call those by the same name. Complete the following 
+\[[p\hat{a}+q\hat{b}]=0\ \text{in}\ H^1(S^1)\ \ \text{if and only if}\underline{\hspace{4cm}}\]
+\item Analyze the map \(H^1(X;\mathbb{Z}/2)\rightarrow H^1(S^1;\mathbb{Z}/2)\). Is it injective? Surjective?
+\item Given a cochain \(\alpha\in C^1(X;\mathbb{Z}/2)=\hom(C_1(X),\mathbb{Z}/2)\) and a chain \(v\in C_1(X)\) we can evaluate \(\alpha\) on \(v\) to get an element \(\alpha(v)\in \mathbb{Z}/2\). True or false: If \(v=[b]+[c]\) 
+then for all cocycles \(\alpha,\alpha'\in C^1(X;\mathbb{Z}/2)\) such that \([\alpha]=[\alpha']\) in \(H^1(X;\mathbb{Z}/2)\) we have \(\alpha(v)=\alpha'(v)\). 
+\item Re-do the previous part if \(v=[b]-[a]\). 
+\item If \([\alpha]=[\alpha']\) in \(H^1(X;\mathbb{Z}/2)\) then \(\alpha-\alpha'=\delta(\beta)\) for some \(\beta\in C^0(X;\mathbb{Z}/2)\). What would you need to know about \(v\) in order to show that \(\alpha(v)=\alpha'(v)\), no matter what \(\beta\) is?
+\end{enumerate}
 \end{problem}
 \begin{solution}
-Let \(\alpha:C_k(Y)\rightarrow R\) be a cocycle in \(Y\) and \([\alpha]\) be the cohomology class represented by \(\alpha\) in \(H^k(Y;R)\). By defintiion, we know that \(f^*([\alpha])=[\alpha\circ f_\#]\), where 
-\(f_\#:C_k(X)\rightarrow C_k(Y)\) is the map on the chain complex induced by \(f\). By definition, \(\phi\) sends \([\alpha\circ f_\#]\) to the homomorphism \([v]\mapsto (\alpha\circ f_\#)(v)\) for any \(k\)-cycle \(v\in C_k(X)\). On the other hand, 
-\(\phi\) sends \([\alpha]\) to the homomorphism \([w]\mapsto \alpha(w)\) for any \(k\)-cycle \(w\in C_k(Y)\). Applying \(\hom(f_*,R)\) to this homomorphism, we obtain a homomorphism sending any \([v]\in H_k(X)\) to 
-\(\alpha(f_*([v]))\). Note that by definition, for any \(k\)-cycle \(v\in C_k(X)\), we have 
-\[\alpha(f_*([v]))=\alpha([f_\#(v)])=\alpha(f_\#(v))=(\alpha\circ f_\#)(v).\]
-This proves the commutativity of this diagram. 
+\begin{enumerate}[(a)]
+\item Let \(\partial\) be the differential in the chain complex and \(\delta\) be the codifferential in the cochain complex. We can calculate by definition 
+\[\delta(\hat{a}+\hat{b}+\hat{c})(P)=(\hat{a}+\hat{b}+\hat{c})(\partial P)=(\hat{a}+\hat{b}+\hat{c})(a+c-b)=1\]
+This implies \(\delta(\hat{a}+\hat{b}+\hat{c})\) is not the zero map, so it is not a cocycle. Similarly, we have 
+\[\delta(\hat{a}+\hat{c})(P)=(\hat{a}+\hat{c})(a+c-b)=2\]
+So \(\hat{a}+\hat{c}\) is not a cocycle. For \(\hat{a}+\hat{b}\), we have 
+\[\delta(\hat{a}+\hat{b})(P)=(\hat{a}+\hat{b})(a+c-b)=0\]
+\[\delta(\hat{a}+\hat{b})(Q)=(\hat{a}+\hat{b})(b+c-a)=0\]
+We know all the \(2\)-chains are generated by \(P\) and \(Q\), so this implies \(\delta(\hat{a}+\hat{b})=0\) for all \(2\)-chains. Thus, \(\hat{a}+\hat{b}\) is a cocycle. 
+\item Now we take the coefficient to be \(\mathbb{Z}/2\). \(\hat{a}+\hat{b}\) is still a cocycle and \(\hat{a}+\hat{b}+\hat{c}\) is still not a cocycle by the same calculation. For \(\hat{a}+\hat{c}\), we have 
+\[\delta(\hat{a}+\hat{c})(P)=(\hat{a}+\hat{c})(a+c-b)=0\]
+\[\delta(\hat{a}+\hat{c})(Q)=(\hat{a}+\hat{c})(b+c-a)=0\]
+So in this case, \(\hat{a}+\hat{c}\) becomes a cocycle. 
+\item Suppose we have a 0-cochain \(m\hat{X}+n\hat{Y}\) satisfying \(\delta(m\hat{X}+n\hat{Y})=\hat{a}+\hat{b}\). Then we have 
+\begin{align*}
+	\delta(m\hat{X}+n\hat{Y})(a)&=(m\hat{X}+n\hat{Y})(Y-X)=n-m=1,\\ 
+	\delta(m\hat{X}+n\hat{Y})(b)&=(m\hat{X}+n\hat{Y})(Y-X)=n-m=1,\\ 
+	\delta(m\hat{X}+n\hat{Y})(c)&=(m\hat{X}+n\hat{Y})(Y-Y)=0.
+\end{align*}
+We can choose \(n=1\) and \(m=0\) as a solution. So \(\delta(\hat{Y})=\hat{a}+\hat{b}\).
+\item Suppose there is a \(1\)-cochain \(k\hat{a}+m\hat{b}+n\hat{c}\) satisfying \(\delta(k\hat{a}+m\hat{b}+n\hat{c})=\hat{P}\). Then we have 
+\begin{align*}
+	\delta(k\hat{a}+m\hat{b}+n\hat{c})(P)&=(k\hat{a}+m\hat{b}+n\hat{c})(a+c-b)=k+n-m=1,\\ 
+	\delta(k\hat{a}+m\hat{b}+n\hat{c})(Q)&=(k\hat{a}+m\hat{b}+n\hat{c})(b+c-a)=n+m-k=0.
+\end{align*}
+Combine two equations together and we have \(2n=1\). There is no solution in \(\mathbb{Z}\), so such a \(1\)-cochain does not exist. This implies \(\hat{P}\) is not a coboundary. Similarly, for \(\hat{P}+\hat{Q}\), we get two equations 
+\begin{align*}
+	k+n-m&=1,\\ 
+	m+n-k&=1.
+\end{align*}
+Combine two equations and we get \(n=1\). So \(\hat{P}+\hat{Q}\) is a coboundary and we have \(\delta(\hat{c})=\hat{P}+\hat{Q}\). For \(\hat{P}+3\hat{Q}\), we have two equations 
+\begin{align*}
+	k+n-m&=1,\\ 
+	m+n-k&=3.
+\end{align*}
+Combine two equations and we get \(n=2\). So \(\hat{P}+3\hat{Q}\) is a coboundary and we have \(\delta(\hat{b}+2\hat{c})=\hat{P}+3\hat{Q}\). 
+\item This is the same as asking if \([\hat{P}-\hat{Q}]=0\) in \(H^2(X)\). Or equivalently, is \(\hat{P}-\hat{Q}\) a coboundary? Use the same notation for the previous question and write down the equations 
+\begin{align*}
+	k+n-m&=1,\\ 
+	m+n-k&=-1.
+\end{align*}
+Combine two equations and we get \(n=0\). So \(\hat{P}-\hat{Q}\) is a coboundary and we have \(\delta(\hat{a})=\hat{P}-\hat{Q}\). This proves that \([\hat{P}]=[\hat{Q}]\) in \(H^2(X)\). 
+\item We know \(X\cong \mathbb{R}P^2\), so \(H^1(X;\mathbb{Z}/2)\cong \mathbb{Z}/2\) is generated by a non zero element. We have calculated in (b) that \(\hat{a}+\hat{c}\) is a cocycle. We need to show that \(\hat{a}+\hat{c}\) is not a coboundary. Suppose 
+\(m\hat{X}+n\hat{Y}\) is a 0-cochain such that \(\delta(m\hat{X}+n\hat{Y})=\hat{a}+\hat{c}\). Then we have 
+\begin{align*}
+	\delta(m\hat{X}+n\hat{Y})(a)&=(m\hat{X}+n\hat{Y})(Y-X)=1,\\ 
+	\delta(m\hat{X}+n\hat{Y})(b)&=(m\hat{X}+n\hat{Y})(Y-X)=0.
+\end{align*}
+We have no solutions for these two equations so \(\hat{a}+\hat{c}\) is not a coboundary. This implies that \([\hat{a}+\hat{c}]\) is a nonzero element in \(H^1(X;\mathbb{Z}/2)\), so it is a generator. 
+\item \([p\hat{a}+q\hat{b}]=0\) in \(H^1(S^1)\) is the same as \(p\hat{a}+q\hat{b}\) is a 1-coboundary in \(C^1(S^1)\). Suppose we have a 0-cochain \(m\hat{X}+n\hat{Y}\) such that 
+\[\delta(m\hat{X}+n\hat{Y})=p\hat{a}+q\hat{b}\]
+This is equivalent to 
+\begin{align*}
+	\delta(m\hat{X}+n\hat{Y})(a)&=(m\hat{X}+n\hat{Y})(Y-X)=m-n=p,\\ 
+	\delta(m\hat{X}+n\hat{Y})(b)&=(m\hat{X}+n\hat{Y})(Y-X)=m-n=q.
+\end{align*}
+The two equations having solutions in \(\mathbb{Z}\) is equivalent to \(p=q\). So we can conclude that 
+\[[p\hat{a}+q\hat{b}]=0\ \text{in}\ H^1(S^1)\ \ \text{if and only if}\ \ p=q\]
+\item We know \(X\cong \mathbb{R}P^2\), so \(H^1(X;\mathbb{Z}/2)\cong H^1(S^1;\mathbb{Z}/2)\cong \mathbb{Z}/2\). So the map \(i^*:H^1(X;\mathbb{Z}/2)\rightarrow H^1(S^1;\mathbb{Z}/2)\) induced by the inclusion \(i:S^1\rightarrow X\) is either the zero map or 
+an isomorphism. We have already shown in (f) that \(\hat{a}+\hat{c}\) is a generator of \(H^1(X;\mathbb{Z}/2)\). Note that \(S^1\) does not have \(c\) as a 1-cell, so \(i^*(\hat{a}+\hat{c})=\hat{a}\) in \(H^1(S^1;\mathbb{Z}/2)\). By (g), we know that 
+\(\hat{a}\) is not a coboundary. This proves that \(i^*\) is not a zero map, so \(i^*\) is an isomorphism, which is both injective and surjective. 
+\item This is false. From (a), (b), (c) and (f), we know that \(\hat{a}+\hat{c}\) and \(\hat{a}+\hat{b}\) are both cocycles in \(C^1(X;\mathbb{Z}/2)\), and \(\hat{a}+\hat{b}\) is also a coboundary. So \(\hat{a}+\hat{c}+\hat{a}+\hat{b}=\hat{b}+\hat{c}\) represents the same 
+cohomology class as \(\hat{a}+\hat{c}\) in \(H^1(X;\mathbb{Z}/2)\), namely \([\hat{a}+\hat{c}]=[\hat{b}+\hat{c}]\) in \(H^1(X;\mathbb{Z}/2)\). And by calculation, we have 
+\[(\hat{a}+\hat{c})(v)=(\hat{a}+\hat{c})([b]+[c])=1\]
+\[(\hat{b}+\hat{c})(v)=(\hat{b}+\hat{c})([b]+[c])=0\] 
+This shows the claim is false. 
+\item This is true. Suppose \(\alpha,\alpha'\in C^1(X;\mathbb{Z}/2)\) are cocycles representing the same cohomology class. Then \(\alpha-\alpha'\) is a coboundary. There exists a 0-chain \(m\hat{X}+n\hat{Y}\) such that 
+\(\delta(m\hat{x}+n\hat{Y})=\alpha-\alpha'\). Then for \(v=[b]-[a]\), we have 
+\[\alpha(v)-\alpha'(v)=(\alpha-\alpha')([b]-[a])=\delta(m\hat{X}+n\hat{Y})([b]-[a])=(m\hat{X}+n\hat{Y})(Y-X-Y+X)=0.\]
+\item We have 
+\[0=\alpha(v)-\alpha'(v)=\delta(\beta)(v)=\beta(\partial v)\]
+for all \(\beta\in C^0(X;\mathbb{Z}/2)\). This implies \(\partial v=0\), namely \(v\) is a coboundary in \(C^1(X)\).
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -117,271 +241,174 @@ This proves the commutativity of this diagram.
 %Probelm 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{3}
-\begin{enumerate}[(a)]
-\item Give a \(\Delta\)-complex structure on \(\mathbb{R}P^2\) and use this to write down explicit cocycles \(\alpha\in Z^1(\mathbb{R}P^2;\mathbb{Z}/2)\) and 
-\(\beta\in Z^2(\mathbb{R}P^2;\mathbb{Z}/2)\) that generates the cohomology groups. Compute \(\alpha\cup \alpha\) and decide if it equals \(\beta\) or not in \(H^*(\mathbb{R}P^2;\mathbb{Z}/2)\). 
-\item Let \(K\) be the Klein bottle. Write down explicit cocycles whcih represent generators for \(H^*(K;\mathbb{Z}/2)\) and use these to compute all the cup products of these generators. 
-\item If \(R\) is a ring then we can extend the Kronecker pairing to be maps 
-\[H^k(X;R)\otimes H_k(X;R)\rightarrow R.\]
-The adjoint is then a map 
-\[\phi_R:H^k(X;R)\rightarrow \hom(H_k(X),R).\]
-When \(X\) is the Klein bottle and \(\mathbb{R}=\mathbb{Z}/2\) determine bases for each \(H^k(X;R)\) and verify by hand that the maps \(\phi\) are isomorphisms for all \(k\). 
-\end{enumerate}
+For an abelian group \(B\), write \(B[0]\) for the chain complex which has \(B\) in degree zero and zeros everywhere else. Write \(\Sigma^nB[0]\) for the result of 
+shifting this complex up \(n\) spots, so that it has \(B\) in degree \(n\).\\ 
+Let \(C_*\) be a chain complex of abelian groups. Prove that \(\alpha\in \hom(C_n,B)\) is a cocyle in \(\hom(C_*,B)\) if and only if \(\alpha:C_*\rightarrow \Sigma^n B[0]\) is a chain map. 
+Then prove that the set of chain homotopy classes of maps \([C_*,\Sigma^nB[0]]\) is in bijective correspondence with \(H^n(\hom(C_*,B))\).
 \end{problem}
 \begin{solution}
+We divided the proof into two parts. Each part prove one claim. 
 \begin{enumerate}[(a)]
-\item Consider the following \(\Delta\)-complex structure for \(\mathbb{R}P^2\):
-\[\includegraphics[scale=0.4]{Pictures/HW2-3-1.png}\]
-We know from last homework that \(H^1(\mathbb{R}P^2;\mathbb{Z}/2)=H^2(\mathbb{R}P^2;\mathbb{Z}/2)=\mathbb{Z}/2\). So as long as the cocycle \(\alpha,\beta\in Z^*(\mathbb{R}P^2;\mathbb{Z}/2)\) are not zero, they are the generator of the cohomology groups. 
-Consider \(\hat{a}+\hat{b}\in C^1(\mathbb{R}P^2;\mathbb{Z}/2)\), we check that this is a cocycle.
+\item Let \(\alpha\in \hom(C_n,B)\) be a cocycle. We define a chain map 
+% https://q.uiver.app/#q=WzAsMTAsWzIsMCwiQ19uIl0sWzEsMCwiQ197bisxfSJdLFszLDAsIkNfe24tMX0iXSxbMCwwLCJcXGNkb3RzIl0sWzQsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbNCwxLCJcXGNkb3RzIl0sWzEsMSwiMCJdLFszLDEsIjAiXSxbMiwxLCJCIl0sWzAsOSwiXFxhbHBoYSIsMl0sWzEsNywiMCIsMl0sWzIsOCwiMCIsMl0sWzMsMV0sWzEsMCwiXFxwYXJ0aWFsIl0sWzAsMiwiXFxwYXJ0aWFsIl0sWzIsNF0sWzgsNl0sWzksOCwiMCIsMl0sWzcsOSwiMCIsMl0sWzUsN11d
+\[\begin{tikzcd}
+	\cdots & {C_{n+1}} & {C_n} & {C_{n-1}} & \cdots \\
+	\cdots & 0 & B & 0 & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["\partial", from=1-2, to=1-3]
+	\arrow["0"', from=1-2, to=2-2]
+	\arrow["\partial", from=1-3, to=1-4]
+	\arrow["\alpha"', from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["0"', from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["0"', from=2-2, to=2-3]
+	\arrow["0"', from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+To show that this is a well-defined chain map, we only need to check the commutativity of the two squares above. Recall that \(\alpha\) is a cocycle in \(\hom(C_*,B)\), so we have 
+\[0=\delta \alpha=\alpha\circ \partial\]
+by definition of the codifferential. This tells us the above two squares commutes. Conversely, suppose we have a well-defined chain map \(\alpha:C_*\rightarrow \Sigma^nB[0]\), then the commutativity of the square 
+tells us that \(\alpha\circ \partial=0\). This is equivalent to \(\delta\alpha=0\), so \(\alpha\) viewed as a map \(\alpha:C_n\rightarrow B\) is a cocycle. 
+\item From (a), we know that we can define a map 
 \begin{align*}
-    (\delta(\hat{a}+\hat{b}))(P)&=(\hat{a}+\hat{b})(\partial P)=(\hat{a}+\hat{b})(-a+b+c)=1+1=0;\\ 
-    (\delta(\hat{a}+\hat{b}))(Q)&=(\hat{a}+\hat{b})(\partial Q)=(\hat{a}+\hat{b})(a-b+c)=1+1=0.
+	\phi:H^n(\hom(C_*,B))&\rightarrow [C_*,\Sigma^nB[0]],\\ 
+	     [\alpha]&\mapsto [\alpha]_h
 \end{align*}
-This proves \(\hat{a}+\hat{b}\in Z^1(\mathbb{R}P^2;\mathbb{Z}/2)\) and since it is not zero, \(\alpha=\hat{a}+\hat{b}\) generates the cohomology group \(H^1(\mathbb{R}P^2;\mathbb{Z}/2)=\mathbb{Z}/2\). Note that \(\mathbb{R}P^2\) does not have 
-\(3\)-simplices, and we know \(H^2(\mathbb{R}P^2;\mathbb{Z}/2)=\mathbb{Z}/2\), so \(\beta=\hat{P}\in Z^2(\mathbb{R}P^2;\mathbb{Z}/2)\) and it generates \(H^2(\mathbb{R}P^2;\mathbb{Z}/2)\). Next, we calculate the cup producy. 
+where \([\alpha]\) is the cohomology class of the cocycle \(\alpha\) and \([\alpha]_h\) is the chain homotopy class of the chain map \(\alpha\). To show this map is well-defined, consider \(\alpha,\alpha'\) are two cocycles representing the same cohomology class, then 
+there exists \(\beta\in \hom(C_{n-1},B)\) such that \(\delta(\beta)=\alpha-\alpha'\). Consider the following diagram 
+% https://q.uiver.app/#q=WzAsMTAsWzIsMCwiQ19uIl0sWzEsMCwiQ197bisxfSJdLFszLDAsIkNfe24tMX0iXSxbMCwwLCJcXGNkb3RzIl0sWzQsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbNCwxLCJcXGNkb3RzIl0sWzEsMSwiMCJdLFszLDEsIjAiXSxbMiwxLCJCIl0sWzAsOSwiXFxhbHBoYSIsMix7Im9mZnNldCI6MX1dLFsxLDcsIjAiLDJdLFsyLDgsIjAiLDJdLFszLDFdLFsxLDAsIlxccGFydGlhbCJdLFswLDIsIlxccGFydGlhbCJdLFsyLDRdLFs4LDZdLFs5LDgsIjAiLDJdLFs3LDksIjAiLDJdLFs1LDddLFsyLDksIlxcYmV0YSIsMV0sWzAsOSwiXFxhbHBoYSciLDAseyJvZmZzZXQiOi0xfV0sWzAsNywiMCIsMV1d
+\[\begin{tikzcd}
+	\cdots & {C_{n+1}} & {C_n} & {C_{n-1}} & \cdots \\
+	\cdots & 0 & B & 0 & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["\partial", from=1-2, to=1-3]
+	\arrow["0"', from=1-2, to=2-2]
+	\arrow["\partial", from=1-3, to=1-4]
+	\arrow["0"{description}, from=1-3, to=2-2]
+	\arrow["\alpha"', shift right, from=1-3, to=2-3]
+	\arrow["{\alpha'}", shift left, from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\beta"{description}, from=1-4, to=2-3]
+	\arrow["0"', from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["0"', from=2-2, to=2-3]
+	\arrow["0"', from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+Note that 
+\[\alpha-\alpha'=\delta(\beta)=\beta\circ \partial+0\circ 0\]
+So \(\beta\) gives a chain homotopy between the chain map \(\alpha\) and \(\alpha'\). This implies \([\alpha]_h=[\alpha']_h\). Conversely, from (a), we can define a map 
 \begin{align*}
-    (\alpha\cup \alpha)(P)&=\alpha(c)\cdot \alpha(b)=0;\\ 
-    (\alpha\cup \alpha)(Q)&=\alpha(c)\cdot \alpha(a)=0.
+	\psi:[C_*,\Sigma^nB[0]]&\rightarrow H^n(\hom(C_*,B)),\\ 
+	     [\alpha]_h&\mapsto [\alpha]
 \end{align*}
-This proves that \(\alpha\cup\alpha=0\) in the cohomology ring \(H^*(\mathbb{R}P^2;\mathbb{Z}/2)\).
-\item Consider the cellular chain complex of the Klein bottle \(K\)
-\[0\rightarrow \mathbb{Z}\xrightarrow{\begin{pmatrix}
-2\\ 
-0
-\end{pmatrix}}\mathbb{Z}^2\xrightarrow{0}\mathbb{Z}\rightarrow 0\]
-Apply \(\hom(-,\mathbb{Z}/2)\), we obtain the cellular cochain complex 
-\[0\leftarrow\mathbb{Z}/2\xleftarrow{0} (\mathbb{Z}/2)^2\xleftarrow{0}\mathbb{Z}/2\leftarrow 0.\]
-So we know \(H^0(K;\mathbb{Z}/2)=H^2(K;\mathbb{Z}/2)=\mathbb{Z}/2\), each has one generator and \(H^1(K;\mathbb{Z}/2)=(\mathbb{Z}/2)^2\) having two generators. Consider the following \(\Delta\)-complex structure of \(K\)
-\[\includegraphics[scale=0.4]{Pictures/HW2-3-2.png}\]
-\(K\) only has one \(0\)-simplex \(x\), so the cocycle \(\hat{x}\) generates \(H^0(K;\mathbb{Z}/2)\). \(K\) has no \(3\)-simplices, so \(\hat{P}\) is a cocycle and generates \(H^2(K;\mathbb{Z}/2)\). Note that 
-\begin{align*}
-    \partial P&=a+b-c,\\ 
-    \partial Q&=a-b+c.
-\end{align*}
-Consider two cochains \(\alpha=\hat{a}+\hat{b}\) and \(\beta=\hat{a}+\hat{c}\), they are cocycles because 
-\begin{align*}
-    0=&(\delta\alpha)(P)=(\delta\alpha)(Q),\\
-    0=&(\delta\beta)(P)=(\delta\beta)(Q).
-\end{align*}
-We need to show that \([\alpha]\neq [\beta]\) in \(H^1(K;\mathbb{Z}/2)\). Assume the opposite. This means \(\alpha-\beta\) is a coboundary. We only have one \(0\)-simplex, so 
-\(\alpha-\beta=\hat{b}+\hat{c}=\delta\hat{x}\). But 
-\[1=(\hat{b}+\hat{c})(b)=(\delta\hat{x})(b)=\hat{x}(x-x)=0\]
-A contradiction. This tells us \(\alpha,\beta\) generates \(H^1(K;\mathbb{Z}/2)\). 
-
-Next, we calculate the cup product. For dimension reasons, we have \([\hat{P}]\cup[\hat{P}]=0\), and \([\hat{x}]\) is the unity in the cohomology ring. In degree 1, 
-\begin{align*}
-    (\alpha\cup\alpha)(P)&=\alpha(a)\cdot \alpha(b)=1\cdot 1=1;\\ 
-    (\alpha\cup \alpha)(Q)&=\alpha(c)\cdot \alpha(a)=0\cdot 1=0.
-\end{align*}
-This tells us \(\alpha\cup\alpha=\hat{P}\) on the cochain level. So 
-\[[\alpha]\cup [\alpha]=[\hat{P}].\]
-\begin{align*}
-    (\beta\cup \beta)(P)&=\beta(a)\cdot \beta(b)=1\cdot 0=0;\\ 
-    (\beta\cup \beta)(Q)&=\beta(c)\cdot \beta(a)=1\cdot 1=1.
-\end{align*} 
-This tells us \(\beta\cup\beta=\hat{Q}\) on the cochain level, and we know that 
-\begin{align*}
-    \delta(\hat{a}+\hat{b}+\hat{c})(P)&=(\hat{a}+\hat{b}+\hat{c})(a+b-c)=1+1+1=1,\\ 
-    \delta(\hat{a}+\hat{b}+\hat{c})(Q)&=(\hat{a}+\hat{b}+\hat{c})(a-b+c)=1+1+1=1.
-\end{align*}
-This implies \(\hat{P}+\hat{Q}\) is a coboundary and \([\hat{P}]=[\hat{Q}]\) in \(H^2(K;\mathbb{Z}/2)\). So 
-\[[\beta]\cup[\beta]=[\hat{P}].\]
-\begin{align*}
-    (\alpha\cup\beta)(P)&=\alpha(a)\cdot \beta(b)=1\cdot 0=0;\\ 
-    (\alpha\cup \beta)(Q)&=\alpha(c)\cdot \beta(a)=0\cdot 1=0.
-\end{align*}
-This tells us \(\alpha\cup \beta=0\) on the cochain level, so 
-\[[\alpha]\cup[\beta]=-([\beta]\cup [\alpha])=0.\]
-\item Let \(K\) be the Klein bottle. Consider the \(\Delta\)-complex structure we used in (b)
-\[\includegraphics[scale=0.4]{Pictures/HW2-3-2.png}\]
-We have a chain complex with \(\mathbb{Z}/2\)-coefficients 
-\[0\rightarrow (\mathbb{Z}/2)^2\xrightarrow{d}(\mathbb{Z}/2)^3\xrightarrow{0}\mathbb{Z}/2\rightarrow 0\]
-where the boundary map \(d\) is given by the matrix \(\begin{pmatrix}
-    1&1\\ 
-    1&1\\ 
-    1&1
-\end{pmatrix}\). So \(H_2(K;\mathbb{Z}/2)=\ker d\) is generated by the 2-cycle \(P+Q\) and \(H_1(K;\mathbb{Z}/2)\) is generated by \(a,b\) where \(c=a+b\). \(H_0(K;\mathbb{Z}/2)\) is generated by \(x\). Note that to check 
-\(\phi\) is an isomorphism, it is the same as checking the Kronecker pairing is a perfect pairing. For \(k=0\) and \(k=2\), it is easy to see because on the only generator, we have 
-\begin{align*}
-    ([\hat{x}],[x])&=\hat{x}(x)=1,\\ 
-    ([\hat{P}],P+Q)&=\hat{P}(P+Q)=1.
-\end{align*}
-For \(k=1\), use \(\alpha=\hat{a}+\hat{b}\) and \(\beta=\hat{a}+\hat{c}\) as generators of \(H^1(K;\mathbb{Z}/2)\) as before, we have 
-\begin{align*}
-    ([\alpha],[a])&=(\hat{a}+\hat{b})(a)=1,\\ 
-    ([\alpha],[b])&=(\hat{a}+\hat{b})(b)=1,\\ 
-    ([\beta],[a])&=(\hat{a}+\hat{c})(a)=1,\\ 
-    ([\beta],[b])&=(\hat{a}+\hat{c})(b)=0.
-\end{align*}
-This can be written as a matrix 
-\[\begin{pmatrix}
-    1&1\\ 
-    1&0
-\end{pmatrix}\]
-which is invertible, so this is also a perfect pairing. Thus, we have proved that \(H^k(K;\mathbb{Z}/2)\rightarrow \hom(H_k(K;\mathbb{Z}/2),\mathbb{Z}/2)\) is an isomorphism for \(k=0,1,2\).
+By the previous discussion we know that if two chain maps \(\alpha,\alpha'\) are chain homotopic, then there exists a map \(\beta:C_{n-1}\rightarrow B\) such that 
+\[\beta\circ \partial +0\circ 0=\alpha-\alpha'\]
+So \(\psi\) is also well-defined. It is easy to check that \(\psi\circ \phi=id\) and \(\phi\circ \psi=id\). Thus, we can conclude that \([C_*,\Sigma^nb[0]]\) is bijective to \(H^n(\hom(C_*,B))\).
 \end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Probelm 4
+%Probelm 4 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+
 \begin{problem}{4}
-Prove that there does not exist a map \(S^2\rightarrow T\) that induces an isomorphism on \(H_2\). In fact, prove this in two different ways: 
-give a proof that uses homotopy groups and give a proof that uses cohomology and the cup product. 
+Consider a commutative diagram 
+% https://q.uiver.app/#q=WzAsMjEsWzEsMCwiMCJdLFsyLDAsIjAiXSxbMywwLCIwIl0sWzEsMSwiQV8zIl0sWzIsMSwiQV8yIl0sWzMsMSwiQV8xIl0sWzEsMiwiQl8zIl0sWzIsMiwiQl8yIl0sWzMsMiwiQl8xIl0sWzEsMywiQ18zIl0sWzIsMywiQ18yIl0sWzMsMywiQ18xIl0sWzEsNCwiMCJdLFsyLDQsIjAiXSxbMyw0LCIwIl0sWzAsMSwiMCJdLFswLDIsIjAiXSxbMCwzLCIwIl0sWzQsMSwiMCJdLFs0LDIsIjAiXSxbNCwzLCIwIl0sWzE1LDNdLFszLDQsImRfQSJdLFs0LDUsImRfQSJdLFs1LDE4XSxbMTYsNl0sWzYsNywiZF9CIl0sWzcsOCwiZF9CIl0sWzgsMTldLFsxNyw5XSxbOSwxMCwiZF9DIl0sWzEwLDExLCJkX0MiXSxbMTEsMjBdLFswLDNdLFszLDYsImZfMyIsMl0sWzYsOSwiZ18zIiwyXSxbOSwxMl0sWzEsNF0sWzQsNywiZl8yIiwyXSxbNywxMCwiZ18yIiwyXSxbMTAsMTNdLFsyLDVdLFs1LDgsImZfMSIsMl0sWzgsMTEsImdfMSIsMl0sWzExLDE0XV0=
+\[\begin{tikzcd}
+	& 0 & 0 & 0 \\
+	0 & {A_3} & {A_2} & {A_1} & 0 \\
+	0 & {B_3} & {B_2} & {B_1} & 0 \\
+	0 & {C_3} & {C_2} & {C_1} & 0 \\
+	& 0 & 0 & 0
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{d_A}", from=2-2, to=2-3]
+	\arrow["{f_3}"', from=2-2, to=3-2]
+	\arrow["{d_A}", from=2-3, to=2-4]
+	\arrow["{f_2}"', from=2-3, to=3-3]
+	\arrow[from=2-4, to=2-5]
+	\arrow["{f_1}"', from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{d_B}", from=3-2, to=3-3]
+	\arrow["{g_3}"', from=3-2, to=4-2]
+	\arrow["{d_B}", from=3-3, to=3-4]
+	\arrow["{g_2}"', from=3-3, to=4-3]
+	\arrow[from=3-4, to=3-5]
+	\arrow["{g_1}"', from=3-4, to=4-4]
+	\arrow[from=4-1, to=4-2]
+	\arrow["{d_C}", from=4-2, to=4-3]
+	\arrow[from=4-2, to=5-2]
+	\arrow["{d_C}", from=4-3, to=4-4]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=4-4, to=4-5]
+	\arrow[from=4-4, to=5-4]
+\end{tikzcd}\]
+in which every row and every column is a chain complex. Assume that all the homology groups in each row are zero except for \(H_3(C)\). Also assume that all the homology 
+groups of the columns are zero except for the kernel of the map labelled \(f_1\). Prove that \(\ker f_1\cong H_3(C)\).
 \end{problem}
 \begin{solution}
-In (1) we prove this using homotopy groups and in (2), we prove this using cohomology rings. 
-\begin{enumerate}[(1)]
-\item We check that the Hurewicz homomorphism is natural.
-\begin{claim}
-\(f:X\rightarrow Y\) is a map of connected, pointed spaces. For \(n\geq 1\), we have a commutative diagram 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpX24oWCkiXSxbMSwwLCJcXHBpX24oWSkiXSxbMCwxLCJIX24oWCkiXSxbMSwxLCJIX24oWSkiXSxbMCwyLCJoX1giLDJdLFsxLDMsImhfWSJdLFswLDEsImZfMSJdLFsyLDMsImZfMiIsMl1d
+We first define a map \(\phi:\ker f_1\rightarrow H_3(C)\). Let \(a\in \ker f_1\), the exactness implies that \(d_A:A_2\rightarrow A_1\) is surjective, so there exists \(a'\in A_2\) such that \(d_A(a')=a\). We know 
+that \(f_2(a')\in B_2\) and by commutativity of the square we have 
+\[d_B(f_2(a'))=f_1(d_A(a'))=f_1(a)=0\]
+since \(a\in \ker f_1\). This implies \(f_2(a')\in \ker d_B\) and by exactness there exists a unique \(b\in B_3\) such that \(d_B(b)=f_2(a')\). We define 
+\begin{align*}
+    \ker f_1&\rightarrow C_3,\\ 
+     a&\mapsto g_3(b).
+\end{align*} 
+Note that \(d_C(g_3(b))=g_2(d_B(b))=g_2(f_2(a'))=0\) by exactness of the middle column. So we obtain a map \(\phi:\ker f_1\rightarrow H_3(C)\) because \(C_4=0\). We need to check the map is well defined.
+\par
+We check that the map \(\phi\) does not depend on the choice of \(a'\in A_2\). Suppose \(a',a'' \in A_2\) with \(a=d_A(a')=d_A(a'')\). Then \(a'-a''\in \ker d_A\) and by exactness, there 
+exists \(c\in A_3\) such that \(d_A(c)=a'-a''\). This implies 
+\[f_2(a'-a'')=f_2(d_A(c))=d_B(f_3(c))\]
+Suppose \(b,b'\in B_3\) such that \(d_B(b)=f_2(a')\) and \(d_B(b')=f_2(a'')\). Then we have 
+\[d_B(b-b')=f_2(a'-a'')=d_B(f_3(c))\]
+Because the middle row is exact, so \(d_B\) is injective. This implies \(b-b'=f_3(c)\). Then 
+\[g_3(b)-g_3(b')=g_3(f_3(c))=0\]
+\par 
+To see this is a group homomorphism, consider \(x,y\in C_3\), we need to show that \(\phi(x+y)=\phi(x)+\phi(y)\). Note that we can choose \(x',y',x'+y'\in A_2\) as the preimage of \(x,y,x+y\) since the choice does not matter in the final result. All other processes are completely determined by a group homomorphism, so \(\phi\) is indeed a group homomorphism. 
+\par 
+We define another map \(\psi:H_3(C)\rightarrow \ker f_1\). Rewrite the whole diagram in the following way 
+% https://q.uiver.app/#q=WzAsMjEsWzMsMSwiQ18zIl0sWzIsMSwiQl8zIl0sWzEsMSwiQV8zIl0sWzAsMSwiMCJdLFs0LDEsIjAiXSxbMywyLCJDXzIiXSxbMywzLCJDXzEiXSxbMiwyLCJCXzIiXSxbMiwzLCJCXzEiXSxbMSwyLCJBXzIiXSxbMSwzLCJBXzEiXSxbMSwwLCIwIl0sWzIsMCwiMCJdLFszLDAsIjAiXSxbMCwyLCIwIl0sWzAsMywiMCJdLFsxLDQsIjAiXSxbNCwyLCIwIl0sWzIsNCwiMCJdLFszLDQsIjAiXSxbNCwzLCIwIl0sWzEzLDBdLFswLDUsImRfQyJdLFs1LDYsImRfQyJdLFs2LDE5XSxbMTIsMV0sWzEsNywiZF9CIl0sWzcsOCwiZF9CIl0sWzgsMThdLFsxMSwyXSxbMiw5LCJkX0EiXSxbOSwxMCwiZF9BIl0sWzEwLDE2XSxbMywyXSxbMiwxLCJmXzMiXSxbMSwwLCJnXzMiXSxbMCw0XSxbMTQsOV0sWzksNywiZl8yIl0sWzcsNSwiZ18yIl0sWzUsMTddLFsxNSwxMF0sWzEwLDgsImZfMSJdLFs4LDYsImdfMSJdLFs2LDIwXV0=
 \[\begin{tikzcd}
-	{\pi_n(X)} & {\pi_n(Y)} \\
-	{H_n(X)} & {H_n(Y)}
-	\arrow["{f_{*,1}}", from=1-1, to=1-2]
-	\arrow["{h_X}"', from=1-1, to=2-1]
-	\arrow["{h_Y}", from=1-2, to=2-2]
-	\arrow["{f_{*,2}}"', from=2-1, to=2-2]
+	& 0 & 0 & 0 \\
+	0 & {A_3} & {B_3} & {C_3} & 0 \\
+	0 & {A_2} & {B_2} & {C_2} & 0 \\
+	0 & {A_1} & {B_1} & {C_1} & 0 \\
+	& 0 & 0 & 0
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{f_3}", from=2-2, to=2-3]
+	\arrow["{d_A}", from=2-2, to=3-2]
+	\arrow["{g_3}", from=2-3, to=2-4]
+	\arrow["{d_B}", from=2-3, to=3-3]
+	\arrow[from=2-4, to=2-5]
+	\arrow["{d_C}", from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{f_2}", from=3-2, to=3-3]
+	\arrow["{d_A}", from=3-2, to=4-2]
+	\arrow["{g_2}", from=3-3, to=3-4]
+	\arrow["{d_B}", from=3-3, to=4-3]
+	\arrow[from=3-4, to=3-5]
+	\arrow["{d_C}", from=3-4, to=4-4]
+	\arrow[from=4-1, to=4-2]
+	\arrow["{f_1}", from=4-2, to=4-3]
+	\arrow[from=4-2, to=5-2]
+	\arrow["{g_1}", from=4-3, to=4-4]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=4-4, to=4-5]
+	\arrow[from=4-4, to=5-4]
 \end{tikzcd}\]
-Both \(f_{*,1},f_{*,2}\) are induced by \(f\) and \(h_X,h_Y\) are Hurewicz homomorphism in degree \(n\) for space \(X\) and \(Y\).
-\end{claim} 
-\begin{claimproof}
+Note that we still have exactness everywhere except for \(C_3\) vertically and \(A_1\) horizontally. Following the same argument as above we can define a map \(\psi:H_3(C)\rightarrow \ker f_1\). By comparison with defintiion of these maps, we can see that 
+\(\psi\circ \phi=id\) and \(\phi\circ \psi=id\). This proves that \(\phi\) is an isomorphism and \(\ker f_1\cong H_3(C)\).
 
-\end{claimproof}
-
-Suppose there exists a homomorphism \(f:S^2\rightarrow T\) such that \(f_{*,2}:H_2(S^2)\rightarrow H_2(T)\) is an isomorphism. Apply the claim and we have a commutative diagram 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpX24oU14yKSJdLFsxLDAsIlxccGlfbihUKSJdLFswLDEsIkhfbihTXjIpIl0sWzEsMSwiSF9uKFQpIl0sWzAsMiwiaF97U14yfSIsMl0sWzEsMywiaF9UIl0sWzAsMSwiZl97KiwxfSJdLFsyLDMsImZfeyosMn0iLDJdXQ==
-\[\begin{tikzcd}
-	{\pi_2(S^2)} & {\pi_2(T)} \\
-	{H_2(S^2)} & {H_2(T)}
-	\arrow["{f_{*,1}}", from=1-1, to=1-2]
-	\arrow["{h_{S^2}}"', from=1-1, to=2-1]
-	\arrow["{h_T}", from=1-2, to=2-2]
-	\arrow["{f_{*,2}}"', from=2-1, to=2-2]
-\end{tikzcd}\]
-Note that \(S^2\) is \(1\)-connected, so \(h_{S^2}\) is an isomophism, by our assumption, 
-\[h_T\circ f_{*,1}=f_{*,2}\circ h_{S^2}:\pi_2(S^2)\rightarrow H_2(T)\]
-is an isomorphism between \(\mathbb{Z}\) and \(\mathbb{Z}\). Consider the fiber sequence 
-\[\mathbb{Z}^2\rightarrow \mathbb{R}^2\rightarrow T\]
-This gives us a long exact sequence in homotopy groups and we have \(\pi_2(T)=\pi_2(\mathbb{R}^2)=0\). So \(h_T\circ f_{*,1}=0\). A contradiction. 
-\item Suppose there exists a homomorphism \(f:S^2\rightarrow T\) such that \(f_{*,2}:H_2(S^2)\rightarrow H_2(T)\) is an isomorphism. Apply \(\hom(-,\mathbb{Z})\) and we obtain an isomorphism 
-\[\hom(H_2(T),\mathbb{Z})\rightarrow \hom(H_2(S^2),\mathbb{Z}).\]
-From problem \#2, we have a commutative diagram 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIXjIoVCkiXSxbMiwwLCJIXjIoU14yKSJdLFswLDEsIlxcaG9tKEhfMihUKSxcXG1hdGhiYntafSkiXSxbMiwxLCJcXGhvbShIXzIoU14yKSxcXG1hdGhiYntafSkiXSxbMiwzLCJcXGhvbShmXyosXFxtYXRoYmJ7Wn0pIl0sWzAsMiwiXFxwaGkiXSxbMSwzLCJcXHBoaSIsMl0sWzAsMSwiZl4qIl1d
-\[\begin{tikzcd}
-	{H^2(T)} && {H^2(S^2)} \\
-	{\hom(H_2(T),\mathbb{Z})} && {\hom(H_2(S^2),\mathbb{Z})}
-	\arrow["{f^*}", from=1-1, to=1-3]
-	\arrow["\phi", from=1-1, to=2-1]
-	\arrow["\phi"', from=1-3, to=2-3]
-	\arrow["{\hom(f_*,\mathbb{Z})}", from=2-1, to=2-3]
-\end{tikzcd}\]
-We have seen in class that \(\phi\) is an isomorphism for \(T\) or \(S^2\), thus, \(f^*:H^2(T)\rightarrow H^2(S^2)\) is isomorphism. By definition, \(f_*:H^*(T)\rightarrow H^*(S^2)\) can be viewed as a map of rings and let \(\hat{[a]},\hat{[b]}\in H^1(T)\) be two generators and \(\hat{[T]}\in H^2(T)\) be the generator of \(H^2(T)\). We have seen in class that 
-\[f^*(\hat{[T]})=f^*(\hat{[a]}\cup\hat{[b]})=f^*(\hat{[a]})\cup f^*(\hat{[b]}).\]
-But \(H^1(S^2)=0\), so \(f^*(\hat{[a]})=f^*(\hat{[b]})=0\). So \(f^*\) cannot map \(H^2(T)\) isomorphically to \(H^2(S^2)\). A contradiction.
-\end{enumerate}
 \end{solution}
-
-\noindent\rule{7in}{2.8pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Probelm 5 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{5}
-Prove that \(\mathbb{R}P^2\) is not a retract of the Klein bottle.
-\end{problem}
-\begin{solution}
-Suppose \(\mathbb{R}P^2\) is a retract of the Klein bottle \(K\). There exists maps \(i:\mathbb{R}P^2\rightarrow K\) and \(r:K\rightarrow \mathbb{R}P^2\) such that \(r\circ i\) is the identity map of \(\mathbb{R}P^2\). This induces a map in cohomology rings with coefficients \(\mathbb{Z}/2\). 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJIXiooXFxtYXRoYmJ7Un1QXjI7XFxtYXRoYmJ7Wn0vMikiXSxbMSwwLCJIXiooSztcXG1hdGhiYntafS8yKSJdLFsyLDAsIkheKihcXG1hdGhiYntSfVBeMjtcXG1hdGhiYntafS8yKSJdLFswLDEsInJeKiJdLFsxLDIsImleKiJdLFswLDIsImlkIiwyLHsiY3VydmUiOjR9XV0=
-\[\begin{tikzcd}
-	{H^*(\mathbb{R}P^2;\mathbb{Z}/2)} & {H^*(K;\mathbb{Z}/2)} & {H^*(\mathbb{R}P^2;\mathbb{Z}/2)}
-	\arrow["{r^*}", from=1-1, to=1-2]
-	\arrow["id"', curve={height=24pt}, from=1-1, to=1-3]
-	\arrow["{i^*}", from=1-2, to=1-3]
-\end{tikzcd}\]
-Let \(\alpha\) be the generator of \(H^1(\mathbb{R}P^2;\mathbb{Z}/2)\), \(\beta,\gamma\) be the two generators of \(H^1(K;\mathbb{Z}/2)\) and \(P\) be the generator of \(H^2(K;\mathbb{Z}/2)\). From our calculation in problem \#3, we know that 
-\[\alpha\cup \alpha=0,\beta\cup \beta=\gamma\cup\gamma=P.\]
-Write \(r^*(\alpha)=m\beta+n\gamma\) for \(m,n=0,1\). Then we have 
-\begin{align*}
-    0&=\alpha\cup\alpha\\ 
-     &=i^*r^*(\alpha\cup\alpha)\\ 
-     &=i^*((r^*\alpha)\cup(r^*\alpha))\\ 
-     &=i^*((m\beta+n\gamma)\cup(m\beta+n\gamma))\\ 
-     &=i^*(m^2P+n^2P)
-\end{align*}
-Either \(i^*\) is the zero map or \(m^2+n^2=0\), which implies \(r^*\) is the zero map. Both is impossible because \(i^*r^*\) is the identity map betwenn \(\mathbb{Z}/2\) and \(\mathbb{Z}/2\). A contradiction.
-\end{solution}
-
-\noindent\rule{7in}{2.8pt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Probelm 6
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{6}
-Let \(X\) be obtained by identifying points on the bounadaryof a solid hexagon, as indicted in the following diagram:
-\[\includegraphics[scale=0.5]{Pictures/HW2-6-1.png}\]
-\begin{enumerate}[(a)]
-\item Calculate the homology and cohomology groups of \(X\) with \(\mathbb{Z}/2\)-coefficients. 
-\item Give a \(\Delta\)-complex structure to \(X\), for example by placing one point in the center of the hexagon, drawing lines to the outer vertices, and orienting the \(2\)-simplices 
-appropriately.
-\item Using your \(\Delta\)-complex structure, give a \(1\)-cocycle \(\alpha\) with \(\mathbb{Z}/2\)-coefficients having the property that \(\alpha(a)=1\) and \(\alpha(b)=0\). 
-\item Compute\(\alpha\cup \alpha\) on all the 2-simplices in your picture. Is \(\alpha\cup \alpha\) zero or nonzero in \(H^2(X;\mathbb{Z}/2)\)? Explain. 
-\end{enumerate}
-\end{problem}
-\begin{solution}
-\begin{enumerate}[(a)]
-\item Consider the following celluar structure of \(X\)
-\[\includegraphics[scale=0.5]{Pictures/HW2-6-2.png}\]
-\(X\) has one \(0\)-cell \(x\), two \(1\)-cell \(a,b\) and one \(2\)-cell \(T\). We have a cellular chain complex with coefficients \(\mathbb{Z}/2\)
-\[0\rightarrow \mathbb{Z}/2\xrightarrow{0}(\mathbb{Z}/2)^2\xrightarrow{0}\mathbb{Z}/2\rightarrow 0\]
-Note that all boundary maps are \(0\), so apply \(\hom(-,\mathbb{Z}/2)\) will obtain all \(0\) coboundary maps. This implies 
-\begin{multicols}{2}
-\noindent
-\[H_i(X;\mathbb{Z}/2)=\begin{cases}
-    \mathbb{Z}/2,&\iif i=0,2;\\ 
-    (\mathbb{Z}/2)^2,&\iif i=1;\\ 
-    0,&\otherwise.
-\end{cases}\]
-\noindent 
-\[H^i(X;\mathbb{Z}/2)=\begin{cases}
-    \mathbb{Z}/2,&\iif i=0,2;\\ 
-    (\mathbb{Z}/2)^2,&\iif i=1;\\ 
-    0,&\otherwise.
-\end{cases}\]
-\end{multicols}
-\item The following is a \(\Delta\)-complex structure on \(X\)
-\[\includegraphics[scale=0.4]{Pictures/HW2-6-3.png}\]
-\item Consider the \(1\)-cochain \(\alpha=\hat{a}+\hat{d}+\hat{e}\) satisfying \(\alpha(a)=1\) and \(\alpha(b)=0\). Let us check this is a cocycle. 
-\begin{align*}
- \delta(\hat{a}+\hat{d}+\hat{e})(P)&=(\hat{a}+\hat{d}+\hat{e})(a+a-c)=1+1=0,\\ 
- \delta(\hat{a}+\hat{d}+\hat{e})(Q)&=(\hat{a}+\hat{d}+\hat{e})(c+e-d)=1+1=0,\\ 
- \delta(\hat{a}+\hat{d}+\hat{e})(S)&=(\hat{a}+\hat{d}+\hat{e})(b+a-e)=1+1=0,\\ 
- \delta(\hat{a}+\hat{d}+\hat{e})(R)&=(\hat{a}+\hat{d}+\hat{e})(a-b-d)=1+1=0.
-\end{align*}
-This proves \(\alpha=\hat{a}+\hat{d}+\hat{e}\) is a \(1\)-cocycle satisfying \(\alpha(a)=1\) and \(\alpha(b)=0\).
-\item We calculate \(\alpha\cup \alpha\) on each 2-simplices. 
-\begin{align*}
-    (\alpha\cup\alpha)(P)&=\alpha(a)\cdot \alpha(a)=1\cdot 1=1,\\ 
-    (\alpha\cup \alpha)(Q)&=\alpha(c)\cdot \alpha(e)=0\cdot 1=0,\\ 
-    (\alpha\cup\alpha)(S)&=\alpha(b)\cdot \alpha(a)=0\cdot 1=0,\\ 
-    (\alpha\cup\alpha)(R)&=\alpha(d)\cdot \alpha(b)=1\cdot 0=0. 
-\end{align*}
-This proves that \(\alpha\cup\alpha=\hat{P}\) on the chain level. Suppose \(\sigma\in C^1(X;\mathbb{Z}/2)\) satisfying \(\delta\sigma=\hat{P}\). Then we have 
-\begin{align*}
-    (\delta\sigma)(P)&=\sigma(c)=1,\\ 
-    (\delta\sigma)(Q)&=\sigma(c)+\sigma(e)+\sigma(d)=0,\\ 
-    (\delta\sigma)(S)&=\sigma(b)+\sigma(a)+\sigma(e)=0,\\ 
-    (\delta\sigma)(R)&=\sigma(a)+\sigma(b)+\sigma(d)=0.
-\end{align*}
-We add the last two equations together and obtain 
-\[\sigma(e)+\sigma(d)=0\]
-But from the second and first equation, we know that \(\sigma(e)+\sigma(d)+1=0\). This leads to a contradiction, so \(\alpha\cup\alpha=\hat{P}\) is not a coboundary, thus \([\alpha\cup\alpha]\neq 0\) in \(H^*(X;\mathbb{Z}/2)\).
-\end{enumerate}
-\end{solution}
-
-
-
-
 
 \end{document}
