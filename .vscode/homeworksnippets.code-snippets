@@ -15,4 +15,106 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"AlgGeoHomework":{
+		"prefix": "AGhom",
+		"body": [
+			"\\documentclass[letterpaper, 12pt]{article}",
+			"",
+            "\\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}",
+            "",
+            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "\\begin{document}",
+            "%Header-Make sure you update this information!!!!",
+            "\\noindent",
+            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "\\large\\textbf{Zhengdong Zhang} \\hfill \\textbf{Homework - Chapter $1 Exercises}   \\\\\\\\",
+            "Email: zhengz@uoregon.edu \\hfill ID: 952091294 \\\\\\\\",
+            "\\normalsize Course: MATH 681 - Algebraic Geometry I \\hfill Term: Fall 2025 \\\\\\\\",
+            "Instructor: Professor Nick Addington \\hfill Due Date: $2, 2025 \\\\\\\\",
+            "\\noindent\\rule{7in}{2.8pt}",
+            "\\setstretch{1.1}",
+			"$3",
+			"",
+			"",
+			"",
+			"\\end{document}"
+		]
+	},
+	"Exercise":{
+		"prefix": "exe",
+		"body": [
+			"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "% Exercise $1",
+            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+			"\\begin{problem}{$2}",
+			"$3",
+			"\\end{problem}",
+			"\\begin{solution}",
+			"",
+			"\\end{solution}",
+			"",
+			"\\noindent\\rule{7in}{2.8pt}"
+		]
+	},
+	"AnalysisHomework":{
+		"prefix": "Anahom",
+		"body": [
+			"\\documentclass[letterpaper, 12pt]{article}",
+			"",
+            "\\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}",
+            "",
+            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "\\begin{document}",
+            "%Header-Make sure you update this information!!!!",
+            "\\noindent",
+            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "\\large\\textbf{Zhengdong Zhang} \\hfill \\textbf{Homework - Week $1 Exercises}   \\\\\\\\",
+            "Email: zhengz@uoregon.edu \\hfill ID: 952091294 \\\\\\\\",
+            "\\normalsize Course: MATH 616 - Real Analysis \\hfill Term: Fall 2025 \\\\\\\\",
+            "Instructor: Professor Weiyong He \\hfill Due Date: $2, 2025 \\\\\\\\",
+            "\\noindent\\rule{7in}{2.8pt}",
+            "\\setstretch{1.1}",
+			"$3",
+			"",
+			"",
+			"",
+			"\\end{document}"
+		]
+	},
+	"enumerate":{
+		"prefix": "enum",
+		"body": [
+			"\\begin{enumerate}[$1]",
+			"  \\item $2",
+			"\\end{enumerate}"
+		]
+	},
+	"MathFrak":{
+		"prefix": "FRK",
+		"body": "\\mathfrak{$1}$0"
+	},
+	"Align":{
+		"prefix": "align",
+		"body": [
+            "\\begin{align*}",
+			"     $1",
+			"\\end{align*}"
+		]
+	},
+	"claim":{
+		"prefix": "claim",
+		"body": [
+			"\\begin{claim}",
+			"  $1",
+			"\\end{claim}"
+		]
+	},
+	"claimproof":{
+		"prefix": "cmproof",
+		"body": [
+			"\\begin{claimproof}",
+			"  $1",
+			"\\end{claimproof}"
+		]
+	}
 }

@@ -1,0 +1,140 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 1 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 681 - Algebraic Geometry I \hfill Term: Fall 2025 \\
+Instructor: Professor Nick Addington \hfill Due Date: Oct 6th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.1}
+Show that \((y-x^2)\) is prime, and hence radical. Let \(\alpha\in k\) and let \(\mathfrak{a}=(y-x^2,y-\alpha x)\). Show that \(\mathfrak{a}\) is a radical ideal when \(\alpha\neq 0\), but not when \(\alpha=0\).
+\end{problem}
+\begin{solution}
+Consider the quotient ring \(k[x,y]/(y-x^2)\cong k[x,x^2]\cong k[x]\). It is a domain, so the ideal \((y-x^2)\) is a prime ideal. 
+
+For the ideal \(\mathfrak{a}\), the quotient ring 
+\begin{align*}
+     k[x,y]/\mathfrak{a}&\cong k[x,y]/(y-x^2,y-\alpha x)\\ 
+                        &\cong k[x,x^2]/(x^2-\alpha x)\\ 
+                        &\cong k[x]/(x(x-\alpha))
+\end{align*}
+If \(\alpha=0\), then \(k[x,y]/\mathfrak{a}\) is not reduced as \(x\) is a nilpotent element in \(k[x]/(x^2)\), so the ideal \(\mathfrak{a}=(y-x^2,y-\alpha x)\) is not radical. If \(\alpha\neq 0\), then the ring 
+\[k[x]/(x(x-\alpha))\cong k[x]/(x)\oplus k[x]/(x-\alpha)\cong k^2\] 
+has no nilpotent elements, so the ideal \(\mathfrak{a}\) is radical.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2}
+Show that a cubic curve in \(\mathbb{A}^2(\mathbb{C})\) defined by an equation with real coefficients always has real points. Generalize to curves with real equations of odd degrees.
+\end{problem}
+\begin{solution}
+Let \(f\in \mathbb{C}[x,y]\) be a polynomial with real coefficients. Suppose \(\deg f=d\) is odd. Write \(X=Z(f)\subseteq \mathbb{A}^2(\mathbb{C})\) to be the curve defined by \(f\). Consider the intersection of \(X\) with \(Y=Z(x-y)\). Then the points \((x,x)\in X\cap Y\) are the solutions to the following equation \(f(x,x)=0\). Since \(d\) is odd, \(f(x,x)=0\) is an odd degree equation in \(x\) with real coefficients, and we know that \(f(x,x)=0\) has at least one real solutions. Thus, \(X\) must have at least one real point.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.3}
+Let \(f\in k[x_1,\ldots,x_n]\). Show that the ideal \((f)\) is radical if and only if no factor of \(f\) is multiple. 
+\end{problem}
+\begin{solution}
+Suppose \((f)\) is a radical ideal. If at least one factor of \(f\) is multiple, i.e., there exists \(g,h\in k[x_1,\ldots,x_n]\) such that \(f=g^N h\) for some integer \(N>1\). We know that \((gh)^N=h^{N-1}f\in (f)\), but \(gh\notin (f)\) because every polynomial in \((f)\) must have a factor \(g\) to the power at least \(N>1\). A contradiction. So no factor of \(f\) is multiple. 
+
+Conversely, assume no factor of \(f\) is multiple. If \((f)\) is not radical, then there exists \(g,h\in k[x_1,\ldots,x_n]\) such that \(fh=g^N\in (f)\) but \(g\notin (f)\). \(k[x_1,\ldots,x_n]\) is a UFD, so we could write \(f=f_1\cdots f_m\) where \(f_1,\ldots,f_m\) are irreducible polynomials, at least one \(f_i\) for \(1\leq i\leq m\) does not divide \(g\)(otherwise \(g\in (f)\)). Suppose it is \(f_1\). Then \(f_1|f\) but \(f_1\nmid g^N\). A contradiction. This implies that the ideal \((f)\) is radical.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.4}
+Assume that the characteristic of \(k\) is \(0\). Let \(f(x)\) be a polynomial in \(k[x]\). Show that the relation \(\sqrt{(f)}=(f:f')\) holds. Give a counterexample if \(k\) is of positive characteristic.
+\end{problem}
+\begin{solution}
+Let \(d=\t{gcd}(f,f')\in k[x]\). We have the following claim:
+\begin{claim}
+    The colon ideal \((f:f')\) is generated by \(\frac{f}{d}\).
+\end{claim}
+\begin{claimproof}
+    Write \(f=d\cdot h_1\) and \(f'=d\cdot h_2\) for some \(h_1,h_2\in k[x]\) and \((h_1,h_2)=1\). Then for any \(g\in (f:f')\). We know that \(gf'\in (f)\). This means there exist \(t\in k[x]\) such that 
+    \[gdh_2=gf'=ft=dh_1t.\]
+    That is \(gh_2=h_1t\). Since \(h_1\) and \(h_2\) are coprime, we know that 
+    \[\frac{f}{d}=h_1|g.\]
+    This proves that \(g\) is a multiple of \(h_1\). Moreover, \(h_1f'=h_1h_2d=fh_2\in (f)\). So \(h_1\in (f:f')\). This implies that \((h_1)=(f:f')\) because \(k[x]\) is a principal ideal domain. 
+\end{claimproof}
+
+Note that \(k\) is algebraically closed and has characteristic 0. Write 
+\[f(x)=a(x-a_1)^{n_1}\cdots(x-a_k)^{n_k},\ \ \ \ a,a_1,\ldots,a_k\in k, n_1,\ldots,n_k\in \mathbb{Z}_+\] 
+Then by direct calculation, we have 
+\[h_1(x)=\frac{f(x)}{d(x)}=(x-a_1)\cdots (x-a_k).\]
+Choose \(N=\max\left\{ n_1,\ldots,n_k \right\}\). It is easy to see that \(h_1^N\in (f)\). So \((h_1)=(f:f')\subseteq \sqrt{(f)}\). 
+
+Conversely, suppose \(g\in k[x]\) and for some \(N>0\), \(g^N\in (f)\). This means there exists \(h\in k[x]\) such that \(g^N=fh=dh_1h\). We know that 
+\[h_1(x)=(x-a_1)\cdots (x-a_k)\]
+has no multiple factors. So \(h_1|g\). This implies \(g\in (h_1)=(f:f')\). So we have \(\sqrt{(f)}\subseteq (f:f')\). Thus, we can conclude that \(\sqrt{(f)}=(f:f')\).
+
+Now assume \(\t{char}\ k=p>0\). Consider \(f(x)=x^p\in k[x]\). Note that here we have \(f'=0\). In this case, \(\sqrt{(f)}=(x)\) but \((f:f')=k[x]\) because for any \(a\in k[x]\), we have 
+\[af'=0\in (x^p).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.5}
+Let \(\mathfrak{p}\) be a prime ideal in \(k[x_1,\ldots,x_n]\). Show that \(\mathfrak{p}\) is the intersection of all the maximal ideals containing it; that is,
+\[\mathfrak{p}=\cap_{\mathfrak{p}\subseteq \mathfrak{m}}\mathfrak{m}.\]
+\end{problem}
+\begin{solution}
+It is easy to see that 
+\[\mathfrak{p}\subseteq\cap_{\mathfrak{p}\subseteq \mathfrak{m}}\mathfrak{m}.\]
+Conversely, we want to show that 
+\[\cap_{\mathfrak{p}\subseteq \mathfrak{m}}\mathfrak{m}\subseteq \mathfrak{p}.\]
+This is the same as proving 
+\[Z(\mathfrak{p})\subseteq Z(\cap_{\mathfrak{p}\subseteq \mathfrak{m}}\mathfrak{m})=\cup_{\mathfrak{p}\subseteq \mathfrak{m}}Z(\mathfrak{m}).\]
+For any point \(p\in Z(\mathfrak{p})\), by Nullstellensatz, \(\left\{ p \right\}=Z(\mathfrak{m})\) for some maximal ideal \(\mathfrak{m}\supseteq \mathfrak{p}\). This implies that \(p\in \cup_{\mathfrak{p}\subseteq \mathfrak{m}}Z(\mathfrak{m})\). We are done. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.6}
+Consider the closed algebraic set in \(\mathbb{A}^2\) given by the vanishing of the polynomial 
+\[P(x)=y^2-x(x+1)(x-1).\]
+Let \(\alpha\in \mathbb{C}\) and let \(\mathfrak{a}=(x-\alpha,P(x))\). Determine \(Z(\mathfrak{a})\) for all \(\alpha\). For which \(\alpha\)'s is \(\mathfrak{a}\) a radical ideal?
+\end{problem}
+\begin{solution}
+Let \((x,y)\in Z(\mathfrak{a})\). Then we have 
+\begin{align*}
+     x=&\alpha,\\
+     y^2=&\alpha(\alpha+1)(\alpha-1).
+\end{align*}
+If \(\t{char} k=2\), then \(Z(\mathfrak{a})\) has only one point: \((\alpha,\sqrt{\alpha}(\alpha+1))\). In this case, \(\mathfrak{a}\) is not a radical ideal because the quotient ring 
+\[k[x,y]/\mathfrak{a}\cong k[y]/(y^2-\alpha(\alpha+1)^2)\cong k[y]/((y-\sqrt{\alpha}(\alpha+1))^2)\]
+has a nilpotent polynomial \(y-\sqrt{\alpha}(\alpha+1)\). 
+
+If \(\alpha=0,1,-1\), then \(Z(\mathfrak{a})\) has only one point: \((\alpha,0)\). In this case, \(\mathfrak{a}\) is not a radical ideal because the quotient ring 
+\[k[x,y]/\mathfrak{a}\cong k[y]/(y^2)\]
+has a nilpotent polynomial \(y\).
+
+If \(\t{char} k\neq 2\) and \(\alpha\neq 0,1,-1\), let \(s=\sqrt{\alpha(\alpha+1)(\alpha-1)}\), then \(Z(\mathfrak{a})\) has two points: \((\alpha,s)\) and \((\alpha,-s)\). In this case, \(\mathfrak{a}\) is a radical ideal because the quotient ring 
+\[k[x,y]/\mathfrak{a}\cong k[y]/(y-s)(y+s))\cong k^2\]
+has no nilpotent elements.
+\end{solution}
+
+\end{document}

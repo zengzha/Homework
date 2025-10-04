@@ -55,7 +55,7 @@
 
 \setlength{\columnseprule}{1pt}
 
-\newenvironment{problem}[2][Problem]
+\newenvironment{problem}[2][Exercise]
     { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
     {  \end{mdframed}}
 
@@ -83,7 +83,7 @@
     \import{./Pictures/}{#1.pdf_tex}
 }
 %\let\mathbb\oldmathbb
-
+\renewcommand{\t}[1]{\text{#1}}
 \renewcommand{\qed}{\quad\qedsymbol}
 \newcommand{\rank}{\text{rank}\,}
 \newcommand{\ord}{\text{ord}\,}
