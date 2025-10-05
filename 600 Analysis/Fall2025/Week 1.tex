@@ -32,7 +32,50 @@ The Cantor set \(\mathcal{C}\) can also be described in terms of ternary expansi
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+  \item Let \(x\in \mathcal{C}=\cap_{k=0}^\infty C_k\). \(x\in \mathcal{C}\) is the same as \(x\in C_k\) for all \(k\geq 0\). Let us     start with \(k=1\). We choose \(a_1=0\) or \(a_1=2\) based on \(x\) is in which interval of \(C_1\). More specifically, if \(0\leq x\leq \frac{1}{3}\), choose \(a_1=0\). If \(\frac{2}{3}\leq x\leq 1\), choose \(a_1=2\). For \(k=2\), the interval containing \(x\) is again become two parts. If \(x\) is in the smaller interval (the one closer to \(0\)), choose \(a_2=0\). If \(x\) is in the larger interval (the one closer to \(1\)), choose \(a_2=2\). Repeat this process, and in each step \(n\), we write 
+  \[x_n=\sum_{k=1}^{n}\frac{a_k}{3^k}.\]
+  We need to show that \(\lim_{n\to \infty} x_n=x\). Note that by the way we choose each \(a_k\), we have 
+  \[x_n\leq x\leq x_n+\frac{3}{3^n}.\]
+  Let \(n\) approaches \(\infty\), and we have proved that 
+  \[x=\sum_{k=1}^{\infty}\frac{a_k}{3^k}\]
+  where everywhere \(a_k\) is either \(0\) or \(2\).
 
+  Conversely, assume \(x\) has such a representation. We need to show that \(x\in C_n\) for all \(n\geq 1\). For every \(n\geq 1\), write 
+  \[x_n=\sum_{k=1}^{n}\frac{a_k}{3^k}.\]
+  We know \(x_n\) is an end point in \(C_n\), and \(x\) satisfies
+  \[x_n\leq x\leq x_n+\frac{3}{3^n}.\]
+  Thus, \(x\in C_n\) for every \(n\). This proves that \(x\in \mathcal{C}\).
+  \item From (1), we know every point \(x\in \mathcal{C}\) has a representation
+  \[x=\sum_{k=1}^{\infty}\frac{a_k}{3^k}\]
+  where \(a_k\) is \(0\) or \(2\). By the way we define the representation, the choice is \(a_k\) is unique, so this function \(F\) is well-defined. Moreover, if \(x=0\), then all \(a_k\) in its representation is \(0\), so 
+  \[F(0)=\sum_{k=1}^{\infty}\frac{0}{2^k}=0.\]
+  Similarly, if \(x=1\), then all \(a_k\) in its representation is \(2\), so 
+  \[F(1)=F(\sum_{k=1}^{\infty}\frac{2}{3^k})=\sum_{k=1}^{\infty}\frac{1}{2^k}=1.\]
+  Lastly, we need to show that \(F\) is continuous. Fix a point \(x\in \mathcal{C}\), for any \(\varepsilon>0\), there exists large enough \(n\in \mathbb{Z}_+\) such that 
+  \[\frac{1}{3^{n+1}}\leq \frac{1}{2^n}< \varepsilon.\]
+  Consider the open set 
+  \[U=(x-\frac{1}{3^{n+1}},x+\frac{1}{3^{n+1}})\cap \mathcal{C}\subseteq \mathcal{C}.\]
+  For any \(y\in U\), we know that \(|x-y|<\frac{1}{3^n}\), so \(x,y\) must belong to the same interval for \(C_1,C_2,\ldots, C_n\). This implies that in the representations of \(x\) and \(y\), the choices of \(a_k\) for \(1\leq k\leq n\) are the same. Therefore, we have 
+  \begin{align*}
+       |F(x)-F(y)|&\leq \sum_{k=n+1}^{\infty}\frac{1}{2^k}\\ 
+                  &\leq 1-(\sum_{k=1}^{n}\frac{1}{2^k})\\ 
+                  &\leq 1-(1-\frac{1}{2^n})\\
+                  &\leq \frac{1}{2^n}\\
+                  &<\varepsilon.
+  \end{align*} 
+  This proves that \(F\) is continuous.
+  \item For any \(y\in [0,1]\), if \(y\) has a representation 
+  \[y=\sum_{k=1}^{\infty}\frac{b_k}{2^k}\]
+  where \(b_k\) is \(0\) or \(1\), then we can choose \(a_k=2b_k\) and obtain a number \(x=\sum_{k=1}^{\infty}\frac{a_k}{3^k}\in \mathcal{C}\) satisfying \(F(x)=y\). So we only need to show that every \(y\in [0,1]\) has such a representation. \(0\) has a representation by setting all \(b_k=0\). Now assume \(y\in (0,1]\). Let's start with \(b_1\). If \(0< y\leq \frac{1}{2}\), choose \(b_1=0\). If \(\frac{1}{2}< y\leq 1\), choose \(b_1=1\). For \(b_2\), divide the interval \(y\) was in into 2 parts again, and if \(y\) is in the smaller interval, choose \(b_2=0\), if \(y\) is in the larger interval, choose \(b_2=1\). Repeat this process, and we obtain a sequence \(\sum_{k=1}^{\infty}\frac{b_k}{2^k}\). Note that by our choice, for all \(n\geq 1\), we have
+  \[\sum_{k=1}^{n}\frac{b_k}{2^k}<y\leq \sum_{k=1}^{n}\frac{b_k}{2^k}+\frac{2}{2^n}.\]
+  Thus, we obtain a representation for \(y\in [0,1]\). 
+  \item We need to show that if we extend \(F\) in this way, it is still continuous. We use a very similar proof as (2). In this case, we just choose the open neighborhood of \(x\) as 
+  \[U=(x-\frac{1}{3^{n+1}},x+\frac{1}{3^{n+1}}).\]
+  For any \(y\in U\), if \(y\in \mathcal{C}\), then the same proof works. If \(y\notin \mathcal{C}\), note that the complement of Cantor set \(\mathcal{C}\) is a countable union of disjoint open intervals, so \(y\in (a,b)\) for some \(a,b\in \mathcal{C}\). We have 
+  \[|F(x)-F(y)|=|F(x)-F(a)|=|F(x)-F(b)|.\]
+  Thus, we could use the same steps as in (2).
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -44,12 +87,45 @@ Suppose \(E\) is a given set, and \(\mathcal{O}_n\) is the open set:
 \[\mathcal{O}_n=\left\{ x:\ d(x,E)<\frac{1}{n} \right\}.\]
 Show:
 \begin{enumerate}[(a)]
-    \item If \(E\) is compact, then \(m(E)=\lim_{n\to \infty}<\frac{1}{n}\).
+    \item If \(E\) is compact, then \(m(E)=\lim_{n\to \infty}m(\mathcal{O}_n)\).
     \item However, the conclusion in (a) may be false for \(E\) closed and unbounded; or \(E\) open and bounded.
 \end{enumerate}
 \end{problem}
 \begin{solution}
+\begin{enumerate}[(a)]
+  \item \(E\) is closed and bounded, so \(E\) is measurable and \(m(E)<+\infty\). For every \(n\), \(d(\mathcal{O}_n,E)<\frac{1}{n}\), so \(\mathcal{O}_n\) is also bounded, and we have 
+  \[\mathcal{O}_1\supseteq \mathcal{O}_2\supseteq \cdots \supseteq \mathcal{O}_n\supseteq \cdots\supseteq E.\]
+  It is obvious that \(E\subseteq \cap_{n=1}^\infty \mathcal{O}_n\). Conversely, for any \(x\in \cap_{n=1}^\infty \mathcal{O}_n\), \(d(x,E)<\frac{1}{n}\) for all \(n\geq 1\). For every \(n\geq 1\), we can find \(x_n\in E\) such that \(|x_n-x|<\frac{1}{n}\). Let \(n\to \infty\), and we have \(\lim_{n\to \infty}x_n=x\). This proves that \(x\) is a limit point of E, and because \(E\) is closed, so \(x\in E\). Therefore, \(\cap_{n=1}^\infty \mathcal{O}_n=E\). 
+ 
+  Now, we show that \(E\) is open. For any \(x\in \mathcal{O}_n\), choose an open ball \(B_r(x)\) centered at \(x\) with radius 
+  \[r=\frac{1}{3}(\frac{1}{n}-d(x,E)).\]
+  Then for any \(y\in B_r(x)\), we have 
+  \begin{align*}
+       d(y,E)&=\inf_{z\in E}|y-z|\\ 
+             &\leq \inf_{z\in E}(|y-x|+|x-z|)\\
+             &\leq r+\inf_{z\in E}|x-z|\\ 
+             &= r+d(x,E)\\
+             &\leq \frac{1}{3n}+\frac{2}{3}d(x,E)\\
+             &<\frac{1}{n}.
+  \end{align*}
+  This proves \(y\in \mathcal{O}_n\). So \(\mathcal{O}_n\) is an open set, thus measurable and \(m(\mathcal{O}_n)<+\infty\). By Corollary 3.3 (ii), we have 
+  \[m(E)=\lim_{n\to\infty}m(\mathcal{O}_n).\]
+  \item Consider 
+  \[E=\left\{ 1,2,3,\ldots \right\}.\]
+  \(E\) is closed and unbounded. We know that \(m(E)=0\) because \(E\) is countable. Then 
+  \[\mathcal{O}_n=\cup_{k=1}^\infty (k-\frac{1}{n},k+\frac{1}{n}).\]
+  We know that for each \(k\), \(m((k-\frac{1}{n},k+\frac{1}{n}))=\frac{2}{n}\), so 
+  \[m(\mathcal{O}_n)-m(E)>m(\cup_{k=1}^n(k-\frac{1}{n},k+\frac{1}{n}))=2.\]
+  This implies 
+  \[\lim_{n\to \infty}m(\mathcal{O}_n)\neq m(E).\]
 
+  Next, note that \(\mathbb{Q}\cap (0,1)\) is countable, so it can be listed as a sequence \(\left\{ x_n \right\}_{n=1}^\infty\). Let 
+  \[E=\bigcup_{n=1}^\infty(x_n-\frac{1}{2^{n+2}},x_n+\frac{1}{2^{n+2}})\]
+  \(E\) is open, thus measurable, and 
+  \[m(E)\leq \sum_{n=1}^{\infty}\frac{1}{2^{n+1}}=\frac{1}{2}.\]
+  For every \(n\geq 1\), \(\mathcal{O}_n\) must contain \([0,1]\) because the rational numbers are dense in \((0,1)\). So \(m(\mathcal{O}_n)\geq 1>\frac{1}{2}\geq m(E)\) for all \(n\geq 1\). This implies that 
+  \[\lim_{n\to \infty}m(\mathcal{O}_n)\neq m(E).\]
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -61,7 +137,20 @@ Using translations and dilations, prove the following: Let \(B\) be a ball in \(
 \[B_1=\left\{ x\in \mathbb{R}^d: |x|<1 \right\}.\]
 \end{problem}
 \begin{solution}
-
+For any \(\varepsilon>0\), there exists a countable union of almost disjoint closed cubes \(\left\{ Q_j \right\}_{j=1}^\infty\) such that 
+\[B_1\subseteq \bigcup_{j=1}^\infty Q_j\] 
+and 
+\[|m(B_1)-\sum_{j=1}^{\infty}|Q_j||<\frac{\varepsilon}{r^d}.\] 
+For each \(j\geq 1\), suppose \(Q_j\) is a closed cube centered at \((x_1,\ldots,x_d)\) with side length \(l\). Define \(\ti{Q_j}\) as the closed cube centered at \((rx_1,\ldots,rx_n)\) with side length \(rl\). We obtain a new sequence \(\left\{ \ti{Q_j} \right\}_{j=1}^\infty\). We claim they are still almost disjoint. Indeed, for every point \(T=(t_1,\ldots,t_d)\) in a cube \(Q_j\), the new corresponding point has the coordinate \(\tilde{T}=(rt_1,\ldots,rt_n)\). If \(\tilde{T}\) is in the interior of two different new cubes, then \(T\) must be also in the interior of two different old cubes because both the coordinates and the side length are multiplied by \(r\) in this process. For every point \((y_1,\ldots,y_n)\in B\), \((\frac{y_1}{r},\ldots,\frac{y_n}{r})\) is a point in \(B_1\). So 
+\[\bigcup_{j=1}^\infty \ti{Q_j}\supset B\] 
+is a cover for \(B\) as 
+\[\bigcup_{j=1}^\infty Q_j\supset B_1\] 
+is a cover for \(B_1\). Moreover, for every \(j\), we have  
+\[|\ti{Q_j}|=r^d|Q_j|\]
+by definition. So 
+\[|m(B)-\sum_{j=1}^{\infty}|\ti{Q_j}||<\frac{\varepsilon}{r^d}\cdot r^d=\varepsilon.\]
+This implies that 
+\[m(B)=r^dm(B_1)=v_d r^d.\]
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -72,22 +161,34 @@ Using translations and dilations, prove the following: Let \(B\) be a ball in \(
 Give an example of an open set \(\mathcal{O}\) with the following property: the boundary of the closure of \(\mathcal{O}\) has positive Lebesgue measure.
 \end{problem}
 \begin{solution}
-
+Consider the example we constructed in Exercise 1.5 (b). The open set 
+\[E=\bigcup_{n=1}^\infty (x_n-\frac{1}{2^{n+2}},x_n+\frac{1}{2^{n+2}})\]
+where \(\left\{ x_n \right\}_{n=1}^\infty\) is a sequence of all rational numbers in \((0,1)\). We have 
+\[m(E)\leq \frac{1}{2}.\]
+On the other hand, the closure \(\bar{E}\) must contain \([0,1]\) because the rational numbers are dense in \((0,1)\). Thus, the boundary \(\bar{E}-E\) must have positive Lebesgue measure.
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+\newpage 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 1.10
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{1.10}
 Let \(\hat{\mathcal{C}}\) denote a Canton-like set, in particular \(m(\hat{\mathcal{C}})>0\). Let \(F_1\) denote a piecewise linear and continuous function on \([0,1]\), with \(F_1=1\) in the complement of the first interval removed in the construction of \(\hat{\mathcal{C}}\), \(F_1=0\) at the center of this interval, and \(0\leq F_1(x)\leq 1\) for all \(x\). Similarly, construct \(F_2=1\) in the complement of the intervals in stage two of the construction of \(\hat{\mathcal{C}}\), with \(F_2=0\) at the center of these intervals, and \(0\leq F_2\leq 1\). Continuing this way, let \(f_n=F_1\cdot F_2\cdots F_n\). Prove the following:
 \begin{enumerate}[(a)]
-    \item For all \(n\geq 1\) and all \(x\in [0,1]\), one has\(0\leq f_n(x)\leq 1\) and \(f_n(x)\geq f_{n+1}(x)\). Therefore, \(f_n(x)\) converges to a limit as \(n\to \infty\) which we denote by \(f(x)\). 
+    \item For all \(n\geq 1\) and all \(x\in [0,1]\), one has \(0\leq f_n(x)\leq 1\) and \(f_n(x)\geq f_{n+1}(x)\). Therefore, \(f_n(x)\) converges to a limit as \(n\to \infty\) which we denote by \(f(x)\). 
     \item The function is discontinuous at every point of \(\hat{\mathcal{C}}\). 
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+  \item For all \(n\geq 1\) and all \(x\in [0,1]\), we know that by definition \(0\leq F_n(x)\leq 1\). So we have 
+  \[0\leq f_n(x)=F_1(x)\cdot F_2(x)\cdots F_n(x)\leq 1.\]
+  Moreover, 
+  \[f_{n+1}(x)=f_n(x)\cdot F_{n+1}(x)\leq f_n(x).\]
+  This implies that \(f_n(x)\) is a bounded decreasing sequence, so that \(\lim_{n\to \infty}f_n(x)=f(x)\) exists.
+  \item Let \(x\in \hat{\mathcal{C}}\). By definition, \(f_n(x)=1\) for all \(n\geq 1\), so \(f(x)=1\). For every \(n\geq 1\), denote by \(\hat{C}_n\) the set obtained in \(n\)th stage of the construction of \(\hat{\mathcal{C}}\). Consider the open set \((x-\frac{2}{3^n},x+\frac{2}{3^n})\), it must contain one of the center of a removed interval in the \(n\)th stage, because the farthest possible distance between the center and a point in \(\hat{\mathcal{C}}\) is \(\frac{1}{2^n}<\frac{2}{3^n}\). Choose \(x_n\) equal to this center, we have \(f(x_n)=0\) for all \(n\geq 1\) by definition. Note that \(|x_n-x|<2\cdot \frac{2}{3^n}\). Let \(n\to \infty\). We get a sequence \(\left\{ x_n \right\}_{n=1}^\infty\) converging to \(x\) but \(0=f(x_n)\) does not converge to \(f(x)=1\). This implies that \(f\) is not continuous at \(x\in \hat{\mathcal{C}}\).
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -103,7 +204,35 @@ The following deals with \(G_\delta\) and \(F_\sigma\) sets.
 \end{enumerate}
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(a)]
+  \item Let \(O\) be an open set. By Theorem 1.4, \(O\) can be written as the union of closed cubes, so \(O\) is an \(F_\sigma\). Let \(E\) be a closed set. Then \(E^c\) is an open set. By Theorem 1.4, we can write 
+  \[E^c=\bigcup_{j=1}^\infty Q_j\]
+  where \(Q_j\) is a closed cube for all \(j\geq 1\). Take the complement, and we have 
+  \[E=(E^c)^c=(\bigcup_{j=1}^\infty Q_j)^c=\bigcap_{j=1}^\infty Q_j^c\]
+  where \(Q_j^c\) is open for all \(j\geq 1\). This proves that any closed set is a \(G_\delta\).
+  \item Consider all the rational numbers 
+  \[E=\mathbb{Q}\cap [0,1]\]
+  in the open interval \([0,1]\). \(E\) is countable, so it can be written as the countable union of closed sets, where each closed set is the singleton. This implies that \(E\) is a \(F_\sigma\). Suppose \(E\) is a \(G_\delta\), then there exists a sequence of open sets \(\left\{ O_n \right\}_{n=1}^\infty\) such that
+  \[E=\bigcap_{n=1}^\infty O_n.\]
+  Take the closure at both sides, and since the rational numbers are dense in \([0,1]\), we have 
+  \[[0,1]=\bigcap_{n=1}^\infty \overline{O_n}.\] 
+  This means for \(n\geq 1\), every \(\overline{O_n}\) must contain \([0,1]\). Choose 
+  \[O'_n=O_1\cap O_2\cap\cdots \cap O_n.\]
+  Then \(\left\{ O'_n \right\}_{n=1}^\infty\) is a decreasing sequence of sets and \(\bigcap_{n=1}^\infty O'_n=E\). Each \(O'_n\) is measurable, and has finite Lebesgue measure. By Corollary 3.3 (ii), we have 
+  \[0=m(E)=\lim_{n\to \infty} m(O'_n)\geq m([0,1])=1.\]
+  A contradiction. So \(E\) is not a \(G_\delta\).
+  \item Let \(E'=\mathbb{Q}\cap [-1,0]\). A similar argument as above shows that \(E'\) is an \(F_\sigma\) but not a \(G_\delta\). Take \(F=[-1,0]-E'\). Then \(F\) is a \(G_\delta\) but not an \(F_\sigma\). Consider the set \(E\cup F\). \(E\) is the set is all rational numbers in \([0,1]\), so it is countable and thus a Borel set. Similarly, \(F\) is the complement of a Borel set, so \(F\) is also a Borel set. This implies that \(E\cup F\) is also a Borel set. Suppose \(E\cup F\) is a \(G_\delta\). We can write 
+  \[E\cup F=\bigcup_{j=1}^\infty O_j\]
+  where \(O_j\) is open for all \(j\geq 1\). Note that \([0,1]\) is also a \(G_\delta\), so we can write 
+  \[[0,1]=\bigcup_{k=1}^\infty P_k\] 
+  where \(P_k\) is open for all \(k\geq 1\). Then 
+  \begin{align*}
+       E&=(E\cup F)\cap [0,1]\\ 
+        &=(\bigcup_{j=1}^\infty O_j)\cap (\bigcup_{k=1}^\infty P_k)\\ 
+        &=\bigcup_{j,k=1}^\infty O_j\cap P_k.
+  \end{align*}
+  Here \(O_j\cap P_k\) is open for any \(j,k\geq 1\). This is a contradiction because \(E\) is not a \(G_\delta\). A similar argument can show that \(E\cup F\) is also not an \(F_\sigma\).
+\end{enumerate}
 \end{solution}
 
 \end{document}
