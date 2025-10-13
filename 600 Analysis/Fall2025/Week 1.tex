@@ -211,11 +211,11 @@ The following deals with \(G_\delta\) and \(F_\sigma\) sets.
   \[E=(E^c)^c=(\bigcup_{j=1}^\infty Q_j)^c=\bigcap_{j=1}^\infty Q_j^c\]
   where \(Q_j^c\) is open for all \(j\geq 1\). This proves that any closed set is a \(G_\delta\).
   \item Consider all the rational numbers 
-  \[E=\mathbb{Q}\cap [0,1]\]
-  in the open interval \([0,1]\). \(E\) is countable, so it can be written as the countable union of closed sets, where each closed set is the singleton. This implies that \(E\) is a \(F_\sigma\). Suppose \(E\) is a \(G_\delta\), then there exists a sequence of open sets \(\left\{ O_n \right\}_{n=1}^\infty\) such that
+  \[E=\mathbb{Q}\cap (0,1)\]
+  in the open interval \((0,1)\). \(E\) is countable, so it can be written as the countable union of closed sets, where each closed set is the singleton. This implies that \(E\) is a \(F_\sigma\). Suppose \(E\) is a \(G_\delta\), then there exists a sequence of open sets \(\left\{ O_n \right\}_{n=1}^\infty\) such that
   \[E=\bigcap_{n=1}^\infty O_n.\]
-  Take the closure at both sides, and since the rational numbers are dense in \([0,1]\), we have 
-  \[[0,1]=\bigcap_{n=1}^\infty \overline{O_n}.\] 
+  Take the closure at both sides, and since the rational numbers are dense in \((0,1)\), we have 
+  \[(0,1)=\bigcap_{n=1}^\infty O_n.\] 
   This means for \(n\geq 1\), every \(\overline{O_n}\) must contain \([0,1]\). Choose 
   \[O'_n=O_1\cap O_2\cap\cdots \cap O_n.\]
   Then \(\left\{ O'_n \right\}_{n=1}^\infty\) is a decreasing sequence of sets and \(\bigcap_{n=1}^\infty O'_n=E\). Each \(O'_n\) is measurable, and has finite Lebesgue measure. By Corollary 3.3 (ii), we have 

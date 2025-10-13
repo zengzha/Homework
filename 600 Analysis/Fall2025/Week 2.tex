@@ -1,0 +1,116 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 2 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Oct 15th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.0}
+Let \(f_n(x)=(nx)^{-2}(1-\cos(nx))\). Find the value of 
+\[\lim_{n\to \infty}\int_{0}^{\infty} f_n(x)  \,dx \]
+\end{problem}
+\begin{solution}
+Note that for any \(n\geq 1\) and \(x\in (0,+\infty)\), we have 
+\[|f_n(x)|\leq \frac{2}{n^2x^2}\]
+Thus, for any \(x\in (0,+\infty)\), 
+\[\lim_{n\to \infty}f_n(x)=0.\]
+When \(x\in (0,1)\), note that 
+\[|f_n(x)|=\frac{|1-\cos nx|}{n^2x^2}\leq \frac{\frac{1}{2}n^2x^2+\frac{1}{4}n^4x^4+o(x^4)}{n^2x^2}\leq \frac{1}{2}.\]
+And for \(x\in (1,+\infty)\), note that 
+\[|f_n(x)|=\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.1}
+Does there exist an infinite \(\sigma\)-algebra which has only countably many members?
+\end{problem}
+\begin{solution}
+No, such \(\sigma\)-algebra does not exist. Assume a \(\sigma\)-algebra \(\mathfrak{M}\) has only countably many members on a set \(X\). Write 
+\[\mathfrak{M}=\left\{ X_1,X_2,\ldots,X_n,\ldots \right\}\]
+For any \(x\in X\), let \(A_x:=\bigcap_{x\in X_i}X_i\). \(A_x\) is not empty and \(A_x\in \mathfrak{M}\) because it is the countable intersection of members in \(\mathfrak{M}\). By definition, if \(x\in X_i\) for any \(X_i\), then we must have \(A_x\subset X_i\). Suppose \(y\in X\) and \(y\neq x\). If \(y\in A_x\), then \(A_y=A_x\). Indeed, \(A_x\) is a member of \(\mathfrak{M}\), so \(A_y\subseteq A_x\). If \(x\notin A_y\), then \(x\in A_x\setminus A_y\) which is not contained in \(A_x\). This contradicts that \(A_x\) is the intersection of all sets containing \(x\). So \(x\in A_y\), and this implies \(A_x\subseteq A_y\), thus \(A_x=A_y\). 
+
+Write \(X=\bigcup_{x\in X}A_x\). From what we discuss above, for \(x\neq y\), either \(A_x=A_y\) or \(A_x\cap A_y=\varnothing\). Thus, we can write \(X=\bigcup_{i\in I}A_{x_i}\) where \(I\) is the index set and \(A_{x_i}\cap A_{x_j}=\varnothing\) for \(i\neq j\) in \(I\). 
+
+Assume \(I\) is finite. For any \(Y\in \mathfrak{M}\), we have \(Y=\bigcup_{x\in Y}A_x\). So \(Y\) can be written in the form \(\bigcup_{i\in J}A_{x_i}\) for some \(J\subseteq I\). Since \(I\) is finite, this implies that \(\mathfrak{M}\) only has finitely many members.
+
+Assume \(I\) is countably infinite. Note that for \(I_1,I_2\subset I\),
+\[\bigcup_{i\in I_1}A_{x_i}=\bigcup_{j\in I_2}A_{x_j}\]
+if and only if \(I_1=I_2\). The cardinality of the power sets of \(I\) must be uncountably many, so \(\mathfrak{M}\) has at least uncountably many memebrs. 
+
+Assume \(I\) is uncountably infinite. Note that every \(A_{x_i}\) is a different member of \(\mathfrak{M}\) by our choice, so again \(\mathfrak{M}\) has uncountably many members. 
+
+This is a contradiction. Hence, we conclude that such \(\sigma\)-algebra \(\mathfrak{M}\) does not exist. 
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.3}
+Prove that if \(f\) is a real function on a measurable space \(X\) such that \(\left\{ x:f(x)\geq r \right\}\) is measurable for every rational \(r\), then \(f\) is measurable.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.4}
+Let \(\left\{ a_n \right\}\) and \(\left\{ b_n \right\}\) be sequences in \([-\infty, \infty]\), and prove the following assertions:
+\begin{enumerate}[(a)]
+  \item \(\limsup_{n\to \infty}(-a_n)=-\liminf_{n\to \infty}a_n\). 
+  \item \(\limsup_{n\to \infty}(a_n+b_n)\leq \limsup_{n\to \infty}a_n+\limsup_{n\to\infty}b_n\) provided none of the sums is of the form \(\infty-\infty\).
+  \item If \(a_n\leq b_n\) for all \(n\), then 
+  \[\liminf_{n\to \infty} a_n\leq \liminf_{n\to \infty}b_n\]
+\end{enumerate}
+Show by an example that strict inequality can hold in \((b)\).
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.5}
+\begin{enumerate}[(a)]
+  \item Suppose \(f:X\rightarrow [-\infty,\infty]\) and \(g:X\rightarrow [-\infty,\infty]\) are measurable. Prove that the sets 
+  \[\left\{ x:f(x)<g(x) \right\},\ \ \left\{ x:f(x)=g(x) \right\}\]
+  are measurable.
+  \item Prove that the set of points at which a sequence of measurable real-valued functions converges (to a finite limit) is measurable.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.6}
+Let \(X\) be an uncountable set, let \(\mathfrak{M}\) be the collection of all sets \(E\subset X\) such that either \(E\) or \(E^c\) is at most countable, and define \(\mu(E)=0\) in the first case, \(\mu(E)=1\) in the second. Prove that \(\mathfrak{M}\) is a \(\sigma\)-algebra in \(X\) and that \(\mu\) is a measure on \(\mathfrak{M}\). Describe the corresponding measurable functions and their integrals.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\end{document}

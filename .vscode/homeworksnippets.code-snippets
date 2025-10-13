@@ -116,5 +116,9 @@
 			"  $1",
 			"\\end{claimproof}"
 		]
+	},
+	"infinity":{
+		"prefix": "ift",
+		"body": "\\infty"
 	}
 }

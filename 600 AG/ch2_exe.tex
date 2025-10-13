@@ -1,0 +1,157 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 2 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 681 - Algebraic Geometry I \hfill Term: Fall 2025 \\
+Instructor: Professor Nick Addington \hfill Due Date: Oct 13th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.3  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.3}
+Show that any Hausdoff space if of dimension zero.
+\end{problem}
+\begin{solution}
+Let \(X\) be a Hausdoff topological space and \(x\in X\) is a point. It is easy to see that \(\left\{ x \right\}\) is irreducible. If \(X=\left\{ x \right\}\), then obviously \(\dim X=0\) since we only have one point. For any \(y\in X\) that is not \(x\), we have an open set 
+\[U_y\cap \left\{ x \right\}=\varnothing\]
+because \(X\) is Hausdoff. Then we have 
+\[X\setminus \left\{ x \right\}=\bigcup_{y\in X, y\neq x}U_y\]
+is open in \(X\). This implies \(\left\{ x \right\}\) is closed and irreducible for any \(x\in X\). Thus, the only irreducible subsets in \(X\) are singletons. Thus, we can conclude that \(\dim X=0\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4}
+Assume that 
+\[Y=Y_1\cup\cdots \cup Y_r\]
+is the primary decomposition of the Noetherian space \(Y\) into irreducible components. Show that 
+\[\dim Y=\max_{1\leq i\leq r} \dim Y_i.\]
+\end{problem}
+\begin{solution}
+For \(1\leq i\leq r\), we know that \(Y_i\subseteq Y\), so \(\dim Y_i\leq \dim Y\). This implies that 
+\[\max_{1\leq i\leq r}\dim Y_i\leq \dim Y.\]
+On the other hand, suppose 
+\[Z_0\subsetneq Z_1\subsetneq \cdots\subsetneq Z_k\]
+is a maximal strictly increasing chains of irreducible subsets in \(Y\). Then \(Z_k=Y_i\) for some \(1\leq i\leq r\) because \(Y_1,\ldots,Y_r\) are irreducible components of \(Y\). Thus, this chain is also a strictly increasing chain of irreducible subsets in \(Y_i\). This proves 
+\[\dim Y\leq \max_{1\leq i\leq r}\dim Y_i.\]
+Hence, we can conclude that 
+\[\dim Y=\max_{1\leq i\leq r}\dim Y_i.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.6}
+Let \(X=Z(zx,zy)\subseteq \mathbb{A}^2\). Describe \(X\) and determine \(\dim X\). Exhibit two maximal chains of irreducible subvarieties of different lengths. Exhibit a hypersurface \(Z\) so that \(Z\cap X\) is of dimension zero.
+\end{problem}
+\begin{solution}
+The ideal \(I(X)=(zx,zy)\) has the primary decomposition
+\[(zx,zy)=(z)\cap (x,y)\]
+So \(X\) has two irreducible components \(X_1=Z(z)\) and \(X_2=Z(x,y)\). The coordinate ring 
+\begin{align*}
+     A(X_1)&=k[x,y,z]/(z)\cong k[x,y],\\ 
+     A(X_2)&=k[x,y,z]/(x,y)\cong k[z].
+\end{align*} 
+So by proposition 2.46, we have 
+\begin{align*}
+     \dim X_1&=\dim A(X_1)=\dim k[x,y]=2,\\ 
+     \dim X_2&=\dim A(X_2)=\dim k[z]=1.
+\end{align*}
+This implies that \(\dim X=\max_{i=1,2} \dim X_i=2\). We have the following two maximal chains of irreducible subvarieties 
+\begin{align*}
+     Z(x,y,z)&\subsetneq Z(y,z)\subsetneq Z(z), \\ 
+     Z(x,y,z)&\subsetneq Z(x,y).
+\end{align*}
+Consider the hypersurface \(Z=Z(z-1)\subseteq \mathbb{A}^3\). The intersection 
+\[Z\cap X=Z(z-1)\cap Z(zx,zy)=Z(z-1,zx,zy).\]
+Then we have 
+\begin{align*}
+     \dim Z\cap X&=\dim A(Z\cap X)\\ 
+                 &=\dim k[x,y,z]/(z-1,zx,zy)\\ 
+                 &\cong \dim k[x,y,z]/(z-1,x,y)\\ 
+                 &\cong \dim k\\ 
+                 &=0.
+\end{align*}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.11}
+Let \(\psi:\mathbb{A}^3\rightarrow \mathbb{A}^3\) be given as \((x,y,z)\mapsto (yz,xz,xy)\). Find all fibers of \(\psi\) and their ideals. 
+\end{problem}
+\begin{solution}
+Let \((a,b,c)\) be a point in \(\mathbb{A}^3\). 
+
+If \(a=b=c=0\), then the preimage 
+\begin{align*}
+     \psi^{-1}(0,0,0)&=\left\{ x=y=0 \right\}\cup \left\{ x=z=0 \right\}\cup \left\{ y=z=0 \right\}\\ 
+                     &=Z(x,y)\cup Z(x,z)\cup Z(y,z).
+\end{align*}
+The fiber over \((0,0,0)\) is the union of three axes. Note that the maximal corresponding to \((0,0,0)\) is \(\mathfrak{m}_0=(x,y,z)\), so we have 
+\[\psi^*\mathfrak{m}_0=(x,y)\cap (x,z)\cap (y,z)=(yz,xz,yz).\]
+
+If only one of \(a,b,c\) equals \(0\), the other two are not zero, then the preimage \(\psi^{-1}(a,b,c)=\varnothing\), and 
+\[\psi^*\mathfrak{m}_{(a,b,c)}=Z(\varnothing)=k[x,y,z].\]
+
+If two of \(a,b,c\) equal \(0\), then the preimage 
+\begin{align*}
+     \psi^{-1}(0,0,c)&=Z(xy-c,z),\\ 
+     \psi^{-1}(0,b,0)&=Z(xz-b,y),\\ 
+     \psi^{-1}(a,0,0)&=Z(yz-a,x).
+\end{align*}
+The corresponding algebra map 
+\begin{align*}
+     \psi^*\mathfrak{m}_{(0,0,c)}&=(xy-c,z),\\
+     \psi^*\mathfrak{m}_{(0,b,0)}&=(xz-b,y),\\
+     \psi^*\mathfrak{m}_{(a,0,0)}&=(yz-a,x),\\
+\end{align*}
+
+If none of \(a,b,c\) equal \(0\), then the preimage of \((a,b,c)\) has two points:
+\[\left\{ (\sqrt{\frac{bc}{a}},\sqrt{\frac{ac}{b}},\sqrt{\frac{ab}{c}}),(-\sqrt{\frac{bc}{a}},-\sqrt{\frac{ac}{b}},-\sqrt{\frac{ab}{c}}) \right\}.\]
+Let \(\mathfrak{m}_1,\mathfrak{m}_2\) be the corresponding maximal ideals at these two points. We have 
+\[\psi^*\mathfrak{m}_{(a,b,c)}=\mathfrak{m}_1\cap \mathfrak{m}_2.\] 
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.28
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.28}
+Let \(f=y^2-x(x-1)(x-2)\) and \(g=y^2+(x-1)^2-1\). Show that \(Z(f,g)=\left\{ (0,0),(2,0) \right\}\). Determine the primary decomposition of \(Z(f,g)\).
+\end{problem}
+\begin{solution}
+Consider the solutions to \(f=g=0\). We have 
+\begin{align*}
+     y^2-x(x-1)(x-2)&=y^2+(x-1)^2-1=0\\
+     (x-1)^2-1+x(x-1)(x-2)&=0\\ 
+     x^3-2x^2&=0\\
+     x=0\ \ & \t{or} \ \ x=2
+\end{align*}
+This implies that \(x=0,y=0\) and \(x=2,y=0\) are the only solutions, so 
+\[Z(f,g)=\left\{ (0,0),(2,0) \right\}.\]
+Note that \(f=y^2-x^3+3x^2-2x\) and \(g=y^2+x^2-2x\). We claim that 
+\[(f,g)=(y^2,x-2)\cap (y^2-2x, x^2).\]
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+\end{comment}
+
+\end{document}
