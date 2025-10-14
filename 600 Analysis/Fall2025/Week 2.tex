@@ -25,10 +25,18 @@ Note that for any \(n\geq 1\) and \(x\in (0,+\infty)\), we have
 \[|f_n(x)|\leq \frac{2}{n^2x^2}\]
 Thus, for any \(x\in (0,+\infty)\), 
 \[\lim_{n\to \infty}f_n(x)=0.\]
-When \(x\in (0,1)\), note that 
+When \(x\in (0,1)\), note that for all \(n\geq 1\)
 \[|f_n(x)|=\frac{|1-\cos nx|}{n^2x^2}\leq \frac{\frac{1}{2}n^2x^2+\frac{1}{4}n^4x^4+o(x^4)}{n^2x^2}\leq \frac{1}{2}.\]
-And for \(x\in (1,+\infty)\), note that 
-\[|f_n(x)|=\]
+And for \(x\in (1,+\infty)\), note that for all \(n\geq 1\)
+\[|f_n(x)|=\frac{|1-\cos nx|}{n^2x^2}\leq \frac{1}{x^2}\]
+Define 
+\[g(x)=\mathbbm{1}_{(0,1)}\frac{1}{2}+\mathbbm{1}_{(1,+\infty)}\frac{1}{x^2}\]
+where \(\mathbbm{1}\) is the characteristic function. We observe that
+\[|f_n(x)|\leq g(x)\]
+for all \(n\geq 1\). Here \(g\) is measurable and positive and 
+\[\int_{0}^{+\infty}g(x)dx=\int_{0}^{1}\frac{1}{2}dx+\int_{1}^{+\infty}\frac{1}{x^2}dx=\frac{1}{2}+1<+\infty.\]
+So \(g\) is integrable, and by Lebesgue's Dominated Convergence Theorem, we have 
+\[\lim_{n\to \infty}\int_{0}^{+\infty}f_n(x)dx=\int_{0}^{+\infty}\lim_{n\to \infty}f_n(x)dx=0.\]
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -65,13 +73,26 @@ This is a contradiction. Hence, we conclude that such \(\sigma\)-algebra \(\math
 Prove that if \(f\) is a real function on a measurable space \(X\) such that \(\left\{ x:f(x)\geq r \right\}\) is measurable for every rational \(r\), then \(f\) is measurable.
 \end{problem}
 \begin{solution}
+Let \(O\subset \mathbb{R}\) be an open set. We know that \(O\) can be written as the countable union of disjoint open intervals. To prove \(f\) is measurable, we only need to prove that \(f^{-1}(a,b)\) is measurable for any open interval \((a,b)\). Note that 
+\[(a,b)=(a,+\infty)\cap [b,+\infty)^c.\]
+So we need to show that \(f^{-1}(a,+\infty)\) and \(f^{-1}[b,+\infty)\) is measurable. If \(a\) is a rational number, then \(f^{-1}(a,+\infty)\) is already measurable. If \(a\) is an irrational number, consider a decreasing sequence of rational numbers \(\left\{ a_n \right\}_{n=1}^\infty\subseteq \mathbb{Q}\) such that 
+\[a_1\geq a_2\geq \cdots \geq a_n\geq \cdots \geq a\]
+and \(\lim_{n\to \infty}a_n=a\). Such sequence exists because the rational numbers are dense in \(\mathbb{R}\). Therefore, we have 
+\[f^{-1}(a,+\infty)=f^{-1}(\bigcup_{n=1}^\infty (a_n,+\infty))=\bigcup_{n=1}^\infty f^{-1}(a_n,+\infty).\]
+Here \(f^{-1}(a_n,+\infty)\) is measurable for all \(n\geq 1\), so \(f^{-1}(a,+\infty)\) is also measurable. 
 
+Similarly, choose an increasing sequence \(\left\{ b_n \right\}_{n=1}^\infty\subseteq \mathbb{Q}\) such that 
+\[b_1\leq b_2\leq \cdots\leq b_n\leq \cdots\leq b\]
+and \(\lim_{n\to \infty}b_n=b\). We have 
+\[f^{-1}[b,+\infty)=f^{-1}(\bigcap_{n=1}^\infty (b_n,+\infty))=\bigcap_{n=1}^\infty f^{-1}(b_n,+\infty).\]
+Here \(f^{-1}(b_n,+\infty)\) is measurable for all \(n\geq 1\), so \(f^{-1}[b,+\infty)\) is also measurable.
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 1.4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
 \begin{problem}{1.4}
 Let \(\left\{ a_n \right\}\) and \(\left\{ b_n \right\}\) be sequences in \([-\infty, \infty]\), and prove the following assertions:
 \begin{enumerate}[(a)]
@@ -87,6 +108,7 @@ Show by an example that strict inequality can hold in \((b)\).
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 1.5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,9 +121,39 @@ Show by an example that strict inequality can hold in \((b)\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
+If we can prove the function 
+\begin{align*}
+     f-g:X&\rightarrow \mathbb{R},\\ 
+         x&\mapsto f(x)-g(x) 
+\end{align*}
+is measurable, then the two sets
+\[\left\{ x:f(x)<g(x) \right\},\ \ \left\{ x:f(x)=g(x) \right\}\]
+are measurable because \((-\infty,0)\) is an open set, and 
+\[\left\{ x:f(x)-g(x)=0 \right\}=\left\{ x:f(x)-g(x)<0 \right\}^c\cap \left\{ x:f(x)-g(x)>0 \right\}^c\]
+where both are measurable. 
 
+To see that \(f-g\) is measurable, consider the following two functions 
+
+\noindent
+\begin{minipage}[t]{.48\textwidth}
+  \begin{align*}
+    F: X& \rightarrow \mathbb{R}^2, \\
+    x &\mapsto (f(x),g(x)).
+  \end{align*}
+\end{minipage}\hfill
+\begin{minipage}[t]{.48\textwidth}
+  \begin{align*}
+    h: \mathbb{R}^2 &\rightarrow \mathbb{R}, \\
+    (u,v) &\mapsto u-v.
+  \end{align*}
+\end{minipage}
+
+\vspace{.3cm}
+
+We can see that \(f-g=h\circ F\) where \(F\) is measurable (we proved it in class) and \(h\) is continuous, so \(f-g\) is also measurable.
 \end{solution}
 
+\begin{comment}
 \noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 1.6
@@ -112,5 +164,6 @@ Let \(X\) be an uncountable set, let \(\mathfrak{M}\) be the collection of all s
 \begin{solution}
 
 \end{solution}
+\end{comment}
 
 \end{document}
