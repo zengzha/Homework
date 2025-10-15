@@ -121,7 +121,8 @@ Show by an example that strict inequality can hold in \((b)\).
 \end{enumerate}
 \end{problem}
 \begin{solution}
-If we can prove the function 
+\begin{enumerate}[(a)]
+  \item If we can prove the function 
 \begin{align*}
      f-g:X&\rightarrow \mathbb{R},\\ 
          x&\mapsto f(x)-g(x) 
@@ -151,6 +152,12 @@ To see that \(f-g\) is measurable, consider the following two functions
 \vspace{.3cm}
 
 We can see that \(f-g=h\circ F\) where \(F\) is measurable (we proved it in class) and \(h\) is continuous, so \(f-g\) is also measurable.
+\item Given a sequence of measurable functions \(\left\{ f_n \right\}_{n=1}^\infty\), we know that the functions
+\[\limsup_{n\to \infty} f_n(x),\ \ \  \liminf_{n\to \infty}f_n(x)\]
+are measurable. Consider the set 
+\[E=\left\{ x\in X:\liminf_{n\to \infty}f_n(x)=\limsup_{n\to \infty}f_n(x) \right\}.\]
+This is exactly the set of points on which \(\left\{ f_n \right\}\) is converging pointwise. Thus, \(E\) is measurable from what we proved in (a).
+\end{enumerate}
 \end{solution}
 
 \begin{comment}
