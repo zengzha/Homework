@@ -20,7 +20,17 @@ Instructor: Professor Weiyong He \hfill Due Date: Oct 22nd, 2025 \\
 Let \(f:X\rightarrow \mathbb{C}\) be a measurable function, then there exists a sequence of simple functions \(\left\{ \phi_n \right\}\) such that \(|\phi_n|\) is nondecreasing with respect to \(n\) and \(\phi_n\to f\) pointwise.
 \end{problem}
 \begin{solution}
-
+First we prove this is true for a real-valued function \(f\). Define 
+\[f^+(x):=\max\left\{ 0, f(x)\right\},\ \ \ \ f^-(x):=-\min\left\{ f(x),0 \right\}.\]
+Then both \(f^+\) and \(f^-\) are positive measurable functions on \(X\), and \(f=f^+-f^-\) by definition. A theorem we proved in class tells us that there exists a positive nondecreasing sequence \(\left\{ s_n \right\}\) of simple functions such that \(0\leq s_n\leq f^+\) for all \(n\geq 1\) and \(\lim_{n\to \infty}s_n(x)=f^+(x)\). Similarly, there exists a positive nondecreasing sequence \(\left\{ t_n \right\}\) of simple functions such that \(0\leq t_n\leq f^-\) for all \(n\) and \(\lim_{n\to \infty}t_n(x)=f^-(x)\). Note that by definition, for any \(x\in X\), either \(f^+(x)=0\), or \(f^-(x)=0\). This implies that \(s_n(x)t_n(x)=0\) for all \(n\) and all \(x\in X\). Consider a sequence \(\left\{ s_n-t_n \right\}\) of simple functions. For any \(n\), 
+\[|s_n-t_n|^2=s_n^2+t_n^2\leq s_{n+1}^2+t_{n+1}^2=|s_{n+1}-t_{n+1}|^2.\]
+This implies that \(|s_n-t_n|\) is nondecreasing
+and 
+\[\lim_{n\to \infty}(s_n(x)-t_n(x))=f^+(x)-f^-(x)=f(x).\]
+Now consider \(f=u+iv\) to be a complex-valued function, then apply the above construction to \(u\) and \(v\) separately, obtaining two nondecreasing sequence of simple functions \(\left\{ p_n \right\}\) and \(\left\{ q_n \right\}\), then let \(\phi_n=p_n+iq_n\). Here \(|\phi_n|\) is decreasing as 
+\[|\phi_n|^2=p_n^2+q_n^2\leq p_{n+1}^2+q_{n+1}^2=|\phi_{n+1}|^2\]
+and 
+\[\lim_{n\to \infty} \phi_n(x)=\lim_{n\to \infty}p_n(x)+i\lim_{n\to \infty}q_n(x)=u(x)+iv(x)=f(x).\] 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -32,7 +42,31 @@ Compute the limits and justify the computation:
 \[\lim_{n\to \infty}\int_{0}^{1}\frac{1+nx^2}{(1+x^2)^n}dx,\ \ \lim_{n\to \infty}\int_{a}^{\infty}\frac{n}{1+n^2x^2}dx\]
 \end{problem}
 \begin{solution}
-
+\begin{enumerate}[(1)]
+  \item Define
+  \[f_n(x)=\frac{1+nx^2}{(1+x^2)^n}=\frac{1+nx^2}{1+nx^2+\sum_{k=2}^{n}\binom{n}{k}x^{2k}}.\]
+  Write 
+  \[g_n(x):=\frac{\sum_{k=2}^{n}\binom{n}{k}x^{2k}}{1+nx^2}\]
+  and \(f_n(x)=\frac{1}{1+g_n(x)}\). It is easy to see that \(g_n(x)\to +\infty\) as \(n\to \infty\) for all \(x\in (0,1)\), so \(f_n(x)\to 1\) as \(n\to \infty\) for all \(x\in (0,1)\). Moreover, \(g_n(x)\geq 0\), so 
+  \[|f(x)|=\frac{1}{1+g_n(x)}\leq 1.\]
+  And \(1\) is integrable on the interval \((0,1)\), by Lebesgue dominated convergence theorem, 
+  \[\lim_{n\to \infty}\int_0^1 \frac{1+nx^2}{(1+x^2)^n}dx=\int_0^1\lim_{n\to \infty}\frac{1+nx^2}{(1+x^2)^n}dx=1.\]
+  \item Note that for all \(n\geq 1\) and all \(x\in \mathbb{R}\), 
+  \[\frac{d}{dx}\arctan(nx)=\frac{n}{1+n^2x^2}.\]
+  Thus, by the fundamental theorem of calculus, write 
+  \begin{align*}
+      I=\lim_{n\to \infty}\int_a^{+\infty} \frac{n}{1+n^2x^2}dx&=\lim_{n\to \infty}\lim_{b\to +\infty}\int^b_a \frac{n}{1+n^2x^2}dx\\ 
+       &=\lim_{n\to \infty}\lim_{b\to +\infty}(\arctan(nb)-\arctan(na))\\ 
+       &=\lim_{n\to \infty}(\frac{\pi}{2}-\arctan(na))\\
+       &=\frac{\pi}{2}-\lim_{n\to \infty}\arctan(na).
+  \end{align*}
+  The result can be listed as follows 
+  \[I=\begin{cases}
+    0, &\text{ if \(a>0\)},\\
+    \frac{\pi}{2}, &\text{ if \(a=0\)},\\
+    \pi, &\text{ if \(a<0\)}.
+  \end{cases}\]
+\end{enumerate}
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
@@ -45,9 +79,79 @@ Suppose \(f_n:X\rightarrow [0,+\infty]\) is measurable for \(n=1,2,\ldots\). \(f
 and show that this conclusion does not follow if the condition "\(f_1\in L^1(\mu)\)" is omitted.
 \end{problem}
 \begin{solution}
+Both \(f_1\) and \(f=\lim_{n\to \infty}f_n\) are positive and measurable, and since for every \(n\), \(f_n\leq f_1\), we have 
+\[|f(x)|=f(x)\leq f_1(x)\]
+for all \(x\in X\). Here \(f_1\in L^1(\mu)\) is an integrable function. By Lebesgue dominated convergence theorem, 
+\[\lim_{n\to \infty}\int_X f_n d\mu=\int_X fd\mu.\]
+The condition \(f_1\in L^1(\mu)\) is essential. Consider the following function 
+\[f_n(x)=\chi_{[n,+\infty)}.\]
+For all \(n\), \([n+1,+\infty)\subsetneq [n,+\infty)\), so \(f_n\) is positive and decreasing. It is not hard to see that 
+\[\lim_{n\to +\infty}f_n(x)=0.\]
+But on the other hand, 
+\[\lim_{n\to \infty}\int_X f_nd\mu=\lim_{n\to +\infty}m([n,+\infty))=\lim_{n\to +\infty}+\infty=+\infty.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.8}
+Put \(f_n=\chi_E\) if \(n\) is odd, and \(f_n=1-\chi_E\) if \(n\) is even. What is the relevance of this example to Fatou's lemma. 
+\end{problem}
+\begin{solution}
+This is an example where the inequality in Fatou's lemma can be strict. Indeed, let \(E\subsetneq X\) be measurable, and \(m(E)<m(X)<+\infty\). On the one hand, for any \(x\in X\), either \(\chi_E(x)=0\) if \(x\notin E\), or \(1-\chi_E(x)=0\) if \(x\in E\). So 
+\[\liminf_{n\to \infty}f_n(x)=0\]
+for all \(x\in X\). This implies that 
+\[\int_X \liminf_{n\to \infty}f_n d\mu=0.\]
+On the other hand, we have 
+\[\int_X f_n d\mu=\begin{cases}
+  m(E), &\text{ if \(n\) is odd}\\[0.7em]
+  m(E^c), &\text{ if \(n\) is even}.
+\end{cases}\]
+We know both \(m(E)\) and \(m(E^c)\) is strictly positive by our assumption, so 
+\[\int_X \liminf_{n\to \infty}f_n d \mu<\liminf_{n\to \infty}\int_X f_n d\mu.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.10}
+Suppose \(\mu(X)<\infty\), \(\left\{ f_n \right\}\) is a sequence of bounded complex measurable functions on \(X\), and \(f_n\to f\) uniformly on \(X\). Prove that 
+\[\lim_{n\to \infty}\int_X f_n d\mu=\int_X fd\mu,\]
+and show that the hypothesis '\(\mu(X)<\infty\)' cannot be omitted.
+\end{problem}
+\begin{solution}
 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.12}
+Suppose \(f\in L^1(\mu)\). Prove that to each \(\varepsilon>0\) there exists a \(\delta>0\) such that \(\int_E|f|d\mu<\varepsilon\) whenever \(\mu(E)<\delta\). 
+\end{problem}
+\begin{solution}
+Given any \(\varepsilon>0\), consider the sequence of simple functions \(\left\{ \phi_n \right\}\) we constructed in Exercise 1. They satisfy the condition \(\lim_{n\to \infty}\phi_n(x)=f(x)\) for all \(x\in E\) and 
+\[|\phi_n(x)|\leq |f(x)|\]
+where \(|f|\) is a real-valued integrable function since \(f\in L^1(\mu)\). By Lebesgue dominated convergence theorem, there exists some \(N>1\) such that 
+\[\int_E |f-\phi_N|d\mu<\frac{\varepsilon}{2}.\]
+where \(\phi_N\) is some simple function on \(E\). Suppose we can write 
+\[\phi_N=\sum_{i=1}^{k}\alpha_i \chi_{A_i}.\]
+Then the integral 
+\[\int_E \phi_Nd\mu=\sum_{i=1}^{k}\alpha_i\mu(A_i\cap E)\leq \mu(E)(\sum_{i=1}^{k}\alpha_i).\] 
+If we choose \(\delta<\frac{\varepsilon}{2\sum_{i=1}^{k}\alpha_i}\), then 
+\[\mu(E)(\sum_{i=1}^{k}\alpha_i)<\delta(\sum_{i=1}^{k}\alpha_i)<\frac{\varepsilon}{2}.\]
+Thus, for any \(m(E)<\delta\), the integral 
+\begin{align*}
+     \int_E |f|d\mu&=\int_E|f-\phi_N+\phi_N|d\mu\\
+                   &\leq \int_E |f-\phi_N|d\mu +\int_E|\phi_N|d\mu\\
+                   &< \frac{\varepsilon}{2}+\mu(E)(\sum_{i=1}^{k}\alpha_i)\\
+                   &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                   &=\varepsilon.
+\end{align*}
+\end{solution}
+
 
 \end{document}
