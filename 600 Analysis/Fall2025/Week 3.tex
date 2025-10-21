@@ -122,7 +122,25 @@ Suppose \(\mu(X)<\infty\), \(\left\{ f_n \right\}\) is a sequence of bounded com
 and show that the hypothesis '\(\mu(X)<\infty\)' cannot be omitted.
 \end{problem}
 \begin{solution}
+For any \(\varepsilon>0\), because \(f_n\) converges to \(f\) uniformly, there exists \(N>0\) such that 
+\[|f_n(x)-f(x)|<\frac{\varepsilon}{\mu(X)}\]
+for any \(x\in X\) and \(n>N\). Since every \(f_n\) is bounded and \(\mu(X)<\infty\), the limit \(f\) is also bounded on \(X\), and the integrals \(\int_X f_nd\mu\) and \(\int_X fd\mu\) are finite. Moreover, for any \(n>N\), we have 
+\begin{align*}
+     \abs{\int_X f_nd\mu-\int_X fd\mu}&\leq \int_X|f_n-f|d\mu\\ 
+                                  &<\frac{\varepsilon}{\mu(X)}\int_Xd\mu\\ 
+                                  &=\frac{\varepsilon}{\mu(X)}\cdot \mu(X)\\
+                                  &=\varepsilon.
+\end{align*} 
+This proves that 
+\[\lim_{n\to \infty}\int_X f_nd\mu=\int_Xfd\mu.\]
 
+Now let \(X=[0,+\infty)\) satisfying \(\mu(X)=+\infty\). Consider a sequence of functions \(\left\{ f_n \right\}\):
+\[f_n:=\frac{1}{n}\chi_{[0,n]}.\]
+It is easy to see \(f_n\) is bounded for every \(n\geq 1\), and \(f_n\to 0\) uniformly as \(n\to \infty\). However, on the one hand,
+\[\lim_{n\to \infty}\int_0^\infty f_nd\mu=\lim_{n\to \infty}n\cdot \frac{1}{n}=1.\]
+On the other hand, 
+\[\int_0^\infty 0d\mu=0\cdot \infty=0.\]
+This shows that the condition \(\mu(X)<\infty\) is necessary. 
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}

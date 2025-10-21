@@ -1,0 +1,67 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 3 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 681 - Algebraic Geometry I \hfill Term: Fall 2025 \\
+Instructor: Professor Nick Addington \hfill Due Date: Oct 22nd, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.2}
+Let \(R\) be a UFD. Show that any prime ideal of height one is principal.
+\end{problem}
+\begin{solution}
+Let \(\mathfrak{p}\) be a prime ideal in \(R\). The zero ideal \((0)\) is properly contained in \(\mathfrak{p}\), so there exists a nonzero element \(x\in \mathfrak{p}\). Since \(R\) is a UFD, \(x\) can be written as 
+\[x=ux_1\cdots x_n\]
+where \(u\in R\) is a unit and \(x_1,\ldots,x_n\) are irreducible elements in \(R\). We know that \(\mathfrak{p}\) is a prime ideal, so at least one \(x_i\in \mathfrak{p}\) for \(1\leq i\leq n\). Without loss of generality, we can assume \(x_1\in \mathfrak{p}\). The principal ideal \((x_1)\subset \mathfrak{p}\) is also prime because \(x_1\) is irreducible, and since \(\mathfrak{p}\) has height 1, \((x_1)=\mathfrak{p}\), namely the prime ideal \(\mathfrak{p}\) is principal.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.19}
+Consider the curve \(C\) in \(\mathbb{A}^2\) whose equation is \(y^2-x^3\). Show that \(C\) can be parametrized by the map
+\begin{align*}
+     \phi:\mathbb{A}^1&\rightarrow \mathbb{A}^2,\\ 
+         t&\mapsto (t^2,t^3).
+\end{align*}
+Describe the map \(\phi^*:A(C)\rightarrow A(\mathbb{A}^1)\). Show that \(\phi\) is bijective but not an isomorphism. Show that the function field of \(C\) equals \(k(t)\).
+\end{problem}
+\begin{solution}
+For all \(t\in \mathbb{A}^1\), it is easy to see that the point \(\phi(t)=(t^2,t^3)\) is a point on \(C\), so \(\im \phi\in C\). Moreover, \(\phi\) is injective because 
+\[\begin{cases}
+  t_1^2=t_2^2\\[0.3em]
+  t_1^3=t_2^3
+\end{cases}\]
+implies that \(t_1=t_2\). Conversely, suppose \((a,b)\) is a point on \(C\). If \(a=b=0\), choose \(t=0\) and \(\phi(0)=(a,b)\). If \(a\neq 0\) and \(b\neq 0\), the equation \(x^2=a\) has two different solutions in \(\mathbb{C}\). Suppose \(t\) is such a solution. Note that 
+\[t^6=(t^2)^3=a^3=b^2.\]
+This implies that either \(t^3=b\) or \(t^3=-b\). Choose the solution \(t\) satisfying \(t^3=b\). Thus, we find a preimage \(t\in \mathbb{A}^1\). This proves that \(C\) can be parametrized by the map \(\phi\) which is a bijective map. 
+
+The map \(\phi^*:A(C)\rightarrow A(\mathbb{A}^1)\) is given by
+\begin{align}
+  \phi^*:k[x,y]/(y^2-x^3)&\rightarrow k[t],\\
+         x&\mapsto t^2,\\
+         y&\mapsto t^3. 
+\end{align}
+This map \(\phi^*\) is not surjective as \(t\in k[t]\) is not in the image. Hence, \(\phi\) is not an isomorphism of affine varieties. 
+
+The image of \(\phi^*(A(C))\) is isomorphic to the subring of \(k[t]\) with only degree \(\geq 2\) part. It is an integral domain. Let \(F\) be the field of fractions for this subring, which is isomorphic to the function field of \(C\). We claim that it is isomorphic to \(k(t)\). Indeed, note that 
+\[t=t^3\cdot (t^2)^{-1},\ \ \ \ t^{-1}=(t^3)^{-1}\cdot t^2.\]
+This implies \(F\) is subfield of \(k(t)\) containing \(t\) and \(t^{-1}\), so \(F=k(t)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+
+
+\end{document}
