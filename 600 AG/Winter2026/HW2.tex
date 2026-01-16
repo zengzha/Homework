@@ -1,0 +1,44 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 2 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 682 - Algebraic Geometry II \hfill Term: Winter 2026 \\
+Instructor: Professor Nick Addington \hfill Due Date: Jan 16, 2026 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.7.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.7.2}
+Describe \(\spec \mathbb{Z}[\frac{1}{18}]\).
+\end{problem}
+\begin{solution}
+Note that we have a ring isomorphism \(\mathbb{Z}[\frac{1}{18}]\cong \mathbb{Z}[x]/(18x-1)\). Let \(R=\mathbb{Z}[x]/(18x-1)\). We need to describe \(\spec R\). Consider the ring homomorphism 
+\[f:\mathbb{Z}[x]\rightarrow R.\]
+given by the quotient map. We know that prime ideals in \(R\) corresponds to prime ideals in \(\mathbb{Z}[x]\) containing the ideal \((18x-1)\). It must be of the form \((p,18x-1)\) where \(p\in \mathbb{Z}\) is a prime number. If \(p=2\) or \(p=3\), then \((p,18x-1)=\mathbb{Z}[x]\), which is not an ideal. When \(p\neq 2,3\), the ideal \((p,18x-1)\) is a prime ideal in \(\mathbb{Z}[x]\), thus corresponds to a prime ideal of \(R\). So \(\spec R\) has closed points corresponds to the maximal ideal \((p,18x-1)\) in \(R\) where \(p\neq 2,3\), and a generic point corresponds to the zero ideal in \(R\) (or the ideal \((18x-1)\) in \(\mathbb{Z}[x]\)).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.7.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.7.9}
+Show that \(D(f)=\varnothing\) if and only if \(f\) is nilpotent.
+\end{problem}
+\begin{solution}
+Suppose \(f\) is nilpotent. Then there exists \(n\geq 1\) such that \(f^n=0\in \mathfrak{p}\) for any prime ideal \(\mathfrak{p}\subset A\). So 
+\[D(f)=\left\{ \mathfrak{p}\ \  \mathrm{prime}\mid f\notin \mathfrak{p}\right\}=\varnothing.\]
+Conversely, suppose \(D(f)=\varnothing\). This implies that \(f\in \mathfrak{p}\) for all prime ideal \(\mathfrak{p}\), so \(f\in \cap_{\mathfrak{p}\ \ \mathrm{prime}}\mathfrak{p}=\sqrt{(0)}\). There exists \(n\geq 1\) such that \(f^n=0\). So \(f\) is nilpotent.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+
+\end{document}

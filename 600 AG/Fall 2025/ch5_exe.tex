@@ -1,0 +1,155 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 5 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 681 - Algebraic Geometry I \hfill Term: Fall 2025 \\
+Instructor: Professor Nick Addington \hfill Due Date: Nov 21st, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1}
+Assume \(X\) and \(Y\) are two affine varieties and that \(\phi:X\rightarrow Y\) is a morphism. Show that \(\phi\) is a closed embedding if and only if the map \(\phi^*:A(Y)\rightarrow A(X)\) between the coordinate rings is surjective. 
+\end{problem}
+\begin{solution}
+Suppose \(\phi:X\rightarrow Y\) is a closed embedding. By definition, there exists a closed subvariety \(i:Z\hookrightarrow  Y\) such that the following triangle commutes:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFsxLDEsIloiXSxbMCwyLCJcXGNvbmciLDJdLFswLDEsIlxccGhpIl0sWzIsMSwiaSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV1d
+\[\begin{tikzcd}
+    X & Y \\
+    & Z
+    \arrow["\phi", from=1-1, to=1-2]
+    \arrow["\cong"', from=1-1, to=2-2]
+    \arrow["i"', hook', from=2-2, to=1-2]
+  \end{tikzcd}\]
+Because \(X\) is isomorphic to \(Z\), so \(Z\) is also affine and the induced map \(i^*:A(Y)\rightarrow A(Z)\) is a quotient map of rings and thus surjective. By the main theorem of affine varieties, we have a commuting triangle of coordinate rings:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBKFgpIl0sWzEsMCwiQShZKSJdLFsxLDEsIkEoWikiXSxbMSwwLCJcXHBoaV4qIiwyXSxbMSwyLCJpXioiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwwLCJcXGNvbmciXV0=
+\[\begin{tikzcd}
+    {A(X)} & {A(Y)} \\
+    & {A(Z)}
+    \arrow["{\phi^*}"', from=1-2, to=1-1]
+    \arrow["{i^*}", two heads, from=1-2, to=2-2]
+    \arrow["\cong", from=2-2, to=1-1]
+  \end{tikzcd}\]
+This implies that the map \(\phi^*:A(Y)\rightarrow A(X)\) is surjective. 
+
+Conversely, suppose the map \(\phi^*:A(Y)\rightarrow A(X)\) is surjective. Then we have a commuting triangle of rings:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBKFgpIl0sWzEsMCwiQShZKSJdLFsxLDEsIkEoWSkvXFxrZXIgXFxwaGleKiJdLFsxLDIsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDAsIlxccGhpXioiLDJdLFsyLDAsIlxcY29uZyJdXQ==
+\[\begin{tikzcd}
+    {A(X)} & {A(Y)} \\
+    & {A(Y)/\ker \phi^*}
+    \arrow["{\phi^*}"', from=1-2, to=1-1]
+    \arrow[two heads, from=1-2, to=2-2]
+    \arrow["\cong", from=2-2, to=1-1]
+  \end{tikzcd}\]
+Note that \(\ker \phi^*\) is the preimage of the zero ideal \((0)\subseteq A(X)\). And since \(A(X)\) is reduced, so \(\ker\phi^*\) is a prime ideal in \(A(Y)\). This implies that \(A(Y)/\ker \phi^*\) is a reduced, finitely generated \(k\)-algebra. Consider \(Z\) to be the affine variety with the coordinate ring \(A(Y)/\ker \phi^*\). Then \(Z\) is a closed subvariety of \(Y\) and the map \(\phi\) must factor through \(Z\). Moreover, \(\phi\) gives an isomorphism between affine varieties \(X\) and \(Z\). Thus, we can conclude that \(\phi\) is a closed embedding. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.3}
+Consider the map \(\phi:\mathbb{A}^1\rightarrow \mathbb{A}^2\) given as \(\phi(t)=(t^2-1,t(t^2-1))\).
+\begin{enumerate}[(a)]
+  \item Show that \(\phi\) is a closed map, but not a closed embedding.
+  \item Exhibit an open covering \(\left\{ U_i \right\}\) of \(\mathbb{A}^1\) such that each restriction \(\phi_{U_i}\) is a closed embedding into some open subset \(V_i\) of \(\mathbb{A}^2\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item Define \(C\) to be the curve cut out by \(y^2=x^2(x+1)\) in \(\mathbb{A}^2\). We claim that \(\im \phi=C\). Indeed, let \(x=t^2-1\) and \(y=t(t^2-1)\), it is easy to check that \(y^2=x^2(x+1)\). This implies that \(\im \phi\subseteq C\). Conversely, take a point \((x,y)\in C\). If \(x=0\), then \(y=0\), and we know that \(\phi(1)=(0,0)\). So the point \((0,0)\in \im \phi\). Suppose \(x\neq 0\). Consider the point \(\frac{y}{x}\in \mathbb{A}^1\), we have 
+  \[\phi(\frac{y}{x})=(\frac{y^2}{x^2}-1,\frac{y}{x}(\frac{y^2}{x^2}+1)).\]
+  Note that \((x,y)\in C\), so \(y^2=x^2(x+1)\). This tells us 
+  \[(\frac{y^2}{x^2}-1,\frac{y}{x}(\frac{y^2}{x^2}+1))=(\frac{x^2(x+1)}{x^2}-1,\frac{y}{x}(\frac{x^2(x+1)}{x^2}-1))=(x,y).\]
+  This implies that \(C\subseteq \im \phi\). Thus, we can see that \(C=\im \phi\). Note that \(C\) is not isomorphic to \(\mathbb{A}^1\) as \(C\) is not regular at the point \((0,0)\), so \(\phi\) cannot be a closed embedding. But \(\phi\) is still a closed map. To see this, consider a closed set \(Z\subseteq \mathbb{A}^1\). Without loss of generality, we can assume \(Z=Z(f)\) for some \(f\in k[t]\). Write 
+  \[\tilde{f}(x,y)=x^{\deg f}f(\frac{y}{x})\in k[x,y]\]
+  Then \(\phi(Z)=C\cap Z(\tilde{f})\) is still a closed set. 
+  \item Consider the following two distinguished open set \(U=D(t-1)\) and \(V=D(t+1)\) in \(\mathbb{A}^1\). \(\left\{ U,V \right\}\) is an open cover of \(\mathbb{A}^1\). We claim that the map 
+  \[\phi:D(t-1)\xrightarrow{\sim} C\subseteq \mathbb{A}^2\]
+  is a closed embedding. Consider the following map 
+  \begin{align*}
+      \mathbb{A}^1-\left\{ 1,-1 \right\}&\rightarrow C-(0,0),\\
+      t&\mapsto (t^2-1,t(t^2-1)),\\
+      \frac{y}{x}&\mapsfrom (x,y).
+  \end{align*}
+  In addition, if we map \(-1\in \mathbb{A}^1\) to \((0,0)\in C\), then we have an isomorphism between \(D(t-1)\) and \(C\). Similarly, if we map \(1\in \mathbb{A}^1\) to \((0,0)\in C\), then we have an isomorphism between \(D(t+1)\) and \(C\). Thus, \(\phi\) restrcting to the open sets \(U\) and \(V\) are both closed embeddings in \(\mathbb{A}^2\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.11}
+Show that the coordinate ring \(A(C(S_{n,m}))\) of the cone over the Segre variety \(S_{n,m}\) is not a UFD. Give explicit examples of height one primes that are not principal.
+\end{problem}
+\begin{solution}
+Let \(M=(z_{ij})\) to be a \((n+1)\times (m+1)\)-matrix over \(k\) where \(0\leq i\leq n\) and \(0\leq j\leq m\). Suppose \(R=k[\left\{ z_{ij} \right\}_{i,j}]\) and \(I\) is the ideal generated by all \(2\times 2\)-minors of \(M\). We know that \(A(C(S_{n,m}))=R/I\). We need to show that \(R/I\) is not a UFD. Consider the element \(z_{00}\in R/I\) and we claim that \(z_{00}\) is irreducible. Indeed, the ring \(R\) is a graded ring and \(I\) is a homogeneous ideal, so the quotient ring \(R/I\) has a natural grading induced from the grading of \(R\). \(z_{00}\) is a degree one element, and all degree 0 elements are in \(k\), thus they must be units. On the other hand, \(z_{00}\) is not prime. This can be see that \((R/I)/(z_{00})\) is not an integral domain as \(z_{00}z_{11}-z_{10}z_{01}\) is a generator in the ideal \(I\), so \(z_{10}z_{01}=0\) in \((R/I)/(z_{00})\). This proves that \(R/I\) is not a UFD as in a UFD, every irreducible element is prime. 
+
+Consider the ideal \(J=(z_{00},z_{10},\ldots,z_{n0})\) in \(R/I\). \((R/I)/J\) is isomorphic to the coordinate ring of the cone \(C(S_{n,m-1})\) as we send all elements in the first column of the matrix \(M\) to \(0\). So \((R/I)/J\) is a domain and \(J\) is a prime ideal in \(R/I\). The dimension of the cone \(C(S_{n,m})\) is \(n+m+1\) and the dimension of the quotient \(C(S_{n,m-1})\) is \(n+m+1-1=n+m\). Passing to the coordinate rings, we know that 
+\[\t{ht}J\leq \dim A(C(S_{n,m}))-\dim A(C(S_{n,m-1})).\]
+So the height of the ideal \(J\) is smaller or equal to 1. We already have a chain of prime ideals \(0\subseteq J\). So \(J\) is a height one prime ideal, which is not principal.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.12}
+Show that under the Segre map the fibers of the two projections from \(\mathbb{P}^1\times \mathbb{P}^1\) onto \(\mathbb{P}^1\) embed as lines in \(\mathbb{P}^1\). Show that if \(Z\) is an effective divisor in \(\mathbb{P}^1\times \mathbb{P}^1\) of bidegree \((0,n)\) or \((n,0)\), then \(Z\) is a union of lines.
+\end{problem}
+\begin{solution}
+Let \(\mathbb{P}^1\times \mathbb{P}^1\rightarrow \mathbb{P}^1\) be the projection to the first factor. \((a:b)\) is a point in \(\mathbb{P}^1\), the fiber over \((a:b)\) is \(\left\{ (a:b) \right\}\times \mathbb{P}^1\). The Segre map restricting to this fiber is given by 
+\begin{align*}
+     \sigma:\mathbb{P}^1&\rightarrow \mathbb{P}^3,\\
+     (x:y)&\mapsto (ax:ay:bx:by). 
+\end{align*}
+We need to show that the image is a line in \(\mathbb{P}^3\). On the affine open patch \(\left\{ x=1 \right\}\) in \(\mathbb{P}^1\), the image is parametrized by 
+\[(a:ay:b:by),\ \ \ y\in k.\]
+Without loss of generality, we can assume \(a\neq 0\), so it is the same point as 
+\[(1:y:\frac{b}{a}:\frac{b}{a}y),\ \ \ y\in k. \]
+This gives a line in one of the affine open patch of \(\mathbb{P}^3\). Similarly, we can argue that the image on another affine patch \(\left\{ y=1 \right\}\) is also a line. This implies that the image of the fibers are lines in \(\mathbb{P}^3\).
+
+Suppose \(Z\) is a codimension 1 subvariety of \(\mathbb{P}^1\times \mathbb{P}^1\) cut out by a bihomogeneous polynomial of degree \((0,n)\). There exists a homogeneous polynomial \(f\) of degree \(n\) such that the projection to the second factor
+\[\mathbb{P}^1\times \mathbb{P}^1\rightarrow \mathbb{P}^1\]
+sends \(Z\) to \(Z'=Z(f)\subseteq \mathbb{P}^1\). 
+The fiber of this projection over any point in \(Z'\) is isomorphic to \(\mathbb{P}^1\) (the first factor), and the image of this fiber under Segre map is a line from our above discussion. Thus, the image of \(Z\) under Segre map is a union of lines, each line corresponding to a point in \(Z'\). 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.15}
+Show that the rational normal curve \(C_d\) in \(\mathbb{P}^d\) is the intersection of the Segre variety \(S_{1,d-1}\) in \(\mathbb{P}^{2d-1}\) with an appropriate linear subspace of dimension \(d\).
+\end{problem}
+\begin{solution}
+Let \(M\) be the following matrix:
+\[M=\begin{pmatrix}
+  z_{00}&z_{01}&\cdots&z_{0,d-1}\\
+  z_{10}&z_{11}&\cdots&z_{1,d-1}
+\end{pmatrix}\]
+Let \(\mathbb{P}^{2d-1}\) be the projective space with coordinates 
+\[(z_{00}:\cdots:z_{0,d-1}:z_{10}:\cdots:z_{1,d-1}).\]
+Consider the linear subspace \(L\subseteq \mathbb{P}^{2d-1}\) defined by the following equations
+\[z_{1i}=z_{0,i+1},\ \ \ 0\leq i\leq d-2.\]
+For \(0\leq j\leq d-1\), choose \(t_j=z_{0,j}\) and \(t_d=z_{1,d-1}\). Then \(L\cong \mathbb{P}^d\) as a subspace of \(\mathbb{P}^{2d-1}\), its coordinates \((t_0:t_1:\cdots:t_d)\) are given by the matrix 
+\[\begin{pmatrix}
+  t_0&t_1&\cdots&t_{d-1}\\
+  t_1&t_2&\cdots&t_d
+\end{pmatrix}\]
+The intersection \(S_{1,d-1}\cap L\) are defined by the equations \(t_It_J-t_Kt_L\) for \(I+J=K+L\). These are exactly the equations defining the rational normal curve \(C_d\) in \(L\cong \mathbb{P}^d\).
+\end{solution}
+
+
+\end{document}

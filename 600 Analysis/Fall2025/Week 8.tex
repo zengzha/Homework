@@ -1,0 +1,309 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 8 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Dec 3rd, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.14}
+Suppose \(1<p<\infty\). \(f\in L^p=L^p((0,+\infty))\) relative to Lebesgue measure, and 
+\[F(x)=\frac{1}{x}\int_0^xf(t)dt\ \ \ \ \ (0<x<+\infty).\]
+\begin{enumerate}[(a)]
+  \item Prove Hardy's inequality 
+  \[||F||_p\leq \frac{p}{p-1}||f||_p\]
+  which shows that the mapping \(f\rightarrow F\) carries \(L^p\) into \(L^p\).
+  \item Prove that equality holds only if \(f=0\) a.e.
+  \item Prove that the constant \(\frac{p}{p-1}\) cannot be replaced by a smaller one. 
+  \item If \(f>0\) and \(f\in L^1\), prove that \(F\notin L^1\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item Assume first \(f\geq 0\) and \(f\in C_c((0,+\infty))\). Let \(p,q\in (1,+\infty)\) satisfying \(\frac{1}{p}+\frac{1}{q}=1\). Using integration by parts, we have 
+  \begin{align*}
+       ||F||_p^p&=\int_0^\infty F^p(x)dx\\
+                &=xF^p(x)\big|_0^\infty-p\int_0^\infty xF^{p-1}(x)F'(x) dx\\
+                &=\frac{1}{x^{p-1}}(\int_0^x f(t)dt)\big|_0^\infty-p\int_0^\infty xF^{p-1}(x)F'(x) dx.
+  \end{align*}
+  Note that \(f\geq 0\) and \(f\) has compact support, so \(\int_0^\infty f(t)dt\) is bounded and 
+  \[\lim_{x\to \infty}\frac{1}{x^{p-1}}\int^x_0 f(t)dt=0.\]
+  On the other hand, since \(f(x)\) has compact support, there exists some small \(\varepsilon>0\) such that \(f(x)=0\) for all \(x\in (0,\varepsilon)\). This implies that 
+  \[\lim_{x\to 0^+}\frac{1}{x^{p-1}}\int^x_0 f(t)dt=0.\]
+  By definition of \(F(x)\), we have
+  \[xF(x)=\int_0^xf(t)dt.\]
+  Take derivative with respect to \(x\) at both sides, and we get 
+  \[F(x)+xF'(x)=f(x).\]
+  Hence, we have
+  \begin{align*}
+       ||F||_p^p&=-p\int_0^\infty F^{p-1}(x)(f(x)-F(x))dx\\
+                &=-p\int_0^\infty F^{p-1}f(x)-F^p(x)dx\\
+                &=p||F||_p^p-p\int_0^\infty F^{p-1}(x)f(x)dx.
+  \end{align*}
+  Hence, use Hölder inequality and we obtain that
+  \begin{align*}
+       ||F||_p^p&=\frac{p}{p-1}\int_0^\infty F^{p-1}(x)f(x)dx\\
+                &\leq \frac{p}{p-1} (\int_0^\infty F^{q(p-1)}(x)dx)^{\frac{1}{q}}(\int_0^\infty f^p(x)dx)^{\frac{1}{p}}\\
+                &=\frac{p}{p-1}||F||_p^{\frac{p}{q}}||f||_p 
+  \end{align*} 
+  Therefore, we obtain that 
+  \[||F||_p^{p-\frac{p}{q}}=||F||_p\leq \frac{p}{p-1}||f||_p.\]
+
+  Now assume \(f\geq 0\) and \(f\in L^p\). We know that by 3.14 Theorem, \(C_c((0,+\infty))\) is dense in \(L^p\), so there exists  a sequence \(\left\{ f_n \right\}_{n=1}^\infty\) of continuous functions with compact support such that
+  \[\lim_{n\to \infty}||f_n-f||^p_p=\lim_{n\to \infty}\int_0^\infty |f_n(x)-f(x)|^pdx=0.\]
+  This implies that \(||f_n-f||_\infty\to 0\) when \(n\to \infty\). So we have 
+  \begin{align*}
+       \lim_{n\to \infty}||F_n-F||_p^p&=\lim_{n\to \infty}\int_0^\infty \frac{1}{x^p}\abs{\int_0^x|f_n(t)-f(t)|dt}^pdx\\
+                    &\leq \lim_{n\to \infty}\int_0^\infty \frac{1}{x^p}\cdot ||f_n-f||^p_\infty \cdot x^pdx\\
+                    &=\lim_{n\to \infty}\int_0^\infty ||f_n-f||_\infty dx\\
+                    &=0\cdot \infty\\
+                    &=0.
+  \end{align*}
+  Hence, by Minkovski inequality and what we have proved for continuous functions with compact support, for all \(n\geq 1\), we have
+  \begin{align*}
+       ||F||_p&=||F-F_n+F_n||_p\\
+              &\leq ||F-F_n||_p+||F_n||_p\\
+              &\leq ||F-F_n||_p+\frac{p}{p-1}||f_n||_p\\
+              &=||F-F_n||_p+\frac{p}{p-1}||f_n-f+f||_p\\
+              &\leq ||F-F_n||_p+\frac{p}{p-1}||f_n-f||_p+\frac{p}{p-1}||f||_p
+  \end{align*}
+  Let \(n\) goes to \(\infty\), and we obtain that 
+  \[||F||_p\leq \frac{p}{p-1}||f||_p.\]
+
+  Finally, for \(f\in L^p\) is not necessarily positive, we have 
+  \begin{align*}
+       ||F||_p&=\left(\int_0^\infty \frac{1}{x^p}\abs{\int_0^x f(t)dt}^pdx\right)^\frac{1}{p}\\
+              &\leq \left(\int_0^\infty \frac{1}{x^p}\abs{\int_0^x |f(t)|dt}^pdx\right)^\frac{1}{p}\\
+              &\leq \frac{p}{p-1}\left(\int_0^\infty |f(x)|^pdx\right)^\frac{1}{p}\\
+              &=\frac{p}{p-1}||f||_p.
+  \end{align*} 
+  \item We use the Hölder inequality in part (a), and the equality holds when the equality holds in the Hölder inequality. This happens when 
+  \[\alpha F^p(x)=f^p(x)\]
+  for some \(\alpha>0\) and for \(x\in (0,+\infty)\) almost everywhere. This is the same as saying 
+  \[F(x)=\frac{1}{x}\int_0^x \alpha F(t)dt\]
+  for \(0<x<+\infty\) almost everywhere. Note that \(F(x)\) is always continuous by definition, and in this case \(F(x)\) is differentiable, so
+  \[xF'(x)=(\alpha-1)F(x).\]
+  Note that in part (a), we prove that 
+  \[||F||_p^p=\int_0^\infty F^p(x)dx=\frac{p}{p-1}\int_0^\infty F^{p-1}(x)f(x)dx.\]
+  This implies that 
+  \[\alpha=\frac{p-1}{p}.\]
+  So we have a differential equation
+  \[xF'(x)=-\frac{1}{p}F(x).\]
+  Suppose \(F(x)=\frac{p-1}{p}f(x)\) is a positive function and \(f\) is equal 0 almost everywhere. Then the differential equation can be written as 
+  \[\frac{F'(x)}{F(x)}=-\frac{1}{p}x^{-1}.\]
+  It has a solution \(F(x)=Cx^{-\frac{1}{p}}\) for some constant \(C\), but in this case, \(f(x)=\frac{pC}{p-1}x^{-\frac{1}{p}}\) is not in \(L^p\). A contradiction. So \(f=0\) almost everywhere.
+
+  Next, assume \(f\) is not necessarily positive. Then apply the same above argument to \(|f|\). And we find the same result.
+  \item Consider the following function: for a large number \(A>1\), \(f(x)=x^{-\frac{1}{p}}\) on the closed interval \([1,A]\) and \(0\) elsewhere. Then 
+  \[F(x)=\begin{cases}
+    0,&\iif x\in (0,1];\\
+    \frac{p}{p-1}(x^{-\frac{1}{p}}-x^{-1}),&\iif x\in (1,A];\\
+    \frac{p}{p-1}(A^{1-\frac{1}{p}}-1)x^{-1},&\iif x\in (A,+\infty).
+  \end{cases}\]
+  Then
+  \begin{align*} 
+  ||F||_p^p&=(\frac{p}{p-1})^p\int_1^A (x^{-\frac{1}{p}}-x^{-1})^p dx+(\frac{p}{p-1})^p(A^{1-\frac{1}{p}}-1)^p\int_A^{+\infty}x^{-p}dx\\
+  &=(\frac{p}{p-1})^p\int_1^A (x^{-\frac{1}{p}}-x^{-1})^p dx+(\frac{p}{p-1})^p(A^{1-\frac{1}{p}}-1)^p(\frac{A^{1-p}}{p-1})\\
+  &\geq (\frac{p}{p-1})^p\int_1^A (x^{-\frac{1}{p}}-x^{-1})^p dx.
+  \end{align*}
+  Hence 
+  \[\frac{||F||^p_p}{||f||^p_p}\geq (\frac{p}{p-1})^p\frac{\int_1^A(x^{-\frac{1}{p}}-x^{-1})^pdx}{\log A}.\]
+  The last thing we need to show is that 
+  \[\lim_{A\to +\infty}\frac{\int_1^A(x^{-\frac{1}{p}}-x^{-1})^p dx}{\log A}=1.\]
+  For any \(B<A\) large enough, note that 
+  \begin{align*}
+       \log A&=\int_1^A (x^{-\frac{1}{p}})^p dx\\
+             &>\int_1^A (x^{-\frac{1}{p}}-x^{-1})^p dx\\
+             &>\int_B^A (x^{-\frac{1}{p}}-x^{-1})^p dx\\
+             &>\int_B^A (x^{-\frac{1}{p}}-B^{\frac{1}{p}-1}x^{-\frac{1}{p}})^p dx\\
+             &=(1-B^{\frac{1}{p}-1})^p\int_B^A x^{-1} dx\\
+             &=(1-B^{\frac{1}{p}-1})^p(\log A-\log B).
+  \end{align*}
+  Divide both sides by \(\log A\), and we have 
+  \[1>\frac{\int_1^A (x^{-\frac{1}{p}}-x^{-1})^p dx}{\log A}>(1-B^{\frac{1}{p}-1})^p(1-\frac{\log B}{\log A}).\]
+  Choose \(B=A-\varepsilon\) and let \(\varepsilon\to 0\) and \(A\to +\infty\). We know that 
+  \[\lim_{B\to +\infty}(1-B^{\frac{1}{p}-1})^p=1.\]
+  Thus, we can conclude that 
+  \[\lim_{A\to +\infty}\frac{\int_1^A(x^{-\frac{1}{p}}-x^{-1})^p dx}{\log A}=1.\]
+  \item Since \(f>0\), there exists some \(\delta>0\) and some measurable set \(E\subseteq X\) with \(\mu(E)>0\) such that \(f(x)>\delta\) for all \(x\in E\). Then 
+  \[F(x)=\frac{1}{x}\int_0^x f(t)dt\geq \frac{1}{x}\cdot \delta m(E).\]
+  Here \(\frac{\delta m(E)}{x}\) is not in \(L^1\) as \(\delta m(E)>0\). So \(F\notin L^1\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.16}
+Prove Egoroff's theorem: If \(\mu(X)<\infty\), if \(\left\{ f_n \right\}\) is a sequence of complex measurable functions which converges pointwise at every point of \(X\), and if \(\varepsilon>0\), there is a measurable set \(E\subset X\), with \(\mu(X-E)<\varepsilon\) such that \(\left\{ f_n \right\}\) converges uniformly on \(E\).
+\end{problem}
+\begin{solution}
+For any \(n,k\geq 1\), consider the following set:
+\[S(n,k)=\bigcap_{i,j>n}\left\{ x\in X:|f_i(x)-f_j(x)|<\frac{1}{k} \right\}.\]
+For every fixed \(k\), we have 
+\[\mu(S(n,k))\to \mu(X),\ \ \ \ n\to \infty\]
+because \(\left\{ f_n \right\}\) converges pointwise. Given any \(\varepsilon>0\), for every fixed \(k\), there exists \(n_k\geq 1\) such that 
+\[\mu(X)-\mu(S(n_k,k))=\mu(X-S(n_k,k))<\frac{\varepsilon}{2^k}\]
+since \(\mu(X)\) is finite. Let \(E=\cap_{k\geq 1}S(n_k,k)\). We have 
+\[\mu(X-E)=\mu(X-\cap_{k\geq 1}S(n_k,k))\leq \sum_{k\geq 1}\mu(X-S(n_k,k))< \sum_{k\geq 1}\frac{\varepsilon}{2^k}\leq \varepsilon.\]
+We claim that \(\left\{ f_n \right\}\) is uniformly convergent on \(E\). Indeed, for any \(\delta>0\), there exists \(p\) such that \(\frac{1}{p}<\delta\). Hence, for any \(i,j>n_p\), we have 
+\[|f_i(x)-f_j(x)|<\frac{1}{p}<\delta\]
+for any \(x\in E\subseteq S(n_p,p)\). This proves that \(\left\{ f_n \right\}\) converges uniformly on E. 
+
+This theorem is not true if \(\mu(X)=+\infty\). Consider \(X=[0,+\infty)\) and \(f_n=\chi_{[n-1,n]}\). \(f_n\) converges to \(0\) pointwise. Suppose there exists a set \(E\subseteq (0,+\infty)\) such that \(\mu(X-E)<1\) and \(f_n\) converges uniformly on \(E\). Choose \(\delta=\frac{1}{2}\), there exists \(N\) such that for any \(n>N\), we have \(|f_n(x)|<\frac{1}{2}\) for any \(x\in E\). This implies that \(E\subseteq [0,N]\). This is a contradiction because \(\mu(X-E)<1\) and \(\mu(X)=+\infty\). So such a set \(E\) cannot exist.
+
+Now assume we have a family of functions \(\left\{ f_t \right\}\) where \(t\in \mathbb{R}^+\) with pointwise convergence 
+\[\lim_{t\to \infty}f_t(x)=f(x)\]
+for all \(x\in X\), and \(t\to f_t(x)\) is continuous for every \(x\in X\). Consider the set 
+\[S(r,k)=\bigcap_{t>r}\left\{ x\in X:|f_r(x)-f(x)|<\frac{1}{k} \right\}\]
+where \(k\in \mathbb{Z}_+\) and \(r\in \mathbb{R}^+\). For every fixed \(k\), we have 
+\[\mu(S(r,k))\to \mu(X)\]
+as \(r\to +\infty\) since \(t\to f_t(x)\) is continuous and \(f_t\) converges to \(f\) pointwise. The rest of the proof is similar. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1}
+If \(M\) is a closed subspace of \(H\), prove that \(M=(M^\perp)^\perp\). Is there a similar statement for subspaces \(M\) which are not necessarily closed?
+\end{problem}
+\begin{solution}
+Fix any \(v\in M\), we know that by definition \((v,w)=0\) for any \(w\in M^\perp\). This proves that \(v\in (M^\perp)^\perp\). Thus, \(M\subseteq (M^\perp)^\perp\). Conversely, suppose \(v\in (M^\perp)^\perp\). We know that \(M\) is a closed subspace of \(H\), so \(H\) has a decomposition 
+\[H=M\oplus M^\perp.\]
+By 4.11 Theorem, \(v\) has a unique decomposition \(v=v_1+v_2\) where \(v_1\in M\) and \(v_2\in M^\perp\). So here \(v-v_1=v_2\in M^\perp\). On the other hand, \(v\in (M^\perp)^\perp\) and we have proved that \(v_1\in M\subseteq (M^\perp)^\perp\). Since \((M^\perp)^\perp\) is a subspace of \(H\), we can say that \(v-v_1\in (M^\perp)^\perp\). We have proved that 
+\[v-v_1\in (M^\perp)^\perp\cap M^\perp.\]
+Note that \(M^\perp\) is also a closed subspace of \(H\), so \(H\) has a decomposition 
+\[H=M^\perp\oplus (M^\perp)^\perp.\]
+This implies that \(v-v_1=0\), so \(v=v_1\in M\). Hence, \((M^\perp)^\perp\subseteq M\), and we can conclude that \(M=(M^\perp)^\perp\).
+
+The statement is not true if \(M\) is not closed. Let \(H=\ell^2(\mathbb{N})\) be the Hilbert space of sequences 
+\[\left\{ x=(a_n)_{n=1}^\infty:a_n\in \mathbb{R}, \sum_{n=1}^{\infty}|a_n|^2<+\infty \right\}.\]
+Consider the subspace \(M\) consisting of sequences with only finitely many nonzero entries. It is easy to see that this is a linear subspace of \(H\). Let \(\left\{ x_N \right\}_{N=1}^\infty\subseteq H\) be the following:
+\[x_N=(1,\frac{1}{2},\frac{1}{3},\ldots,\frac{1}{N},0,\ldots).\]
+Suppose \(x=\lim_{N\to \infty}x_N\), and it is not hard to see that 
+\[||x||^2=\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}<+\infty.\]
+So \(x\in H\) but \(x\notin M\). This shows that \(M\) is not closed. Suppose \(y\in H\) satisfying that \((x,y)=0\) for all \(x\in M\). Then we claim that all entries of \(y\) must be 0. Indeed, if for some \(i\geq 1\), \(y=(b_n)_{n=1}^\infty\) has some \(b_i\neq 0\). Consider the following element \(x\in M\) where only the \(i\)th entry equal \(b_i\neq 0\). Then \((x,y)=b_i^2\neq 0\). A contradiction. So \(y=0\in H\). This proves that \(M^\perp=0\), and thus 
+\[M\subsetneq H=(0)^\perp=(M^\perp)^\perp.\]
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.3}
+Show that \(L^p(T)\) is separable if \(1\leq p<\infty\), but that \(L^\infty(T)\) is not separable.
+\end{problem}
+\begin{solution}
+Let \(I=(a,b)\) be an open interval satisfying \(-\pi<a<b<\pi\) where \(a,b\in \mathbb{Q}\) and \(\chi_I\) is the characteristic function. We know that the set of all such functions \(\chi_I\) is a countable set. Let \(A\) be the set of all finite linear combinations of such functions with rational coefficients. \(A\) is also countable and \(A\subset L^p(T)\) for \(1\leq p< +\infty\). We want to show that \(A\) is dense in \(L^p(T)\). 
+
+Given a function \(f\in L^p(T)\) and any \(\varepsilon>0\), by 3.14 Theorem, the compactly supported continuous functions \(C_c([-\pi,\pi])\) is dense in \(L^p(T)\), so there exists a continuous function with compact support 
+\[g:[-\pi, \pi]\rightarrow \mathbb{C}\]
+such that \(||f-g||_p<\frac{\varepsilon}{2}\). Note that the support \(\t{supp}g\) is a compact subset of \([-\pi,\pi]\). Now use finitely many small open intervals with rational endpoints to cover \(\t{supp}g\), satisfying the variation of \(g\) is smaller than \(\frac{\varepsilon}{2}\) on every small open interval (this can be done because \(g\) is continuous). Then there exists a function \(h\in A\) such that \(||h-g||_\infty<\frac{\varepsilon}{2}\) by construction and 
+\begin{align*}
+||h-g||_p&=\left\{ \frac{1}{2\pi}\int_{-\pi}^\pi|h(t)-g(t)|^pdt \right\}^\frac{1}{p}\\
+         &\leq \left\{ \frac{1}{2\pi}||h-g||_\infty^p\cdot 2\pi \right\}^\frac{1}{p}\\
+         &<\frac{\varepsilon}{2}
+\end{align*}
+Hence, By Minkovski inequality, we have 
+\[||f-h||_p\leq ||f-g||_p+||g-h||_p<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.\]
+This proves that \(A\) is countable and dense in \(L^p(T)\), so \(L^p(T)\) is separable.
+
+To show that \(L^\infty(T)\) is not separable, we use the following claim:
+
+\begin{claim}
+  Let \(X\) be a complete metric space. If there exists a family \(\left\{ E_i \right\}_{i\in I}\subseteq X\) of open sets where \(I\) is an uncountable set satisfying \(E_i\cap E_j=\varnothing\) for any \(i\neq j\). Then \(X\) is not separable.
+\end{claim}
+\begin{claimproof}
+  Assume the opposite that \(X\) is separable, then there exists a countable dense subset \(U=\left\{ x_n:1\leq n \right\}\subseteq X\). For every \(i\in I\), the intersection \(E_i\cap U\) is non-empty as \(U\) is dense in \(X\). Namely, there exists a positive integer \(m\) such that \(x_m\in E_i\cap U\). This defines function 
+  \begin{align*}
+       I&\rightarrow \mathbb{N},\\
+       i&\mapsto m.
+  \end{align*}
+  Moreover, this function is injective. Indeed, if \(i,j\) in \(I\) have the same image \(m\), then \(x_m\in E_i\cap E_j\). We know by assumption that\(E_i\cap E_j=\varnothing\) for \(i\neq j\). So \(i=j\). This is contradiction because we cannot have an injective function from uncountable set \(I\) to the countable set \(\mathbb{N}\).
+\end{claimproof}
+
+We need to construct an uncountable disjoint family of open subsets in \(L^\infty(T)\). We first divide the interval \([-\pi,\pi)\) into a disjoint family \(\bigcup_{n=0}^\infty\) where \(I_0=[-\pi,0)\) and 
+\[I_n=[-\pi+(\sum_{k=1}^{n}\frac{1}{2^k})\cdot 2\pi,-\pi+(\sum_{k=1}^{n+1}\frac{1}{2^k})\cdot 2\pi),\ \ \ n\geq 1.\]
+It is easy to see that \([-\pi,\pi)=\bigcup_{n=0}^\infty I_n\) and \(I_i\cap I_j=\varnothing\) if \(i\neq j\). Let \(\left\{ a_n \right\}_{n=0}^\infty\) be a sequence taking values in only \(0\) or \(1\). For any such a sequence \(a=(a_n)\), define a function 
+\[f_a(x)=2a_n,\iif x\in I_n.\]
+Obviously \(f_a\in L^\infty(T)\) and if \(a\neq b\) are two different sequences, then \(f_a\) and \(f_b\) must differ on some interval \(I_n\), so 
+\[||f_a-f_b||_\infty\geq 2.\]
+For any sequence Let \(E_a\) be the set 
+\[E_a=\left\{ f_b:||f_b-f_a||_\infty<1 \right\}\subset L^\infty(T).\]
+\(E_a\) is an open ball centered at \(f_a\) with radius \(1\) in \(L^\infty(T)\). We claim that the family \(\left\{ E_a \right\}_a\) is what we are looking for. From our discussion above we can see that this is a disjoint family. The choice of \(a\) can be made from all functions \(\mathbb{Z}_{\geq 0}\rightarrow \left\{ 0,1 \right\}\) with cardinality \(2^{\aleph_0}\). This is uncountable. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.5}
+If \(M=\left\{ x:Lx=0 \right\}\) where \(L\) is a continuous linear functional on \(H\). Prove that \(M^\perp\) is a vector space of dimension \(1\) (unless \(M=H\)).
+\end{problem}
+\begin{solution}
+By 4.12 Theorem, there exists a unique \(y\in H\) such that 
+\[Lx=(x,y)\]
+for all \(x\in H\). Hence, \(M=\ker L\) can be written as 
+\[M=\left\{ x\in H:(x,y)=0 \right\}=y^\perp.\]
+Note that the one dimensional subspace \(\la y\ra\) is closed, from exercise 4.1, we know that 
+\[(M^\perp)^\perp=(y^\perp)^\perp=\la y\ra.\]
+This proves that \(M^\perp\) is a vector space of dimension 1.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.9}
+If \(A\subset [0,2\pi]\) and \(A\) is measurable, prove that 
+\[\lim_{n\to \infty}\int_A \cos nxdx=\lim_{n\to \infty}\int_A \sin nxdx=0.\]
+\end{problem}
+\begin{solution}
+Consider the Fourier series for the characteristic function \(\chi_A\):
+\[\sum_{-\infty}^{+\infty}c_ne^{int}=a_0+\sum_{n=1}^{+\infty}(a_n\cos nx+b_n\sin nx)\]
+where 
+\begin{align*}
+     c_n&=\frac{1}{2\pi}\int_0^{2\pi}\chi_A e^{-int}dt=\frac{1}{2\pi}\int_A e^{-int}dt,\\
+     a_n&=\frac{1}{\pi}\int_0^{2\pi}\chi_A \cos ntdt=\frac{1}{\pi}\int_A \cos ntdt,\\
+     b_n&=\frac{1}{\pi}\int_0^{2\pi}\chi_A \sin ntdt=\frac{1}{\pi}\int_A \sin ntdt.
+\end{align*}
+The Parseval theorem implies that 
+\[\mu(A)=||\chi_A||_2^2=\sum_{-\infty}^{+\infty}|c_n|^2=\sum_{n=0}^{\infty}|a_n|^2+\sum_{n=1}^{\infty}|b_n|^2<+\infty.\]
+So both \(\sum_{n=0}^{\infty}|a_n|^2\) and \(\sum_{n=1}^{\infty}|b_n|^2\) is finite. Hence, 
+\begin{align*}
+     \lim_{n\to \infty}a_n&=\lim_{n\to \infty}\int_A \cos nxdx=0,\\
+     \lim_{n\to \infty}b_n&=\lim_{n\to \infty}\int_A \sin nxdx=0.
+\end{align*}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.11}
+Find a nonempty closed set \(E\) in \(L^2(T)\) that contains no element of smallest norm. 
+\end{problem}
+\begin{solution}
+Let \(\left\{ u_k \right\}_{k=1}^\infty\) be a maximal orthonormal set in \(L^2(T)\) with \(||u_k||_2=1\) for all \(k\). Consider the set 
+\[f_k=\left\{ (1+\frac{1}{k})u_k \right\}_{k=1}^\infty.\]
+This is a closed set as the maximal orthonormal set is closed. And we have 
+\[||f_k||_2=(1+\frac{1}{k})||u_k||_2=1+\frac{1}{k}.\]
+So the norm is decreasing, but no element has norm 1.
+\end{solution}
+
+\end{document}

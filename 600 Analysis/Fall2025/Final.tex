@@ -1,0 +1,249 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Final Exam}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Dec 10th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Suppose \(f\) is a Lebesgue measurable function such that \(f\) and \(xf(x)\) are both in \(L^2(\mathbb{R})\). Prove that \(f\in L^1(\mathbb{R})\).
+\end{problem}
+\begin{solution}
+Write the subset \(E=(-\infty,-1)\cup (1,+\infty)\subset \mathbb{R}\). We need to show that 
+\[\int_\mathbb{R}|f(x)|dx=\int_E|f(x)|dx+\int_{-1}^1 |f(x)|dx<\infty.\]
+For the first part on \(E\), use Hölder inequality and note that \(xf(x)\in L^2(\mathbb{R})\), we get 
+\begin{align*}
+     \int_E |f(x)|dx&=\int_E |\frac{1}{x}|\cdot |xf(x)|dx\\
+                    &\leq (\int_E\frac{1}{x^2}dx)^{\frac{1}{2}}(\int_E|xf(x)|^2dx)^\frac{1}{2}\\
+                    &\leq (\int_{-\infty}^{-1}\frac{1}{x^2}dx+\int_1^{+\infty}\frac{1}{x^2}dx)^\frac{1}{2}(\int_\mathbb{R}|xf(x)|^2dx)^\frac{1}{2}\\
+                    &=(1+1)^\frac{1}{2}\cdot ||xf(x)||_2\\
+                    &<+\infty.
+\end{align*}
+For the second part on \([-1,1]\), use Hölder inequality and note that \(f\in L^2(\mathbb{R})\), we get 
+\begin{align*}
+     \int_{-1}^1 |f(x)|dx&=\int_{-1}^1 1\cdot |f(x)|dx\\
+                         &\leq (\int_{-1}^1 1^2 dx)^\frac{1}{2}(\int_{-1}^1|f(x)|^2dx)^\frac{1}{2}\\
+                         &\leq \sqrt{2}(\int_\mathbb{R}|f(x)|^2dx)^\frac{1}{2}\\
+                         &=\sqrt{2}||f||_2\\
+                         &<+\infty.
+\end{align*}
+Combine these two together, and we get 
+\[\int_\mathbb{R}|f(x)|dx<+\infty.\]
+This proves that \(f\in L^1(\mathbb{R})\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+Let \(E\subset \mathbb{R}\) be a compact subset. Define, for \(r>0\),
+\[E_r=\left\{ x\in \mathbb{R}: d(x,E)<r \right\}\]
+where \(d(x,E)=\inf_{y\in E}|x-y|\). Prove that (\(m\) is the Lebesgue measure)
+\[m(E)=\lim_{r\to 0}m(E_r).\]
+\end{problem}
+\begin{solution}
+\(E\subset \mathbb{R}\) being compact implies that \(E\) is closed and bounded. Let \(\left\{ r_n \right\}_{n=1}^\infty\) be a positive monotonically decreasing sequence with 
+\[\lim_{n\to \infty}r_n=0.\]
+Write the function 
+\[f(r)=m(E_r)=\int_\mathbb{R}\chi_{E_r}dm.\]
+If we can prove for every such sequence \(\left\{ r_n \right\}\), we have 
+\[\lim_{n\to \infty}f(r_n)=m(E),\]
+then we can conclude that 
+\[\lim_{r\to 0^+}f(r)=m(E).\]
+By definition, \(r_{n+1}\leq r_n\) tells us that \(E_{r_{n+1}}\subseteq E_{r_n}\), and each \(E_{r_n}\) is measurable because \(d(x,E)\) is a continuous function, so the sequence of sets \(\left\{ E_{r_n} \right\}\) is a decreasing sequence of measurable sets. Moreover, it is easy to see that \(E_{r_n}\) is bounded as \(E\) is bounded, and \(E\subset \bigcap_{n\geq 1}E_{r_n}\). Conversely, by definition, for every \(x\in \bigcap_{n\geq 1}E_{r_n}\) and every \(n\), there exists an element \(x_n\in E\) such that \(d(x,x_n)<r_n\). Bacause \(\lim_{n\to +\infty}r_n=0\), so we have 
+\[\lim_{n\to +\infty}d(x,x_n)=0.\]
+This implies that \(x\) is a limit point of \(E\), and since \(E\) is closed, we have \(x\in E\). Hence, we obtain 
+\[\bigcap_{n\geq 1}E_{r_n}=E,\ \ \ E_{r_n}\searrow E.\]
+Therefore, we have 
+\[m(E)=\lim_{n\to \infty}m(E_{r_n})\]
+for any such sequence \(\left\{ r_n \right\}\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Let \(A\) be a bounded measurable set in \(\mathbb{R}\). Prove that 
+\[\lim_{n\to \infty}\int_A \sin^2(nx)dm=\frac{1}{2}m(A).\]
+\end{problem}
+\begin{solution}
+Note that because \(A\) is bounded, for any \(n\geq 1\), we have 
+\[\int_A \sin^2 (nx)dx=\int_A \frac{1-\cos(2nx)}{2}dx=\frac{1}{2}m(A)-\int_A \cos (2nx)dx.\]
+To prove that 
+\[\lim_{n\to \infty}\int_A \sin^2(nx)dm=\frac{1}{2}m(A),\]
+we only need to show 
+\[\lim_{n\to \infty}\int_A \cos (2nx)dx=\lim_{n\to \infty}\int_A \cos nxdx=0.\]
+\(A\) is bounded and measurable, so the characteristic function \(\chi_A\) is a measurable function and 
+\[||\chi_A||_2=m(A)^\frac{1}{2}<+\infty.\]
+Choose a closed interval \([a,b]\supset A\) and let \(P=b-a\). We can view \(\chi_A\) as a \(p\)-periodic function on \(\mathbb{R}\). Consider the Fourier series of \(\chi_A\):
+\[a_0+\sum_{n=1}^{+\infty}(a_n\cos(\frac{2n\pi }{P}x)+b_n\sin (\frac{2n\pi}{P}x))\]
+where 
+\begin{align*}
+     a_n&=\frac{2}{P}\int_a^b\chi_A\cos (\frac{2n\pi}{P}x)dx=\frac{2}{P}\int_A \cos (\frac{2n\pi}{P}x)dx,\\
+     b_n&=\frac{2}{P}\int_a^b\chi_A\sin (\frac{2n\pi}{P}x)dx=\frac{2}{P}\int_A \sin (\frac{2n\pi}{P}x)dx.
+\end{align*}
+By Paeseval's Theorem, we have 
+\[||\chi_A||^2_2=\sum_{n=0}^{+\infty}a_n^2+\sum_{n=1}^{+\infty}b_n^2=m(A)<+\infty.\]
+This implies that 
+\[\lim_{n\to \infty}\int_A\cos (\frac{2n\pi}{P}x)dx=\lim_{n\to \infty}\int_A \cos nxdx=0.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4}
+Let \(l^2\) be the Hilbert space 
+\[\left\{ x=(x_n)_{n=1}^\infty:\sum_n|x_n|^2<\infty,x_n\in \mathbb{C} \right\}\]
+where the inner product given by 
+\[(x,y)=\sum_n x_n\overline{y_n}.\]
+\begin{enumerate}[(a)]
+  \item Prove that \(L^2(T)\) is isomorphic to \(l^2\) as a Hilbert space.
+  \item Prove that the unit closed ball in \(l^2\) is not a compact set.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item Define the \(2\pi\)-periodic fucntions
+  \[u_n=e^{int}\in L^2(T),\ \ \ \ \ n\in \mathbb{Z}.\]
+  The set \(\left\{ u_n \right\}_{n\in \mathbb{Z}}\) is a maximal orthonormal set of \(L^2(T)\). Consider the map 
+  \begin{align*}
+       F: L^2(T)&\rightarrow l^2,\\
+          u_n&\mapsto x_n.
+  \end{align*}
+  The Riesz-Fischer theorem implies that \(F\) is an isometry from \(L^2(T)\) onto \(l^2\), and the Parsval's identity implies that \(F\) gives an isomorphism of Hilbert spaces.
+  \item Consider the following sequence \(\left\{ (x_n)_k \right\}_{k=1}^\infty\) in \(l^2\): for each fixed \(k\), \((x_n)_k\) is the following sequence:
+  \begin{align*}
+       x_n&=1,\iif n=k;\\
+       x_n&=0,\ \ \mathrm{otherwise}.
+  \end{align*}
+  It is easy to see that for every \(k\geq 1\), \((x_n)_k\in l^2\) and \(||(x_n)_k||_2=1\), so \(\left\{ (x_n)_k \right\}\) is a sequence in the unit ball of \(l^2\). We claim that it has no convergent subsequences. Indeed, for any \(k_1\neq k_2\), we have 
+  \[||(x_n)_{k_1}-(x_n)_{k_2}||_2=\sqrt{1+1}=\sqrt{2}.\]
+  This proves that the unit ball is not compact in \(l^2\).
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5}
+Let \(f_n\) be a sequence of positive measurable function on a measurable space \((X,\mu)\) with a positive Borel measure \(\mu(X)<\infty\). Suppose 
+\[\lim_{n\to \infty}\int_X f_n^2 d\mu=0.\]
+Prove that 
+\[\lim_{n\to \infty}\int_X f_n\log f_nd\mu=0.\]
+\end{problem}
+\begin{solution}
+Write 
+\[E=\left\{ x\in X:0<f(x)<1 \right\}.\]
+Then we can write 
+\[\int_X f_n\log f_nd\mu=\int_E f_n\log f_nd\mu+\int_{X\setminus E}f_n\log f_nd\mu.\]
+Note that on \(X\setminus E\), for every \(n\), we have \(0\leq \log f_n\leq f_n\), so 
+\[0\leq f_n\log f_n\leq f_n^2.\]
+Take the integral and let \(n\) goes to \(\infty\), we obtain that 
+\[0\leq \lim_{n\to \infty}\int_{X\setminus E}f_n\log f_nd\mu\leq \lim_{n\to \infty}\int_{X\setminus E}f_n^2d\mu\leq \lim_{n\to \infty}\int_X f_n^2d\mu=0.\]
+This implies that 
+\[\lim_{n\to \infty}\int_{X\setminus E}f_n\log f_nd\mu=0.\]
+Therefore, we may assume \(0<f_n<1\) for every \(n\) on \(X\). For every \(\varepsilon>0\), define 
+\[E(n,\varepsilon)=\left\{ x\in X:0<f_n(x)<\varepsilon \right\}.\]
+
+\begin{claim}
+  For every fixed \(\varepsilon\), we have 
+  \[\lim_{n\to \infty}\mu(E(n,\varepsilon))=\mu(X).\]
+\end{claim}
+\begin{claimproof}
+  Assume this is not the case. Then there exists a measurable set \(F\subset X\) with \(0<\mu(F)<\mu(X)<+\infty\) such that for all \(x\in F\) and \(n\) large enough, we have \(f_n(x)>\frac{\varepsilon}{2}\). Hence 
+  \[\int_X f_n^2d\mu\geq \int_F f_n^2d\mu>\frac{\varepsilon^2}{4}m(F)>0.\]
+  This contradicts the condition that 
+  \[\lim_{n\to \infty}\int_X f_n^2d\mu=0.\]
+\end{claimproof}
+
+Since for all \(n\), we have \(0<f_n<1\), so the function \(f_n\log f_n\) is bounded, namely, there exists a constant \(M>0\) such that 
+\[|f_n(x)\log f_n(x)|<M\]
+for all \(x\in X\). Given \(\varepsilon>0\), we know that \(x\log x\to 0\) when \(x\to 0\), so there exists \(\delta>0\) such that \(|x\log x|<\varepsilon\) whenever \(0<x<\delta\). From the above claim, we choose \(n\) large enough such that 
+\[\mu(X-E(n,\delta))<\varepsilon.\]
+Note that in this case, for every \(x\in E(n,\delta)\), we have 
+\[|f_n(x)\log f_n(x)|<\varepsilon.\]
+Hence, the integral 
+\begin{align*}
+     \int_X f_n\log f_nd\mu&=\int_{E(n,\delta)} f_n\log f_n d\mu+\int_{X-E(n,\delta)}f_n\log f_nd\mu\\
+                           &< \varepsilon m(E(n,\delta))+M\mu(X-E(n,\delta))\\
+                           &\leq \varepsilon m(X)+M\varepsilon\\ 
+                           &=(M+m(X))\varepsilon.
+\end{align*} 
+Let \(\varepsilon\) goes to \(0\), and we have proved that 
+\[\lim_{n\to \infty}\int_X f_n \log f_nd\mu=0.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6}
+\begin{enumerate}[(a)]
+  \item Prove that \(L^1(\mathbb{R})\cap L^{2025}(\mathbb{R})\) is a proper subset of \(\bigcap_{1<p<2025}L^p(\mathbb{R})\).
+  \item Prove that \(L^p([0,1])\) is separable for \(p\in [1,+\infty)\) but \(L^\infty([0,1])\) is not separable.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item Let \(f\in L^1(\mathbb{R})\cap L^{2025}(\mathbb{R})\) and \(m\) be the Lebesgue measure. For any \(p\in (1,2025)\), by Hölder inequality, and note that both \(||f||_1<+\infty\) and \(||f||_{2025}<+\infty\), we obtain that 
+  \begin{align*}
+       ||f||_p^p&=\int_\mathbb{R} |f|^p dm \\
+                &=\int_\mathbb{R} |f|^\frac{2025-p}{2024}\cdot |f|^\frac{2025p-2025}{2024}dm\\
+                &\leq (\int_\mathbb{R}|f|dm)^\frac{2025-p}{2024}\cdot (\int_\mathbb{R}|f|^{2025}dm)^\frac{p-1}{2024}\\
+                &=||f||_1^\frac{2025-p}{2024}\cdot ||f||_{2025}^\frac{2025p-2025}{2024}\\
+                &<+\infty.
+  \end{align*}
+  This proves that \(L^p(\mathbb{R})\supset L^1(\mathbb{R})\cap L^{2025}(\mathbb{R})\) for any \(p\in (1,2025)\). Thus, 
+  \[\bigcap_{1<p<2025}L^p(\mathbb{R})\supset L^1(\mathbb{R})\cap L^{2025}(\mathbb{R}).\]
+  
+  Consider the function \(f(x)=\frac{1}{x}\) on \([1,+\infty)\) and \(0\) otherwise. For any \(p>1\), we have 
+  \begin{align*}
+       ||f||_p^p&=\int_\mathbb{R} fdm\\
+                &=\int_1^{+\infty} x^{-p}dx\\
+                &=\frac{x^{1-p}}{1-p}\Big |^{+\infty}_1\\
+                &=0-\frac{1}{1-p}\\
+                &=\frac{1}{p-1}\\
+                &<+\infty.
+  \end{align*}
+  So \(f\in \bigcap_{1<p<2025}L^p(\mathbb{R})\). On the other hand, however, \(f\notin L^1(\mathbb{R})\) as 
+  \[||f||_1=\int_1^{+\infty}\frac{1}{x}dx=+\infty.\]
+  We can conclude that \(L^1(\mathbb{R})\cap L^{2025}(\mathbb{R})\) is a proper subset of \(\bigcap_{1<p<2025}L^p(\mathbb{R})\).
+  \item For every function defined on \([0,1]\), we can view them as periodic function defined on \(\mathbb{R}\) with period 1. Consider the collection of functions 
+  \[u_n(t)=e^{i2\pi nt},\ \ \ \ \ n\in \mathbb{Z}.\]
+  Let \(E\) be the set spanned by \(\left\{ u_n \right\}_{n\in \mathbb{Z}}\) with rational coefficients. We know that \(E\) consists of trigonometry polynomials with rational coefficients, so that \(E\) is dense in \(C([0,1])\), and because \(C([0,1])\) is dense in \(L^p([0,1])\) for any \(1<p<+\infty\), we can conclude that \(L^p([0,1])\) is separable for any \(1<p<+\infty\). 
+
+  Next, we want to show that \(L^\infty([0,1])\) is not separable. Consider the first intervals: \(I_0=[0,\frac{1}{2})\) and for any \(n\geq 1\), we define 
+  \[I_n=[\sum_{k=1}^{n}\frac{1}{2^k},\sum_{k=1}^{n+1}\frac{1}{2^k}).\]
+  Then we have \([0,1)=\bigcup_{n\geq 0}I_n\). Let \(a=\left\{ a_n \right\}_{n=0}^\infty\) be a sequence taking values in \(\left\{ 0,1 \right\}\). Define the function 
+  \[f_a(x)=2a_n,\iif x\in I_n.\]
+  We have \(f_a\in L^\infty([0,1])\) and 
+  \[||f_a-f_b||_\infty\geq 2\]
+  if \(a={a_n}\) and \(b=\left\{ b_n \right\}\) are two different sequences taking values in \(0\) and \(1\). Let \(E=\left\{ f_a \right\}\subset L^\infty([0,1])\). Each function \(\mathbb{Z}_{\geq 0}\rightarrow \left\{ 0,1 \right\}\) gives a unique element in \(E\) and any two different element of \(E\) satisfies that 
+  \[||f_a-f_b||_\infty>1.\]
+  This implies that \(L^\infty([0,1])\) is not separable as it cannot contain a countable and dense subset. 
+\end{enumerate}
+\end{solution}
+
+
+\end{document}

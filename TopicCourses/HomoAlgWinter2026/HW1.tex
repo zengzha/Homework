@@ -1,0 +1,359 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 1}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 607 - Homological Algebra \hfill Term: Winter 2026 \\
+Instructor: Professor Alexander Polishchuk \hfill Due Date: Jan 14, 2026 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.5}
+Give an elementary proof that \(\Tot(C)\) is acyclic whenever \(C\) is a bounded double complex with eexact rows (or exact columns).
+\end{problem}
+\begin{solution}
+Without loss of generality, we may assume the bounded double complex \(C\) has exact rows. Consider the total complex \(\Tot(C)\), for any \(n\), we want to show that 
+\(H_n(\Tot(C))=0\). Write 
+\[\Tot(C)_n=\bigoplus_{p+q=n}C_{p,q}.\]
+For any element \(a\in \Tot(C)_n\), \(a\) can be written as \(a=\oplus_{p+q=n}a_{p,q}\). Since \(C\) is bounded, there exists \(p_0,p_1\in \mathbb{Z}\) such that for any \(p<p_0\) and \(p>p_1\), we have \(C_{p,n-p}=0\). Suppose \(a\in \Tot(C)_n\) is in the kernel of the map 
+\[d=d^h+d^v:\Tot(C)_n\rightarrow \Tot(C)_{n-1}.\]
+So we have 
+\[(d^h+d^v)a_{p,q}=d^h a_{p,q}+d^v a_{p,q}=0\]
+for all \(p+q=n\) and \(p_0\leq p\leq p_1\).
+To prove that \(H_n(\Tot(C))=0\), we need to show that every \(a_{p,q}\) is the image of some element in \(\Tot(C)_{n+1}\).
+
+For \(p=p_0\), consider the following diagram:
+% https://q.uiver.app/#q=WzAsNyxbMSwxLCJDX3twXzAsbi1wXzB9Il0sWzAsMSwiQ197cF8wLTEsbi1wXzB9Il0sWzAsMCwiMCJdLFsxLDIsIkNfe3BfMCxuLXBfMC0xfSJdLFsyLDIsIkNfe3BfMCsxLG4tcF8wLTF9Il0sWzIsMSwiQ197cF8wKzEsbi1wXzB9Il0sWzMsMiwiQ197cF8wKzIsbi1wXzAtMX0iXSxbMCwxLCJkXmgiLDJdLFsyLDFdLFswLDMsImRediJdLFs0LDMsImReaCIsMl0sWzUsMCwiZF5oIiwyXSxbNSw0LCJkXnYiXSxbNiw0LCJkXmgiLDJdXQ==
+\[\begin{tikzcd}
+    0 \\
+    {C_{p_0-1,n-p_0}} & {C_{p_0,n-p_0}} & {C_{p_0+1,n-p_0}} \\
+    & {C_{p_0,n-p_0-1}} & {C_{p_0+1,n-p_0-1}} & {C_{p_0+2,n-p_0-1}}
+    \arrow[from=1-1, to=2-1]
+    \arrow["{d^h}"', from=2-2, to=2-1]
+    \arrow["{d^v}", from=2-2, to=3-2]
+    \arrow["{d^h}"', from=2-3, to=2-2]
+    \arrow["{d^v}", from=2-3, to=3-3]
+    \arrow["{d^h}"', from=3-3, to=3-2]
+    \arrow["{d^h}"', from=3-4, to=3-3]
+  \end{tikzcd}\]
+Note that \(d^h a_{p_0,n-p_0}=0\) in \(C_{p_0-1,n-p_0}\) because \(C_{p_0-1,n-p_0+1}=0\). By exactness of rows, there exists an element \(b\in C_{p_0+1,n-p_0}\) such that \(d^h b=a_{p_0,n-p_0}\).
+
+For \(p=p_0+1\), we know that 
+\[d^h a_{p_0+1,n-p_0-1}+d^v a_{p_0,n-p_0}=0.\]
+Replace \(a_{p_0,n-p_0}\) with \(d_h b\) and use the fact that \(d^vd^h+d^hd^v=0\), we obtain 
+\begin{align*}
+     d^h a_{p_0+1,n-p_0-1}+d^v d^h b&=0,\\
+     d^h a_{p_0+1,n-p_0-1}-d^hd^v b&=0,\\
+     d^h (a_{p_0+1,n-p_0-1}-d^v b)&=0.
+\end{align*}
+By exactness of rows, there exists \(c\in C_{p_0+2,n-p_0-1}\) such that 
+\[d^h c=a_{p_0+1,n-p_0-1}-d^v b.\]
+This implies 
+\[a_{p_0+1,n-p_0-1}=d^h c+d^v b.\]
+So \(a_{p_0+1,n-p_0-1}\) is also in the image of some element in \(\Tot(C)_{n+1}\). Using a similar argument we can prove step by step that for any \(p_0\leq p\leq p_1\), \(a_{p,n-p}\) is the image of some element in \(\Tot(C)_{n+1}\). So \(H_n(\Tot(C))=0\), and thus the total complex \(\Tot(C)\) is acyclic. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.2.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.2.6}
+Give examples of 
+\begin{enumerate}[(1)]
+  \item a second quadrant double complex \(C\) with exact columns such that \(\Tot^{\prod}(C)\) is acyclic but \(\Tot^{\oplus} (C)\) is not;
+  \item a second quadrant double complex \(C\) with exact rows such that \(\Tot^{\oplus}(C)\) is acyclic but \(\Tot^{\prod}(C)\) is not;
+  \item a double complex (in the entire plane) for which every row and column is exact, yet neither \(\Tot^{\prod} (C)\) nor \(\Tot^{\oplus} (C)\) is acyclic.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(1)]
+  \item Consider the following double complex \(C\) 
+  % https://q.uiver.app/#q=WzAsNixbMiwzLCJcXG1hdGhiYntafSJdLFsyLDIsIlxcbWF0aGJie1p9Il0sWzEsMiwiXFxtYXRoYmJ7Wn0iXSxbMSwxLCJcXG1hdGhiYntafSJdLFswLDEsIlxcbWF0aGJie1p9Il0sWzAsMCwiXFxjZG90cyJdLFs1LDRdLFszLDRdLFszLDJdLFsxLDJdLFsxLDBdXQ==
+  \[\begin{tikzcd}
+      \cdots \\
+      {\mathbb{Z}} & {\mathbb{Z}} \\
+      & {\mathbb{Z}} & {\mathbb{Z}} \\
+      && {\mathbb{Z}}
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=2-2, to=2-1]
+      \arrow[from=2-2, to=3-2]
+      \arrow[from=3-3, to=3-2]
+      \arrow[from=3-3, to=4-3]
+    \end{tikzcd}\]
+  where all maps are isomorphisms of \(\mathbb{Z}\). Taking different total complexes, we get two maps 
+  \begin{align*}
+       \alpha:\prod_{n\geq 0}\mathbb{Z}&\rightarrow \prod_{n\geq 0}\mathbb{Z},\\
+       \beta:\bigoplus_{n\geq 0}\mathbb{Z}&\rightarrow \bigoplus_{n\geq 0}\mathbb{Z}.
+  \end{align*}
+  In both cases, the map is given by 
+  \[(x_0,x_1,x_2,\ldots)\mapsto (x_0,x_0+x_1,x_1+x_2,\ldots).\]
+  In \(\Tot^{\prod}(C)\), we allow any such sequence, while in \(\Tot^{\oplus}(C)\), we only allow sequence with finitely many nonzero terms. It is easy to see both \(\alpha\) and \(\beta\) are injective. The element \((0,0,0,\ldots)\) has a unique preimage as the equations 
+  \begin{align*}
+       x_0&=0,\\
+       x_0+x_1&=0,\\
+       x_1+x_2&=0,\\
+       \cdots
+  \end{align*}
+  has a unique solution \(x_0=x_1=x_2=\cdots=0\). A similar argument can show that \(\alpha\) is also surjective. On the other hand, consider the preimage of \((1,0,0,\ldots)\), the preimage is \((1,-1,1,-1,\ldots)\) which is an element in \(\prod_{n\geq 0}\mathbb{Z}\) but not \(\bigoplus_{n\geq 0}\mathbb{Z}\), so \(\beta\) is not surjective. This implies \(\Tot^{\prod}(C)\) is acyclic but \(\Tot^{\oplus}(C)\) is not. 
+  \item Consider the double compelx \(C\)
+  % https://q.uiver.app/#q=WzAsNSxbMiwyLCJcXG1hdGhiYntafSJdLFsxLDIsIlxcbWF0aGJie1p9Il0sWzEsMSwiXFxtYXRoYmJ7Wn0iXSxbMCwxLCJcXG1hdGhiYntafSJdLFswLDAsIlxcY2RvdHMiXSxbNCwzXSxbMiwzXSxbMiwxXSxbMCwxXV0=
+  \[\begin{tikzcd}
+      \cdots \\
+      {\mathbb{Z}} & {\mathbb{Z}} \\
+      & {\mathbb{Z}} & {\mathbb{Z}}
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=2-2, to=2-1]
+      \arrow[from=2-2, to=3-2]
+      \arrow[from=3-3, to=3-2]
+    \end{tikzcd}\]
+  where all maps are isomorphisms. Taking different total complexes, we get two maps
+  \begin{align*}
+    \alpha:\prod_{n\geq 0}\mathbb{Z}    & \rightarrow \prod_{n\geq 0}\mathbb{Z},     \\
+    \beta:\bigoplus_{n\geq 0}\mathbb{Z} & \rightarrow \bigoplus_{n\geq 0}\mathbb{Z}.
+  \end{align*}
+  In both cases, the map is given by
+  \[(x_0,x_1,x_2,\ldots)\mapsto (x_0+x_1,x_1+x_2,x_2+x_3,\ldots).\]
+  It is easy to see both \(\alpha\) and \(\beta\) are surjective if we take \(x_0=0\) and solve equations. However, consider the following equations 
+  \begin{align*}
+       x_0+x_1&=0,\\
+       x_1+x_2&=0,\\
+       x_2+x_3&=0,\\
+       \cdots
+  \end{align*}
+  If we know that at most only finitely many terms are not zero, then these equations have a unique solution \((0,0,\ldots)\). Otherwise, we have solutions like \((1,-1,1,-1,\ldots)\). Thus \(\alpha\) is not an isomorphism but \(\beta\) is an isomorphism, so \(\Tot^{\oplus}(C)\) is acyclic but \(\Tot^{\prod}(C)\) is not.
+  \item Consider a double complex \(C\) combined from above two
+  % https://q.uiver.app/#q=WzAsNixbMiwyLCJcXG1hdGhiYntafSJdLFsxLDIsIlxcbWF0aGJie1p9Il0sWzEsMSwiXFxtYXRoYmJ7Wn0iXSxbMCwxLCJcXG1hdGhiYntafSJdLFswLDAsIlxcY2RvdHMiXSxbMiwzLCJcXGNkb3RzIl0sWzQsM10sWzIsM10sWzIsMV0sWzAsMV0sWzAsNV1d
+  \[\begin{tikzcd}
+      \cdots \\
+      {\mathbb{Z}} & {\mathbb{Z}} \\
+      & {\mathbb{Z}} & {\mathbb{Z}} \\
+      && \cdots
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=2-2, to=2-1]
+      \arrow[from=2-2, to=3-2]
+      \arrow[from=3-3, to=3-2]
+      \arrow[from=3-3, to=4-3]
+    \end{tikzcd}\]
+  Taking different total complexes, we get two maps
+  \begin{align*}
+    \alpha:\prod_{n\geq 0}\mathbb{Z}    & \rightarrow \prod_{n\geq 0}\mathbb{Z},     \\
+    \beta:\bigoplus_{n\geq 0}\mathbb{Z} & \rightarrow \bigoplus_{n\geq 0}\mathbb{Z}.
+  \end{align*}
+  In both cases, the map is given by
+  \[(\ldots,x_{-1},x_0,x_1,x_2,\ldots)\mapsto (\ldots,x_{-1}+x_0,x_0+x_1,x_1+x_2,x_2+x_3,\ldots).\]
+  A similar argument as above two shows that \(\alpha\) is not injective and \(\beta\) is not surjective, so while the double complex \(C\) has exact rows and columns, neither \(\Tot^{\prod}(C)\) nor \(\Tot^{\oplus}(C)\) is acyclic. 
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.3.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.3.5}
+Let \(f\) be a morphism of chain complexes. Show that if \(\ker f\) and \(\coker f\) are acyclic, then \(f\) is a quasi-isomorphism. Is the converse true?
+\end{problem}
+\begin{solution}
+Let \(f_\bullet:A_\bullet\rightarrow B_\bullet\) be a chain map between complexes such that the complexes \(\ker f_\bullet\) and \(\coker f_\bullet\) are acyclic. Note that the category of chain complexes is an abelian category, so the map \(f_\bullet\) has a factorization:
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxrZXIgZl9cXGJ1bGxldCJdLFsyLDAsIkFfXFxidWxsZXQiXSxbMywwLCJCX1xcYnVsbGV0Il0sWzQsMCwiXFxjb2tlciBmX1xcYnVsbGV0Il0sWzUsMCwiMCJdLFsyLDEsIlxcY29pbSBmX1xcYnVsbGV0Il0sWzMsMSwiXFxpbSBmX1xcYnVsbGV0Il0sWzAsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJmX1xcYnVsbGV0Il0sWzMsNCwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsNV0sWzIsNiwicCIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDMsInEiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFs2LDcsIlxcY29uZyIsMl1d
+\[\begin{tikzcd}
+    0 & {\ker f_\bullet} & {A_\bullet} & {B_\bullet} & {\coker f_\bullet} & 0 \\
+    && {\coim f_\bullet} & {\im f_\bullet}
+    \arrow[from=1-1, to=1-2]
+    \arrow[hook, from=1-2, to=1-3]
+    \arrow["{f_\bullet}", from=1-3, to=1-4]
+    \arrow["p"', two heads, from=1-3, to=2-3]
+    \arrow[two heads, from=1-4, to=1-5]
+    \arrow[from=1-5, to=1-6]
+    \arrow["\cong"', from=2-3, to=2-4]
+    \arrow["q"', hook', from=2-4, to=1-4]
+  \end{tikzcd}\]
+The short exact sequence 
+\[0\rightarrow \ker f_\bullet \rightarrow A_\bullet \xrightarrow{p}\coim f_\bullet\rightarrow 0\]
+induces a long exact sequence in homology
+\[\cdots \rightarrow H_n(\ker f_\bullet)\rightarrow H_n(A_\bullet)\xrightarrow{p_*}H_n(\coim f_\bullet)\rightarrow H_{n-1}(\ker f_\bullet)\rightarrow \cdots\]
+We know that the complex \(\ker f_\bullet\) is acyclic, so the map 
+\[p_*:H_n(A_\bullet)\rightarrow H_n(\coim f_\bullet)\]
+is an isomorphism for all \(n\). Similarly, the map 
+\[q_*:H_n(\im f_\bullet)\rightarrow H_n(B_\bullet)\]
+is an isomorphism for all \(n\). The factorization of the chain map induces a factorization of the induced map \(f_*:H_n(A_\bullet)\rightarrow H_n(B_\bullet)\), namely 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIX24oQV9cXGJ1bGxldCkiXSxbMSwwLCJIX24oQl9cXGJ1bGxldCkiXSxbMCwxLCJIX24oXFxjb2ltIGZfXFxidWxsZXQpIl0sWzEsMSwiSF9uKFxcaW0gZl9cXGJ1bGxldCkiXSxbMCwxLCJmXyoiXSxbMywxLCJxXyoiLDJdLFswLDIsInBfKiIsMl0sWzIsMywiXFxjb25nIiwyXV0=
+\[\begin{tikzcd}
+    {H_n(A_\bullet)} & {H_n(B_\bullet)} \\
+    {H_n(\coim f_\bullet)} & {H_n(\im f_\bullet)}
+    \arrow["{f_*}", from=1-1, to=1-2]
+    \arrow["{p_*}"', from=1-1, to=2-1]
+    \arrow["\cong"', from=2-1, to=2-2]
+    \arrow["{q_*}"', from=2-2, to=1-2]
+  \end{tikzcd}\]
+The bottom row map is induced by the isomorphism \(\coim f_\bullet\rightarrow \im f_\bullet\). Both \(p_*\) and \(q_*\) are isomorphisms for all \(n\), so \(f_*\) is also an isomorphism. This proves that \(f\) is a quasi-isomorphism.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.3.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.3.6}
+Let 
+\[0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0\]
+be a short exact sequence of double complexes of modules. Show that there is a short exact sequence of total complexes, and conclude that if \(\Tot(C)\) is acyclic, then \(\Tot(A)\rightarrow \Tot(B)\) is a quasi-isomorphism.
+\end{problem}
+\begin{solution}
+We need to prove that the functor \(\Tot(-)\) from double complexes to chain complexes preserves kernel and cokernel. Let \(f:A\rightarrow B\) be a map of double complexes. Consider the double complex \(\ker(f:A\rightarrow B)\). On each \((p,q)\)-place, it is a submodule of \(A_{p,q}\). Note that taking total complexes preserves objects and maps at each level, so the kernel of the map \(\Tot(A)\rightarrow \Tot(B)\) is the total complex of the kernel \(\ker(f:A\rightarrow B)\). Similar argument for the cokernel. So we get a short exact sequence of total complexes:
+\[0\rightarrow \Tot(A)\rightarrow \Tot(B)\rightarrow \Tot(C)\rightarrow 0.\]
+If \(\Tot(C)\) is acyclic, from the long exact sequence in homology. For all \(n\), we have an isomorphism 
+\[H_n(\Tot(A))\rightarrow H_n(\Tot(B)).\]
+So the map \(\Tot(A)\rightarrow \Tot(B)\) is a quasi-isomorphism. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 1.5.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1.5.2}
+Let \(f:C\rightarrow D\) be a map of complexes. Show that \(f\) is null homotopic if and only if \(f\) extends to a map \((-s,f):\cone (C)\rightarrow D\).
+\end{problem}
+\begin{solution}
+We first prove the necessity. Suppose \(f\) extends to a map \((-s,f):\cone (C)\rightarrow D\). Then we have a commutative of diagrams, together with the short exact sequence for the \(\cone (C)\):
+% https://q.uiver.app/#q=WzAsNixbMCwwLCIwIl0sWzEsMCwiQyJdLFsyLDAsIlxcY29uZSAoQykiXSxbMywwLCJDWy0xXSJdLFs0LDAsIjAiXSxbMSwxLCJEIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzEsNSwiZiIsMl0sWzIsNSwiKC1zLGYpIl1d
+\[\begin{tikzcd}
+    0 & C & {\cone (C)} & {C[-1]} & 0 \\
+    & D
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow["f"', from=1-2, to=2-2]
+    \arrow[from=1-3, to=1-4]
+    \arrow["{(-s,f)}", from=1-3, to=2-2]
+    \arrow[from=1-4, to=1-5]
+  \end{tikzcd}\]
+For any \(n\), this induces a commutative diagram in homology where the row is exact:
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiSF9uKEMpIl0sWzIsMCwiSF9uKEMpIl0sWzMsMCwiSF9uKFxcY29uZSAgKEMpKSJdLFs0LDAsIkhfe24tMX0oQykiXSxbNSwwLCJIX3tuLTF9KEMpIl0sWzYsMCwiXFxjZG90cyJdLFsyLDEsIkhfbihEKSJdLFsxLDIsIlxccGFydGlhbCJdLFsyLDNdLFszLDRdLFs0LDUsIlxccGFydGlhbCJdLFs1LDZdLFsyLDcsImZfKiIsMl0sWzMsNywiKC1zXyosZl8qKSJdXQ==
+\[\begin{tikzcd}
+    \cdots & {H_n(C)} & {H_n(C)} & {H_n(\cone  (C))} & {H_{n-1}(C)} & {H_{n-1}(C)} & \cdots \\
+    && {H_n(D)}
+    \arrow["\partial", from=1-2, to=1-3]
+    \arrow[from=1-3, to=1-4]
+    \arrow["{f_*}"', from=1-3, to=2-3]
+    \arrow[from=1-4, to=1-5]
+    \arrow["{(-s_*,f_*)}", from=1-4, to=2-3]
+    \arrow["\partial", from=1-5, to=1-6]
+    \arrow[from=1-6, to=1-7]
+  \end{tikzcd}\]
+Note that the connecting homomorphism \(\partial\) is induced by the identity map \(id_C:C\rightarrow C\), so by exactness, \(H_n(\cone (C))=0\). So \(f_*:H_n(C)\rightarrow H_n(D)\) factors through \(0\). This implies \(f_*=0\) for all \(n\) and \(f\) is null homotopic. 
+
+Next we prove the sufficiency. Assume \(f\) is null homotopic. This means there exists \(s:C_{n-1}\rightarrow D_n\) for all \(n\) such that \(f=s d_C+d_D s\). We want to show that \((-s,f):\cone (C)=C_{n-1}\oplus C_n\rightarrow D_n\) defines a chain map, namely the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJDX3tuLTF9XFxvcGx1cyBDX24iXSxbMCwxLCJDX3tuLTJ9XFxvcGx1cyBDX3tuLTF9Il0sWzEsMCwiRF9uIl0sWzEsMSwiRF97bi0xfSJdLFswLDIsIigtcyxmKSJdLFswLDFdLFsxLDMsIigtcyxmKSIsMl0sWzIsMywiZF9EIl1d
+\[\begin{tikzcd}
+    {C_{n-1}\oplus C_n} & {D_n} \\
+    {C_{n-2}\oplus C_{n-1}} & {D_{n-1}}
+    \arrow["{(-s,f)}", from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["{d_D}", from=1-2, to=2-2]
+    \arrow["{(-s,f)}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+Let \((a,b)\in C_{n-1}\oplus C_n\). Then the image in \(C_{n-2}\oplus C_{n-1}\) is \((-d_C(a),d_C(b)-a)\), so its image in \(D_{n-1}\) is \(sd_C(a)+fd_C(b)-f(a)\). On the other hand, the image of \((a,b)\) in \(D_n\) is \(-s(a)+f(b)\), and thus it maps to \(-d_D s(a)+d_D f(b)\). Using \(f=s d_C+d_D s\) and \(f\) is a chain map, we obtain that 
+\begin{align*}
+     (sd_C(a)+fd_C(b)-f(a))-(-d_D s(a)+d_D f(b))&=(sd_C+d_D s-f)(a)+(fd_C-d_D f)(b)\\
+     &=0.
+\end{align*}
+This implies \((-s,f)\) is a chain map between \(\cone (C)\) and \(D\). Moreover, it is easy to check that for all \(n\), the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJDX24iXSxbMCwxLCJDX3tuLTF9XFxvcGx1cyBDX24iXSxbMSwwLCJEX24iXSxbMCwyLCJmIl0sWzAsMV0sWzEsMl1d
+\[\begin{tikzcd}
+    {C_n} & {D_n} \\
+    {C_{n-1}\oplus C_n}
+    \arrow["f", from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=1-2]
+  \end{tikzcd}\]
+commutes. So \(f\) can be extends to a chain map \((-s,f)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise Additional
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{Additional}
+Let \(C\rightarrow B\rightarrow A\) be morphisms in an abelian category. Prove using axioms of abelian categories (and facts proved in class) that if the induced morphism 
+\[\coker(C\rightarrow B)\rightarrow \coker(C\rightarrow A)\]
+is surjective, then \(B\rightarrow A\) is surjective.
+\end{problem}
+\begin{solution}
+Consider the composition of morphisms \(C\xrightarrow{f}B\xrightarrow{g}A\). We have the following commutative square:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJDIl0sWzEsMCwiQiJdLFsxLDEsIkEiXSxbMCwxLCJDIl0sWzAsMywiaWQiLDJdLFswLDEsImYiXSxbMSwyLCJnIl0sWzMsMiwiZ1xcY2lyYyBmIiwyXV0=
+\[\begin{tikzcd}
+    C & B \\
+    C & A
+    \arrow["f", from=1-1, to=1-2]
+    \arrow["id"', from=1-1, to=2-1]
+    \arrow["g", from=1-2, to=2-2]
+    \arrow["{g\circ f}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+Taking cokernels of each row. From what we have proved in class, there exists a unique map 
+\[\varphi:\coker f\rightarrow \coker (g\circ f)\]
+such that the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJDIl0sWzEsMCwiQiJdLFsxLDEsIkEiXSxbMCwxLCJDIl0sWzIsMCwiXFxjb2tlciAoQ1xceHJpZ2h0YXJyb3d7Zn1CKSJdLFsyLDEsIlxcY29rZXIgKENcXHhyaWdodGFycm93e2dcXGNpcmMgZn1BKSJdLFswLDMsImlkIiwyXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFszLDIsImdcXGNpcmMgZiIsMl0sWzEsNF0sWzIsNV0sWzQsNSwiXFx2YXJwaGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+\[\begin{tikzcd}
+    C & B & {\coker (C\xrightarrow{f}B)} \\
+    C & A & {\coker (C\xrightarrow{g\circ f}A)}
+    \arrow["f", from=1-1, to=1-2]
+    \arrow["id"', from=1-1, to=2-1]
+    \arrow[from=1-2, to=1-3]
+    \arrow["g", from=1-2, to=2-2]
+    \arrow["\varphi", two heads, from=1-3, to=2-3]
+    \arrow["{g\circ f}"', from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+  \end{tikzcd}\]
+Now taking the cokernel of the vertical maps
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJDIl0sWzEsMCwiQiJdLFsxLDEsIkEiXSxbMCwxLCJDIl0sWzIsMCwiXFxjb2tlciAoQ1xceHJpZ2h0YXJyb3d7Zn1CKSJdLFsyLDEsIlxcY29rZXIgKENcXHhyaWdodGFycm93e2dcXGNpcmMgZn1BKSJdLFsxLDIsIlxcY29rZXIgKEJcXHhyaWdodGFycm93e2d9QSkiXSxbMiwyLCJcXGNva2VyIFxcdmFycGhpIl0sWzAsMywiaWQiLDJdLFswLDEsImYiXSxbMSwyLCJnIl0sWzMsMiwiZ1xcY2lyYyBmIiwyXSxbMSw0LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJcXHZhcnBoaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs1LDddLFsyLDYsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+    C & B & {\coker (C\xrightarrow{f}B)} \\
+    C & A & {\coker (C\xrightarrow{g\circ f}A)} \\
+    & {\coker (B\xrightarrow{g}A)} & {\coker \varphi}
+    \arrow["f", from=1-1, to=1-2]
+    \arrow["id"', from=1-1, to=2-1]
+    \arrow[two heads, from=1-2, to=1-3]
+    \arrow["g", from=1-2, to=2-2]
+    \arrow["\varphi", two heads, from=1-3, to=2-3]
+    \arrow["{g\circ f}"', from=2-1, to=2-2]
+    \arrow[two heads, from=2-2, to=2-3]
+    \arrow[two heads, from=2-2, to=3-2]
+    \arrow[from=2-3, to=3-3]
+  \end{tikzcd}\]
+Consider the composition 
+\[B \xrightarrow{g}A\rightarrow \coker(C \xrightarrow{g\circ f}A)\rightarrow \coker \varphi.\]
+From the commutativity of the diagram, this is the same as 
+\[B\rightarrow \coker(C \xrightarrow{f}B)\rightarrow \coker (C \xrightarrow{g\circ f}A)\rightarrow \coker \varphi,\]
+which is \(0\) by definition of \(\coker \varphi\). By universal property of cokernels, this map must factor through \(\coker (B \xrightarrow{g}A)\), namely we have the following commutative diagram:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzEsMCwiQSJdLFsyLDAsIlxcY29rZXIgKEJcXHhyaWdodGFycm93e2d9QSkiXSxbMSwxLCJcXGNva2VyIFxcdmFycGhpIl0sWzAsMSwiZyJdLFsxLDIsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDNdLFszLDIsIlxcZXhpc3RzICEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+    B & A & {\coker (B\xrightarrow{g}A)} \\
+    & {\coker \varphi}
+    \arrow["g", from=1-1, to=1-2]
+    \arrow[two heads, from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow["{\exists !}"', dashed, from=2-2, to=1-3]
+  \end{tikzcd}\]
+The map \(\coker \varphi\rightarrow \coker (B \xrightarrow{g}A)\) is also an epimorphism, following from the following claim.
+\begin{claim}
+  Suppose we have a composition of morphisms: \(X \xrightarrow{a}Y \xrightarrow{b} Z\). If \(b\circ a\) is an epimorphism, then \(b\) is an epimorphism. 
+\end{claim}
+\begin{claimproof}
+  
+\end{claimproof}
+Suppose given an object \(W\) and two morphisms \(f,g: Z\rightarrow W\) such that \(f\circ b=g\circ b\). We need to show that \(f=g\). Compose with \(a\), we get 
+\[f\circ b\circ a=g\circ b\circ a.\]
+We know \(b\circ a\) is an epimorphism, so \(f=g\). 
+\end{solution}
+
+Note that \(\coker \varphi=0\) as the map \(\varphi\) is an epimorphism, so the map 
+\[\coker \varphi=0\rightarrow \coker (B \xrightarrow{g} A)\]
+is an epimorphism. This implies that \(\coker (B \xrightarrow{g}A)=0\), so the map \(g:B\rightarrow A\) is an epimorphism.
+
+
+\end{document}

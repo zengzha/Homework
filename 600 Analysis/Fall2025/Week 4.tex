@@ -1,0 +1,150 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 4 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Oct 29th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.1}
+Find the limit of the integral and justify your answer
+\[\lim_{n\to \infty}\int_0^\infty \frac{1-\cos (nx)}{nx}dx\]
+\end{problem}
+\begin{solution}
+We do a change of variable by setting \(u=nx\). This gives 
+\[\int_0^\infty \frac{1-cos(nx)}{nx}dx=\int^\infty_0 \frac{1-\cos u}{nu}du=\frac{1}{n}\int_0^\infty \frac{1-\cos u}{u}du.\]
+Note that \(\frac{1-\cos u}{u}\geq 0\) for any \(u>0\), so we have 
+\begin{align*}
+     \int_0^\infty \frac{1-\cos u}{u}du&\geq \sum_{k=0}^{\infty}\int_{\frac{\pi}{2}+2k\pi}^{\frac{3\pi}{2}+2k\pi} \frac{1-\cos u}{u}du\\ 
+     &\geq \sum_{k=0}^{\infty} \int_{\frac{\pi}{2}+2k\pi}^{\frac{3\pi}{2}+2k\pi} \frac{1}{u}du\\ 
+     &\geq \sum_{k=0}^{\infty} \frac{1}{\frac{3\pi}{2}+2k\pi}\cdot (\frac{3\pi}{2}-\frac{\pi}{2})\\
+     &=\sum_{k=0}^{\infty} \frac{2}{3+4k}
+\end{align*}
+We know that the sequence \(\sum_{0}^{\infty}\frac{2}{4k+3}\) diverges, so 
+\[\int_0^\infty\frac{1-\cos u}{u}du=+\infty.\]
+And 
+\begin{align*}
+     \lim_{n\to \infty}\int_0^\infty \frac{1-\cos (nx)}{nx}dx&=\lim_{n\to \infty}\frac{1}{n}\int_0^\infty \frac{1-\cos u}{u}du\\
+     &=\lim_{n\to \infty}(\frac{1}{n}\cdot +\infty)\\
+     &=\lim_{n\to \infty}+\infty\\
+     &=+\infty.
+\end{align*}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.2}
+If \(f_n,g_n,f,g\in L^1\), \(f_n\to f\) and \(g_n\to g\) a.e., suppose \(|f_n|\leq g_n\) and \(\int g_n\to \int g\), prove 
+\[\int f_n\to \int f.\] 
+\end{problem}
+\begin{solution}
+\(|f_n|\leq g_n\) implies that \(g_n-f_n\geq 0\) and \(g_n+f_n\geq 0\), so both \(g_n+f_n\) and \(g_n-f_n\) are positive measurable functions. By Fatou's lemma and note that \(\int g_n\to \int g\), we have 
+\begin{align*}
+     \int g+\int f&=\int \liminf_{n\to \infty}(g_n+f_n)\leq \liminf_{n\to \infty}\int g_n+f_n=\int g+\liminf_{n\to \infty} \int f_n,\\
+     \int g-\int f&=\int \liminf_{n\to \infty}(g_n-f_n)\leq \liminf_{n\to \infty}\int g_n-f_n=\int f-\limsup_{n\to \infty} \int f_n
+\end{align*} 
+So 
+\[\int f\leq \liminf_{n\to \infty}\int f_n\leq \limsup_{n\to \infty}\int f_n\leq \int f.\]
+This implies that \(\int f_n\to \int f\) as \(n\to \infty\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 4.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{4.3}
+Suppose \(f_n,f\in L^1\) and \(f_n\to f\) a.e. Then \(\int|f_n-f|\to 0\) if and only if \(\int |f_n|\to \int |f|\).
+\end{problem}
+\begin{solution}
+By the inverse triangular inequality, for any \(n\), we have 
+\[\abs{|f_n|-|f|}\leq |f_n-f|.\]
+Thus, for any \(n\),
+\[\abs{\int |f_n|-\int |f|}\leq \int \abs{|f_n|-|f|}\leq \int |f_n-f|.\]
+Assume \(\int |f_n-f|\to 0\), then \(\int |f_n|\to \int |f|\) by the above inequality.
+
+On the other hand, assume \(\int |f_n|\to \int |f|\). Note that for any \(n\) 
+\[|f_n-f|\leq |f_n|+|f|.\]
+Define \(g_n=|f_n|+|f|-|f_n-f|\) which are positive measurable functions, and because \(f_n\to f\) almost everywhere, \(g_n\to 2|f|\) almost everywhere. By Fatou's lemma and \(\int |f_n|\to \int |f|\), we have 
+\[\int 2|f|=\int \liminf_{n\to \infty}g_n\leq \liminf_{n\to \infty}\int |f_n|+|f|-|f_n-f|=\int 2|f|-\limsup_{n\to \infty}\int |f_n-f|.\]
+So \(\limsup_{n\to \infty}|f_n-f|\leq 0\) and this implies that \(\int |f_n-f|\to 0\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.3}
+Let \(X\) be a metric space with metric \(\rho\). For any nonempty \(E\subset X\), define 
+\[\rho_E(x)=\inf\left\{ \rho(x,y):y\in E \right\}.\]
+Show that \(\rho_E\) is a uniformly continuous function on \(X\). If \(A\) and \(B\) are disjoint nonempty closed subsets of \(X\), examine the relevance of the fucntion 
+\[f(x)=\frac{\rho_A(x)}{\rho_A(x)+\rho_B(x)}\]
+to Urysohn's lemma.
+\end{problem}
+\begin{solution}
+For any \(\varepsilon>0\), suppose \(x,z\in X\) and \(\rho(x,z)=\rho(z,x)<\delta=\varepsilon\), then by definition of \(\rho_E\) and the triangular inequality for metric \(\rho\), the following inequality works for any \(y\)
+\begin{align*}
+     \rho_E(x)&=\inf\left\{ \rho(x,y):y\in E \right\}\\ 
+              &\leq \rho(x,y)\\ 
+              &\leq \rho(x,z)+\rho(z,y)
+\end{align*}
+This implies that \(\rho(z,y)\geq \rho_E(x)-\rho(x,z)\) for any \(y\in E\), and by definition of inf, we have 
+\[\rho_E(z)=\inf\left\{ \rho(z,y):y\in E \right\}\geq \rho_E(x)-\rho(x,z).\]
+This means 
+\[\rho(x,z)\geq \rho_E(x)-\rho_E(z).\]
+Similarly, by swapping the place of \(x\) and \(z\), we obtain 
+\[\rho(x,z)=\rho(z,x)\geq \rho_E(z)-\rho_E(x).\]
+Thus, we can see that 
+\[\abs{\rho_E(x)-\rho_E(z)}\leq \rho(x,z)<\varepsilon\]
+This proves that the function \(\rho_E\) is uniformly continuous on \(X\).
+
+Let \(A\) be a closed set in \(X\). \(\rho_A(x)=0\) implies that \(x\) is a limit point of \(A\), and since \(A\) is closed, \(x\in A\). It is not hard to see that \(\rho_A(x)=0\) if and only if \(x\in A\). For the function \(f\), \(f(x)=1\) if \(x\in B\) and \(f(x)=0\) if \(x\in A\), and \(0\leq f(x)\leq 1\) for any \(x\in X\). \(f\) can be viewed as a continuous function supported on the open set \(X\setminus A\) and be constant \(1\) on the closed set \(B\). This is a generalization of Urysohn's lemma for metric space. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.8}
+Construct a Borel set \(E\subset \mathbb{R}^1\) such that 
+\[0<m(E\cap I)<m(I)\]
+for every nonempty segment \(I\). Is it possible to have \(m(E)<\infty\) for such a set?
+\end{problem}
+\begin{solution}
+Consider the set of rational intervals
+\[E=\left\{ (a,b): a,b\  \t{are rational numbers and}\ a<b \right\}\]
+The set \(\mathbb{Q}\times \mathbb{Q}\) is countable, so \(E\) only contains countably many intervals. Suppose the elements of \(E\) can be listed as 
+\[\left\{ I_n \right\}_{n=1}^\infty\]
+For \(n=1\), choose two disjoint closed intervals \(J_1, K_1\subset I_1\) such that \(J_1\cap K_1=\varnothing\) and \(m(J_1)=m(K_1)<\frac{1}{3}m(I_1)\). Do a Cantor-like construction on \(J_1\) and \(K_1\) to obtain a Cantor-like set \(A_1\) and \(B_1\) with positive measure \(0<m(A_1)=m(B_1)<\frac{1}{3}m(I_1)\) and \(A_1\cap B_1=\varnothing\). 
+
+For the second rational interval \(I_2\), \(A_1\) and \(B_1\) are not dense in \(I_2\) because \(A_1\) and \(B_1\) are closed, there exists some open interval \((a_2,b_2)\subset I_2\setminus (A_1\cup B_1)\). Choose two closed intervals with measure smaller than \(\frac{1}{3^2}m(I_1)\), and do a Cantor-like construction similar as before, and obtain two Cantor-like sets \(A_2\) \(B_2\) with positive measure \(0<m(A_2)=m(B_2)<\frac{1}{3^2}m(I_1)\) and \(A_2\cap B_2=\varnothing\). Next consider the set \(I_3\setminus (A_1\cup B_1\cup A_2\cup B_2)\) and repeat this construction. We obtain two sequences \(\left\{ A_n \right\}_{n=1}^\infty\) and \(\left\{ B_n \right\}_{n=1}^\infty\) satisfying the following property:
+\begin{itemize}
+  \item \(A_i\cap A_j=\varnothing\) and \(B_i\cap B_j=\varnothing\) for \(i\neq j\).
+  \item \(A_i\cap B_i=\varnothing\) for any \(i\). 
+  \item \(0<m(A_i)=m(B_i)<\frac{1}{3^i}m(I_1)\) for any \(i\).
+\end{itemize}
+Take 
+\[A=\bigcup_{n=1}^\infty A_n.\]
+Take any segment \(I\subset \mathbb{R}\), \(I\) must contain a rational interval \(I_n\). Recall that \(A_n\subset A\) is constructed from a subinterval of \(I_n\), and we have
+\[0<m(A_n)\leq m(A\cap I)<m(A\cap I)+m(B_n)\leq m(I_n)<m(I).\]
+And \(m(A)\) is finite as 
+\[m(A)=m(\bigcup_{n=1}^\infty A_n)=\sum_{n=1}^{\infty}m(A_n)\leq (\sum_{n=1}^{\infty}\frac{1}{3^n})m(I_1)=\frac{1}{2}m(I_1).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+\end{document}

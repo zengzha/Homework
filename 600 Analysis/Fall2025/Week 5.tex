@@ -1,0 +1,149 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 5 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Nov 5th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.1}
+Find the limit of the integral when \(n\to \infty\) with justification.
+\[\lim_{n\to \infty}\int_0^n \frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}dx\]
+\end{problem}
+\begin{solution}
+Let 
+\[f_n(x)=\mathbbm{1}_{[0,n]}\frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}\]
+be a sequence of functions defined on \((0,+\infty)\). It is easy to see that \(\lim_{n\to \infty}f_n(x)=\frac{1}{x^2+1}\) for any \(x>0\). Consider the function 
+\[g(x)=\mathbbm{1}_{(0,1)}\cdot 1+\mathbbm{1}_{[1,+\infty)}\cdot \frac{1}{x^2}.\]
+For any \(x\in [0,1]\), we have 
+\[0\leq f_n(x)=\frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}\leq 1=g(x).\] 
+and for any \(x\geq 1\), we have 
+\[0\leq f_n(x)\leq \frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}\leq \frac{1}{x^2}=g(x).\]
+So \(|f_n(x)|\leq g(x)\) for any \(x>0\) and note that 
+\[\int_0^\infty g(x)dx=\int_0^1 1dx+\int_1^\infty \frac{1}{x^2}dx=1+1=2<\infty.\]
+So \(g\in L^1\). By Lebesgue dominated convergence theorem
+\begin{align*}
+     \lim_{n\to \infty}\int_0^n \frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}dx
+     &=\lim_{n\to \infty}\int_0^\infty f_n(x)dx\\[0.2em]
+     &=\lim_{n\to \infty}\int_0^\infty \mathbbm{1}_{[0,n]}\frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}dx\\[0.2em] 
+     &=\int_0^\infty \lim_{n\to \infty}\mathbbm{1}_{[0,n]}\frac{\cos^2(\frac{x}{n})}{x^2+\cos^2(\frac{x}{n})}dx\\[0.2em]
+     &=\int_0^\infty \frac{1}{x^2+1}dx\\[0.2em]
+     &=\lim_{x\to \infty}\arctan x-\arctan 0\\[0.2em]
+     &=\frac{\pi}{2}.
+\end{align*}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5.2}
+Let \(f_n\) be a sequence of real-valued measurable functions in \(L^1(\mu)\) on a measure space \((X,\mu)\). Suppose \(\lim_{n\to \infty}f_n=f\) a.e. and 
+\[\lim_{n\to \infty}\int_X|f_n|d\mu=\int_X|f|d\mu.\]
+Prove that for any measurable set \(A\), we have 
+\[\lim_{n\to \infty}\int_A |f_n|d\mu=\int_A|f|d\mu.\]
+Is that true
+\[\lim_{n\to \infty}\int_A f_n d\mu=\int_A fd\mu?\]
+\end{problem}
+\begin{solution}
+For any measurable set \(A\subset X\), we know that \(|f_n|\) and \(|f|\) are positive measurable functions on \(A\). By Fatou's lemma,
+\[\int_X|f|d\mu=\int_X \liminf_{n\to \infty}|f_n|d\mu\leq \liminf_{n\to \infty}\int_X |f_n|d\mu.\]
+On the other hand, by Fatou's lemma and use that fact that
+\[\lim_{n\to \infty}\int_X|f_n|d\mu=\int_X|f|d\mu,\]
+we have 
+\begin{align*}
+     0\leq \int_{X\setminus A}|f|d\mu 
+      &=\int_{X\setminus A}\liminf_{n\to \infty}|f_n|d\mu\\
+      &\leq \liminf_{n\to \infty} \int_{X\setminus A}|f_n|d\mu\\
+      &=\liminf_{n\to \infty}(\int_X|f_n|d\mu-\int_A|f_n|d\mu)\\
+      &=\int_X|f|d\mu-\limsup_{n\to \infty}\int_A|f_n|d\mu.
+\end{align*}
+This implies that 
+\[\limsup_{n\to \infty}\int_A|f_n|d\mu\leq \int_X|f|d\mu-\int_{X\setminus A}|f|d\mu=\int_A|f|d\mu.\]
+Combine this with 
+\[\int_A|f|d\mu\leq \liminf_{n\to \infty}\int_A|f_n|d\mu,\]
+We obtain that for any measurable set \(A\subset X\), 
+\[\lim_{n\to \infty}\int_A|f_n|d\mu=\int_A|f|d\mu.\]
+
+Consider \(X=A=\mathbb{R}^1\) and the sequence
+\[f_n=\mathbbm{1}_{[-n,0)}\cdot (-1)+\mathbbm{1}_{(0,n]}.\]
+Note that for any \(n\),
+\[\int_{\mathbb{R}^1}|f_n|d\mu=2n<+\infty,\]
+So \(\left\{ f_n \right\}\) is a sequence of measurable functions in \(L^1(\mu)\) and \(f_n\) converges to 
+\[f=\mathbbm{1}_{(-\infty,0)}\cdot (-1)+\mathbbm{1}_{(0,+\infty)}\]
+almost everywhere and 
+\[\lim_{n\to \infty}\int_{\mathbb{R}^1}|f_n|d\mu=\lim_{n\to \infty}2n=+\infty=\int_{\mathbb{R}^1}|f|d\mu.\]
+But on the other hand,
+\[\int_{\mathbb{R}^`1}f_nd\mu=-m([-n,0))+m((0,n])=-n+n=0.\]
+So 
+\[\lim_{n\to \infty}\int_{\mathbb{R}^1}f_nd\mu=0\] 
+while
+\[\int_{\mathbb{R}^1}fd\mu\]
+does not exist because both \(\int_{\mathbb{R}^1}f^+d\mu\) and \(\int_{\mathbb{R}^1}f^-d\mu\) are infinite. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 5,3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{5,3}
+Let \(E\subset \mathbb{R}^1\) be a measurable set with respect to Lebesgue measure and \(m(E)>0\). Prove that for any \(0<\alpha<1\), there exists an open interval \(I\) such that 
+\[m(E\cap I)>\alpha m(I).\]
+Given \(\frac{3}{4}<\alpha<1\), let \(I\) be an open interval with length \(b=m(I)\) such that 
+\[m(E\cap I)>\alpha m(I).\]
+Prove that the set 
+\[E-E:=\left\{ x-y:x,y\in E \right\}\]
+contains an open interval \((-\frac{b}{2},\frac{b}{2})\).
+\end{problem}
+\begin{solution}
+We first assume \(m(E)<\infty\). Assume the opposite that for any open interval \(I\subset \mathbb{R}\), we have 
+\[m(E\cap I)\leq \alpha m(I).\]
+By the outer regularity of Lebesgue measure, for any \(\varepsilon>0\), there exists an open set \(U\supset E\) such that 
+\[m(E)<m(U)<m(E)+\varepsilon.\]
+We know that the open set \(U\subset \mathbb{R}\) can be written as 
+\[U=\bigcup_{n=1}^\infty I_n\]
+where \(I_n\) are open intervals and \(I_i\cap I_j=\varnothing\) if \(i\neq j\). Then 
+\begin{align*}
+  m(E)&=m(E\cap V)\\
+      &=\sum_{n=1}^{\infty}m(E\cap I_n)\\
+      &\leq \alpha \sum_{n=1}^{\infty} m(I_n)\\
+      &\leq \alpha m(V)\\
+      &<\alpha m(E)+\alpha \varepsilon.
+\end{align*}
+Let \(\varepsilon\to 0\), and we obtain that \(m(E)\leq \alpha m(E)\), but \(0<\alpha<1\). A contradiction. Thus, there exists an open interval \(I\) such that 
+\[m(E\cap I)>\alpha m(I).\]
+Now assume \(m(E)=+\infty\). Then for a large number \(N\), consider the measurable set 
+\[E':=E\cap (-N,N)\]
+with finite measure. We have proved that there exists an open interval \(I\) such that 
+\[m(E'\cap I)>\alpha m(I).\]
+If we choose \(N\) large enough, then 
+\[m(E\cap I)\geq m(E'\cap I)>\alpha m(I).\]
+
+Now suppose \(\frac{3}{4}<\alpha<1\). For any point \(z\in (-\frac{b}{2},\frac{b}{2})\), to prove that \(z\in E-E\), it is the same as proving there exists \(x,y\in E\) such that \(x=y+z\), which is the same as 
+\[E\cap (E+z)\neq \varnothing\]
+for any \(z\in (-\frac{b}{2},\frac{b}{2})\). Assume the opposite that there exists \(|z|<\frac{b}{2}\) such that 
+\[E\cap (E+z)=\varnothing.\]
+Note that \((E+z)\cap (I+z)=(E\cap I)+z\subset I+z\). Since \(E\) does not intersect \(E+z\), by the translation invariance of Lebesgue measure,
+\begin{align*}
+     m(I\cup (I+z))&=2m((E\cap I)\cup((E\cap I)+z))\\
+                  &\geq m(E\cap I)+m((E\cap I)+z)\\
+                  &> \alpha m(I)+\alpha m(I)\\
+                  &=2\alpha m(I)\\
+                  &>\frac{3}{2}m(I)
+\end{align*}
+Here \(|z|<\frac{b}{2}=\frac{1}{2}m(I)\), so 
+\[m(I\cup (I+z))<m(I)+m(I)-\frac{1}{2}m(I)=\frac{3}{2}m(I).\]
+This is a contradiction, so \(E\cap E+z\neq \varnothing\).
+\end{solution}
+
+\end{document}

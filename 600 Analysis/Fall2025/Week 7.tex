@@ -1,0 +1,257 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 7 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Nov 19th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.3}
+Assume that \(\phi\) is a continuous real function on \((a,b)\) such that 
+\[\phi(\frac{x+y}{2})\leq \frac{1}{2}\phi(x)+\frac{1}{2}\phi(y)\]
+for all \(x,y\in (a,b)\). Prove that \(\phi\) is convex. 
+\end{problem}
+\begin{solution}
+We first prove the following claim.
+\begin{claim}
+  For an integer \(n\geq 1\) and \(m\in \left\{ 0,1,\ldots,2^n \right\}\), the function \(\phi\) satisfies 
+  \[\phi(\frac{m}{2^n}x+(1-\frac{m}{2^n})y)\leq \frac{m}{2^n}\phi(x)+(1-\frac{m}{2^n})\phi(y).\]
+\end{claim}
+\begin{claimproof}
+  We prove this by induction on \(n\). 
+
+  When \(n=1\), \(m\) can be \(0\), \(1\) or \(2\). The case \(m=0\) and \(m=2\) is trivial. The case \(m=1\) is given by
+  \[\phi(\frac{x+y}{2})\leq \frac{1}{2}\phi(x)+\frac{1}{2}\phi(y).\]
+  Now assume we have proved the case for \(n\), and we want to show that this claim is true for \(n+1\). We need to prove the inequality for \(0\leq m\leq 2^{n+1}\). When \(0\leq m\leq 2^n\), note that for any \(x,y\in (a,b)\), 
+  \[\frac{m}{2^{n+1}}x+(1-\frac{m}{2^{n+1}})y=\frac{1}{2}(\frac{m}{2^n}x+(1-\frac{m}{2^n})y)+\frac{1}{2}y\]
+  We can use what we have proved for \(n\) to show  
+  \begin{align*}
+       \phi(\frac{m}{2^{n+1}}x+(1-\frac{m}{2^{n+1}})y)&=\phi(\frac{1}{2}(\frac{m}{2^n}x+(1-\frac{m}{2^n})y)+\frac{1}{2}y)\\
+       &\leq \frac{1}{2}\phi(\frac{m}{2^n}x+(1-\frac{m}{2^n})y)+\frac{1}{2}\phi(y)\\ 
+       &\leq \frac{1}{2}[\frac{m}{2^n}\phi(x)+(1-\frac{m}{2^n})\phi(y)]+\frac{1}{2}\phi(y)\\
+       &=\frac{m}{2^{n+1}}\phi(x)+(1-\frac{m}{2^{n+1}})\phi(y).
+  \end{align*} 
+  When \(2^n<m\leq 2^{n+1}\), in this case we write \(m=2^n+k\) where \(1\leq k\leq 2^n\). Note that 
+  \begin{align*}
+  \frac{m}{2^{n+1}}x+(1-\frac{m}{2^{n+1}})y&=\frac{1}{2}(1+\frac{k}{2^n})x+\frac{1}{2}(1-\frac{k}{2^n})y\\
+                                           &=\frac{1}{2}[\frac{k}{2^n}x+(1-\frac{k}{2^n})y]+\frac{1}{2}x
+  \end{align*}
+  Then again using the case \(n\), we can write 
+  \begin{align*}
+       \phi(\frac{m}{2^{n+1}}x+(1-\frac{m}{2^{n+1}})y)&=\phi(\frac{1}{2}(\frac{k}{2^n}x+(1-\frac{k}{2^n})y)+\frac{1}{2}x)\\
+       &\leq \frac{1}{2}\phi(\frac{k}{2^n}x+(1-\frac{k}{2^n})y)+\frac{1}{2}\phi(x)\\
+       &\leq \frac{k}{2^{n+1}}\phi(x)+(\frac{1}{2}-\frac{k}{2^{n+1}})\phi(y)+\frac{1}{2}\phi(x)\\
+       &=\frac{m}{2^{n+1}}\phi(x)+(1-\frac{m}{2^{n+1}})\phi(y).
+  \end{align*}
+  This concludes the proof of the claim.
+\end{claimproof}
+
+For any real number \(\lambda\in [0,1]\), Consider the following sequence in \(\mathbb{Q}\cap [0,1]\)
+\[\lambda_k=\frac{\lfloor2^k \lambda\rfloor}{2^k},\ \ \ k=1,2,3,\ldots\]
+where \(\lfloor \rfloor\) is the floor function. We have \(\lambda_k\to \lambda\) as \(k\to \infty\). From the claim, we know that for any \(k\),
+\[\phi(\lambda_k x+(1-\lambda_k)y)\leq \lambda_k\phi(x)+(1-\lambda_k)\phi(y).\]
+Let \(k\to \infty\) and use the fact that \(\phi\) is a continuous function, we obatin 
+\[\phi(\lambda x+(1-\lambda)y)\leq \lambda\phi(x)+(1-\lambda)\phi(y).\]
+This proves that \(\phi\) is a convex function. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.4}
+Suppose \(f\) is a complex measurable function on \(X\), \(\mu\) is a positive measure on \(X\), and 
+\[\varphi(p)=\int_X |f|^pd\mu=||f||_p^p\ \ \ \ \ (0<p<\infty).\]
+Let \(E=\left\{ p:\varphi(p)<\infty \right\}\). Assume \(||f||_\infty>0\).
+\begin{enumerate}[(a)]
+  \item If \(r<p<s\), \(r\in E\) and \(s\in E\), prove that \(p\in E\).
+  \item Prove that \(\log \varphi\) is convex in the interior of \(E\) and that \(\varphi\) is continuous on \(E\).
+  \item By (a), \(E\) is connected. Is \(E\) necessarily open? Closed? Can \(E\) consist of a single point? Can \(E\) be any connected subset \((0,\infty)\)?
+  \item If \(r<p<s\), prove that \(||f||_p\leq \max(||f||_r,||f||_s)\). Show that this implies the inclusion \(L^r(\mu)\cap L^s(\mu)\subset L^p(\mu)\).
+  \item Assume that \(||f||_r<\infty\) for some \(r\leq \infty\) and prove that 
+  \[||f||_p\to ||f||_\infty\ \ \ \ \mathrm{as}\ \ p\to \infty.\]
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item We define the following numbers:
+  \begin{align*}
+       k&=\frac{rs-pr}{s-r}>0,\\
+       l&=\frac{ps-rs}{s-r}>0,\\
+       m&=\frac{s-r}{s-p}>0,\\
+       n&=\frac{s-r}{p-r}>0,\\
+  \end{align*}
+  We can check by direct calculations that these numbers satisfy the following:
+  \begin{align*}
+       k+l&=p,\\
+       km&=r,\\
+       ln&=s,\\
+       \frac{1}{m}+\frac{1}{n}&=1.
+  \end{align*}
+  Then by Hölder inequality, we have 
+  \begin{align*}
+       \varphi(p)&=\int_X |f|^pd\mu\\
+              &=\int_X |f|^k\cdot |f|^ld\mu\\
+              &\leq (\int_X |f|^{km}d\mu)^{\frac{1}{m}}(\int_X |f|^{ln}d\mu)^{\frac{1}{n}}\\
+              &=(\int_X |f|^rd\mu)^\frac{1}{m}(\int_X |f|^sd\mu)^\frac{1}{n}\\
+              &= \varphi(r)^\frac{1}{m}\cdot \varphi(s)^\frac{1}{n}.
+  \end{align*}
+  Here \(r,s\in E\), so \(\varphi(r),\varphi(s)<\infty\). This implies that \(\varphi(p)<\infty\), and we can conclude that \(p\in E\).
+  \item Let \(\lambda\in [0,1]\) be a real number. Suppose \(x,y\) are in the interior of \(E\). Without loss of generality, we can assume \(x<y\). Then from (a), we know that \(\lambda x+(1-\lambda)y\in E\) for any \(\lambda\in [0,1]\). Note that \(\log\) is an increasing function and \(\lambda+(1-\lambda)=1\), by Hölder inequality, we have 
+  \begin{align*}
+       \log \varphi(\lambda x+(1-\lambda)y)&=\log \int_X |f|^{\lambda x+(1-\lambda)y}d\mu\\ 
+       &=\log \int_X |f|^{\lambda x}\cdot |f|^{(1-\lambda)y}d\mu\\
+       &\leq \log (\int_X |f|^{\lambda x\cdot \frac{1}{\lambda}}d\mu)^\lambda (\int_X |f|^{(1-\lambda)y\cdot (1-\lambda)}d\mu)^{1-\lambda}\\ 
+       &=\log(\varphi(x)^\lambda)+\log(\varphi(y)^{1-\lambda})\\
+       &=\lambda\log \varphi(x)+(1-\lambda)\log \varphi(y)
+  \end{align*}
+  This proves that \(\log \varphi\) is a convex function. 
+
+  We first show that \(\varphi\) is continuous on the interior of \(E\). We know that \(\log \varphi\) is convex on the interior of \(E\). Let \(g(x)=e^x\) be a convex and increasing function. Then \(g(\log \varphi)=\phi\) is still a convex function, and we know that convex function is continuous on the interior of \(E\). 
+
+  The set \(E\) is convex by (a). So \(E\) must be an interval or a single point. If \(E\) is just a single point, then \(\varphi\) is continuous automatically. Assume \(E\) is an interval. We have already proved \(\varphi\) is continuous on the interior of this interval, we only need to show that \(\varphi\) is continuous at the side. Assume \(E=[a,b]\) where \(0<a<b<\infty\). We need to prove that \(\varphi\) is continuous at \(a\) and \(b\). 
+  
+  Consider an increasing sequence 
+  \[b_1\leq b_2\leq \cdots\leq b_n\leq \cdots\]
+  with \(b_n\to b\) as \(n\to \infty\). We need to show that \(\varphi(b_n)\to \varphi(b)\), namely 
+  \[\lim_{n\to \infty}\int_X |f|^{b_n}d\mu=\int_X |f|^bd\mu.\]
+  It is easy to see that 
+  \[\lim_{n\to \infty}|f|^{b_n}=|f|^b.\]
+  Now consider the following set 
+  \[E:=\left\{ x\in X: |f|\leq 1 \right\}.\]
+  Since \(b_n\) is increasing, we know that \(|f(x)|^{b_n}\leq |f(x)|^{b_1}\) for all \(x\in E\) and \(|f(x)|^{b_n}\leq |f|^b\) for all \(x\in E^c\). Define a function 
+  \[g(x):=|f|^{b_1}\chi_{x\in E}+|f|^b\chi_{x\in E^c}.\]
+  Then we have \(|f(x)|\leq g(x)\) for all \(x\in X\) and 
+  \[\int_X gd\mu=\int_E |f|^{b_1}d\mu+\int_{E^c} |f|^bd\mu\leq \varphi(b_1)+\varphi(b)<\infty.\]
+  By Lebesgue Dominated Convergence Theorem, we have 
+  \[\lim_{n\to \infty}\int_X |f|^{b_n}d\mu=\int_X |f|^bd\mu.\]
+  This implies \(\varphi\) is continuous at \(b\).
+
+  The continuity of \(\varphi\) at the point \(a\) can be proved similarly using a decreasing sequence \(a_n\).
+  \item The set is an interval or a singleton. All intervals are possible. The following cases are all with Lebesgue measure.
+  \begin{enumerate}[(i)]
+    \item \(E\) is an open interval.
+    
+    Let \(X=(0,1)\) and \(f(x)=\frac{1}{x}\). For \(p\neq 1\), we have 
+    \[\int_0^1 \frac{1}{x^p}dx=\frac{x^{1-p}}{1-p}\Big|_0^1.\]
+    If \(0<p<1\), \(1-p>0\), so \(x^{1-p}\) evaluated at \(0\) is 0, so \((0,1)\subseteq E\). If \(p>1\), \(1-p<0\) and 
+    \[\lim_{x\to 0^+}x^{1-p}=+\infty.\]
+    So \((1,+\infty)\cap E=\varnothing\). For \(p=1\), we know that \(\frac{1}{x}\) is not integrable on \((0,1)\). This implies \(E=(0,1)\).
+
+    \item \(E\) is an interval which is open on the left and closed on the right.
+    
+    Let \(X=(0,\frac{1}{2})\) and \(f(x)=\frac{1}{x(\log x)^2}\). Define 
+    \[g(p)=x^p (\log x)^{2p},\ \ \ \ 0<p<+\infty.\]
+    \(g(p)\) is a nonnegative function on \((0,\frac{1}{2})\). We have 
+    \[g'(p)=px^{p-1}\cdot \frac{(\log x)^{2p}}{\log x}(\log x+2).\]
+    Note that \(\log x\) is negative on \((0,\frac{1}{2})\), and \(\log x+2>0\). This implies that \(g(p)\) is a decreasing function. When \(p=1\), we have 
+    \[\int_0^\frac{1}{2} \frac{dx}{x(\log x)^2}=\int_{-\infty}^{\log \frac{1}{2}}\frac{du}{u^2}=(\log 2)^{-1}<+\infty.\]
+    Moreover, for any \(0<p<1\), recall that \(g(p)\) is decreasing, we have 
+    \[\int_0^\frac{1}{2}\frac{dx}{x^p(\log x)^{2p}}=\int_0^\frac{1}{2}\frac{dx}{g(p)}\leq \int_0^\frac{1}{2}\frac{dx}{g(1)}=\int_0^\frac{1}{2}\frac{dx}{x(\log x)^2}<+\infty.\]
+    This implies that \((0,1]\subseteq E\). When \(p>1\), write \(p=1+s\) for some \(s>0\), then 
+    \[x^p(\log x)^{2p}=x\cdot x^s(\log x)^{2(1+s)}.\]
+    Note here when \(x\to 0^+\), \(x^s(\log x)^{2(1+s)}\to 0\), so there exists a constant \(M\) such that \(x^s(\log x)^{2(1+s)}<M\) for all \(x\in (0,\frac{1}{ })\), and we have 
+    \[\int_0^\frac{1}{2}\frac{dx}{x^p(\log x)^{2p}}\geq \frac{1}{M}\int_0^\frac{1}{2}\frac{dx}{x}=+\infty.\]
+    This implies that \(E=(0,1]\).
+
+    \item \(E\) is an interval which is closed on the left and open on the right.
+    
+    Let \(X=(e,+\infty)\) and \(f(x)=\frac{1}{x(\log x)^2}\). When \(p=1\), we have 
+    \[\int_e^{+\infty}\frac{dx}{x(\log x)^2}=\int_1^{+\infty}\frac{du}{u^2}<+\infty.\]
+    So \(1\in E\). When \(p>1\), note that on \((e,+\infty)\), \((\log x)^{2p}\) is an increasing function, so 
+    \[\int_e^{+\infty}\frac{dx}{x^p(\log x)^{2p}}\leq \int^{+\infty}_e \frac{dx}{x^p}\frac{e^{1-p}}{1-p}<+\infty.\]
+    This implies that \([1,+\infty)\subseteq E\). When \(0<p<1\), note that \(x^{p-1}(\log x)^{2p}\to 0\) when \(x\to +\infty\), so there exists a constant \(M\) such that \(x^{p-1}(\log x)^{2p}<M\) for all \(x\in (e,+\infty)\). This means 
+    \[x^p(\log x)^{2p}<Mx\]
+    on \((e,+\infty)\). Thus, we have 
+    \[\int_e^{+\infty}\frac{dx}{x^p(\log x)^{2p}}\geq \int_e^{+\infty}\frac{dx}{Mx}=+\infty.\]
+    This proves that \(E=[1,+\infty)\).
+    
+    \item \(E\) can be a singleton. 
+    
+    Let \(X=(0,+\infty)\) and 
+    \[f(x)=\frac{1}{x(\log x)^2}(\chi_{(0,\frac{1}{2})}(x)+\chi_{(e,+\infty)}(x)).\]
+    From what we proved above, we know that 
+    \[E=(0,1]\cap [1,+\infty]=\left\{ 1 \right\}.\]
+
+    \item \(E\) is a closed interval. 
+    
+
+    Let \(X=(0,+\infty)\). Write 
+    \begin{align*}
+         f_1(x)&=\frac{1}{x(\log x)^2},\\
+         f_2(x)&=\frac{1}{x^\frac{1}{2}|\log x|}.
+    \end{align*}
+    Let 
+    \[f(x)=f_2(x)\chi_{(0,\frac{1}{2})}(x)+f_1(x)\chi_{(e,+\infty)}(x).\]
+    From what we have seen above, 
+    \[E=(0,2]\cap [1,+\infty)=[1,2].\]
+  \end{enumerate}
+  \item Assume the opposite. Suppose \(||f||_p>||f||_r\) and \(||f||_p>||f||_s\). From (a), we have proved that
+  \[||f||_p^p\leq ||f||_r^{\frac{r(s-p)}{s-r}}||f||_s^{\frac{s(p-r)}{s-r}}.\]
+  From \(||f||_p>||f||_r\) and \(||f||_p>||f||_s\), we have 
+  \begin{align}
+    ||f||_r^{p(s-r)}&<||f||_p^{p(s-r)}\leq ||f||_r^{r(s-p)}||f||_s^{s(p-r)},\\
+    ||f||_s^{p(s-r)}&<||f||_p^{p(s-r)}\leq ||f||_r^{r(s-p)}||f||_s^{s(p-r)}.
+  \end{align}
+  This implies that 
+  \begin{align}
+    1<||f||_r^{s(r-p)}||f||_s^{s(p-r)}&=(\frac{||f||_s}{||f||_r})^{s(p-r)},\\
+    1<||f||_r^{r(s-p)}||f||_s^{r(p-s)}&=(\frac{||f||_r}{||f||_s})^{r(s-p)}.
+  \end{align}
+  Note that here \(s(p-r)>0\) and \(r(s-p)>0\), so we have shown that 
+  \[||f||_r>||f||_s\ \ \ \mathrm{and}\ \ \ ||f||_s>||f||_r.\]
+  This is a contradiction and we can conclude that 
+  \[||f||_p\leq \max(||f||_r,||f||_s).\]
+  If \(f\in L^r(\mu)\cap L^s(\mu)\), then 
+  \[||f||_p\leq \max(||f||_r,||f||_s)\leq +\infty.\]
+  This implies that \(f\in L^p(\mu)\), and we can see that \(L^r(\mu)\cap L^s(\mu)\subset L^p(\mu)\).
+  \item Fix a small \(\varepsilon>0\) such that \(||f||_\infty-\varepsilon>0\) (This is possible because \(||f||_\infty>0\)). Consider the following set 
+  \[E_\varepsilon:=\left\{ x\in X:|f(x)|\geq ||f||_\infty-\varepsilon \right\}.\]
+  We know that \(\mu(E_\varepsilon)>0\) by definition of essential supreme. Moreover, because \(||f||_r<+\infty\) for some \(r>0\), we have 
+  \[+\infty>||f||_r=(\int_X |f|^rd\mu)^\frac{1}{r}\geq (||f||_\infty-\varepsilon)\cdot \mu(E_\varepsilon)^\frac{1}{r}\]
+  This implies that \(0<\mu(E_\varepsilon)<+\infty\) for any small \(\varepsilon>0\). For any \(p>1\), we have 
+  \[||f||_p=(\int_X |f|^pd\mu)^\frac{1}{p}\geq (||f||_\infty-\varepsilon)\cdot \mu(E_\varepsilon)^\frac{1}{p}.\]
+  Let \(p\to +\infty\), we have 
+  \[\lim_{p\to \infty}||f||_p\geq ||f||_\infty-\varepsilon\]
+  for all small \(\varepsilon\). Let \(\varepsilon\to 0^+\), and we have proved that 
+  \[\lim_{p\to \infty}||f||_p\geq ||f||_\infty.\]
+  On the other hand, let 
+  \[A=\left\{ x\in X:|f(x)|\leq ||f||_\infty \right\}.\]
+  By definition of essential supreme, we know that \(\mu(A)=\mu(X)\), so for all \(p>r\) and \(p>1\), we have 
+  \begin{align*}
+       ||f||_p&=(\int_X |f|^{p-r}|f|^rd\mu)^\frac{1}{p}\\
+              &\leq ||f||_\infty^{\frac{p-r}{p}}\cdot (\int_X |f|^rd\mu)^{\frac{1}{r}\cdot \frac{r}{p}}\\
+              &=||f||_\infty^{\frac{p-r}{p}}\cdot ||f||_r^{\frac{r}{p}}
+  \end{align*}
+  Here \(||f||_r^{\frac{r}{p}}\) is a positive finite number, let \(p\to +\infty\), we have 
+  \[\lim_{p\to \infty}||f||_p\leq ||f||_\infty.\]
+  Thus, we can conclude that 
+  \[\lim_{p\to \infty}||f||_p=||f||_\infty.\]
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.10}
+Suppose \(f_n\in L^p(\mu)\) for \(n=1,2,\ldots\) and \(||f_n-f||_p\to 0\) and \(f_n\to g\) a.e. as \(n\to \infty\). What relation exists between \(f\) and \(g\)?
+\end{problem}
+\begin{solution}
+\(f=g\) almost everywhere on \(X\). To prove this, replace \(f_n\) with \(f_n-f\) and \(g-f\) with \(g\), the condition becomes \(||f||_p\to 0\) and \(f_n\to g\) a.e., we need to show that \(g=0\) a.e. We know that \(f_n\) is a Cauchy sequence in \(L^p(\mu)\), by Theorem 3.11, there exists a subsequence \(f_{n_i}\) such that 
+\[\lim_{i\to \infty}f_{n_i}(x)=f(x)\]
+almost everywhere for some \(f\in L^p(\mu)\) and \(||f_n-f||_p\to 0\). We know that \(||f_n||_p\to 0\), so \(f=0\) almost everywhere. And since we already have a limit \(f_n\to g\) almost everywhere. This implies \(f=g=0\) almost everywhere.
+
+\end{solution}
+
+\end{document}

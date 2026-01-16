@@ -27,6 +27,32 @@ where \(u\in R\) is a unit and \(x_1,\ldots,x_n\) are irreducible elements in \(
 
 \noindent\rule{7in}{2.8pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.4}
+Show that the composition of two composable morphism is a morphism. Show that morphisms having \(\mathbb{A}^1\) as target are just the regular functions.
+\end{problem}
+\begin{solution}
+Let \(\phi:X\rightarrow Y\) and \(\psi:Y\rightarrow Z\) be morphisms between prevarieties. Let \(U\subset Z\) be an open set and \(f\in \mathcal{O}_Z(U)\) is a regular function. Then \(f\circ \psi\) is a regular function on \(\psi^{-1}(U)\) since \(\psi \) is a morphism. Similarly, 
+\[f\circ (\psi\circ \phi)=(f\circ \psi)\circ \phi\]
+is a regular function on \((\psi\circ \phi)^{-1}(U)\). So \(\psi\circ \phi\) is a morphism. 
+
+Let \(\phi:X\rightarrow \mathbb{A}^1\) be a morphism. By lemma 3.37, we can choose an affine open cover \(\left\{ U_i \right\}_{i\in I}\) of X and prove \(\phi\) on each \(U_i\rightarrow \mathbb{A}_1\) is just regular functions in \(\mathcal{O}_X(U_i)\). This is true because on each affine \(U_i\), the regular functions are coming from the coordinate ring \(A(U_i)\), which can be viewed as maps from \(U_i\) to \(\mathbb{A}^1\), and it can be viewed as a morphism because composition of polynomials is still a polynomial. 
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.5}
+Let \(f\) be a regular function without zeros on the prevariety \(X\). Show that \(\frac{1}{f}\) is a regular function.
+\end{problem}
+\begin{solution}
+Choose an affine open cover \(\left\{ U_i \right\}_{i\in I}\). On each \(U_i\), \(f\) can be written as \(\frac{p_i}{q_i}\in k(U_i)\). Because \(f\) has no zeros, so \(\frac{q_i}{p_i}\) is also in \(k(U_i)\). For any \(i,j\in I\), \(\frac{q_i}{p_i}=\frac{q_j}{p_j}\) on \(U_i\cap U_j\) because \(\frac{p_i}{q_i}=\frac{p_j}{q_j}\) as \(f\) is a regular function on \(X\). This implies that we can patch it together and obtain a regular function \(\frac{1}{f}\) on \(X\).  
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 3.19
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}{3.19}

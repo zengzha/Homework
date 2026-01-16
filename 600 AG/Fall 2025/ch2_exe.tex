@@ -129,7 +129,7 @@ Let \(\mathfrak{m}_1,\mathfrak{m}_2\) be the corresponding maximal ideals at the
 
 \noindent\rule{7in}{2.8pt}
 
-\begin{comment}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 2.28
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,10 +148,32 @@ This implies that \(x=0,y=0\) and \(x=2,y=0\) are the only solutions, so
 \[Z(f,g)=\left\{ (0,0),(2,0) \right\}.\]
 Note that \(f=y^2-x^3+3x^2-2x\) and \(g=y^2+x^2-2x\). We claim that 
 \[(f,g)=(y^2,x-2)\cap (y^2-2x, x^2).\]
+First note that we can write 
+\begin{align*}
+     (f,g)&=(g-f,g)\\ 
+          &=(x^2(x-2),y^2+x^2-2x)
+\end{align*}
+We claim that 
+\[(x^2(x-2),y^2+x^2-2x)=(x^2,y^2+x^2-2x)\cap (x-2,y^2+x^2-2x).\]
+One direction \(\subseteq\) is clear. Conversely, suppose we have an element 
+\[f_1(y^2+x^2-2x)+g_1x^2=f_2(y^2+x^2-2x)+g_2(x-2)\]
+for some \(f_1,f_2,g_1,g_2\in k[x,y]\). Then 
+\[(f_1-f_2)y^2+g_1x^2=(f_2-f_1)(x^2-2x)+g_2(x-2).\]
+The right-hand side is divisible by \(x-2\), so the left-hand side is also divisible by \(x-2\). This implies that \((x-2)|g_1\) and \((x-2)|(f_1-f_2)\). Similarly, we can prove that \(x^2|g_2\). Thus, the claim is proved. 
 
+Rewrite 
+\begin{align*}
+     (y^2+x^2-2x,x-2)&=(y^2,x-2),\\
+     (y^2+x^2-2x,x^2)&=(y^2-2x,x^2).
+\end{align*}
+Note that 
+\begin{align*}
+     \sqrt{(y^2,x-2)}&=(y,x-2),\\ 
+     \sqrt{(y^2-2x,x^2)}&=(y,x).
+\end{align*} 
+are maximal, so both two ideals are primary and we obtain a primary decomposition 
+\[(f,g)=(y^2,x-2)\cap (y^2-2x, x^2).\]
 \end{solution}
 
-\noindent\rule{7in}{2.8pt}
-\end{comment}
 
 \end{document}

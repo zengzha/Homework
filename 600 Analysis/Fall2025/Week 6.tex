@@ -1,0 +1,155 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Week 6 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 616 - Real Analysis \hfill Term: Fall 2025 \\
+Instructor: Professor Weiyong He \hfill Due Date: Nov 12th, 2025 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.1}
+Let \(f\) be a nonnegative measurable function on a locally compact, Hausdoff space \(X\) with a positive Borel measure \(\mu\), such that \(f>0\) almost everywhere with respect to \(\mu\). Prove that for any \(\varepsilon>0\), there is a \(\delta=\delta(\varepsilon,f)>0\) such that if \(E\) is a measurable subset of \(X\) with \(\mu(E)>\varepsilon\), then \(\int_E fd\mu>\delta\).
+\end{problem}
+\begin{solution}
+Define for every \(n\geq 1\),
+\[A_n:=\left\{ x\in X:f(x)\geq \frac{1}{n} \right\}.\]
+Each \(A_n\) is measurable as \(f\) is a measurable function. It is easy to see that \(A_n\subset A_{n+1}\) for every \(n\) and 
+\[\lim_{n\to \infty}A_n=\bigcup_{n=1}^\infty A_n.\]
+Denote this limit \(A:=\bigcup_{n=1}^\infty A_n\). Since \(f>0\) almost everywhere on \(X\), we have \(\mu(X\setminus A)=0\), namely 
+\[\lim_{n\to \infty}\mu(A_n)=\mu(X).\]
+For any \(\varepsilon>0\), let \(E\) be any measurable set with \(\mu(E)>\varepsilon\). Note that 
+\[0\leq \mu(E\cap (X\setminus A))\leq \mu(X\setminus A)=0.\]
+This implies that 
+\begin{align*}
+     \mu(E)&=\mu(E\cap A)+\mu(E\cap (X\setminus A))\\[0.3em]
+           &=\mu(E\cap A)\\
+           &=\mu(E\cap \bigcup_{n=1}^\infty A_n)\\
+           &=\mu(\bigcup_{n=1}^\infty (E\cap A_n))\\
+           &>\varepsilon.
+\end{align*}
+Write \(E_n:=E\cap A_n\) and we have \(E_n\subset E_{n+1}\) for every \(n\). Then 
+\[\mu(\bigcup_{n=1}^\infty E_n)>\varepsilon.\]
+There exists an integer \(N>0\) such that 
+\[\mu(E_N)=m(E\cap A_N)>\frac{\varepsilon}{2}.\] 
+And note that 
+\[\int_A fd\mu\geq 0\]
+for any measurable subset \(A\subset X\) because \(f>0\) almost everywhere. This tells us that 
+\begin{align*}
+     \int_E fd\mu&=\int_{E\cap A_N}fd\mu+\int_{E\cap (X\setminus A_N)}fd\mu\\
+                 &\geq \frac{1}{N}\cdot \mu(E\cap A_N)\\
+                 &>\frac{\varepsilon}{2N}.
+\end{align*}
+We have proved that there exists \(\delta=\frac{\varepsilon}{2N}\), for any measurable set \(E\subset X\) with \(\mu(E)>\varepsilon\), we have 
+\[\int_E fd\mu>\delta.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.2}
+In this problem, \(m\) stands for the Lebesgue measure.
+\begin{enumerate}[(a)]
+  \item For any \(\alpha\in (0,1)\), construct an open dense set \(V\subset [0,1]\) such that \(m(V)=\alpha\).
+  \item Let \(E\) be a measurable set of \(\mathbb{R}\) with \(m(E)>0\). For any \(\alpha\in (0,1)\), there exists an open interval \(I\) such that \(m(E\cap I)>\alpha m(I)\).
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item For any \(\alpha\in (0,1)\), we do a Cantor-like construction on the closed interval \([0,1]\). 
+  
+  Let \(V_1\) be an open interval centered at \(\frac{1}{2}\) with length \(\frac{\alpha}{2}\). The set \(E_1=[0,1]\setminus V_1\) is the union of 2 disjoint closed interval. 
+
+  In each of the closed interval in \(E_1\), take the open interval centered at the center of the closed interval with length \(\frac{\alpha}{8}\). Let \(V_2\) be the union of these 2 open intervals, and we can see that \(m(V_2)=\frac{\alpha}{4}\). The set \(E_2=[0,1]\setminus(V_1\cup V_2)\) is the union of 4 disjoint closed intervals.
+
+  Repeat the above steps. For a general \(n\), \(E_{n-1}\) is the disjoint union of \(2^{n-1}\) closed intervals. In each closed interval, we take the centered open interval with length \(\frac{\alpha}{2^{2n-1}}\), and let \(V_n\) be the union of all \(2^{n-1}\) open intervals, and it is not hard to see that 
+  \[m(V_n)=\frac{\alpha}{2^{2n-1}}\cdot 2^{n-1}=\frac{\alpha}{2^n}.\]
+
+  Note that \(V_i\cap V_j=\varnothing\) for \(i\neq j\). Thus, take \(V:=\bigcup_{n=1}^\infty V_n\) and we have
+  \[m(V)=m(\bigcup_{n=1}^\infty)=\sum_{n=1}^{\infty}m(V_n)=\sum_{n=1}^{\infty}\frac{\alpha}{2^n}=\alpha.\]
+  It is obvious \(V\) is open in \([0,1]\) because it is the countable union of open interval. For every point \(x\in [0,1]\setminus V\), \(x\) must be the endpoint of an open interval in \(V\), so it is a limit point of \(V\). This implies that \(V\) is dense in \([0,1]\). Hence, we can conclude that \(V\) is an open dense set in \([0,1]\) with \(m(V)=\alpha\).
+  \item We first assume \(0<m(E)<+\infty\). Assume the opposite that for any open interval \(I\subset \mathbb{R}\), we have 
+  \[m(E\cap I)\leq \alpha m(I).\]
+  By the outer regularity of Lebesgue measure, for any \(\varepsilon>0\), there exists an open set \(V\supset E\) such that 
+  \[0<m(E)<m(V)<m(E)+\varepsilon.\]
+  Note that the open set \(V\) can be written as 
+  \[E=\bigcup_{n=1}^\infty I_n\]
+  where every \(I_n\) is an open interval and \(I_i\cap I_j=\varnothing\) for \(i\neq j\). Then 
+  \begin{align*}
+       m(E)&=m(V\cap E)\\
+           &=m(\bigcup_{n=1}^\infty (I_n\cap E))\\
+           &=\sum_{n=1}^{\infty}m(I_n\cap E)\\
+           &\leq \sum_{n=1}^{\infty} \alpha m(I_n)\\
+           &=\alpha m(V)\\
+           &<\alpha m(E)+\alpha \varepsilon.
+  \end{align*}
+  Let \(\varepsilon\to 0\), and we obtain \(0<m(E)<\alpha m(E)\). A contradiction. 
+
+  Now assume \(m(E)=+\infty\). Take \(E':=E\cap [-N,N]\) for sufficiently large \(N\) such that \(0<m(E')<+\infty\). By the above proof that there exists an open interval \(I\) such that 
+  \[m(E\cap I)\geq m(E'\cap I)>\alpha m(I).\]
+\end{enumerate}
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 6.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{6.3}
+Let \(f(x)=\frac{\sin x}{x}\) (clearly \(f(0)=1\)) for \(x\in \mathbb{R}\).
+\begin{enumerate}[(a)]
+  \item Prove that \(f(x)\) is not an \(L^1\) function on \(\mathbb{R}\). That is 
+  \[\int_\mathbb{R}|f|dm=\infty.\]
+  \item Justify that, on the other hand, the improper integral \(\int_0^\infty fdx\) is well defined.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[(a)]
+  \item We have 
+  \begin{align*}
+       \int_\mathbb{R}|f|dm&=\sum_{k=0}^{\infty} \int_{2k\pi}^{(2k+2)\pi}\frac{|\sin x|}{x}dx\\ 
+                           &\geq \sum_{k=0}^{\infty} \frac{1}{(2k+2)\pi}\int_0^{2\pi}|\sin x|dx\\
+                           &=C\sum_{k=0}^{\infty}\frac{1}{k+1}
+  \end{align*}
+  where 
+  \[C=\frac{1}{2\pi}\int_0^{2\pi}|\sin x|dx\]
+  is a finite positive constant. We know the series \(\sum_{k=0}^{\infty}\frac{1}{k+1}\) diverges. So 
+  \[\int_\mathbb{R}|f|dm=+\infty.\]
+  \item We need to show that 
+  \[\lim_{A\to +\infty}\int_0^A \frac{\sin x}{x}dx\]
+  exists and is finite. Suppose \(A>2\pi\). We can write 
+  \[\int_0^A\frac{\sin x}{x}dx=\int_0^{2\pi}\frac{\sin x}{x}dx+\int_{2\pi}^A\frac{\sin x}{x}dx.\]
+  Note that the function \(\frac{\sin x}{x}\) is continuous and bounded on the closed interval \([0,2\pi]\), so 
+  \[\int_0^{2\pi}\frac{\sin x}{x}dx\]
+  is a finite value. On the other hand, we have 
+  \begin{align*}
+       \int_{2\pi}^A \frac{\sin x}{x}dx&=\int_{2\pi}^A \frac{d(-\cos x)}{x}\\ 
+                                       &=\frac{-\cos x}{x}\Big|_{2\pi}^A-\int_{2\pi}^A \frac{\cos x}{x^2}dx\\
+                                       &=-\frac{\cos A}{A}-\frac{1}{2\pi}-\int_{2\pi}^A \frac{\cos x}{x^2}dx.
+  \end{align*}
+  Write 
+  \[C=\int_0^{2\pi}\frac{\sin x}{x}dx-\frac{1}{2\pi}\]
+  to be a constant, and thus, 
+  \begin{align*}
+       \lim_{A\to \infty}\int_0^A \frac{\sin x}{x}dx&=C-\lim_{A\to \infty}(\frac{\cos A}{A}+\int_{2\pi}^A \frac{\cos x}{x^2}dx)\\ 
+       &=C-\lim_{A\to \infty}\int_{2\pi}^A \frac{\cos x}{x^2}dx
+  \end{align*}
+  Note that 
+  \[\int_{2\pi}^\infty \frac{|\cos x|}{x^2}dx\leq \int_{2\pi}^\infty \frac{1}{x^2}dx=\frac{1}{2\pi}.\]
+  So \(\frac{\cos x}{x}\in L^1\) and 
+  \[\lim_{A\to \infty}\int_{2\pi}^A \frac{\cos x}{x^2}dx\]
+  exists. This proves that \(\int_0^\infty \frac{\sin x}{x}dx\) is finite. 
+\end{enumerate}
+\end{solution}
+
+\end{document}

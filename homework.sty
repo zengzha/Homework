@@ -11,7 +11,8 @@
 \newtheorem{corollary}{Corollary}
 \usepackage{graphicx}
 \usepackage{subcaption}
-\usepackage{tikz}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
 \usepackage[scr=boondox,  % heavily sloped
             cal=esstix]   % slightly sloped
            {mathalpha}
@@ -22,6 +23,8 @@
 \usepackage{bbm}
 \usepackage{pdfpages}
 \usepackage{transparent}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 
 \usepackage{array}
@@ -97,7 +100,7 @@
 %\renewcommand{\mathbb}{\amsmathbb}
 \newcommand{\colim}{\text{colim}}
 \newcommand{\otherwise}{\text{otherwise}}
-\newcommand{\coker}{\text{coker}\,}
+\newcommand{\coker}{\mathrm{coker}\,}
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\ti}[1]{\widetilde{#1}}
 \newcommand{\Stab}{\text{Stab}}
@@ -120,5 +123,8 @@
 \newcommand{\Tor}{\text{Tor}}
 \newcommand{\Ext}{\text{Ext}}
 \newcommand{\Gr}{\text{Gr}}
-
+\newcommand{\Tot}{\mathrm{Tot}}
+\newcommand{\coim}{\mathrm{coim}}
+\newcommand{\cone}{\mathrm{cone}}
+\newcommand{\spec}{\mathrm{Spec}\,}
 \endinput
