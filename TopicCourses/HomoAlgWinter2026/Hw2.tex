@@ -1,0 +1,314 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework 2}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 607 - Homological Algebra \hfill Term: Winter 2026 \\
+Instructor: Professor Alexander Polishchuk \hfill Due Date: Jan 28th, 2026 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.2.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.2.1}
+Show that a chain complex \(P\) is a projective object in \(\mathcal{Ch}\) if and only if it is a split exact complex of projectives. 
+\end{problem}
+\begin{solution}
+Suppose the chain complex \(P_\bullet\) is a projective object in \(\mathcal{Ch}\). We first prove that for any \(n\), \(P_n\) is a projective object. Consider a surjection in the abelian category and suppose we have a map \(P_n\rightarrow B\) 
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMSwiQiJdLFsxLDAsIlBfbiJdLFsyLDEsIjAiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwxXSxbMSwzXV0=
+\[\begin{tikzcd}
+    & {P_n} \\
+    A & B & 0
+    \arrow[from=1-2, to=2-2]
+    \arrow[two heads, from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+  \end{tikzcd}\]
+Now view \(A\) and \(B\) as complexes concentrated at degree \(n\), we obtain a diagram of chain complexes
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMSwiQiJdLFsxLDAsIlBfXFxidWxsZXQiXSxbMiwxLCIwIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMV0sWzEsM11d
+\[\begin{tikzcd}
+    & {P_\bullet} \\
+    A & B & 0
+    \arrow[from=1-2, to=2-2]
+    \arrow[two heads, from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+  \end{tikzcd}\]
+By projectivity of \(P_\bullet\) in \(\mathcal{Ch}\), there exists a map \(P_\bullet\rightarrow A\) such that the diagram commutes. Take the map \(P_n\rightarrow A\), and we have a commutative diagram in the original abelian category. This implies \(P_n\) is projective for any \(n\). To see that \(P_\bullet\) is split exact, consider the short exact sequence
+\[0\rightarrow P\xrightarrow{j} \cone(P)\rightarrow P[-1]\rightarrow 0\]
+We know that \(P\) is projective in \(\mathcal{Ch}\), so \(P[-1]\) is also projective in \(\mathcal{Ch}\), thus the short exact sequence splits. There exists a map \(k:\cone(P)\rightarrow P\) such that \(k\circ j=id_P\). By exercise 1.5.2, this implies that \(id_P\) is nullhomotopic. By exercise 1.4.3, we know that \(P_\bullet\) is a split exact complex of projectives.
+
+Conversely, suppose \(P_\bullet\) is a split exact complex of projectives. First consider \(P_\bullet\) is of the following form 
+\[0\rightarrow P_n\xrightarrow{\cong} P_{n-1}\rightarrow 0\]
+Let \(f_\bullet:A_\bullet\rightarrow B_\bullet\) be levelwise surjection and we have a map \(\varphi:P_\bullet\rightarrow B_\bullet\), namely a commutative diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJBX24iXSxbMiwxLCJBX3tuLTF9Il0sWzEsMiwiQl9uIl0sWzMsMiwiQl97bi0xfSJdLFsxLDAsIlBfbiJdLFszLDAsIlBfe24tMX0iXSxbMCwxLCJkX0EiXSxbMCwyLCJmX24iLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJkX0IiLDJdLFsxLDMsImZfe24tMX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCwyLCJcXHZhcnBoaV9uIl0sWzUsMywiXFx2YXJwaGlfe24tMX0iXSxbNCw1LCJwIl1d
+\[\begin{tikzcd}
+    & {P_n} && {P_{n-1}} \\
+    {A_n} && {A_{n-1}} \\
+    & {B_n} && {B_{n-1}}
+    \arrow["p", from=1-2, to=1-4]
+    \arrow["{\varphi_n}", from=1-2, to=3-2]
+    \arrow["{\varphi_{n-1}}", from=1-4, to=3-4]
+    \arrow["{d_A}", from=2-1, to=2-3]
+    \arrow["{f_n}"', two heads, from=2-1, to=3-2]
+    \arrow["{f_{n-1}}", two heads, from=2-3, to=3-4]
+    \arrow["{d_B}"', from=3-2, to=3-4]
+  \end{tikzcd}\]
+By projectivity of \(P_n\), there exists a map \(g_n:P_n\rightarrow A_n\) such that \(f_n\circ g_n=\varphi_n\). Note that \(p\) is an isomorphism, we define 
+\[g_{n-1}=d_A\circ g_n\circ p^{-1}:P_{n-1}\rightarrow A_{n-1}.\]
+We have \(g_{n-1}\circ p=d_A\circ g_n\) by definition. Moreover, we have 
+\begin{align*}
+     f_{n-1}\circ g_{n-1}&=(f_{n-1}\circ d_A)\circ g_n\circ p^{-1}\\
+                         &=d_B\circ (f_n\circ g_n)\circ p^{-1}\\
+                         &=d_B\circ \varphi_n\circ p^{-1}\\
+                         &=\varphi_{n-1}\circ p\circ p^{-1}\\
+                         &=\varphi_{n-1}.
+\end{align*}
+This implies we have a commutative diagram 
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJBX24iXSxbMiwxLCJBX3tuLTF9Il0sWzEsMiwiQl9uIl0sWzMsMiwiQl97bi0xfSJdLFsxLDAsIlBfbiJdLFszLDAsIlBfe24tMX0iXSxbMCwxLCJkX0EiXSxbMCwyLCJmX24iLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJkX0IiLDJdLFsxLDMsImZfe24tMX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCwyLCJcXHZhcnBoaV9uIl0sWzUsMywiXFx2YXJwaGlfe24tMX0iXSxbNCw1LCJwXFwgXFwgXFxjb25nIl0sWzQsMCwiZ19uIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMSwiZ197bi0xfSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+    & {P_n} && {P_{n-1}} \\
+    {A_n} && {A_{n-1}} \\
+    & {B_n} && {B_{n-1}}
+    \arrow["{p\ \ \cong}", from=1-2, to=1-4]
+    \arrow["{g_n}"', dashed, from=1-2, to=2-1]
+    \arrow["{\varphi_n}", from=1-2, to=3-2]
+    \arrow["{g_{n-1}}"', dashed, from=1-4, to=2-3]
+    \arrow["{\varphi_{n-1}}", from=1-4, to=3-4]
+    \arrow["{d_A}", from=2-1, to=2-3]
+    \arrow["{f_n}"', two heads, from=2-1, to=3-2]
+    \arrow["{f_{n-1}}", two heads, from=2-3, to=3-4]
+    \arrow["{d_B}"', from=3-2, to=3-4]
+  \end{tikzcd}\]
+So 
+\[0\rightarrow P_n\xrightarrow{\cong} P_{n-1}\rightarrow 0\]
+is a projective object in \(\mathcal{Ch}\). In general, consider a split exact complex of projectives 
+\[\cdots\rightarrow P_{n+1}\xrightarrow{d_{n+1}}P_n\xrightarrow{d_n}P_{n-1}\rightarrow \cdots\]
+The split exactness implies that \(P_n=\ker d_n\oplus (P_n/\ker d_n)\), and we have an isomorphism
+\[P_n/\ker d_n\xrightarrow{\cong} \im d_n\cong \ker d_{n-1}\]
+Note that \(\ker d_n\) is projective as it is a summand of a projective module \(P_n\). This implies that the split exact complex \(P_\bullet\) of projectives can be written as sums of 
+\[P(n):0\rightarrow P_n/\ker d_n\xrightarrow{\cong }\ker d_{n-1}\rightarrow 0\]
+Namely, \(P_\bullet\cong \bigoplus_{n\in \mathbb{Z}}P(n)\). We have proved that \(P(n)\) is a projective object in \(\mathcal{Ch}\) for all \(n\in \mathbb{Z}\). So \(P\) is also a projective object.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.2 (Preserving derived functors)}
+If \(U:\mathcal{B}\rightarrow \mathcal{C}\) is an exact functor, show that 
+\[U(L_iF)\cong L_i(UF).\]
+\end{problem}
+\begin{solution}
+Let \(A\) be an object in the abelian category. Consider a projective resolution of \(A\):
+\[\cdots\rightarrow P_1\rightarrow P_0\rightarrow A\rightarrow 0.\]
+We know that \((L_iF)(A)\) is the \(i\)th homology of the complex 
+\[\cdots\rightarrow F(P_i)\rightarrow F(P_{i-1})\rightarrow \cdots\]
+and \((L_iUF)(A)\) is the \(i\)th homology of the complex 
+\[\cdots\rightarrow UF(P_i)\rightarrow UF(P_{i-1})\rightarrow \cdots\]
+To show that \(U(L_iF)(A)\cong (L_iUF)(A)\), it is the same as showing taking homology of a complex commutes with applying an exact functor \(U\). And it is equivalent as showing that \(U\) preserves kernels and cokernels. We show that \(U\) preserves kernels, the other part is completely analogous. Let \(f:A\rightarrow B\) be a map and consider the following exact sequence
+\[0\rightarrow \ker f\rightarrow A\xrightarrow{f}B\]
+Since \(U\) is exact, we have an exact sequence
+\[0\rightarrow U\ker f\rightarrow UA\xrightarrow{Uf}UB \]
+This implies that 
+\[U\ker f\cong \ker Uf.\]
+So \(U\) preserves kernels.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.4.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.4.3 (Dimension shifting)}
+If \(0\rightarrow M\rightarrow P\rightarrow A\rightarrow 0\) is exact with \(P\) projective (or \(F\)-acyclic), show that \(L_iF(A)\cong L_{i-1}F(M)\) for \(i\geq 2\) and that \(L_1F(A)\) is the kernel of \(F(M)\rightarrow F(P)\). More generally, show that if 
+\[0\rightarrow M_m\rightarrow P_m\rightarrow P_{m-1}\rightarrow \cdots\rightarrow P_0\rightarrow A\rightarrow 0\] 
+is exact with the \(P_i\) projective (or \(F\)-acyclic), then \(L_iF(A)\cong L_{i-m-1}F(M_m)\) for \(i\geq m+2\) and \(L_{m+1}F(A)\) is the kernel of \(F(M_m)\rightarrow F(P_m)\). Conclude that if \(P\rightarrow A\) is an \(F\)-acyclic resolution of \(A\), then \(L_iF(A)=H_i(F(P))\). 
+\end{problem}
+\begin{solution}
+From the short exact sequence
+\[0\rightarrow M\rightarrow P\rightarrow A\rightarrow 0,\]
+we get a long exact sequence
+% https://q.uiver.app/#q=WzAsOSxbMywyLCIwIl0sWzIsMiwiRihBKSJdLFsxLDIsIkYoUCkiXSxbMCwyLCJGKE0pIl0sWzIsMSwiTF8xRihBKSJdLFsxLDEsIkxfMUYoUCkiXSxbMCwxLCJMXzFGKE0pIl0sWzIsMCwiTF8yRihBKSJdLFsxLDAsIlxcY2RvdHMiXSxbOCw3XSxbNyw2XSxbNiw1XSxbNSw0XSxbNCwzXSxbMywyXSxbMiwxXSxbMSwwXV0=
+\[\begin{tikzcd}
+    & \cdots & {L_2F(A)} \\
+    {L_1F(M)} & {L_1F(P)} & {L_1F(A)} \\
+    {F(M)} & {F(P)} & {F(A)} & 0
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-3, to=2-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-3, to=3-1]
+    \arrow[from=3-1, to=3-2]
+    \arrow[from=3-2, to=3-3]
+    \arrow[from=3-3, to=3-4]
+  \end{tikzcd}\]
+Here \(P\) is  projective or \(F\)-acyclic, so \(L_iF(P)=0\) for all \(i>0\). Thus, by exactness, \(L_iF(A)\cong L_{i-1}F(M)\) for \(i\geq 2\) and 
+\[L_1F(A)\cong \ker (F(M))\rightarrow F(P).\]
+More generally, suppose we have an exact complex
+\[0\rightarrow M_m\xrightarrow{f}P_m\xrightarrow{d_m}\cdots\xrightarrow{d_1}P_0\xrightarrow{d_0}A\rightarrow 0.\]
+We have a short exact sequence
+\[0\rightarrow \ker d_0\rightarrow P_0\rightarrow A\rightarrow 0.\]
+From what we proved above, we obtain that 
+\begin{align*}
+     L_iF(A)&\cong L_{i-1}F(\ker d_0),\iif i\geq 2,\\
+     L_1F(A)&\cong \ker (F(\ker d_0)\rightarrow F(P_0)).
+\end{align*}
+Now consider the short exact sequence
+\[0\rightarrow \ker d_1\rightarrow P_1\xrightarrow{d_1}\im d_1\rightarrow 0\]
+By exactness, \(\im d_1\cong \ker d_0\) and we obtain that 
+\begin{align*}
+     L_iF(A)&\cong L_{i-1}F(\ker d_0)\cong L_{i-2}F(\ker d_1),\iif i\geq 3,\\
+     L_2F(A)&\cong L_1F(\ker d_0)\cong \ker (F(\ker d_1)\rightarrow F(P_1)).
+\end{align*}
+Repeat this process. Note that \(M_m\cong \ker d_m\), so we get 
+\begin{align*}
+     L_iF(A)&\cong L_{i-m-1}F(M_m),\iif i\geq m+2,\\
+     L_{m+1}F(A)&\cong \ker(F(M_m)\rightarrow F(P_m)).
+\end{align*}
+Suppose 
+\[\cdots\rightarrow P_1\rightarrow P_0\rightarrow A\rightarrow 0\]
+is a \(F\)-acyclic resolution of \(A\). Since \(F\) is right exact, we have
+\[F(P_1)\rightarrow F(P_0)\rightarrow F(A)\rightarrow 0\]
+is still exact, so 
+\[F(A)\cong L_0F(A)\cong H_0(F(P_\bullet)).\]
+For any \(i\geq 0\), we have an exact sequence
+\[0\rightarrow M_i\rightarrow P_i\rightarrow P_{i-1}\rightarrow\cdots\rightarrow P_0\rightarrow A\rightarrow 0\]
+where \(M_i=\ker(P_i\rightarrow P_{i-1})\). From what we have proved above, we get 
+\[L_{i+1}F(A)\cong \ker (F(M_i)\rightarrow F(P_i)).\]
+On the other hand, note that by exactness 
+\[M_i=\ker(P_i\rightarrow P_{i-1})\cong \im (P_{i+1}\rightarrow P_i).\]
+So we have an exact sequence
+\[\cdots\rightarrow P_{i+2}\rightarrow P_{i+1}\rightarrow M_i\rightarrow 0.\]
+Since \(F\) is right exact, we have 
+\[F(M_i)\cong \coker (F(P_{i+2})\rightarrow F(P_{i+1}))\cong F(P_{i+1})/\im (F(P_{i+2})\rightarrow F(P_{i+1})).\]
+Thus, for \(i\geq 0\), we get 
+\[L_{i+1}F(A)\cong \ker (F(P_{i+1})/\im (F(P_{i+2})\rightarrow F(P_{i+1}))\rightarrow F(P_i))\cong H_{i+1}(F(P_\bullet)).\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.1.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.1.2}
+Suppose that \(R\) is a commutative domain with field of fractions \(F\). Show that \(\Tor_1^R(F/R,B)\) is the torsion submodule 
+\[\left\{ b\in B:\exists r\neq 0, rb=0 \right\}\] 
+of \(B\) for every \(R\)-module \(B\).
+\end{problem}
+\begin{solution}
+Note that fraction field \(F\) as an \(R\)-module is flat since it is the localization of \(R\). So the short exact sequence
+\[0\rightarrow R\rightarrow F\rightarrow F/R\rightarrow 0\]
+is a flat resolution of \(F/R\). Apply \(-\otimes_R B\), we obtain a complex 
+\[0\rightarrow B\xrightarrow{b\mapsto 1\otimes b} F\otimes_R B\rightarrow 0.\]
+So 
+\[\Tor_1^R(F/R,B)=\ker (B\rightarrow F\otimes_R B).\]
+Let \(T\) be the torsion submodule 
+\[T=\left\{ b\in B:\exists r\neq 0, rb=0 \right\}.\]
+We claim \(T=\ker (B\rightarrow F\otimes_R B)\). Indeed, for any \(b\in T\), there exists  nonzero \(r\in R\) such that \(rb=0\). Thus, we have
+\[1\otimes b=r\cdot \frac{1}{r}\otimes b=\frac{1}{r}\otimes rb=0.\]
+So \(T\subset \ker(B\rightarrow F\otimes_R B)\). On the other hand, suppose \(1\otimes b=0\) for some \(b\in B\), then there exists \(0\neq r\in R\) such that \(rb=0\). Hence, we can conclude that 
+\[\Tor_1^R(F/R,B)=\left\{ b\in B:\exists r\neq 0, rb=0 \right\}.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.1.3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.1.3}
+Show that \(\Tor_1^R(R/I,R/J)\cong \frac{I\cap J}{IJ}\) for every right ideal \(I\) and left ideal \(J\) of \(R\). In particular, \(\Tor_1(R/I,R/I)\cong I/I^2\) for every 2-sided ideal \(I\).
+\end{problem}
+\begin{solution}
+Consider the short exact sequence
+\[0\rightarrow I\rightarrow R\rightarrow R/I\rightarrow 0.\]
+We have a long exact sequence for Tor:
+\[\cdots\rightarrow \Tor_1(R,R/J)\rightarrow \Tor_1(R/I,R/J)\rightarrow I\otimes R/J\rightarrow R\otimes R/J\rightarrow \cdots\]
+Note that \(\Tor_1(R,R/J)=0\) as \(R\) is free. So 
+\[\Tor_1(R/I,R/J)=\ker (I\otimes R/J\rightarrow R\otimes R/J)\]
+where the map is induced by the inclusion \(I\rightarrow R\). Now consider the following map between short exact sequence 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIklKIl0sWzIsMCwiSSJdLFszLDAsIklcXG90aW1lcyBSL0oiXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkoiXSxbMiwxLCJSIl0sWzMsMSwiUlxcb3RpbWVzIFIvSiJdLFs0LDEsIjAiXSxbMCwxXSxbMCw1XSxbNSw2XSxbMSwyXSxbMSw2XSxbNiw3XSxbMiw3XSxbMiwzXSxbNyw4XSxbMyw4XSxbMyw0XSxbOCw5XSxbNCw5XV0=
+\[\begin{tikzcd}
+    0 & IJ & I & {I\otimes R/J} & 0 \\
+    0 & J & R & {R\otimes R/J} & 0
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-3, to=1-4]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-4, to=1-5]
+    \arrow[from=1-4, to=2-4]
+    \arrow[from=1-5, to=2-5]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-3, to=2-4]
+    \arrow[from=2-4, to=2-5]
+  \end{tikzcd}\]
+Let \(K=\ker (I\otimes R/J\rightarrow R\otimes R/J)\) and note that the map \(I\rightarrow R\) is injective, by the Snake Lemma, we have an exact sequence
+\[0\rightarrow K\rightarrow J/IJ\xrightarrow{\varphi} R/I\rightarrow \cdots\]
+So \(K=\ker (\varphi:J/IJ\rightarrow R/I)\) where \(\varphi\) is induced by the square 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJJSiJdLFsxLDAsIkoiXSxbMCwxLCJJIl0sWzEsMSwiUiJdLFsyLDAsIkovSUoiXSxbMiwxLCJSL0kiXSxbMCwyXSxbMiwzXSxbMCwxXSxbMSwzXSxbMSw0LCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw1LCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJcXHZhcnBoaSJdXQ==
+\[\begin{tikzcd}
+    IJ & J & {J/IJ} \\
+    I & R & {R/I}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[two heads, from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow["\varphi", from=1-3, to=2-3]
+    \arrow[from=2-1, to=2-2]
+    \arrow[two heads, from=2-2, to=2-3]
+  \end{tikzcd}\]
+Consider the map \(f:J\rightarrow R/I\). \(IJ\) is in the \(\ker f\), so the map \(\varphi\) is induced by \(f\), namely we have a commutative square 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJKIl0sWzEsMCwiUi9JIl0sWzAsMSwiSi9JSiJdLFswLDJdLFswLDEsImYiXSxbMiwxLCJcXHZhcnBoaSIsMl1d
+\[\begin{tikzcd}
+    J & {R/I} \\
+    {J/IJ}
+    \arrow["f", from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["\varphi"', from=2-1, to=1-2]
+  \end{tikzcd}\]
+It is not hard to see that \(\ker f=I\cap J\), so \(\ker \varphi=\ker f/IJ=I\cap J/IJ\). This implies that 
+\[\Tor_1^R(R/I,R/J)=\frac{I\cap J}{IJ}.\]
+In particular, when \(I=J\) as two-sided ideals, we obtain 
+\[\Tor_1^R(R/I,R/I)=I/I^2.\]
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.2.2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.2.2}
+Show that if \(0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0\) is exact and both \(B\) and \(C\) are flat, then \(A\) is also flat. 
+\end{problem}
+\begin{solution}
+For any \(R\)-module \(M\), the short exact sequence 
+\[0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0\]
+induces a long exact sequence in Tor 
+% https://q.uiver.app/#q=WzAsMTEsWzAsMywiQVxcb3RpbWVzIE0iXSxbMSwzLCJCXFxvdGltZXMgTSJdLFsyLDMsIkNcXG90aW1lcyBNIl0sWzMsMywiMCJdLFsyLDIsIlxcVG9yXzEoQyxNKSJdLFsxLDIsIlxcVG9yXzEoQixNKSJdLFswLDIsIlxcVG9yXzEoQSxNKSJdLFsyLDEsIlxcVG9yXzIoQyxNKSJdLFsxLDEsIlxcVG9yXzIoQixNKSJdLFswLDEsIlxcVG9yXzIoQSxNKSJdLFsyLDAsIlxcY2RvdHMiXSxbMTAsOV0sWzksOF0sWzgsN10sWzcsNl0sWzYsNV0sWzUsNF0sWzQsMF0sWzAsMV0sWzEsMl1d
+\[\begin{tikzcd}
+    && \cdots \\
+    {\Tor_2(A,M)} & {\Tor_2(B,M)} & {\Tor_2(C,M)} \\
+    {\Tor_1(A,M)} & {\Tor_1(B,M)} & {\Tor_1(C,M)} \\
+    {A\otimes M} & {B\otimes M} & {C\otimes M} & 0
+    \arrow[from=1-3, to=2-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-3, to=3-1]
+    \arrow[from=3-1, to=3-2]
+    \arrow[from=3-2, to=3-3]
+    \arrow[from=3-3, to=4-1]
+    \arrow[from=4-1, to=4-2]
+    \arrow[from=4-2, to=4-3]
+  \end{tikzcd}\]
+Since \(B\) and \(C\) are flat, we have 
+\[\Tor_i(B,M)=\Tor_i(C,M)=0\]
+for any \(i>0\). This implies that 
+\[\Tor_i(A,M)=0\]
+for any \(i>0\). So \(A\) is a flat \(R\)-module. 
+\end{solution}
+
+
+\end{document}

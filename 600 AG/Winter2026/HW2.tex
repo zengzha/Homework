@@ -26,6 +26,29 @@ given by the quotient map. We know that prime ideals in \(R\) corresponds to pri
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+%\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.7.8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.7.8}
+Let \(A\) be a Noetherian ring. Show that \(X=\spec A\) is a finite set, and the topology is the discrete topology if and only if \(A\) is an Artinian ring.
+\end{problem}
+\begin{solution}
+\(X\) having the discrete topology means that for any \(x\in X\), the set \(\left\{ x \right\}\) is closed, so this is equivalent to that every prime ideal in \(A\) is maximal. We first prove a very useful claim.
+
+\begin{claim}
+  Suppose in a ring \(A\), the zero ideal \((0)\) can be written as the product of finitely many maximial ideals, then \(A\) is Noetherian if and only id \(A\) is Artinian. 
+\end{claim}
+\begin{claimproof}
+  Suppose \((0)=\mathfrak{m}_1\cdots \mathfrak{m}_n\) where \(\mathfrak{m}_1,\ldots,\mathfrak{m}_n\) are maximal ideals. Consider the following finite sequence
+  \[A\supset \mathfrak{m_1}\supset \mathfrak{m}_1 \mathfrak{m}_2\supset\cdots\supset \mathfrak{m}_1\cdots \mathfrak{m}_n=(0).\]
+  For any \(1\leq t\leq n\), the factor \(\mathfrak{m}_1\cdots \mathfrak{m}_t/\mathfrak{m}_1 \cdots \mathfrak{m}_{t+1}\) is a vector space over the field \(A/\mathfrak{m}_{t+1}\). 
+\end{claimproof}
+
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Exercise 2.7.9
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,6 +62,26 @@ Conversely, suppose \(D(f)=\varnothing\). This implies that \(f\in \mathfrak{p}\
 \end{solution}
 
 \noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 2.7.10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2.7.10}
+Show that the ideal \(\mathfrak{m}=(x,y-1)\) in \(A=\mathbb{R}[x,y]/(x^2+y^2-1)\) is not principal.
+\end{problem}
+\begin{solution}
+We calculate that 
+\[\mathfrak{m}^2=(x^2,(y-1)^2,x(y-1))=(1-y^2,x(y-1),(y-1)^2).\]
+It is easy to see that \(\mathfrak{m}^2\subset (y-1)\). Conversely, note that 
+\[(y^2-1)-(y-1)^2=(y-1)(y+1-y+1)=2(y-1).\]
+so \(y-1\in \mathfrak{m}^2\). This implies that \(\mathfrak{m}^2=(y-1)\) is principal. The elements in \(A\) can be written as \(f(x)+g(x)y\). Suppose \(\mathfrak{m}=(f(x)+g(x)y)\) is principal. Then 
+\[\mathfrak{m}^2=((f(x)+g(x)y)^2)=(y-1).\]
+Thus, \(y-1\) and \((f(x)+g(x)y)^2\) differ by a unit in \(\mathbb{R}\). By choosing \(f(x)+g(x)y\) properly, we have 
+\[(f(x)+g(x)y)^2=y-1.\]
+By checking the norms \(N(f(x)+g(x)y)=f(x)^2+g(x)^2(x^2-1)\), we have 
+\[N(y-1)=1+x^2-1=x^2\]
+Note that norm \(N\) is multiplicative, so we need to find an element with norm \(x\). Such element does not exist. So \((x,y-1)\) is not principal. 
+\end{solution}
 
+\noindent\rule{7in}{2.8pt}
 
 \end{document}

@@ -1,0 +1,100 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage{/Users/zhengz/Desktop/Math/Workspace/Homework1/homework}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Zhengdong Zhang} \hfill \textbf{Homework - Chapter 3 Exercises}   \\
+Email: zhengz@uoregon.edu \hfill ID: 952091294 \\
+\normalsize Course: MATH 682 - Algebraic Geometry II \hfill Term: Winter 2026 \\
+Instructor: Professor Nick Addington \hfill Due Date: Jan 26, 2026 \\
+\noindent\rule{7in}{2.8pt}
+\setstretch{1.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.6}
+Show that if \(f:X\rightarrow Y\) is a morphism, and \(A_Y\) us a constant sheaf on \(Y\), then \(f^{-1}A_Y\) is a constant sheaf on X. 
+
+Let \(f:\mathbb{R}\rightarrow \mathbb{R}\) be the map \(t\mapsto t^2\) (in the Euclidean topology). Compute all stalks of the pushforward of the constant sheaf \(f_*\mathbb{Z}\). Deduce that \(f_*\mathbb{Z}\) is not a constant sheaf.
+\end{problem}
+\begin{solution}
+Let \(U\subset X\) be an open set. By definition,
+\[(f^{-1}A_Y)(U)=\varinjlim_{V\supset f(U)}A_Y(V).\]
+If \(U\) is connected, then the image \(f(U)\) is also connected. This implies that the open set \(V\) in the directed system can also be taken as connected, so \(A_Y(V)=A\) for any \(V\supset f(U)\). Hence, 
+\[(f^{-1}A_Y)(U)=A\]
+for any \(U\) connected. A similar argument implies that it is constant on each connected component of \(U\), so \(f^{-1}A_Y\) is a constant sheaf on \(X\).
+
+Let \(x\in \mathbb{R}\). By definition, the stalk at \(x\) can be computed as 
+\[(f_*\mathbb{Z})_x=\varinjlim_{U\ni x}\mathbb{Z}(f^{-1}(U)).\]
+If \(x<0\), then there exists a small enough open interval \(U\) containing \(x\) such that \(f^{-1}(U)=\varnothing\). Thus, 
+\[(f^*\mathbb{Z})_x=\mathbb{Z}(\varnothing)=0.\]
+If \(x=0\), let \(U\) be any small open interval containing \(0\), then the preimage \(f^{-1}(U)\) is also connected. So 
+\[(f_*\mathbb{Z})_x=\mathbb{Z}.\]
+as \(\mathbb{Z}\) is a constant sheaf. If \(x>0\), for small enough open neighborhood \(U\) of \(x\), the preimage \(f^{-1}(U)\) is the disjoint union of two open sets in \(\mathbb{R}\), so 
+\[(f_*\mathbb{Z})_x=\mathbb{Z}\oplus \mathbb{Z}.\]
+From this we can see that \(f_*\mathbb{Z}\) is not a constant sheaf as \(f_*\mathbb{Z}\) has different stalks on a connected open set \((-1,1)\).
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.7}
+Let \(X=S^1\) be the unit circle in \(\mathbb{C}\). Let \(\mathcal{F}\) be the sheaf of continuous \(\mathbb{C}\)-valued functions on \(S^1\). Let \(\mathcal{G}\) be the sheaf of \(\mathbb{C}^\times\)-valued functions on \(S^1\). Show that the exponential function defines a map of sheaves \(exp:\mathcal{F}\rightarrow \mathcal{G}\). Show that the image presheaf \(U\mapsto \im \mathrm{exp}(U)\) is not a sheaf.
+\end{problem}
+\begin{solution}
+For any open set \(U\subset X\), let \(f,g:U\rightarrow \mathbb{C}\) be continuous functions on \(S^1\). We have 
+\[\exp(f(z)+g(z))=\exp(f(z))\cdot \exp(g(z))\]
+for any \(z\in U\). So we have a map 
+\[\exp:\mathcal{F}(U)\rightarrow \mathcal{G}(U)\]
+sending any \(\mathbb{C}\)-valued continuous function to \(\mathbb{C}^\times\)-valued functions, which is compatible with the group operations. Moreover, \(\exp\) is compatible with restriction maps on \(X\), so \(\exp\) defines a morphism a sheaves. 
+
+Recall that for any \(z\in S^1\), the complex logarithm \(\log z\) in a small neighborhood of \(z\) if we choose a principal value. But there does not exist a global logarithm function on \(S^1\) as \(0\) is a branch point for \(\log z\). This implies that the presheaf \(U\mapsto \im \exp(U)\) does not satisfy the gluing axiom for sheaves, so it is not a sheaf.
+\end{solution}
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.15}
+Let \(X\) be a topological space and \(x\in X\) a point that is not necessarily closed. Let \(\iota:\left\{ x \right\}\rightarrow X\) be the inclusion. Let \(A\) be the constant sheaf on \(\left\{ x \right\}\) on the group \(A\). Show that the stalk of \(\iota_*A\) at a point \(y\in X\) is equal to \(A\) if \(y\in \bar{x}\) and \(0\) otherwise.
+\end{problem}
+\begin{solution}
+If \(y\notin \bar{x}\), by definition, there exists an open set \(U\ni y\) such that \(U\cap \left\{ x \right\}=\varnothing\). Thus, the stalk at \(y\)
+\[(\iota_*A)_y=\varinjlim_{U\ni y}A(\iota^{-1}(U))=\varinjlim_{U\ni y}A(U\cap \left\{ x \right\})=0.\]
+On the other hand, if \(y\in \bar{x}\), then for any open set \(U\ni y\), we have \(U\cap \left\{ x \right\}=\left\{ x \right\}\). Thus, the stalk at \(y\)
+\[(\iota_*A)_y=\varinjlim_{U\ni y}A(\iota^{-1}(U))=\varinjlim_{U\ni y}A(\left\{ x \right\})=A.\]
+\end{solution}
+
+
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise 3.6.22
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3.6.22}
+Describe the points of the spectrum \(X=\spec \mathbb{C}[x,y]_{(x,y)}\). Compute \(\mathcal{O}_X(U)\) where \(U=X-\left\{ (x,y) \right\}\).
+\end{problem}
+\begin{solution}
+Write \(R=\mathbb{C}[x,y]_{(x,y)}\). We know that \(R\) is a local ring and the prime ideals in \(R\) corresponds to the prime ideals in \(\mathbb{C}[x,y]\) contained in the maximal ideal \((x,y)\). It has three types of points in \(X\):
+\begin{enumerate}[(1)]
+  \item A closed point, the maximal ideal in the local ring \(R\), corresponding to the maximal ideal \((x,y)\) in \(\mathbb{C}[x,y]\).
+  \item \(f\) is an irreducible polynomial in \(\mathbb{C}[x,y]\) and \((0,0)\) is a root of \(f\). \((f)\) is a prime ideal but not maximal ideal in \(\mathbb{C}[x,y]\), corresponding to a point in \(R\). 
+  \item The zero ideal \((0)\).
+\end{enumerate}
+Note that \(U=D(x)\cap D(y)\). Indeed, for any prime ideal \(\mathfrak{p}\subset R\), either \(x\notin \mathfrak{p}\) or \(y\notin \mathfrak{p}\), otherwise \((x,y)\in \mathfrak{p}\). Thus, from the left exact sequence of sheaves, we have 
+\[0\rightarrow \mathcal{O}_X(U)\rightarrow \mathcal{O}_X(D(x))\times \mathcal{O}_X(D(y))\xrightarrow{\varphi} \mathcal{O}_X(D(xy))\]
+Here 
+\begin{align*}
+     \mathcal{O}_X(D(x))\times \mathcal{O}_X(D(y))&\cong R[\frac{1}{x}]\times R[\frac{1}{y}]\\
+     \mathcal{O}_X(D(xy))&\cong R[\frac{1}{xy}].
+\end{align*}
+The map \(\varphi\) is given by the difference of the two localization map \(R[\frac{1}{x}]\rightarrow R[\frac{1}{xy}]\) and \(R[\frac{1}{y}]\rightarrow R[\frac{1}{xy}]\). Both maps are injective since \(R\) is a domain, so 
+\[\mathcal{O}_X(U)\cong \ker\varphi=R[\frac{1}{x}]\cap R[\frac{1}{y}]\cong R.\]
+\end{solution}
+
+
+\end{document}
